@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'Widgets/input_text_widgets.dart';
+import 'Widgets/textButton_expand_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class LoginPage extends StatelessWidget {
           Container(
             width: size.width,
             height: size.height,
+
             color: Colors.greenAccent,
           ),
           Align(
@@ -20,7 +23,7 @@ class LoginPage extends StatelessWidget {
             child: Container(
               width: size.width,
               height: size.height * 0.8,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
@@ -30,7 +33,7 @@ class LoginPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text(
                         'Bem vindos a GREEN!',
                         style: TextStyle(
@@ -42,101 +45,23 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(fontSize: 15),
                       ),
                       SizedBox(height: 16),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 12),
-                        child: Text(
-                          'EMAIL',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                      ),
+
+                        InputTextWidget(label: 'EMAIL',),
                       SizedBox(height: 10),
-                      Padding(
-                          padding: EdgeInsets.only(bottom: 12),
-                          child: Text(
-                            'SENHA',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          )),
-                      TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20))),
+                       InputTextWidget(label: 'SENHA'),
+                       SizedBox(
+                        height: 20,
                       ),
+                      textButton_login(label:'Entrar'),
                       SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(255, 125, 178, 139),
-                                foregroundColor: Colors.white,
-                                padding: EdgeInsets.all(15),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                              ),
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
 
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              child: Text(
-                                'Problemas para fazer login?',
-                                style: TextStyle(
-                                    color: Colors.green[900],
-                                    fontSize: 15),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      TextButtonExpanded(label: 'recuperar senha'),
+                      CreaterAcount(
+                          label:' cadastro'),
 
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              child: Text(
-                                'CRIAR UMA CONTA',
-                                style: TextStyle(color: Colors.green[900]),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+
                     ],
                   ),
                 ),
@@ -148,3 +73,8 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
