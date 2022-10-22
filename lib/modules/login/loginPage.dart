@@ -14,15 +14,21 @@ class LoginPage extends StatelessWidget {
         children: [
           Container(
             width: size.width,
-            height: size.height,
+            height: size.height ,
 
-            color: Colors.greenAccent,
+            child: Image.asset("assets/logo.png",
+             fit:BoxFit.fitHeight ,
+               ),
+            color: Colors.greenAccent
+
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
+
               width: size.width,
               height: size.height * 0.8,
+
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -30,6 +36,7 @@ class LoginPage extends StatelessWidget {
                       topRight: Radius.circular(30))),
               child: Padding(
                 padding: EdgeInsets.only(top: 40, left: 32, right: 32),
+
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,25 +46,25 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 26, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 10),
                       Text(
                         'Matenha suas contas em dia! ',
                         style: TextStyle(fontSize: 15),
                       ),
                       SizedBox(height: 16),
-
                         InputTextWidget(label: 'EMAIL',),
                       SizedBox(height: 10),
                        InputTextWidget(label: 'SENHA'),
                        SizedBox(
                         height: 20,
                       ),
-                      textButton_login(label:'Entrar'),
+                      textButton_login(label:'Login'),
                       SizedBox(
                         height: 20,
                       ),
 
-                      TextButtonExpanded(label: 'recuperar senha'),
+                      TextButtonExpanded(
+                          label: 'esqueceu a senha'),
                       CreaterAcount(
                           label:' cadastro'),
 
