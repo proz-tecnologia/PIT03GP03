@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 
 class InputTextWidget extends StatelessWidget {
   final String label;
   const InputTextWidget({
-    Key? key, required this.label,
+    Key? key,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -13,17 +13,16 @@ class InputTextWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.only(bottom: 12),
           child: Text(
             label,
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20))),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
         ),
       ],
     );

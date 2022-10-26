@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green/modules/login/loginPage.dart';
+import 'package:green/modules/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Green',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const LoginPage()
-    );
+        title: 'Green',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: const LoginPage());
   }
 }

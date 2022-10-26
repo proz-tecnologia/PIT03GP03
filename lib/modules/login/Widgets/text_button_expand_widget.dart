@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
-
 //widget  esqueceu a seenha
 class TextButtonExpanded extends StatelessWidget {
-  final  String label;
+  final String label;
 
   const TextButtonExpanded({
-    Key? key, required this.label,
+    Key? key,
+    required this.label,
   }) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       children: [
         Expanded(
@@ -22,7 +19,6 @@ class TextButtonExpanded extends StatelessWidget {
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
               foregroundColor: Colors.green,
-
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
@@ -40,7 +36,8 @@ class TextButtonExpanded extends StatelessWidget {
 //widget cadastro
 class CreaterAcount extends StatelessWidget {
   const CreaterAcount({
-    Key? key, required String label,
+    Key? key,
+    required String label,
   }) : super(key: key);
 
   @override
@@ -68,11 +65,11 @@ class CreaterAcount extends StatelessWidget {
 }
 
 //widget login
-class textButton_login extends StatelessWidget {
-
-  final  String label;
-  const textButton_login({
-    Key? key, required this.label,
+class TextButtonLogin extends StatelessWidget {
+  final String label;
+  const TextButtonLogin({
+    Key? key,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -83,18 +80,15 @@ class textButton_login extends StatelessWidget {
           child: TextButton(
             onPressed: () {},
             style: TextButton.styleFrom(
-              backgroundColor:
-              Color.fromARGB(255, 125, 178, 139),
+              backgroundColor: const Color.fromARGB(255, 125, 178, 139),
               foregroundColor: Colors.white,
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
             ),
             child: const Text(
               'Login',
-              style: TextStyle(
-                  color: Colors.white, fontSize: 20),
-
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
         ),
