@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Widgets/input_text_widgets.dart';
-import 'Widgets/textButton_expand_widget.dart';
+import '../modules/login/Widgets/input_text_widgets.dart';
+import '../modules/login/Widgets/textButton_expand_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

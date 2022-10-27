@@ -1,0 +1,69 @@
+/*
+Widget build(BuildContext context) {
+    return Container(
+
+  margin: const EdgeInsets.all(20),
+  child: Column(
+
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  _account(),
+  const SizedBox(height: 12,),
+  _accountMes(),
+  Row(
+      ),
+  const Text(' '),
+  ],
+  ),
+  _accountMes(){
+    return  GetBuilder<ControllerHomePage>(
+      init: ControllerHomePage(),
+      builder: (controller) {
+        return Text(controller.conta,
+          style:const TextStyle(
+              fontSize: 20,
+              fontWeight:FontWeight.bold)
+        );
+      }
+    );
+  }
+}
+
+
+
+ Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              // dentro do planejamento
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isMeuGreen = ! _isMeuGreen;
+
+                  });
+                },
+                child: Text(
+                  'Meu Green',
+                  style: TextStyle(
+                      color: _isMeuGreen ? _secondaryColor : Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      height: 1),
+                ),
+              ),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isMeuGreen = !_isMeuGreen;
+                    });
+                  },
+                  child: Text(
+                    'Valores gastos',
+                    style: TextStyle(
+                        color: _isMeuGreen ? Colors.white : _secondaryColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        height: 1),
+                  )),
+            ],
+          ),

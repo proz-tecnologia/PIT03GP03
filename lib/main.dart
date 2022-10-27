@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:green/modules/login/loginPage.dart';
+import 'package:green/pages/loginPage.dart';
+import 'package:green/utils/colors.dart';
+
+import 'pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -12,11 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Green',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch:Colors.green,
+        fontFamily: 'khang'
+
       ),
-      home: const LoginPage()
+      home: const HomePage2()
     );
   }
 }
