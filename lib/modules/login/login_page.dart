@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Widgets/input_text_widgets.dart';
+import 'Widgets/input_login_widgets.dart';
 import 'Widgets/text_button_expand_widget.dart';
 
 class LoginPage extends StatelessWidget {
@@ -47,18 +47,10 @@ class LoginPage extends StatelessWidget {
                         'Matenha suas contas em dia! ',
                         style: TextStyle(fontSize: 15),
                       ),
-                      SizedBox(height: 16),
-                      InputTextWidget(
-                        label: 'EMAIL',
-                      ),
                       SizedBox(height: 10),
-                      InputTextWidget(label: 'SENHA'),
+                      InputLoginWidget(),
                       SizedBox(
-                        height: 20,
-                      ),
-                      TextButtonLogin(label: 'Login'),
-                      SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       TextButtonExpanded(label: 'esqueceu a senha'),
                       CreaterAcount(label: ' cadastro'),
