@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:green/pages/loginPage.dart';
-import 'package:green/utils/colors.dart';
 
-import 'pages/homepage.dart';
+import 'modules/HomePage/pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
