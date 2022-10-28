@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/pages_models/Todo.dart';
-import '../repository/TodoRepository.dart';
-import '../widgets/todo_list_item.dart';
+
+import '../../../models/pages_models/Todo.dart';
+import '../../../repository/TodoRepository.dart';
+import '../../../widgets/todo_list_item.dart';
 
 class HomeApp extends StatefulWidget {
-  HomeApp({Key? key}) : super(key: key);
+  const HomeApp({Key? key}) : super(key: key);
 
   @override
   State<HomeApp> createState() => _HomeAppState();
@@ -34,7 +35,7 @@ class _HomeAppState extends State<HomeApp> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -52,7 +53,7 @@ class _HomeAppState extends State<HomeApp> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
                         String text = textController.text;
@@ -69,7 +70,7 @@ class _HomeAppState extends State<HomeApp> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -107,7 +108,7 @@ class _HomeAppState extends State<HomeApp> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.all(14),
+                        padding: const EdgeInsets.all(14),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -160,17 +161,17 @@ class _HomeAppState extends State<HomeApp> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Limpar Tudo?'),
-        content: Text('Você tem certeza  que deseja apagar todas as tarefas?'),
+        title: const Text('Limpar Tudo?'),
+        content:
+            const Text('Você tem certeza  que deseja apagar todas as tarefas?'),
         actions: [
           TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               style: TextButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white),
-              child: Text('Cancelar')),
+                  backgroundColor: Colors.green, foregroundColor: Colors.white),
+              child: const Text('Cancelar')),
           TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -178,7 +179,7 @@ class _HomeAppState extends State<HomeApp> {
               },
               style: TextButton.styleFrom(
                   backgroundColor: Colors.red, foregroundColor: Colors.white),
-              child: Text('Excluir')),
+              child: const Text('Excluir')),
         ],
       ),
     );

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../models/transaction/transaction_model.dart';
-import 'drawer_page.dart';
 
+import '../../../models/transaction/transaction_model.dart';
+import 'drawer_page.dart';
 
 class HomePage2 extends StatefulWidget {
   const HomePage2({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class _HomePage2State extends State<HomePage2> {
   static const Color _secondaryColor = Colors.white38;
   static const Color _thirdColor = Colors.deepOrangeAccent;
 
-//list imagens
+//list imagens = transações
 
   final List<TransactionModel> _transactionList = [
     // modificar para o list Icon
@@ -100,6 +99,7 @@ class _HomePage2State extends State<HomePage2> {
   }
 
 //appBar Bottom Sequencia
+
   _appbarBotomSection() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -243,6 +243,7 @@ class _HomePage2State extends State<HomePage2> {
                 const Divider(),
 
                 // listview widgets (trocar para logica transações
+
                 ListView.separated(
                   primary: false,
                   shrinkWrap: true,
@@ -321,6 +322,7 @@ class _HomePage2State extends State<HomePage2> {
       ),
 
 //graficos adicionar logica
+
       child: Row(
         children: <Widget>[
           Stack(
@@ -375,7 +377,7 @@ class _HomePage2State extends State<HomePage2> {
               ),
               Row(
                 children: <Widget>[
-                  _reportInnerCell(
+                  _reportInner(
                     isSavings: isSavings,
                     title: 'gastos',
                     value: gastos,
@@ -393,7 +395,7 @@ class _HomePage2State extends State<HomePage2> {
   }
 }
 
-Column _reportInnerCell(
+Column _reportInner(
     {required bool isSavings, required String title, required String value}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,

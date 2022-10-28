@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:green/pages/Metas.dart';
-import 'package:green/pages/config_Users.dart';
-import 'package:green/pages/meuGreen.dart';
-import 'package:green/pages/myCard.dart';
-import 'package:green/pages/pagamentos.dart';
-import 'package:green/pages/todo-list.dart';
+import 'package:green/modules/HomePage/pages/pagamentos.dart';
+import 'package:green/modules/HomePage/pages/todo-list.dart';
 import 'package:iconsax/iconsax.dart';
+
+import 'Metas.dart';
+import 'config_Users.dart';
 import 'drawer_item.dart';
-
-
-
+import 'meuGreen.dart';
+import 'myCard.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({Key? key}) : super(key: key);
