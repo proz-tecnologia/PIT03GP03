@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../models/pages_models/Todo.dart';
+import '../models/pages_models/todo.dart';
 import 'package:intl/intl.dart';
 
 class TodoListItem extends StatelessWidget {
   const TodoListItem({
-    Key? key, required this.todo, required this.onDelet,}) : super(key: key);
+    Key? key,
+    required this.todo,
+    required this.onDelet,
+  }) : super(key: key);
 
   final Todo todo;
   final Function(Todo) onDelet;
@@ -14,21 +17,18 @@ class TodoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),//
-          child: Container(
-
+        padding: const EdgeInsets.symmetric(vertical: 2), //
+        child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16), color: Colors.grey[200]),
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-
             children: [
               Text(
                 DateFormat('dd/MMM/yyyy - HH:mm').format(todo.dateTime),
                 style: TextStyle(fontSize: 12),
               ),
-
               Text(
                 todo.title,
                 style: TextStyle(

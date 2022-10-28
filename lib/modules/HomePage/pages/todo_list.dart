@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../models/pages_models/Todo.dart';
-import '../../../repository/TodoRepository.dart';
+import '../../../models/pages_models/todo.dart';
+import '../../../repository/todo_repository.dart';
 import '../../../widgets/todo_list_item.dart';
 
 class HomeApp extends StatefulWidget {
@@ -100,7 +99,7 @@ class _HomeAppState extends State<HomeApp> {
                   children: <Widget>[
                     Expanded(
                       child:
-                      Text('Você possui ${todos.length} Tarefas pendentes'),
+                          Text('Você possui ${todos.length} Tarefas pendentes'),
                     ),
                     const SizedBox(width: 8),
                     ElevatedButton(

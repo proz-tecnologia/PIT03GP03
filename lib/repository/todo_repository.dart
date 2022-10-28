@@ -1,22 +1,21 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/pages_models/Todo.dart';
+import '../models/pages_models/todo.dart';
 
-const todoListkey='todo_list';
+const todoListkey = 'todo_list';
 
 class TodoRepository {
   late SharedPreferences sharedPreferences;
 
   Future<List<Todo>> getTodoList() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    final String jsonString= sharedPreferences.getString(todoListkey) ?? '[]';
+    final String jsonString = sharedPreferences.getString(todoListkey) ?? '[]';
     final List jsonDecoder = json.decode(jsonString) as List;
     return jsonDecoder.map((e) => Todo.fromJson(e)).toList();
   }
 
-  void saveTodoList(List<Todo>todos) {
+  void saveTodoList(List<Todo> todos) {
     final String jsonString = json.encode(todos);
     sharedPreferences.setString('todo_list', jsonString);
   }
 }
-

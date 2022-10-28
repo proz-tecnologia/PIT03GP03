@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:green/modules/HomePage/Controller/home_controller.dart';
+import 'package:provider/provider.dart';
 import '../../../models/transaction/transaction_model.dart';
 import 'drawer_page.dart';
 
@@ -12,18 +13,20 @@ class HomePage2 extends StatefulWidget {
 
 class _HomePage2State extends State<HomePage2> {
   bool _isMeuGreen = false;
-    static const Color _primaryColor = Colors.green;
+  static const Color _primaryColor = Colors.green;
   static const Color _secondaryColor = Colors.white38;
   static const Color _thirdColor = Colors.deepOrangeAccent;
 
 //list imagens = transações
 
-  final List<TransactionModel> _transactionList = [
+  final List<TransactionModel> _transactionList =
+      []; /*[
     // modificar para o list Icon
     TransactionModel(
       logo2: 'assets/mcdonalds.png',
       name: "Ifood",
-      amount: '-32,50', title: '',
+      amount: '-32,50',
+      title: '',
       dateTime: DateTime.now(),
     ),
     TransactionModel(
@@ -57,7 +60,6 @@ class _HomePage2State extends State<HomePage2> {
     TransactionModel(
       logo2: 'assets/transporte.png',
       name: "Uber",
-
       amount: '-35,00',
       title: '',
       dateTime: DateTime.now(),
@@ -70,18 +72,21 @@ class _HomePage2State extends State<HomePage2> {
       dateTime: DateTime.now(),
     ),
   ];
+*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      drawer:  const DrawerApp(),
-      body: Column(
-        children: [
-          _appbarBotomSection(),
-          _mainBoard(),
-        ],
-      ),
+      drawer: const DrawerApp(),
+      body: Consumer<HomeController>(builder: (context, controller, __) {
+        return Column(
+          children: [
+            _appbarBotomSection(),
+            _mainBoard(),
+          ],
+        );
+      }),
     );
   }
 
@@ -93,7 +98,6 @@ class _HomePage2State extends State<HomePage2> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 20),
-
           )
         ]);
   }
@@ -270,7 +274,7 @@ class _HomePage2State extends State<HomePage2> {
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         )),
-                   subtitle: Text(
+                    subtitle: Text(
                       _transactionList[index].dateTime.toString(),
                       style: TextStyle(
                         color: _primaryColor,
