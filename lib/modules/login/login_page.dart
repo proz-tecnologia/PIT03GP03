@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:green/modules/login/Widgets/text_button_expand_widget.dart';
 
+import '../../../models/credential/users_credential.dart';
+import '../HomePage/pages/homepage.dart';
 import 'Widgets/input_login_widgets.dart';
-import 'Widgets/text_button_expand_widget.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  String _email = "";
+  String _password = "";
+  UserCredential? _userCredential;
+  bool _canShowPassword = false;
+
+  @override
+  void initState() {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.green));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +37,7 @@ class LoginPage extends StatelessWidget {
           Container(
             width: size.width,
             height: size.height,
-            color: Colors.greenAccent,
+            color: Colors.green,
             child: Image.asset(
               "assets/logo.png",
               fit: BoxFit.fitHeight,
@@ -30,10 +51,10 @@ class LoginPage extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40))),
               child: Padding(
-                padding: const EdgeInsets.only(top: 40, left: 32, right: 32),
+                padding: const EdgeInsets.only(top: 50, left: 32, right: 32),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +64,7 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 26, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 20),
                       Text(
                         'Matenha suas contas em dia! ',
                         style: TextStyle(fontSize: 15),
@@ -64,5 +85,11 @@ class LoginPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void navigateToHome() {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (_) => const HomePage2(),
+        settings: RouteSettings(arguments: _userCredential)));
   }
 }

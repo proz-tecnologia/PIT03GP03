@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'modules/HomePage/pages/homepage.dart';
+import 'modules/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,12 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Green',
-      theme: ThemeData(
-        primarySwatch:Colors.green,
-        fontFamily: 'khang'
-
-      ),
-      home: const HomePage2()
+      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'khang'),
+      home: const LoginPage(),
     );
   }
 }

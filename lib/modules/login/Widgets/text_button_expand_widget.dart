@@ -24,7 +24,7 @@ class TextButtonExpanded extends StatelessWidget {
             ),
             child: Text(
               'Problemas para fazer login?',
-              style: TextStyle(color: Colors.green[900]),
+              style: TextStyle(color: Colors.green),
             ),
           ),
         ),
@@ -55,7 +55,7 @@ class CreaterAcount extends StatelessWidget {
             ),
             child: Text(
               'Ainda não tenho uma conta GREEN!',
-              style: TextStyle(color: Colors.green[900]),
+              style: TextStyle(color: Colors.green),
             ),
           ),
         ),
@@ -81,11 +81,11 @@ class TextButtonLogin extends StatelessWidget {
           child: TextButton(
             onPressed: () {},
             style: TextButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 125, 178, 139),
+              backgroundColor: Colors.green,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.all(15),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(30)),
             ),
             child: const Text(
               'Login',

@@ -254,7 +254,7 @@ class _HomePage2State extends State<HomePage2> {
                     leading: Container(
                       width: 60,
                       height: 60,
-                      clipBehavior: Clip.hardEdge,
+                      clipBehavior: Clip.antiAlias,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,

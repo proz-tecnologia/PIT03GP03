@@ -1,8 +1,3 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import '';
-import 'package:flutter/foundation.dart';
-
 class TransactionModel{
   TransactionModel({required this.title,required this.dateTime,required this.logo2,
     required this.name,
