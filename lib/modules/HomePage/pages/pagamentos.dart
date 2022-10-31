@@ -74,7 +74,7 @@ class _TransActionPageState extends State<TransActionPage> {
               validator: (String? valor) {
                 if (verificNumber.hasMatch(valor!) ||
                     valor.isEmpty ||
-                    double.parse(valor) <= 0) {
+                    double.parse(valor.replaceAll(",", ".")) <= 0) {
                   return 'valor inválido';
                 }
 

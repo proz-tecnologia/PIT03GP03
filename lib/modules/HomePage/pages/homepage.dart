@@ -19,8 +19,7 @@ class _HomePage2State extends State<HomePage2> {
 
 //list imagens = transações
 
-  final List<TransactionModel> _transactionList =
-      []; /*[
+  final List<TransactionModel> _transactionList = [
     // modificar para o list Icon
     TransactionModel(
       logo2: 'assets/mcdonalds.png',
@@ -72,7 +71,6 @@ class _HomePage2State extends State<HomePage2> {
       dateTime: DateTime.now(),
     ),
   ];
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +80,7 @@ class _HomePage2State extends State<HomePage2> {
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Column(
           children: [
-            _appbarBotomSection(),
+            _appbarBotomSection(controller.total()),
             _mainBoard(),
           ],
         );
@@ -95,16 +93,16 @@ class _HomePage2State extends State<HomePage2> {
     return AppBar(
         elevation: 0,
         backgroundColor: _primaryColor,
-        actions: <Widget>[
+        actions: const <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: EdgeInsets.only(right: 20),
           )
         ]);
   }
 
 //appBar Bottom Sequencia
 
-  _appbarBotomSection() {
+  Widget _appbarBotomSection(double value) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       width: MediaQuery.of(context).size.width,
@@ -118,9 +116,9 @@ class _HomePage2State extends State<HomePage2> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const <Widget>[
+            children: <Widget>[
               // entrar com a logica no lugar do texto
-              Text(
+              const Text(
                 'R\$ ',
                 style: TextStyle(
                   color: Colors.white,
@@ -130,8 +128,8 @@ class _HomePage2State extends State<HomePage2> {
                 ),
               ),
               // entrar com a logica no lugar do texto
-              Text('640,00 ',
-                  style: TextStyle(
+              Text(value.toStringAsFixed(2).replaceAll(".", ","),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 50,
                     fontWeight: FontWeight.w600,
