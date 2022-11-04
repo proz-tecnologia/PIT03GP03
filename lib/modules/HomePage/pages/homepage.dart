@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:green/modules/HomePage/Controller/home_controller.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../../models/transaction/transaction_model.dart';
+import '../../../models/transaction/transaction.dart';
 import 'drawer_page.dart';
+//import '../../../models/transaction/transaction_model.dart';
 
 class HomePage2 extends StatefulWidget {
   const HomePage2({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class _HomePage2State extends State<HomePage2> {
 
 //list imagens = transações
 
-  final List<TransactionModel> _transactionList = [
+  /*final List<TransactionModel> _transactionList = [
     // modificar para o list Icon
     TransactionModel(
       logo2: 'assets/mcdonalds.png',
@@ -70,7 +72,7 @@ class _HomePage2State extends State<HomePage2> {
       title: '',
       dateTime: DateTime.now(),
     ),
-  ];
+  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +83,7 @@ class _HomePage2State extends State<HomePage2> {
         return Column(
           children: [
             _appbarBotomSection(controller.total()),
-            _mainBoard(),
+            _mainBoard(controller.transactionList),
           ],
         );
       }),
@@ -195,7 +197,7 @@ class _HomePage2State extends State<HomePage2> {
   }
 
   //aqui começa os widgets com graficos
-  Expanded _mainBoard() {
+  Expanded _mainBoard(List<Transaction> lista) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -218,80 +220,103 @@ class _HomePage2State extends State<HomePage2> {
               height: 32,
             ),
             //texto na main
-            Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Transações',
+            lista.isEmpty
+                ? Column(
+                    children: [
+                      const Text(
+                        'Nenhuma Despesa Cadastrada!',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Text(
-                        'Valor',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      SizedBox(
+                        height: 200,
+                        child: Image.asset(
+                          'assets/pigSleeping.png',
+                          fit: BoxFit.cover,
                         ),
-                      )
+                      ),
                     ],
-                  ),
-                ),
-                const Divider(),
+                  )
+                : Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              'Transações',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              'Valor',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const Divider(),
 
-                // listview widgets (trocar para logica transações
+                      // listview widgets (trocar para logica transações
 
-                ListView.separated(
-                  primary: false,
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: _transactionList.length,
-                  itemBuilder: (context, index) => ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 60,
-                      height: 60,
-                      clipBehavior: Clip.antiAlias,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border:
-                            Border.all(color: _primaryColor.withOpacity(0.1)),
+                      ListView.separated(
+                        primary: false,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) => const Divider(),
+                        itemCount: lista.length,
+                        itemBuilder: (context, index) => ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: Container(
+                            width: 60,
+                            height: 60,
+                            clipBehavior: Clip.antiAlias,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: _primaryColor.withOpacity(0.1)),
+                            ),
+                            child: Image.asset('assets/contas.png',
+                                fit: BoxFit.cover, width: 30, height: 30),
+                          ),
+                          title: Text(lista[index].title,
+                              style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              )),
+                          subtitle: Text(
+                            DateFormat('d MMM y').format(lista[index].date),
+                            //_transactionList[index].dateTime.toString(),
+                            style: const TextStyle(
+                              color: _primaryColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          trailing: Text(
+                            lista[index].value.toStringAsFixed(2),
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Image.asset(_transactionList[index].logo2,
-                          fit: BoxFit.cover, width: 30, height: 30),
-                    ),
-                    title: Text(_transactionList[index].name,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    subtitle: Text(
-                      _transactionList[index].dateTime.toString(),
-                      style: TextStyle(
-                        color: _primaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Text(
-                      _transactionList[index].amount,
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
+                    ],
+                  )
           ],
         ),
       ),

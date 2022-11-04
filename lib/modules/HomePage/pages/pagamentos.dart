@@ -80,6 +80,8 @@ class _TransActionPageState extends State<TransActionPage> {
 
                 return null;
               },
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
                   label: const Text('Valor'),
                   border: OutlineInputBorder(
