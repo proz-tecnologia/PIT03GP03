@@ -1,6 +1,10 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:pie_chart/pie_chart.dart';
+import 'package:green/modules/HomePage/pages/pagamentos_item.dart';
+import 'package:green/theme/colors.dart';
+import 'package:iconsax/iconsax.dart';
+
+import 'meu_green_item.dart';
 
 class MeuGreen extends StatefulWidget {
   const MeuGreen({Key? key}) : super(key: key);
@@ -10,57 +14,76 @@ class MeuGreen extends StatefulWidget {
 }
 
 class _MeuGreenState extends State<MeuGreen> {
-  int index = 0;
-  NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
-
-  Map<String, double> listaValores = {
-    'Alimentação': 667.89,
-    'Transporte': 550.76,
-    'Diversão': 238.99,
-    'Educação': 235.99,
-    'Saúde': 980.55
-  };
-
-  List<Color> listaCores = [
-    const Color(0xffD95AF3),
-    const Color(0xff3EE094),
-    const Color(0xff3398F6),
-    const Color(0xffFA4A42),
-    const Color(0xffFE9539)
-  ];
+  int pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Meu Green'),
+      body: getBody(),
+      bottomNavigationBar: getFooter(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setTabs(4);
+        },
+        child: Icon(Icons.add, size: 25),
+        backgroundColor: primary,
       ),
-      body: Center(
-        child: PieChart(
-          dataMap: listaValores,
-          colorList: listaCores,
-          //Definindo o tamanho da pizza
-          chartRadius: MediaQuery.of(context).size.width / 2,
-          centerText: '',
-          chartType: ChartType.ring,
-          ringStrokeWidth: 24,
-          animationDuration: const Duration(seconds: 3),
-          chartValuesOptions: const ChartValuesOptions(
-              //mostrar valores
-              showChartValues: true,
-              //mostrar valores fora do grafico
-              showChartValuesOutside: true,
-              //mostrar valores em porcentagem
-              showChartValuesInPercentage: false,
-              //mostrar o fundo dos valores
-              showChartValueBackground: false),
-          legendOptions: const LegendOptions(
-              showLegends: true,
-              legendShape: BoxShape.circle,
-              legendTextStyle: TextStyle(fontSize: 16)),
-        ),
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+
+  Widget getBody() {
+    return IndexedStack(
+      index: pageIndex,
+      children: [
+        CreatBudgetPage(),
+        PagItem(),
+        CreatBudgetPage(),
+        Center(
+          child: Text('Daily Page'),
+        ),
+        Center(
+          child: Text('Stats Page'),
+        ),
+        Center(
+          child: Text('Budget Page'),
+        ),
+        Center(
+          child: Text('Profile'),
+        ),
+        Center(
+          child: Text('Create Budget Page'),
+        ),
+      ],
+    );
+  }
+
+  Widget getFooter() {
+    List<IconData> iconItems = [
+      Iconsax.chart_3,
+      Iconsax.calendar,
+      Iconsax.wallet,
+      Iconsax.aquarius1
+    ];
+    return AnimatedBottomNavigationBar(
+        icons: iconItems,
+        activeColor: primary,
+        splashColor: secondary,
+        inactiveColor: black.withOpacity(0.5),
+        activeIndex: pageIndex,
+        gapLocation: GapLocation.center,
+        notchSmoothness: NotchSmoothness.softEdge,
+        leftCornerRadius: 10,
+        iconSize: 25,
+        rightCornerRadius: 10,
+        onTap: (index) {
+          setTabs(index);
+        });
+  }
+
+  setTabs(index) {
+    setState(() {
+      pageIndex = index;
+    });
   }
 }

@@ -1,27 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-
 class TransActionController {
-  final List<String> categoryList = [
-    'Viagem',
-    'Alimentação',
-    'Roupa',
-    'Transporte'
+  final List<dynamic> categoryList = [
+    {"name": "+ Green", "icon": "assets/metas2.png"},
+    {"name": "Auto", "icon": "assets/auto.png"},
+    {"name": "Compras", "icon": "assets/mercado.png"},
+    {"name": "Saúde", "icon": "assets/hospital.png"},
+    {"name": "Alimentação", "icon": "assets/eating.png"},
+    {"name": "Educação", "icon": "assets/Education.png"},
+    {"name": "Banco", "icon": "assets/bank.png"},
+    {"name": "Cartões", "icon": "assets/Transfer.png"},
+    {"name": "PetShop", "icon": "assets/petshop.png"},
+    {"name": "Academia", "icon": "assets/academia2.png"},
   ];
 
-  IconData icon(String category) {
-    if (category == 'Alimentação') {
-      return Icons.food_bank;
-    } else if (category == 'Viagem') {
-      return Iconsax.airplane;
-    } else if (category == 'Roupa') {
-      return Iconsax.shop;
-    } else {
-      return Iconsax.car;
-    }
-  }
-
-  String category = 'Alimentação';
+  String category = '';
 
   String title = '';
 

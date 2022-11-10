@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -39,7 +39,6 @@ dependencies:
   material_design_icons_flutter: ^5.0.6996
   get: ^4.6.5
   ionicons: ^0.2.1
-  eva_icons_flutter: ^3.1.0
   intl: ^0.17.0
   iconsax: ^0.0.8
   flutter_slidable: ^2.0.0
@@ -47,6 +46,21 @@ dependencies:
   email_validator: ^2.1.17
   pie_chart: ^5.3.2
   provider: ^6.0.4
+  syncfusion_flutter_charts: ^20.3.52
+  hive: ^2.2.3
+  chart_components: ^1.0.1
+  carbon_icons: ^0.0.1+2
+  flutter_rating_bar: ^4.0.1
+  hive_flutter: ^1.1.0
+  page_transition: ^1.1.7+6
+  flutter_charts: ^0.5.0
+  percent_indicator: ^4.2.2
+  json_dynamic_widget_plugin_ionicons: ^3.0.0+22
+  animated_bottom_navigation_bar: ^0.2.1
+  bottom_navigation_bar: ^1.0.1
+  antdesign_icons: ^0.0.3
+  fl_chart: ^0.55.2
+
 
 dev_dependencies:
   flutter_test:
@@ -76,7 +90,6 @@ flutter:
     - assets/logo.png
     - assets/login2.png
     - assets/pigSleeping.png
-
     -  assets/contas.png
     -  assets/avatar.png
     -  assets/metas.png
@@ -96,6 +109,18 @@ flutter:
     - assets/profile.png
     - assets/transporte.png
     - assets/viagem.png
+    - assets/Transfer.png
+    - assets/Transportation.png
+    - assets/Education.png
+    - assets/food.png
+    - assets/starbucks.ico
+    - assets/star.png
+    - assets/auto.png
+    - assets/bank.png
+    - assets/cash.png
+    - assets/charity.png
+    - assets/eating.png
+    - assets/gift.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

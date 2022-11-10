@@ -22,7 +22,7 @@ class TextButtonExpanded extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
-            child: Text(
+            child: const Text(
               'Problemas para fazer login?',
               style: TextStyle(color: Colors.green),
             ),
@@ -53,7 +53,7 @@ class CreaterAcount extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
-            child: Text(
+            child: const Text(
               'Ainda não tenho uma conta GREEN!',
               style: TextStyle(color: Colors.green),
             ),

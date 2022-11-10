@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green/modules/HomePage/Controller/home_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import '../../../models/transaction/transaction.dart';
 import 'drawer_page.dart';
 //import '../../../models/transaction/transaction_model.dart';
@@ -14,7 +15,6 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePage2State extends State<HomePage2> {
-  bool _isMeuGreen = false;
   static const Color _primaryColor = Colors.green;
   static const Color _secondaryColor = Colors.white38;
   static const Color _thirdColor = Colors.deepOrangeAccent;
@@ -153,41 +153,6 @@ class _HomePage2State extends State<HomePage2> {
           const SizedBox(
             height: 32,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              // dentro do planejamento
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isMeuGreen = !_isMeuGreen;
-                  });
-                },
-                child: Text(
-                  'Meu Green',
-                  style: TextStyle(
-                      color: _isMeuGreen ? _secondaryColor : Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      height: 2),
-                ),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isMeuGreen = !_isMeuGreen;
-                    });
-                  },
-                  child: Text(
-                    'Valores gastos',
-                    style: TextStyle(
-                        color: _isMeuGreen ? Colors.white : _secondaryColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        height: 2),
-                  )),
-            ],
-          ),
           const SizedBox(
             height: 10,
           )
@@ -234,10 +199,10 @@ class _HomePage2State extends State<HomePage2> {
                         height: 8,
                       ),
                       SizedBox(
-                        height: 200,
+                        height: 400,
                         child: Image.asset(
                           'assets/pigSleeping.png',
-                          fit: BoxFit.cover,
+                          fit: BoxFit.none,
                         ),
                       ),
                     ],
