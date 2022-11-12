@@ -3,9 +3,9 @@ import 'package:green/modules/HomePage/Controller/home_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../json/create_budget_json.dart';
 import '../../../models/transaction/transaction.dart';
 import 'drawer_page.dart';
-//import '../../../models/transaction/transaction_model.dart';
 
 class HomePage2 extends StatefulWidget {
   const HomePage2({Key? key}) : super(key: key);
@@ -18,61 +18,6 @@ class _HomePage2State extends State<HomePage2> {
   static const Color _primaryColor = Colors.green;
   static const Color _secondaryColor = Colors.white38;
   static const Color _thirdColor = Colors.deepOrangeAccent;
-
-//list imagens = transações
-
-  /*final List<TransactionModel> _transactionList = [
-    // modificar para o list Icon
-    TransactionModel(
-      logo2: 'assets/mcdonalds.png',
-      name: "Ifood",
-      amount: '-32,50',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-    TransactionModel(
-      logo2: 'assets/academia.png',
-      name: "PROZ Fitness",
-      amount: '-100,00',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-    TransactionModel(
-      logo2: 'assets/contas.png',
-      name: "Contas",
-      amount: '',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-    TransactionModel(
-      logo2: 'assets/petshop.png',
-      name: "PetShop",
-      amount: '-22,50',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-    TransactionModel(
-      logo2: 'assets/combustivel.png',
-      name: "Gasolina",
-      amount: '-100,00',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-    TransactionModel(
-      logo2: 'assets/transporte.png',
-      name: "Uber",
-      amount: '-35,00',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-    TransactionModel(
-      logo2: 'assets/mercado.png',
-      name: "Atacadão",
-      amount: '-350,00',
-      title: '',
-      dateTime: DateTime.now(),
-    ),
-  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +127,7 @@ class _HomePage2State extends State<HomePage2> {
                 gastos: 'R\$ 640,00',
                 progress: 50),
             const SizedBox(
-              height: 32,
+              height: 100,
             ),
             //texto na main
             lista.isEmpty
@@ -192,6 +137,8 @@ class _HomePage2State extends State<HomePage2> {
                         'Nenhuma Despesa Cadastrada!',
                         style: TextStyle(
                           color: Colors.black,
+                          fontFamily: 'Arial',
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -199,10 +146,10 @@ class _HomePage2State extends State<HomePage2> {
                         height: 8,
                       ),
                       SizedBox(
-                        height: 400,
+                        height: 200,
+                        width: 200,
                         child: Image.asset(
                           'assets/pigSleeping.png',
-                          fit: BoxFit.none,
                         ),
                       ),
                     ],
@@ -252,7 +199,7 @@ class _HomePage2State extends State<HomePage2> {
                               border: Border.all(
                                   color: _primaryColor.withOpacity(0.1)),
                             ),
-                            child: Image.asset('assets/contas.png',
+                            child: Image.asset(categories[index]['icon'],
                                 fit: BoxFit.cover, width: 30, height: 30),
                           ),
                           title: Text(lista[index].title,

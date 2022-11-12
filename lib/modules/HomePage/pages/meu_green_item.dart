@@ -154,30 +154,22 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Nome',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
-                ),
                 TextFormField(
                   validator: (String? value) {
                     if (value!.isEmpty) {
                       return "Campo obrigatório";
                     }
+
                     return null;
                   },
-                  controller: _budgetName,
-                  cursorColor: black,
-                  style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: black),
-                  decoration:
-                      InputDecoration(hintText: " ", border: InputBorder.none),
+                  decoration: InputDecoration(
+                      label: const Text('Descrição'),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
                   onChanged: (value) => controller.title = value,
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 16,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,13 +179,6 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 13,
-                                  color: Color(0xff67727d)),
-                            ),
                             TextFormField(
                               validator: (String? valor) {
                                 if (verificNumber.hasMatch(valor!) ||
@@ -210,15 +195,13 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                       decimal: true),
                               decoration: InputDecoration(
                                   label: const Text('Valor'),
-                                  border: InputBorder.none),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20))),
                               onChanged: (value) =>
                                   controller.value = double.parse(value),
                               controller: _budgetPrice,
                               cursorColor: black,
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: black),
+                              style: TextStyle(fontSize: 17, color: black),
                             ),
                           ],
                         ),

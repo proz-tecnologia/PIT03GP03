@@ -38,7 +38,6 @@ class _MeuGreenState extends State<MeuGreen> {
       children: [
         CreatBudgetPage(),
         PagItem(),
-        CreatBudgetPage(),
         Center(
           child: Text('Daily Page'),
         ),

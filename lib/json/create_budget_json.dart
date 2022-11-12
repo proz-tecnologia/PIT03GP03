@@ -10,3 +10,20 @@ const List categories = [
   {"name": "PetShop", "icon": "assets/petshop.png"},
   {"name": "Academia", "icon": "assets/academia2.png"},
 ];
+
+class Date {
+  Date({required this.title, required this.dateTime});
+
+  Date.fromJson(Map<String, dynamic> json)
+      : title = json['title'],
+        dateTime = DateTime.parse(json['dateTime']);
+  String title;
+  DateTime dateTime;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'dateTime': dateTime.toIso8601String(),
+    };
+  }
+}
