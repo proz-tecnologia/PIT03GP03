@@ -1,6 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:green/modules/HomePage/pages/pagamentos_item.dart';
 import 'package:green/theme/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -37,7 +36,6 @@ class _MeuGreenState extends State<MeuGreen> {
       index: pageIndex,
       children: [
         CreatBudgetPage(),
-        PagItem(),
         Center(
           child: Text('Daily Page'),
         ),

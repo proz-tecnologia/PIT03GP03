@@ -28,7 +28,7 @@ class _HomePage2State extends State<HomePage2> {
         return Column(
           children: [
             _appbarBotomSection(controller.total()),
-            _mainBoard(controller.transactionList),
+            mainBoard(controller.transactionList),
           ],
         );
       }),
@@ -107,7 +107,7 @@ class _HomePage2State extends State<HomePage2> {
   }
 
   //aqui começa os widgets com graficos
-  Expanded _mainBoard(List<Transaction> lista) {
+  Expanded mainBoard(List<Transaction> lista) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -164,6 +164,8 @@ class _HomePage2State extends State<HomePage2> {
                             Text(
                               'Transações',
                               style: TextStyle(
+                                fontFamily: 'sans-serif-light',
+                                fontSize: 16,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -172,6 +174,8 @@ class _HomePage2State extends State<HomePage2> {
                               'Valor',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontFamily: 'sans-serif-light',
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500,
                               ),
                             )
@@ -200,29 +204,30 @@ class _HomePage2State extends State<HomePage2> {
                                   color: _primaryColor.withOpacity(0.1)),
                             ),
                             child: Image.asset(categories[index]['icon'],
-                                fit: BoxFit.cover, width: 30, height: 30),
+                                fit: BoxFit.cover, width: 40, height: 40),
                           ),
                           title: Text(lista[index].title,
                               style: const TextStyle(
                                 color: Colors.black87,
+                                fontFamily: 'sans-serif-light',
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w500,
                               )),
                           subtitle: Text(
                             DateFormat('d MMM y').format(lista[index].date),
                             //_transactionList[index].dateTime.toString(),
                             style: const TextStyle(
-                              color: _primaryColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                           trailing: Text(
                             lista[index].value.toStringAsFixed(2),
                             style: const TextStyle(
-                              color: Colors.black87,
+                              color: Colors.black,
                               fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),

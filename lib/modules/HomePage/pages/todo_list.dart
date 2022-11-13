@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../models/pages_models/todo.dart';
 import '../../../repository/todo_repository.dart';
 import '../../../widgets/todo_list_item.dart';
@@ -71,7 +72,7 @@ class _HomeAppState extends State<HomeApp> {
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.all(15),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(20)),
                       ),
                       child: const Icon(
                         Icons.add,

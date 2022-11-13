@@ -24,11 +24,14 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pagamentos'),
-      ),
-      backgroundColor: grey.withOpacity(0.05),
-      body: Form(key: fomrKey, child: getBody()),
+      body: Consumer<HomeController>(builder: (context, controller, __) {
+        return SingleChildScrollView(
+          child: Form(
+            key: fomrKey,
+            child: getBody(),
+          ),
+        );
+      }),
     );
   }
 
@@ -41,9 +44,9 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           Container(
             decoration: BoxDecoration(color: white, boxShadow: [
               BoxShadow(
-                color: grey.withOpacity(0.01),
-                spreadRadius: 10,
-                blurRadius: 3,
+                color: Colors.white,
+                spreadRadius: 100,
+                blurRadius: 100,
                 // changes position of shadow
               ),
             ]),
@@ -51,12 +54,6 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(children: []),
-                    ],
-                  ),
                 ],
               ),
             ),
@@ -66,13 +63,13 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             child: Text(
               "Categorias",
               style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: black.withOpacity(0.5)),
+                  fontSize: 25,
+                  fontFamily: 'sans-serif-light',
+                  color: black.withOpacity(0.6)),
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 30,
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -118,24 +115,25 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: 40,
-                              height: 40,
+                              width: 60,
+                              height: 60,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: grey.withOpacity(0.15)),
                               child: Center(
                                 child: Image.asset(
                                   categories[index]['icon'],
-                                  width: 30,
-                                  height: 30,
+                                  width: 80,
+                                  height: 80,
                                   fit: BoxFit.contain,
                                 ),
                               )),
                           Text(
                             categories[index]['name'],
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                              fontFamily: 'sans-serif-light',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 17,
                             ),
                           )
                         ],
@@ -199,7 +197,6 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                       borderRadius: BorderRadius.circular(20))),
                               onChanged: (value) =>
                                   controller.value = double.parse(value),
-                              controller: _budgetPrice,
                               cursorColor: black,
                               style: TextStyle(fontSize: 17, color: black),
                             ),
@@ -214,6 +211,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                         return ElevatedButton(
                           child: Icon(Icons.arrow_forward),
                           onPressed: () {
+                            setState(() {});
                             var formValid =
                                 fomrKey.currentState?.validate() ?? false;
                             var message = 'Transação invalida';
@@ -224,6 +222,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                               var trans = Transaction(
                                   value: controller.value,
                                   title: controller.title,
+                                  dateTime: DateTime.now(),
                                   category:
                                       controller.category /////listar modificar
                                   );
@@ -239,7 +238,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                           },
                         );
                       }),
-                    ])
+                    ]),
               ],
             ),
           )

@@ -8,5 +8,6 @@ class Transaction {
     required this.value,
     required this.title,
     required this.category,
+    required DateTime dateTime,
   });
 }
