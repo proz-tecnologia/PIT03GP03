@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:green/theme/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../onboarding_screen/onboarding.dart';
 import 'meu_green_item.dart';
 
 class MeuGreen extends StatefulWidget {
@@ -20,13 +21,6 @@ class _MeuGreenState extends State<MeuGreen> {
     return Scaffold(
       body: getBody(),
       bottomNavigationBar: getFooter(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setTabs(4);
-        },
-        child: Icon(Icons.add, size: 25),
-        backgroundColor: primary,
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -39,8 +33,9 @@ class _MeuGreenState extends State<MeuGreen> {
         Center(
           child: Text('Daily Page'),
         ),
+        OnBoardingScreen(),
         Center(
-          child: Text('Stats Page'),
+          child: Text(''),
         ),
         Center(
           child: Text('Budget Page'),
