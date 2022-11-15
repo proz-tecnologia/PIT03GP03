@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:green/modules/HomePage/pages/todo_list.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../onboarding_screen/onboarding.dart';
 import 'Metas.dart';
 import 'config_Users.dart';
 import 'drawer_item.dart';
 import 'meuGreen.dart';
-import 'meu_green_item.dart';
 import 'myCard.dart';
 
 class DrawerApp extends StatefulWidget {
@@ -133,7 +133,7 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
       case 1:
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CreatBudgetPage()));
+            MaterialPageRoute(builder: (context) => OnBoardingScreen()));
         break;
 
       case 2:
