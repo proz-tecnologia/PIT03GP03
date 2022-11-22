@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../models/pages_models/todo.dart';
 import 'package:intl/intl.dart';
+
+import '../constants/pages_models/Todo.dart';
 
 class TodoListItem extends StatelessWidget {
   const TodoListItem({
