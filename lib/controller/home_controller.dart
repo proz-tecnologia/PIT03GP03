@@ -12,6 +12,7 @@ class HomeController extends ChangeNotifier {
 
   double total() {
     double valorTotal = 0;
+
     for (var element in transactionList) {
       valorTotal += element.value;
     }
