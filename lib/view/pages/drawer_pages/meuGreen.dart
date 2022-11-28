@@ -1,11 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../utils/theme/colors.dart';
-import '../onboarding_screen/onboarding.dart';
 import 'meu_green_item.dart';
-import 'meu_green_statics.dart';
+import 'meugreen_saldos.dart';
 
 class MeuGreen extends StatefulWidget {
   const MeuGreen({Key? key}) : super(key: key);
@@ -31,15 +29,12 @@ class _MeuGreenState extends State<MeuGreen> {
       index: pageIndex,
       children: [
         CreatBudgetPage(),
-        CategoryScreen(
-          categories: [],
-        ),
         Center(
           child: Text('Daily Page'),
         ),
-        OnBoardingScreen(),
+        MeuGreenCarteira(),
         Center(
-          child: Text('teste'),
+          child: Text('texte'),
         ),
         Center(
           child: Text('Budget Page'),
@@ -48,18 +43,17 @@ class _MeuGreenState extends State<MeuGreen> {
           child: Text('Profile'),
         ),
         Center(
-          child: Text('Create Budget Page'),
-        ),
+            child: Text('settings')),
       ],
     );
   }
 
   Widget getFooter() {
     List<IconData> iconItems = [
-      Iconsax.chart_3,
-      Iconsax.calendar,
-      Iconsax.wallet,
-      Iconsax.aquarius1
+      Icons.today_outlined,
+      Icons.calendar_month,
+      Icons.wallet_sharp,
+      Icons.settings
     ];
     return AnimatedBottomNavigationBar(
         icons: iconItems,

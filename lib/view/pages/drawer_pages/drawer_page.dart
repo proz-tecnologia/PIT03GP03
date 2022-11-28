@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../onboarding_screen/config_Users.dart';
+import '../../../utils/configs/pages_settings.dart';
 import '../onboarding_screen/onboarding.dart';
 import 'drawer_item.dart';
 import 'metas.dart';
@@ -150,7 +150,7 @@ class _DrawerAppState extends State<DrawerApp> {
 
       case 5:
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ConfigUsers()));
+            MaterialPageRoute(builder: (context) => ConfiguracoesPage()));
         break;
 
       default:

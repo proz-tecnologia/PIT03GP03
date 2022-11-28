@@ -1,4 +1,3 @@
-import 'package:bezier_chart/bezier_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -29,31 +28,29 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   final fromDate = DateTime(19, 11, 2022);
   final toDate = DateTime.now();
 
-  List<DataPoint> dateList = [];
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    for (int i = 0; i < 8; i++) {
-      dateList.add(DataPoint<DateTime>(
-          value: i.toDouble() * 10,
-          xAxis: DateTime.now().subtract(Duration(days: i))));
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Expanded(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          elevation: 0,
+        ),
         body: Consumer<HomeController>(builder: (context, controller, __) {
           return Column(
             children: [
+              //GraphWidget(),
+
               Form(
                 key: fomrKey,
                 child: getBody(),
               ),
+
               date_time(),
               confirmation(),
               mainBoard(controller.transactionList),
@@ -71,7 +68,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
       Container(
         decoration: const BoxDecoration(color: white, boxShadow: [
           BoxShadow(
-            color: Colors.white,
+            color: Colors.transparent,
             spreadRadius: 10,
             blurRadius: 10,
             // changes position of shadow
@@ -265,9 +262,6 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                       SizedBox(
                         height: 200,
                         width: 200,
-                        child: Image.asset(
-                          'assets/pigSleeping.png',
-                        ),
                       ),
                     ],
                   )

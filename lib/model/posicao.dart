@@ -1,5 +1,5 @@
 class Posicao {
-  double valor;
+  double quantidade;
 
-  Posicao({required this.valor});
+  Posicao({required this.quantidade});
 }
