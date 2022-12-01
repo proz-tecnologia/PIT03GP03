@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:localization/localization.dart';
 
 import '../../../constants/json/create_budget_json.dart';
 import '../../../constants/transaction/transaction.dart';
@@ -21,6 +22,7 @@ class _HomePage2State extends State<HomePage2> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     return Scaffold(
       appBar: _buildAppBar(),
       drawer: const DrawerApp(),
@@ -28,7 +30,7 @@ class _HomePage2State extends State<HomePage2> {
         return Column(
           children: [
             _appbarBotomSection(controller.total()),
-            mainBoard(controller.transactionList),
+            mainBoard(controller.transactionList, locale),
           ],
         );
       }),
@@ -65,8 +67,8 @@ class _HomePage2State extends State<HomePage2> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // entrar com a logica no lugar do texto
-              const Text(
-                'R\$ ',
+              Text(
+                "money".i18n(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 22,
@@ -88,7 +90,7 @@ class _HomePage2State extends State<HomePage2> {
             height: 5,
           ),
           Text(
-            'Contas do Mês ',
+            'bills_month'.i18n(),
             style: TextStyle(
                 color: Colors.white.withOpacity(0.8),
                 fontSize: 20,
@@ -107,7 +109,7 @@ class _HomePage2State extends State<HomePage2> {
   }
 
   //aqui começa os widgets com graficos
-  Expanded mainBoard(List<Transaction> _lista) {
+  Expanded mainBoard(List<Transaction> _lista, Locale locale) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -116,15 +118,15 @@ class _HomePage2State extends State<HomePage2> {
           children: <Widget>[
             _reportCell(
                 isSavings: true,
-                title: 'Combustivel',
-                gastos: 'R\$ 150,00',
+                title: 'fuel'.i18n(),
+                gastos: '150,00',
                 progress: 25),
             //icone vermelho
             const SizedBox(height: 16),
             _reportCell(
                 isSavings: false,
-                title: ' Limite Financeiro',
-                gastos: 'R\$ 640,00',
+                title: 'ceiling'.i18n(),
+                gastos: '640,00',
                 progress: 50),
             const SizedBox(
               height: 100,
@@ -133,8 +135,8 @@ class _HomePage2State extends State<HomePage2> {
             _lista.isEmpty
                 ? Column(
                     children: [
-                      const Text(
-                        'Nenhuma Despesa Cadastrada!',
+                      Text(
+                        'no_expenses'.i18n(),
                         style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Arial',
@@ -160,9 +162,9 @@ class _HomePage2State extends State<HomePage2> {
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
-                              'Transações',
+                              'transactions'.i18n(),
                               style: TextStyle(
                                 fontFamily: 'sans-serif-light',
                                 fontSize: 16,
@@ -171,7 +173,7 @@ class _HomePage2State extends State<HomePage2> {
                               ),
                             ),
                             Text(
-                              'Valor',
+                              'value'.i18n(),
                               style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'sans-serif-light',
@@ -206,7 +208,7 @@ class _HomePage2State extends State<HomePage2> {
                             child: Image.asset(categories[index]['icon'],
                                 fit: BoxFit.cover, width: 40, height: 40),
                           ),
-                              title: Text(_lista[index].title,
+                          title: Text(_lista[index].title,
                               style: const TextStyle(
                                 color: Colors.black87,
                                 fontFamily: 'sans-serif-light',
@@ -214,7 +216,9 @@ class _HomePage2State extends State<HomePage2> {
                                 fontWeight: FontWeight.w500,
                               )),
                           subtitle: Text(
-                            DateFormat('d MMM y').format(_lista[index].date1),
+                            DateFormat(DateFormat.YEAR_MONTH_DAY,
+                                    locale.toString())
+                                .format(_lista[index].date1),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -322,7 +326,7 @@ class _HomePage2State extends State<HomePage2> {
                 children: <Widget>[
                   _reportInner(
                     isSavings: isSavings,
-                    title: 'gastos',
+                    title: 'expenses'.i18n(),
                     value: gastos,
                   ),
                   const SizedBox(

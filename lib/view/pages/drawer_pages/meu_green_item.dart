@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:localization/localization.dart';
 
 import '../../../constants/json/create_budget_json.dart';
 import '../../../constants/transaction/transaction.dart';
@@ -24,7 +25,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   late DateTime date = DateTime.now();
 
   final date1 = DateTime.now().subtract(Duration(days: 31));
-  int _chartTabIndex = 0;
+  //int _chartTabIndex = 0;
   final fromDate = DateTime(19, 11, 2022);
   final toDate = DateTime.now();
 
@@ -36,6 +37,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     return Expanded(
       child: Scaffold(
         appBar: AppBar(
@@ -53,7 +55,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
 
               date_time(),
               confirmation(),
-              mainBoard(controller.transactionList),
+              mainBoard(controller.transactionList, locale),
             ],
           );
         }),
@@ -93,7 +95,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-                children: List.generate(categories.length, (index) {
+                children: List.generate(categories_.length, (index) {
               return GestureDetector(
                 onTap: () {
                   setState(() {
@@ -141,14 +143,14 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                   color: grey.withOpacity(0.15)),
                               child: Center(
                                 child: Image.asset(
-                                  categories[index]['icon'],
+                                  images[index],
                                   width: 100,
                                   height: 100,
                                   fit: BoxFit.contain,
                                 ),
                               )),
                           Text(
-                            categories[index]['name'],
+                            categories_[index].i18n(),
                             style: const TextStyle(
                               fontFamily: 'sans-serif-light',
                               fontWeight: FontWeight.w500,
@@ -174,13 +176,13 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                 TextFormField(
                   validator: (String? value) {
                     if (value!.isEmpty) {
-                      return "Campo obrigatório";
+                      return "required_field".i18n();
                     }
 
                     return null;
                   },
                   decoration: InputDecoration(
-                      label: const Text('Descrição'),
+                      label: Text('description'.i18n()),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
                   onChanged: (value) => controller.title = value,
@@ -202,7 +204,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                     valor.isEmpty ||
                                     double.parse(valor.replaceAll(",", ".")) <=
                                         0) {
-                                  return 'valor inválido';
+                                  return 'invalid_value'.i18n();
                                 }
 
                                 return null;
@@ -211,7 +213,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                   const TextInputType.numberWithOptions(
                                       decimal: true),
                               decoration: InputDecoration(
-                                label: const Text('Valor'),
+                                label: Text('value'.i18n()),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                               ),
@@ -233,7 +235,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
     ]));
   }
 
-  Expanded mainBoard(List<Transaction> _lista) {
+  Expanded mainBoard(List<Transaction> _lista, Locale locale) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -247,8 +249,8 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             _lista.isEmpty
                 ? Column(
                     children: [
-                      const Text(
-                        'Nenhuma Despesa Cadastrada!',
+                      Text(
+                        'no_expenses'.i18n(),
                         style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Arial',
@@ -271,9 +273,9 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
-                              'Transações',
+                              'transactions'.i18n(),
                               style: TextStyle(
                                 fontFamily: 'sans-serif-light',
                                 fontSize: 16,
@@ -282,7 +284,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                               ),
                             ),
                             Text(
-                              'Valor',
+                              'value'.i18n(),
                               style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'sans-serif-light',
@@ -325,7 +327,9 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                 fontWeight: FontWeight.w500,
                               )),
                           subtitle: Text(
-                            DateFormat('d MMM y').format(date),
+                            DateFormat(DateFormat.YEAR_MONTH_DAY,
+                                    locale.toString())
+                                .format(_lista[index].date1),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -392,10 +396,10 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           onPressed: () {
             setState(() {});
             var formValid = fomrKey.currentState?.validate() ?? false;
-            var message = 'Transação invalida';
+            var message = 'transactions_invalid'.i18n();
 
             if (formValid) {
-              message = "Transação adicionada com sucesso";
+              message = "transactions_valid".i18n();
 
               var trans = Transaction(
                   value: controller.value,

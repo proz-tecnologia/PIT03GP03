@@ -1,10 +1,12 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:localization/localization.dart';
 
 import '../../../../constants/credential/users_credential.dart';
 import '../../../../model/mocks/mock_users.dart';
 import '../../home_page/homepage.dart';
+import '../../onboarding_screen/onboarding.dart';
 
 class InputLoginWidget extends StatefulWidget {
   const InputLoginWidget({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
 
   UserCredential? _userCredential;
 
-  bool _canShowPassword = false;
+  //bool _canShowPassword = false;
 
   final fomrKey = GlobalKey<FormState>();
 
@@ -32,10 +34,10 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
         children: [
           TextFormField(
             validator: (String? val) => !EmailValidator.validate(val!, true)
-                ? 'Not a valid email.'
+                ? 'valid_email'.i18n()
                 : null,
             decoration: InputDecoration(
-                labelText: "Email",
+                labelText: "email".i18n(),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -44,11 +46,11 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
           ),
           TextFormField(
             validator: (String? val) => (val!.length < 4 || val.isEmpty)
-                ? 'Password too short..'
+                ? 'valid_password'.i18n()
                 : null,
             obscureText: true,
             decoration: InputDecoration(
-                labelText: "Senha",
+                labelText: "password".i18n(),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
           ),
@@ -61,10 +63,10 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
                 child: TextButton(
                   onPressed: () {
                     var formValid = fomrKey.currentState?.validate() ?? false;
-                    var message = 'Login invalido';
+                    var message = 'invalid_login'.i18n();
 
                     if (formValid) {
-                      message = "Login efetuado com sucesso";
+                      message = "valid_login".i18n();
                       if (fomrKey.currentState!.validate()) {
                         fomrKey.currentState!.save();
 
@@ -74,7 +76,7 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
                                 element.password == _password);
 
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) => const HomePage2(),
+                            builder: (_) => const OnBoardingScreen(),
                             settings:
                                 RouteSettings(arguments: _userCredential)));
                       }
@@ -90,8 +92,8 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
-                  child: const Text(
-                    'Login',
+                  child: Text(
+                    'login'.i18n(),
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),

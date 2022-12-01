@@ -37,7 +37,7 @@ class _CarPathScreenState extends State<CarPathScreen>
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
     _initAnimations();
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _carPosition = (_keyCar.currentContext!.findRenderObject() as RenderBox)
           .localToGlobal(Offset.zero);
       _initialCarPosition = _carPosition;

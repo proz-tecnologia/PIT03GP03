@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'model/provider/app_provider.dart';
 
-// @dart=2.9
+// @dart = 2.9
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveConfig.start();

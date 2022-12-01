@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 class MeuGreenCarteira extends StatefulWidget {
   const MeuGreenCarteira({Key? key}) : super(key: key);
@@ -148,8 +148,8 @@ class TextBar extends StatelessWidget {
           children: <Widget>[
             GestureDetector(
               onTap: () {},
-              child: const Text(
-                'R\$ ',
+              child: Text(
+                'money'.i18n(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 22,
