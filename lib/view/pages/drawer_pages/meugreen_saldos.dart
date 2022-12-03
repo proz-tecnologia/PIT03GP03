@@ -27,7 +27,6 @@ class _MeuGreenCarteiraState extends State<MeuGreenCarteira> {
             SizedBox(
               height: 50,
             ),
-            cards()
           ],
         ),
       ),
@@ -65,7 +64,7 @@ class Texts extends StatelessWidget {
                 fontFamily: 'sans-serif-light'),
           ),
           SizedBox(
-            width: 70,
+            width: 50,
           ),
           CircleAvatar(
             radius: 13,

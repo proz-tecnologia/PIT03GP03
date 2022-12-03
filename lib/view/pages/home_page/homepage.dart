@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:localization/localization.dart';
+import 'package:provider/provider.dart';
 
-import '../../../constants/json/create_budget_json.dart';
+import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transaction.dart';
 import '../../../controller/home_controller.dart';
 import '../drawer_pages/drawer_page.dart';
@@ -37,7 +37,6 @@ class _HomePage2State extends State<HomePage2> {
     );
   }
 
-  ///widgets Homer perfil
   AppBar _buildAppBar() {
     return AppBar(
         elevation: 0,
@@ -48,8 +47,6 @@ class _HomePage2State extends State<HomePage2> {
           )
         ]);
   }
-
-//appBar Bottom Sequencia
 
   Widget _appbarBotomSection(double value) {
     return Container(
@@ -66,7 +63,6 @@ class _HomePage2State extends State<HomePage2> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // entrar com a logica no lugar do texto
               Text(
                 "money".i18n(),
                 style: TextStyle(
@@ -76,7 +72,6 @@ class _HomePage2State extends State<HomePage2> {
                   height: 1,
                 ),
               ),
-              // entrar com a logica no lugar do texto
               Text(value.toStringAsFixed(2).replaceAll(".", ","),
                   style: const TextStyle(
                     color: Colors.white,
@@ -108,7 +103,6 @@ class _HomePage2State extends State<HomePage2> {
     );
   }
 
-  //aqui começa os widgets com graficos
   Expanded mainBoard(List<Transaction> _lista, Locale locale) {
     return Expanded(
       child: SingleChildScrollView(
@@ -148,8 +142,8 @@ class _HomePage2State extends State<HomePage2> {
                         height: 8,
                       ),
                       SizedBox(
-                        height: 200,
-                        width: 200,
+                        height: 180,
+                        width: 180,
                         child: Image.asset(
                           'assets/pigSleeping.png',
                         ),

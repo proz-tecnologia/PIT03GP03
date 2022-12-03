@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:green/view/pages/login/login_page.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_todo.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 
 import '../../../utils/configs/pages_settings.dart';
-import '../onboarding_screen/onboarding.dart';
 import 'drawer_item.dart';
 //import 'metas.dart';
 import 'meuGreen.dart';
+import 'meu_green_balance.dart';
+import 'meu_green_metas.dart';
+import 'meu_green_pagamentos.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({Key? key}) : super(key: key);
@@ -128,26 +130,26 @@ class _DrawerAppState extends State<DrawerApp> {
 
     switch (index) {
       case 0:
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MeuGreenMetas()));
         break;
       case 1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => OnBoardingScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Pagamentos()));
         break;
 
       case 2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MeuGreen()));
+            context, MaterialPageRoute(builder: (context) => RootApp()));
         break;
       case 3:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MeuGreen()));
+            context, MaterialPageRoute(builder: (context) => MeuGreenPag()));
         break;
 
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MeuGreen()));
+            context, MaterialPageRoute(builder: (context) => MeuGreenTodo()));
         break;
 
       case 5:
@@ -173,7 +175,7 @@ class _DrawerAppState extends State<DrawerApp> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('hello'.i18n(['GREEEN']),
+            Text('hello'.i18n(['GREEN']),
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
