@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:localization/localization.dart';
+import 'package:provider/provider.dart';
 
-import '../../../constants/json/create_budget_json.dart';
+import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transaction.dart';
 import '../../../constants/transaction_controller.dart';
 import '../../../controller/home_controller.dart';
@@ -405,7 +405,8 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                   value: controller.value,
                   title: controller.title,
                   dateTime: DateTime.now(),
-                  category: controller.category /////listar modificar
+                  category: controller.category,
+                  createdDate: date /////listar modificar
                   );
 
               homeController.setTransAction(trans);

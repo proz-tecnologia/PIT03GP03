@@ -12,5 +12,6 @@ class Transaction {
     required this.title,
     required this.category,
     required DateTime dateTime,
+    required DateTime createdDate,
   });
 }

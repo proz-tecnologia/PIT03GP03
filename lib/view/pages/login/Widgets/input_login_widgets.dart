@@ -81,9 +81,6 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
                                 RouteSettings(arguments: _userCredential)));
                       }
                     }
-
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(message)));
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 125, 178, 139),
