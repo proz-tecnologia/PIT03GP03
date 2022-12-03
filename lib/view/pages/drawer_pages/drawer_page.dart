@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_todo.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 
 import '../../../utils/configs/pages_settings.dart';
 import 'drawer_item.dart';
-
 //import 'metas.dart';
 import 'meuGreen.dart';
 import 'meu_green_balance.dart';
@@ -130,8 +130,8 @@ class _DrawerAppState extends State<DrawerApp> {
 
     switch (index) {
       case 0:
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => MeuGreenMetas()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MeuGreenMetas()));
         break;
       case 1:
         Navigator.push(
@@ -149,7 +149,7 @@ class _DrawerAppState extends State<DrawerApp> {
 
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MeuGreenPag()));
+            context, MaterialPageRoute(builder: (context) => MeuGreenTodo()));
         break;
 
       case 5:
@@ -175,7 +175,7 @@ class _DrawerAppState extends State<DrawerApp> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('hello'.i18n(['GREEEN']),
+            Text('hello'.i18n(['GREEN']),
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,

@@ -141,6 +141,7 @@ flutter:
     - assets/combustivel.png
     - assets/auto.png
     - lib/i18n/
+    - trabalhando.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

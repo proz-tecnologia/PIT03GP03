@@ -13,21 +13,24 @@ class _MeuGreenPagState extends State<MeuGreenPag> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: Colors.green),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(5000),
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(5000),
+              ),
+            ),
+            child: Column(
+              children: [
+                getBody(context),
+              ],
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            getBody(context),
-          ],
-        ),
-      ),
-    );
+        ));
   }
 }
 
