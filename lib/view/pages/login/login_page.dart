@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:localization/localization.dart';
 
 import '../../../constants/credential/users_credential.dart';
 import '../home_page/homepage.dart';
@@ -14,11 +15,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  String _email = "";
-  String _password = "";
+  //final _formKey = GlobalKey<FormState>();
+  //String _email = "";
+  //String _password = "";
   UserCredential? _userCredential;
-  bool _canShowPassword = false;
+  //bool _canShowPassword = false;
 
   @override
   void initState() {
@@ -58,15 +59,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'Bem vindos a GREEN!',
+                        'welcome'.i18n(),
                         style: TextStyle(
                             fontSize: 26, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'Matenha suas contas em dia! ',
+                        'accounts_up'.i18n(),
                         style: TextStyle(fontSize: 15),
                       ),
                       SizedBox(height: 10),

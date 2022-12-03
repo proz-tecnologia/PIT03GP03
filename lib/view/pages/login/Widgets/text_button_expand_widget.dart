@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 //widget  esqueceu a seenha
 class TextButtonExpanded extends StatelessWidget {
@@ -22,8 +23,8 @@ class TextButtonExpanded extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
-            child: const Text(
-              'Problemas para fazer login?',
+            child: Text(
+              'trouble_logging'.i18n(),
               style: TextStyle(color: Colors.green),
             ),
           ),
@@ -53,8 +54,8 @@ class CreaterAcount extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
-            child: const Text(
-              'Ainda não tenho uma conta GREEN!',
+            child: Text(
+              'no_account'.i18n(),
               style: TextStyle(color: Colors.green),
             ),
           ),

@@ -1,77 +1,93 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../utils/theme/colors.dart';
-import 'meu_green_item.dart';
-import 'meugreen_saldos.dart';
+import 'meu_green_balance.dart';
+import 'meu_green_create.dart';
+import 'meu_green_profile.dart';
+import 'stats_page.dart';
 
-class MeuGreen extends StatefulWidget {
-  const MeuGreen({Key? key}) : super(key: key);
-
+class RootApp extends StatefulWidget {
   @override
-  State<MeuGreen> createState() => _MeuGreenState();
+  _RootAppState createState() => _RootAppState();
 }
 
-class _MeuGreenState extends State<MeuGreen> {
+class _RootAppState extends State<RootApp> {
   int pageIndex = 0;
+  List<Widget> pages = [
+    MeuGreenCart(),
+    MeuGreenPag(),
+    MeuGreenCart(),
+    MeuGreenProfile(),
+    MeuGreenCreat(),
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: getBody(),
-      bottomNavigationBar: getFooter(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+        body: getBody(),
+        bottomNavigationBar: getFooter(),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              selectedTab(4);
+            },
+            child: Icon(
+              Icons.calculate_outlined,
+              size: 25,
+            ),
+            backgroundColor: Colors.deepOrange
+            //params
+            ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.centerDocked);
   }
 
   Widget getBody() {
     return IndexedStack(
       index: pageIndex,
-      children: [
-        CreatBudgetPage(),
-        Center(
-          child: Text('Daily Page'),
-        ),
-        MeuGreenCarteira(),
-        Center(
-          child: Text('texte'),
-        ),
-        Center(
-          child: Text('Budget Page'),
-        ),
-        Center(
-          child: Text('Profile'),
-        ),
-        Center(
-            child: Text('settings')),
-      ],
+      children: pages,
     );
   }
 
   Widget getFooter() {
     List<IconData> iconItems = [
-      Icons.today_outlined,
-      Icons.calendar_month,
-      Icons.wallet_sharp,
-      Icons.settings
+      Ionicons.wallet_sharp,
+      Ionicons.stats_chart,
+      Ionicons.calendar,
+      Ionicons.person,
     ];
+
     return AnimatedBottomNavigationBar(
-        icons: iconItems,
-        activeColor: primary,
-        splashColor: secondary,
-        inactiveColor: black.withOpacity(0.5),
-        activeIndex: pageIndex,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.softEdge,
-        leftCornerRadius: 10,
-        iconSize: 25,
-        rightCornerRadius: 10,
-        onTap: (index) {
-          setTabs(index);
-        });
+      activeColor: primary,
+      splashColor: secondary,
+      inactiveColor: Colors.black.withOpacity(0.5),
+      icons: iconItems,
+      activeIndex: pageIndex,
+      gapLocation: GapLocation.center,
+      notchSmoothness: NotchSmoothness.softEdge,
+      leftCornerRadius: 10,
+      iconSize: 25,
+      rightCornerRadius: 10,
+      onTap: (index) {
+        selectedTab(index);
+      },
+      //other params
+    );
   }
 
-  setTabs(index) {
+  selectedTab(index) {
     setState(() {
       pageIndex = index;
     });

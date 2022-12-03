@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:localization/localization.dart';
 
 import '../../../utils/configs/pages_settings.dart';
-import '../onboarding_screen/onboarding.dart';
 import 'drawer_item.dart';
-import 'metas.dart';
+
+//import 'metas.dart';
 import 'meuGreen.dart';
+import 'meu_green_balance.dart';
+import 'meu_green_metas.dart';
+import 'meu_green_pagamentos.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({Key? key}) : super(key: key);
@@ -38,12 +42,12 @@ class _DrawerAppState extends State<DrawerApp> {
                   height: 10,
                 ),
                 DrawerItem(
-                  name: "Metas",
+                  name: "goals".i18n(),
                   icon: Iconsax.cloud,
                   onPressed: () => onItemPressed(context, index: 0),
                 ),
                 DrawerItem(
-                  name: "Pagamentos",
+                  name: "payments".i18n(),
                   icon: Iconsax.money,
                   onPressed: () => onItemPressed(context, index: 1),
                 ),
@@ -51,7 +55,7 @@ class _DrawerAppState extends State<DrawerApp> {
                   height: 10,
                 ),
                 DrawerItem(
-                  name: "Meu Green",
+                  name: "my_green".i18n(),
                   icon: Iconsax.chart_3,
                   onPressed: () => onItemPressed(context, index: 2),
                 ),
@@ -59,7 +63,7 @@ class _DrawerAppState extends State<DrawerApp> {
                   height: 10,
                 ),
                 DrawerItem(
-                  name: "Meus Cartões",
+                  name: "my_cards".i18n(),
                   icon: Iconsax.card5,
                   onPressed: () => onItemPressed(context, index: 3),
                 ),
@@ -67,7 +71,7 @@ class _DrawerAppState extends State<DrawerApp> {
                   height: 10,
                 ),
                 DrawerItem(
-                  name: "Lista de Tarefas",
+                  name: "todo_list".i18n(),
                   icon: Iconsax.book,
                   onPressed: () => onItemPressed(context, index: 4),
                 ),
@@ -80,12 +84,12 @@ class _DrawerAppState extends State<DrawerApp> {
                   color: Colors.white,
                 ),
                 DrawerItem(
-                  name: "Configurações",
+                  name: "settings".i18n(),
                   icon: Iconsax.setting,
                   onPressed: () => onItemPressed(context, index: 5),
                 ),
                 DrawerItem(
-                  name: "Sair",
+                  name: "logout".i18n(),
                   icon: Iconsax.logout,
                   onPressed: () => onItemPressed(context, index: 0),
                 ),
@@ -126,26 +130,26 @@ class _DrawerAppState extends State<DrawerApp> {
 
     switch (index) {
       case 0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Metas()));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => MeuGreenMetas()));
         break;
       case 1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => OnBoardingScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Pagamentos()));
         break;
 
       case 2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MeuGreen()));
+            context, MaterialPageRoute(builder: (context) => RootApp()));
         break;
       case 3:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MeuGreen()));
+            context, MaterialPageRoute(builder: (context) => MeuGreenPag()));
         break;
 
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MeuGreen()));
+            context, MaterialPageRoute(builder: (context) => MeuGreenPag()));
         break;
 
       case 5:
@@ -170,15 +174,15 @@ class _DrawerAppState extends State<DrawerApp> {
         const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Olá GREEN',
+          children: [
+            Text('hello'.i18n(['GREEEN']),
                 style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Arial',
                     color: Colors.white)),
             SizedBox(width: 20),
-            Text('green@green.com',
+            const Text('green@green.com',
                 style: TextStyle(fontSize: 13, color: Colors.white)),
           ],
         )

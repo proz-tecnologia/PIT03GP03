@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../home_page/homepage.dart';
@@ -179,7 +178,7 @@ class OnboardingContent extends StatelessWidget {
           title,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline5!.copyWith(
-            fontSize: 22,
+                fontSize: 22,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'sans-serif-light',
               ),
