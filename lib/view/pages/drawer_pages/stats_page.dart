@@ -54,15 +54,6 @@ class TextBar extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        Text(
-          '     Estamos Trabalhando por aqui  !! ',
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.4),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            height: 1,
-          ),
-        ),
         const SizedBox(
           height: 180,
         ),

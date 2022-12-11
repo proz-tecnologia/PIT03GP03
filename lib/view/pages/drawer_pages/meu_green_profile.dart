@@ -149,7 +149,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 "Definir novo  Limite financeiro",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: white),
                               ),
                               SizedBox(
@@ -164,17 +164,15 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                               ),
                             ],
                           ),
-                          GestureDetector(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: white)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Atualizar",
-                                  style: TextStyle(color: white),
-                                ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: green)),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Atualizar",
+                                style: TextStyle(color: white),
                               ),
                             ),
                           )

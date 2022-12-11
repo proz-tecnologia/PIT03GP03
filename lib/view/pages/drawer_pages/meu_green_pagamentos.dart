@@ -37,51 +37,53 @@ class TextBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Carteira Digital',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600,
-                  height: 0.9,
-                ))
-          ],
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Text(
-          '     Estamos Trabalhando por aqui  !! ',
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.4),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            height: 1,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Carteira Digital',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w600,
+                    height: 0.9,
+                  ))
+            ],
           ),
-        ),
-        const SizedBox(
-          height: 222,
-        ),
-        Text(
-          'No green você  as melhores  ',
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          'moedas digitais da um GREEN! ',
-          style: TextStyle(color: Colors.white, fontSize: 23),
-        ),
-        SizedBox(
-          height: 0,
-        ),
-        Image.asset('assets/trabalhando.png'),
-      ],
+          const SizedBox(
+            height: 12,
+          ),
+          Text(
+            '     Estamos Trabalhando por aqui  !! ',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.4),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              height: 1,
+            ),
+          ),
+          const SizedBox(
+            height: 222,
+          ),
+          Text(
+            'No green você  tem as melhores  ',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            'moedas digitais da um GREEN! ',
+            style: TextStyle(color: Colors.white, fontSize: 23),
+          ),
+          SizedBox(
+            height: 0,
+          ),
+          Image.asset('assets/trabalhando.png'),
+        ],
+      ),
     );
   }
 }

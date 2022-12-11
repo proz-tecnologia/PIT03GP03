@@ -4,7 +4,7 @@ import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/json/meugreen.dart';
-import '../../../constants/transaction/transaction.dart';
+import '../../../constants/transaction/transactions_green.dart';
 import '../../../constants/transaction_controller.dart';
 import '../../../controller/home_controller.dart';
 import '../../../utils/theme/colors.dart';
@@ -20,14 +20,11 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   final fomrKey = GlobalKey<FormState>();
   final RegExp verificNumber = RegExp(r'([0-9]{})'); // informações
   int activeCategory = 0;
-  final TextEditingController _budgetName = TextEditingController(text: '');
 
-  late DateTime date = DateTime.now();
+  var dateTime = DateTime.now();
+  final txtDateTimeController = TextEditingController();
 
-  final date1 = DateTime.now().subtract(Duration(days: 31));
   //int _chartTabIndex = 0;
-  final fromDate = DateTime(19, 11, 2022);
-  final toDate = DateTime.now();
 
   @override
   void initState() {
@@ -316,7 +313,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                               border: Border.all(
                                   color: Colors.green.withOpacity(0.1)),
                             ),
-                            child: Image.asset(categories[index]['icon'],
+                            child: Image.asset(categories[index]['icon']!,
                                 fit: BoxFit.cover, width: 40, height: 40),
                           ),
                           title: Text(_lista[index].title,
@@ -329,7 +326,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                           subtitle: Text(
                             DateFormat(DateFormat.YEAR_MONTH_DAY,
                                     locale.toString())
-                                .format(_lista[index].date1),
+                                .format(_lista[index].dateTime),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -368,16 +365,16 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           onPressed: () async {
             DateTime? newDate = await showDatePicker(
                 context: context,
-                initialDate: date,
+                initialDate: dateTime,
                 firstDate: DateTime(2020),
                 lastDate: DateTime(2100));
             if (newDate == Null) return;
             setState(() {
-              date = newDate!;
+              dateTime = newDate!;
             });
           },
           child: Text(
-            ' ${date.day} / ${date.month} / ${date.year}',
+            ' ${dateTime.day} / ${dateTime.month} / ${dateTime.year}',
             style: TextStyle(
               fontSize: 15,
               fontFamily: 'sans-serif-light',
@@ -406,8 +403,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                   title: controller.title,
                   dateTime: DateTime.now(),
                   category: controller.category,
-                  createdDate: date /////listar modificar
-                  );
+              );
 
               homeController.setTransAction(trans);
               Navigator.pop(context);
