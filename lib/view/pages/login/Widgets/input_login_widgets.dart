@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:localization/localization.dart';
 
 import '../../../../constants/credential/users_credential.dart';
-import '../../../../model/mocks/mock_users.dart';
+import '../../../../model/mocks/green_users.dart';
 import '../../home_page/homepage.dart';
 import '../../onboarding_screen/onboarding.dart';
 

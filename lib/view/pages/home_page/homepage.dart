@@ -4,7 +4,7 @@ import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/json/meugreen.dart';
-import '../../../constants/transaction/transaction.dart';
+import '../../../constants/transaction/transactions_green.dart';
 import '../../../controller/home_controller.dart';
 import '../drawer_pages/drawer_page.dart';
 
@@ -29,7 +29,7 @@ class _HomePage2State extends State<HomePage2> {
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Column(
           children: [
-            _appbarBotomSection(controller.total()),
+            _appbarBotomSection(controller.total),
             mainBoard(controller.transactionList, locale),
           ],
         );
@@ -142,8 +142,8 @@ class _HomePage2State extends State<HomePage2> {
                         height: 8,
                       ),
                       SizedBox(
-                        height: 180,
-                        width: 180,
+                        height: 200,
+                        width: 200,
                         child: Image.asset(
                           'assets/pigSleeping.png',
                         ),
@@ -199,8 +199,8 @@ class _HomePage2State extends State<HomePage2> {
                               border: Border.all(
                                   color: _primaryColor.withOpacity(0.1)),
                             ),
-                            child: Image.asset(categories[index]['icon'],
-                                fit: BoxFit.cover, width: 40, height: 40),
+                            child: Image.asset(categories[index]['icon']!,
+                                fit: BoxFit.cover, width: 45, height: 45),
                           ),
                           title: Text(_lista[index].title,
                               style: const TextStyle(
@@ -212,7 +212,7 @@ class _HomePage2State extends State<HomePage2> {
                           subtitle: Text(
                             DateFormat(DateFormat.YEAR_MONTH_DAY,
                                     locale.toString())
-                                .format(_lista[index].date1),
+                                .format(_lista[index].dateTime),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -220,7 +220,7 @@ class _HomePage2State extends State<HomePage2> {
                             ),
                           ),
                           trailing: Text(
-                            _lista[index].value.toStringAsFixed(2),
+                            'R\$ ${_lista[index].value.toStringAsFixed(2)}',
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 16,

@@ -3,7 +3,9 @@ import 'package:green/view/pages/drawer_pages/widgets/meu_green_todo.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 
+import '../../../model/ui/category_overview_page.dart';
 import '../../../utils/configs/pages_settings.dart';
+import '../login/login_page.dart';
 import 'drawer_item.dart';
 //import 'metas.dart';
 import 'meuGreen.dart';
@@ -91,7 +93,7 @@ class _DrawerAppState extends State<DrawerApp> {
                 DrawerItem(
                   name: "logout".i18n(),
                   icon: Iconsax.logout,
-                  onPressed: () => onItemPressed(context, index: 0),
+                  onPressed: () => onItemPressed(context, index: 6),
                 ),
               ],
             ),
@@ -135,7 +137,7 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
       case 1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Pagamentos()));
+            context, MaterialPageRoute(builder: (context) => CategoryOverviewPage()));
         break;
 
       case 2:
@@ -155,6 +157,11 @@ class _DrawerAppState extends State<DrawerApp> {
       case 5:
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ConfiguracoesPage()));
+        break;
+
+      case 6:
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginPage()));
         break;
 
       default:

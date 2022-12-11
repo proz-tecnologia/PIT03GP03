@@ -52,34 +52,23 @@ class TextBar extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 12,
+          height: 20,
         ),
         Text(
-          '     Estamos Trabalhando por aqui  !! ',
+          '  Aguardando o Estagiario  realizar o commit !! ',
           style: TextStyle(
-            color: Colors.white.withOpacity(0.4),
-            fontSize: 20,
+            color: Colors.white.withOpacity(0.5),
+            fontSize: 16,
             fontWeight: FontWeight.w500,
             height: 1,
           ),
         ),
-        const SizedBox(
-          height: 180,
-        ),
-        Text(
-          'Estamos trabalhando nisso ',
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
+
+
         const SizedBox(
           height: 10,
         ),
-        Text(
-          'Aguardando o estagiario da o commit !!',
-          style: TextStyle(color: Colors.white, fontSize: 21),
-        ),
-        SizedBox(
-          height: 0,
-        ),
+
         Image.asset('assets/trabalhando.png'),
       ],
     );

@@ -6,6 +6,7 @@ import '../../../utils/theme/colors.dart';
 import 'meu_green_balance.dart';
 import 'meu_green_create.dart';
 import 'meu_green_profile.dart';
+import 'meugreen_saldos.dart';
 import 'stats_page.dart';
 
 class RootApp extends StatefulWidget {
@@ -16,7 +17,7 @@ class RootApp extends StatefulWidget {
 class _RootAppState extends State<RootApp> {
   int pageIndex = 0;
   List<Widget> pages = [
-    MeuGreenCart(),
+    MeuGreenCarteira(),
     MeuGreenPag(),
     MeuGreenCart(),
     MeuGreenProfile(),

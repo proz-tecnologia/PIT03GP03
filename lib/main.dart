@@ -1,16 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:green/utils/configs/app_settings2.dart';
 import 'package:provider/provider.dart';
 
+import 'controller/home_controller.dart';
 import 'model/provider/app_provider.dart';
+import 'model/provider/category_list.dart';
 
-// @dart = 2.9
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => AppSettings()),
+      ChangeNotifierProvider(create: (_)=>CategoryList()),
+      ChangeNotifierProvider(create: (context) => HomeController()),
     ], child: AppProvider()),
   );
 }

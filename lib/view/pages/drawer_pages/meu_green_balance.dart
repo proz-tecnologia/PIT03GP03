@@ -78,7 +78,7 @@ Widget getBody(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          categories[index]['name'],
+                          categories[index]['name']!,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,

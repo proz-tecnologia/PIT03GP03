@@ -140,7 +140,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, top: 25, bottom: 25),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +149,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 "Definir novo  Limite financeiro",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     color: white),
                               ),
                               SizedBox(
@@ -163,19 +163,13 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                     color: white),
                               ),
                             ],
-                          ),
-                          GestureDetector(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: white)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Atualizar",
-                                  style: TextStyle(color: white),
-                                ),
-                              ),
+                          ),SizedBox(width:5 ,
+                          height: 20,),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Atualizar",
+                              style: TextStyle(color: white),
                             ),
                           )
                         ],
