@@ -59,5 +59,20 @@
     "description_3": "Save money and dream GREEN.",
     "jump": "Skip",
     "work" : "We are working on it",
-    "commit" : "  Waiting for the trainee to commit !! "
+    "commit" : "  Waiting for the trainee to commit !! ",
+    "cancel" : "Cancel",
+    "clean_up": "Clean up?",
+    "clean_todo": "Are you sure you want to delete all tasks?",
+    "delete": "Delete",
+    "task_remove" : "Task %s has been successfully removed!",
+    "undo" : "Undo",
+    "add_task": "Add a Task",
+    "pending_task": "You have %s pending tasks",
+    "clear_all": "Clear all",
+    "financial_limit" : "       Financial Limit  ",
+    "set_limit" : "Set New Financial Limit",
+    "limit_updte": "Limit updated successfully!!",
+    "update": "Update",
+    "others" : "Others"
+
 }

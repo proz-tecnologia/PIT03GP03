@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_detail_page.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_widgets.dart';
+import 'package:localization/localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/transaction/transactions_green.dart';
@@ -8,11 +9,11 @@ import '../../../constants/transaction_controller.dart';
 import '../../../controller/home_controller.dart';
 import '../../../model/meu_green_category.dart';
 
-
 class MeuGreenCreat extends StatefulWidget {
   @override
   _MeuGreenCreatState createState() => _MeuGreenCreatState();
 }
+
 class _MeuGreenCreatState extends State<MeuGreenCreat> {
   final fomrKey = GlobalKey<FormState>();
   final TransActionController controller = TransActionController();
@@ -52,6 +53,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
     bool toggleIsFavorated(bool isFavorited) {
       return !isFavorited;
     }
+
     List<GreenList> _greenList = GreenList.categoryList;
     var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -78,12 +80,12 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                       ),
                       const Expanded(
                           child: TextField(
-                            showCursor: false,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                            ),
-                          )),
+                        showCursor: false,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                        ),
+                      )),
                       Icon(
                         Icons.mic,
                         color: Colors.white.withOpacity(.6),
@@ -169,7 +171,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                                   ),
                                 ),
                                 Text(
-                                  _greenList[index].tittle,
+                                  (_greenList[index].tittle).i18n(),
                                   style: const TextStyle(
                                     color: Colors.white70,
                                     fontSize: 15,
@@ -179,7 +181,6 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                               ],
                             ),
                           ),
-
                         ],
                       ),
                       decoration: BoxDecoration(
@@ -192,8 +193,8 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
           ),
           Container(
             padding: const EdgeInsets.only(left: 16, bottom: 20, top: 20),
-            child: const Text(
-              'Transações',
+            child: Text(
+              'transactions'.i18n(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
@@ -210,17 +211,22 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                       onTap: () {
-                        Navigator.push(context, PageTransition(
-                            child: MeuGreenDetailPage(
-                              categoryId: _greenList[index].categoryId,),
-                            type: PageTransitionType.topToBottom));
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: MeuGreenDetailPage(
+                                  categoryId: _greenList[index].categoryId,
+                                ),
+                                type: PageTransitionType.topToBottom));
                       },
-                      child: MeuGreenWidgetPage(index: index,  greenList: _greenList,));
+                      child: MeuGreenWidgetPage(
+                        index: index,
+                        greenList: _greenList,
+                      ));
                 }),
           ),
         ],
       ),
-
     );
   }
 }

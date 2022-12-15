@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/home_controller.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants/transaction_controller.dart';
 import '../../../../model/meu_green_category.dart';
@@ -182,7 +183,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
               ),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(
-                  "Descrição",
+                  "description".i18n(),
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
@@ -193,7 +194,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (String? value) {
                     if (value!.isEmpty) {
-                      return "Campo obrigatório";
+                      return "required_field".i18n();
                     }
 
                     return null;
@@ -213,7 +214,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                 height: 10,
               ),
               Text(
-                "Valor",
+                "value".i18n(),
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 13,
@@ -224,7 +225,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   if (verificNumber.hasMatch(valor!) ||
                       valor.isEmpty ||
                       double.parse(valor.replaceAll(",", ".")) <= 0) {
-                    return 'valor inválido';
+                    return 'invalid_value'.i18n();
                   }
 
                   return null;
@@ -235,7 +236,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                 style: TextStyle(
                     fontSize: 17, fontWeight: FontWeight.bold, color: black),
                 decoration: InputDecoration(
-                  hintText: "R\$ 0,00",
+                  hintText: "${'money'.i18n()}. 00,00",
                   prefixIconColor: Colors.red,
                 ),
                 onChanged: (value) => controller.value = double.parse(value),
@@ -313,17 +314,18 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   onPressed: () {
                     setState(() {});
                     var formValid = fomrKey.currentState?.validate() ?? false;
-                    var message = 'Transação invalida';
+                    var message = 'transactions_invalid'.i18n();
 
                     if (formValid) {
-                      message = "Transação adicionada com sucesso";
+                      message = "transactions_valid".i18n();
 
                       var trans = Transaction(
                           value: controller.value,
                           title: controller.title,
                           category: controller.category,
                           dateTime: _dateTime,
-                          transactionType: TransactionType.INCOME, description: '');
+                          transactionType: TransactionType.INCOME,
+                          description: '');
                       Provider.of<HomeController>(context, listen: false)
                           .add(trans);
                       //  homeController.setTransAction(trans);

@@ -58,6 +58,20 @@
     "description_3": "Ahorra dinero y sueña con GREEN.",
     "jump": "Saltar",
     "work": "Estamos trabajando en ello ",
-    "commit": "  Esperando a que el interno se comprometa !! "
+    "commit": "  Esperando a que el interno se comprometa !! ",
+    "cancel" : "Cancelar",
+    "clean_up": "Limpiar?",
+    "clean_todo": "Está seguro de que desea eliminar todas las tareas?",
+    "delete": "Borrar",
+    "task_remove": "La tarea %s se ha eliminado correctamente.",
+    "undo" : "Deshacer",
+    "add_task": "Agregar una tarea",
+    "pending_task": "Tiene %s tareas pendientes",
+    "clear_all": "Limpiar todo",
+    "financial_limit" : "       Límite financiero  ",
+    "set_limit" : "Establecer un nuevo límite financiero",
+    "limit_updte": "Límite actualizado con éxito!!",
+    "update": "Actualizar",
+    "others" : "Otros"
 
 }

@@ -130,7 +130,7 @@ class _TextBarState extends State<TextBar> {
             height: 12,
           ),
           Text(
-            '       Limite Financeiro  ',
+            'financial_limit'.i18n(),
             style: TextStyle(
               color: Colors.white.withOpacity(0.8),
               fontSize: 20,
@@ -167,7 +167,7 @@ class _TextBarState extends State<TextBar> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Definir novo  Limite financeiro",
+                        "set_limit".i18n(),
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 13,
@@ -191,7 +191,7 @@ class _TextBarState extends State<TextBar> {
                           if (verificNumber.hasMatch(valor!) ||
                               valor.isEmpty ||
                               double.parse(valor.replaceAll(",", ".")) <= 0) {
-                            return 'valor inválido';
+                            return 'invalid_value'.i18n();
                           }
 
                           return null;
@@ -219,10 +219,10 @@ class _TextBarState extends State<TextBar> {
                     onTap: () {
                       var formValid =
                           fomrKeyLimite.currentState?.validate() ?? false;
-                      var message = 'Valor invalido';
+                      var message = 'invalid_value'.i18n();
 
                       if (formValid) {
-                        message = "Limite atualizado com sucesso";
+                        message = "limit_updte".i18n();
 
                         Provider.of<HomeController>(context, listen: false)
                             .mudarLimite(aux);
@@ -240,7 +240,7 @@ class _TextBarState extends State<TextBar> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Atualizar",
+                          "update".i18n(),
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

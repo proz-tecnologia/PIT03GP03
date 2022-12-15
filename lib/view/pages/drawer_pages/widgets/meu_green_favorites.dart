@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green/model/meu_green_category.dart';
 
@@ -24,40 +23,40 @@ class _FavoritePageState extends State<FavoritePage> {
       ),
       body: widget.categoryFavorited.isEmpty
           ? Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 100,
-              child: Image.asset('assets/favorited.png'),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Minhas Transações Favoritas',
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.w300,
-                fontSize: 18,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 100,
+                    child: Image.asset('assets/favorited.png'),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Minhas Transações Favoritas',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-      )
+            )
           : Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
-        height: size.height * .5,
-        child: ListView.builder(
-            itemCount: widget.categoryFavorited.length,
-            scrollDirection: Axis.vertical,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (BuildContext context, int index) {
-              return MeuGreenWidgetPage(
-                  index: index, greenList: widget.categoryFavorited);
-            }),
-      ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
+              height: size.height * .5,
+              child: ListView.builder(
+                  itemCount: widget.categoryFavorited.length,
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return MeuGreenWidgetPage(
+                        index: index, greenList: widget.categoryFavorited);
+                  }),
+            ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import '../../../../constants/pages_models/Todo.dart';
 import '../../../../model/repository/todo_repository.dart';
@@ -52,9 +53,9 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
                     Expanded(
                       child: TextField(
                         controller: textController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'Adicione uma Tarefa',
+                            labelText: 'add_task'.i18n(),
                             hintText: 'Ex.: Paga o Cartão.'
                             //errorText: errorText,
                             ),
@@ -107,7 +108,8 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
                   children: <Widget>[
                     Expanded(
                       child:
-                          Text('Você possui ${todos.length} Tarefas pendentes'),
+                          //${todos.length}
+                          Text('pending_task'.i18n(['${todos.length}'])),
                     ),
                     const SizedBox(width: 8),
                     ElevatedButton(
@@ -119,7 +121,7 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
-                      child: const Text('Limpar tudo'),
+                      child: Text('clear_all'.i18n()),
                     ),
                   ],
                 ),
@@ -145,11 +147,11 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
       // => retorna mensagem para o  usuario
       SnackBar(
         content: Text(
-          'Tarefa ${todo.title} foi removida com sucesso!',
+          'task_remove'.i18n(['${todo.title}']),
         ),
         backgroundColor: Colors.green,
         action: SnackBarAction(
-          label: 'Desfazer',
+          label: 'undo'.i18n(),
           textColor: Colors.white,
           onPressed: () {
             setState(() {
@@ -168,8 +170,8 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Limpar Tudo?'),
-        content: Text('Você tem certeza  que deseja apagar todas as tarefas?'),
+        title: Text('clean_up'.i18n()),
+        content: Text('clean_todo'.i18n()),
         actions: [
           TextButton(
               onPressed: () {
@@ -177,7 +179,7 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
               },
               style: TextButton.styleFrom(
                   backgroundColor: Colors.green, foregroundColor: Colors.white),
-              child: Text('Cancelar')),
+              child: Text('cancel'.i18n())),
           TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -185,7 +187,7 @@ class _MeuGreenTodoState extends State<MeuGreenTodo> {
               },
               style: TextButton.styleFrom(
                   backgroundColor: Colors.red, foregroundColor: Colors.white),
-              child: Text('Excluir')),
+              child: Text('delete'.i18n())),
         ],
       ),
     );
@@ -212,7 +214,7 @@ class TextBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // entrar com a logica no lugar do texto
-            Text('  Lista de Tarefas',
+            Text('todo_list'.i18n(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 30,

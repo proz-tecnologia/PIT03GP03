@@ -29,13 +29,11 @@ class HomeController extends ChangeNotifier {
 
   final List<Transaction> _extratoProvider = [];
 
-  TransactionController(){
-
-    _extratoProvider.sort((a, b) => b.dateTime!.compareTo(a.dateTime!));
+  TransactionController() {
+    _extratoProvider.sort((a, b) => b.dateTime.compareTo(a.dateTime));
   }
 
   List<Transaction> get extratoProvider => _extratoProvider;
-
 
   double get total {
     double valorTotal = 0;

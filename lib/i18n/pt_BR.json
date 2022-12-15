@@ -58,7 +58,21 @@
     "description_3": "Economize e sonhe com GREEN.",
     "jump": "Pular",
     "work": "Estamos trabalhando nisso ",
-    "commit": "  Aguardando o estagiario da o commit !! "
+    "commit": "  Aguardando o estagiario da o commit !! ",
+    "cancel": "Cancelar",
+    "clean_up": "Limpar tudo?",
+    "clean_todo": "Você tem certeza  que deseja apagar todas as tarefas?",
+    "delete": "Excluir",
+    "task_remove" : "Tarefa %s foi removida com sucesso!",
+    "Undo" : "Desfazer",
+    "add_task": "Adicione uma Tarefa",
+    "pending_task": "Você possui %s Tarefas pendentes",
+    "clear_all": "Limpar tudo",
+    "financial_limit" : "       Limite Financeiro  ",
+    "set_limit" : "Definir novo Limite Financeiro",
+    "limit_updte": "Limite atualizado com sucesso!",
+    "update": "Atualizar",
+    "others" : "Outros"
 
 }
 

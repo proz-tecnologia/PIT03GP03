@@ -20,7 +20,7 @@ class _MyConfigState extends State<MyConfig> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0),
+      //appBar: //AppBar(elevation: 0),
       body: Container(
         decoration: const BoxDecoration(
           color: Colors.green,

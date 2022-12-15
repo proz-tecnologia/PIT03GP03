@@ -1,20 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../constants/json/meugreen.dart';
 import '../../../../constants/transaction/transactions_green.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../model/meu_green_category.dart';
 
 class MeuGreenTransactionsList extends StatefulWidget {
-
-  const MeuGreenTransactionsList({Key? key,}) : super(key: key);
+  const MeuGreenTransactionsList({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<MeuGreenTransactionsList> createState() => _MeuGreenTransactionsListState();
+  State<MeuGreenTransactionsList> createState() =>
+      _MeuGreenTransactionsListState();
 }
 
 class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
@@ -29,31 +29,27 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
       appBar: AppBar(
         elevation: 0,
       ),
- body: Consumer<HomeController>(builder: (context, controller, __) {
-      return Column(
-        children: [
-          _appbarBotomSection(controller.total,_greenListCat),
-          mainBoard(controller.transactionList, _greenListCat,locale)
-        ],
-      );
- }),
+      body: Consumer<HomeController>(builder: (context, controller, __) {
+        return Column(
+          children: [
+            _appbarBotomSection(controller.total, _greenListCat),
+            mainBoard(controller.transactionList, _greenListCat, locale)
+          ],
+        );
+      }),
     );
   }
 
-  AppBar _buildAppBar(
-      ) {
-    return AppBar(
-        elevation: 0,
-        actions: const <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-          )
-        ]);
+  AppBar _buildAppBar() {
+    return AppBar(elevation: 0, actions: const <Widget>[
+      Padding(
+        padding: EdgeInsets.only(right: 20),
+      )
+    ]);
   }
 
-  Widget _appbarBotomSection(double value,List<GreenList>_greenList) {
+  Widget _appbarBotomSection(double value, List<GreenList> _greenList) {
     return Container(
-
       padding: const EdgeInsets.symmetric(horizontal: 50),
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
@@ -107,15 +103,15 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
     );
   }
 
-  Expanded mainBoard(List<Transaction> _lista,List<GreenList>_greenList, Locale locale) {
+  Expanded mainBoard(
+      List<Transaction> _lista, List<GreenList> _greenList, Locale locale) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: <Widget>[
-
-           Column(
+            Column(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -160,15 +156,12 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(
-                            color: _primaryColor.withOpacity(0.1)),
+                        border:
+                            Border.all(color: _primaryColor.withOpacity(0.1)),
                       ),
-                      child: Image.asset(_greenList[index].image!,
+                      child: Image.asset(_greenList[index].image,
                           fit: BoxFit.cover, width: 45, height: 45),
-
                     ),
-
-
                     title: Text(_greenList[index].tittle,
                         style: const TextStyle(
                           color: Colors.black87,
@@ -177,8 +170,7 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
                           fontWeight: FontWeight.w500,
                         )),
                     subtitle: Text(
-                      DateFormat(DateFormat.YEAR_MONTH_DAY,
-                          locale.toString())
+                      DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
                           .format(_lista[index].dateTime),
                       style: const TextStyle(
                         color: Colors.black,
@@ -187,7 +179,7 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
                       ),
                     ),
                     trailing: Text(
-                      'R\$ ${_lista[index].value.toStringAsFixed(2)}',
+                      '${'money'.i18n()} ${_lista[index].value.toStringAsFixed(2)}',
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
@@ -222,50 +214,47 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
         boxShadow: isSavings
             ? []
             : [
-          BoxShadow(
-              color: _thirdColor.withOpacity(0.4),
-              offset: const Offset(1, 0),
-              blurRadius: 10),
-        ],
+                BoxShadow(
+                    color: _thirdColor.withOpacity(0.4),
+                    offset: const Offset(1, 0),
+                    blurRadius: 10),
+              ],
       ),
 
 //graficos adicionar logica
 
-      child: Row(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              SizedBox(
-                width: 60,
-                height: 60,
-                child: CircularProgressIndicator(
-                  value: progress / 100,
-                  strokeWidth: 6,
-                  backgroundColor: isSavings
-                      ? Colors.black.withOpacity(0.2)
-                      : Colors.black.withOpacity(0.1),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      isSavings ? _secondaryColor : Colors.white),
+      child: Row(children: <Widget>[
+        Stack(
+          children: <Widget>[
+            SizedBox(
+              width: 60,
+              height: 60,
+              child: CircularProgressIndicator(
+                value: progress / 100,
+                strokeWidth: 6,
+                backgroundColor: isSavings
+                    ? Colors.black.withOpacity(0.2)
+                    : Colors.black.withOpacity(0.1),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    isSavings ? _secondaryColor : Colors.white),
+              ),
+            ),
+            Container(
+              width: 60,
+              height: 60,
+              alignment: Alignment.center,
+              child: Text(
+                '$progress%',
+                style: TextStyle(
+                  color: isSavings ? Colors.black : Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              Container(
-                width: 60,
-                height: 60,
-                alignment: Alignment.center,
-                child: Text(
-                  '$progress%',
-                  style: TextStyle(
-                    color: isSavings ? Colors.black : Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-                 ] ),
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
-

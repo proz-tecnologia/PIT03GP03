@@ -1,19 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 import 'package:page_transition/page_transition.dart';
-
 
 import '../../../../model/meu_green_category.dart';
 import 'meu_green_detail_page.dart';
 
 class MeuGreenWidgetPage extends StatelessWidget {
   const MeuGreenWidgetPage({
-    Key? key, required this.index, required this.greenList,
+    Key? key,
+    required this.index,
+    required this.greenList,
   }) : super(key: key);
 
   final int index;
-  final List<GreenList>greenList;
-
+  final List<GreenList> greenList;
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +60,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   right: 0,
                   child: SizedBox(
                     height: 80.0,
-                    child:
-                    Image.asset(greenList[index].image),
+                    child: Image.asset(greenList[index].image),
                   ),
                 ),
                 Positioned(
@@ -71,7 +71,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
                     children: [
                       Text(greenList[index].category),
                       Text(
-                        greenList[index].tittle,
+                        (greenList[index].tittle).i18n(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
@@ -83,16 +83,9 @@ class MeuGreenWidgetPage extends StatelessWidget {
                 ),
               ],
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
