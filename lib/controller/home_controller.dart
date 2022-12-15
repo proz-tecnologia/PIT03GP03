@@ -1,12 +1,21 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:green/model/meu_green_category.dart';
 
 import '../constants/transaction/transactions_green.dart';
 
 class HomeController extends ChangeNotifier {
+  double _limite = 00.00;
   final List<Transaction> transactionList = [];
   final List<Category> categories = [];
+
+  double get limite => _limite;
+
+  void mudarLimite(double limite) {
+    if (limite > 0) {
+      _limite = limite;
+    }
+    notifyListeners();
+  }
 
   void setTransAction(Transaction trans) {
     transactionList.add(trans);

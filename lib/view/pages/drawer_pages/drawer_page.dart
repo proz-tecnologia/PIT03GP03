@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:green/controller/home_controller.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_todo.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
-
+import 'package:provider/provider.dart';
 
 import '../../../utils/configs/pages_settings.dart';
 import '../login/login_page.dart';
@@ -22,10 +23,13 @@ class DrawerApp extends StatefulWidget {
 class _DrawerAppState extends State<DrawerApp> {
   @override
   Widget build(BuildContext context) {
+    double limite = Provider.of<HomeController>(context, listen: false).limite;
+    double total = Provider.of<HomeController>(context, listen: false).total;
+
     return Drawer(
       child: Material(
         child: Container(
-          color: Colors.green,
+          color: (limite - total) >= 0 == true ? Colors.green : Colors.red,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(24, 80, 24, 0),
             child: Column(

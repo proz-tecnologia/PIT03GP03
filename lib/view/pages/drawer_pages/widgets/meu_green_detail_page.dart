@@ -21,7 +21,6 @@ class MeuGreenDetailPage extends StatefulWidget {
 }
 
 class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
-
   final TransActionController controller = TransActionController();
   final fomrKey = GlobalKey<FormState>();
   var transactionType = TransactionType.INCOME;
@@ -157,140 +156,136 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
           ),
         ),
         Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-              height: size.height * .5,
-              width: size.width,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.9),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  topLeft: Radius.circular(30),
-                ),
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
+            height: size.height * .5,
+            width: size.width,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.9),
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                _greenList[widget.categoryId].tittle,
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 50),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(
+                  "Descrição",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 13,
+                      color: Color(0xff67727d)),
+                ),
+                TextFormField(
+                  controller: _greenForm,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "Campo obrigatório";
+                    }
+
+                    return null;
+                  },
+                  onChanged: (value) => controller.title = value,
+                  cursorColor: Colors.black,
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: "Green +",
+                  ),
+                ),
+              ]),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Valor",
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 13,
+                    color: Color(0xff67727d)),
+              ),
+              TextFormField(
+                validator: (String? valor) {
+                  if (verificNumber.hasMatch(valor!) ||
+                      valor.isEmpty ||
+                      double.parse(valor.replaceAll(",", ".")) <= 0) {
+                    return 'valor inválido';
+                  }
+
+                  return null;
+                },
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                cursorColor: black,
+                style: TextStyle(
+                    fontSize: 17, fontWeight: FontWeight.bold, color: black),
+                decoration: InputDecoration(
+                  hintText: "R\$ 0,00",
+                  prefixIconColor: Colors.red,
+                ),
+                onChanged: (value) => controller.value = double.parse(value),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(_greenList[widget.categoryId].tittle,textAlign:TextAlign.left,style: TextStyle(
-                    fontSize: 50
-                  ),),
-SizedBox(height: 50,),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Descrição",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color(0xff67727d)),
-                        ),
-                        TextFormField(
-                          controller: _greenForm,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (String? value) {
-                            if (value!.isEmpty) {
-                              return "Campo obrigatório";
-                            }
-
-                            return null;
-                          },
-                          onChanged: (value) => controller.title = value,
-                          cursorColor: Colors.black,
-                          style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                          decoration: InputDecoration(
-                            hintText: "Green +",
-                          ),
-                        ),
-                      ]),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Valor",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
-                        color: Color(0xff67727d)),
-                  ),
-                  TextFormField(
-                    validator: (String? valor) {
-                      if (verificNumber.hasMatch(valor!) ||
-                          valor.isEmpty ||
-                          double.parse(valor.replaceAll(",", ".")) <= 0) {
-                        return 'valor inválido';
-                      }
-
-                      return null;
-                    },
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true),
-                    cursorColor: black,
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: black),
-                    decoration: InputDecoration(
-                      hintText: "R\$ 0,00",
-                      prefixIconColor: Colors.red,
-                    ),
-                    onChanged: (value) =>
-                        controller.value = double.parse(value),
-                  ),
-                  SizedBox(
-                    height: 35,
-                  ),
-                  Row(
-mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ElevatedButton(onPressed: (){
+                  ElevatedButton(
+                      onPressed: () {
                         setState(() async {
-                          FocusScope.of(context)
-                              .requestFocus(FocusNode());
+                          FocusScope.of(context).requestFocus(FocusNode());
                           DateTime? date = await showDatePicker(
-                          context: context,
-                          firstDate: DateTime.now()
-                              .subtract(const Duration(days: 360)),
-                          lastDate: DateTime.now(),
-                          initialDate: _dateTime);
+                              context: context,
+                              firstDate: DateTime.now()
+                                  .subtract(const Duration(days: 360)),
+                              lastDate: DateTime.now(),
+                              initialDate: _dateTime);
                           _dateTime = date ?? _dateTime;
                           _txtDateTimeController.text =
-                          "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
+                              "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
                         });
-                      }, child: Icon(
-                       Ionicons.calendar,
+                      },
+                      child: Icon(
+                        Ionicons.calendar,
                         color: Colors.white,
                       ),
-                          style: ButtonStyle(
-                              fixedSize: MaterialStateProperty.all<Size>(Size.fromRadius(30),),
-                              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      style: ButtonStyle(
+                          fixedSize: MaterialStateProperty.all<Size>(
+                            Size.fromRadius(30),
+                          ),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-
-                                  )))),
-                      Confirmation()
-                    ],
-                  ),
-
-
-                ]
-              ),
-                    ),
-                  ),
-
-
+                            borderRadius: BorderRadius.circular(50),
+                          )))),
+                  Confirmation()
                 ],
-              );
-
+              ),
+            ]),
+          ),
+        ),
+      ],
+    );
   }
 
   // Row TransactionTypes() {
@@ -310,14 +305,11 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
   SingleChildScrollView Confirmation() {
     return SingleChildScrollView(
-
       child: Consumer<HomeController>(builder: (context, homeController, _) {
         return Container(
-
           child: Row(
             children: [
               ElevatedButton(
-
                   onPressed: () {
                     setState(() {});
                     var formValid = fomrKey.currentState?.validate() ?? false;
@@ -332,7 +324,8 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           category: controller.category,
                           dateTime: _dateTime,
                           transactionType: TransactionType.INCOME);
-                      Provider.of<HomeController>(context, listen: false).add(trans);
+                      Provider.of<HomeController>(context, listen: false)
+                          .add(trans);
                       //  homeController.setTransAction(trans);
                       Navigator.pop(context);
                     }
@@ -345,14 +338,17 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     color: Colors.white,
                   ),
                   style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all<Size>(Size.fromRadius(30),),
-
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                      fixedSize: MaterialStateProperty.all<Size>(
+                        Size.fromRadius(30),
+                      ),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )))),
+                        borderRadius: BorderRadius.circular(10),
+                      )))),
             ],
           ),
         );
@@ -367,8 +363,6 @@ class TransactionTypeOption {
   Color color;
 
   TransactionTypeOption(this.label, this.type, this.color);
-
-
 }
 
 class DetailFeature extends StatelessWidget {
@@ -401,6 +395,4 @@ class DetailFeature extends StatelessWidget {
       ],
     );
   }
-
-
 }

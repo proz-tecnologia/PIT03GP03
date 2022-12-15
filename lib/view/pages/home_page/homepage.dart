@@ -23,13 +23,19 @@ class _HomePage2State extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context);
+
+    double limiteRecuperado =
+        Provider.of<HomeController>(context, listen: false).limite;
+    double totalGeral =
+        Provider.of<HomeController>(context, listen: false).total;
+
     return Scaffold(
-      appBar: _buildAppBar(),
-      drawer: const DrawerApp(),
+      appBar: _buildAppBar(totalGeral, limiteRecuperado),
+      drawer: DrawerApp(),
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Column(
           children: [
-            _appbarBotomSection(controller.total),
+            _appbarBotomSection(controller.total, controller.limite),
             mainBoard(controller.transactionList, locale),
           ],
         );
@@ -37,10 +43,11 @@ class _HomePage2State extends State<HomePage2> {
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(double value, double limite) {
     return AppBar(
         elevation: 0,
-        backgroundColor: _primaryColor,
+        backgroundColor:
+            (limite - value) >= 0 == true ? _primaryColor : Colors.red,
         actions: const <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 20),
@@ -48,12 +55,12 @@ class _HomePage2State extends State<HomePage2> {
         ]);
   }
 
-  Widget _appbarBotomSection(double value) {
+  Widget _appbarBotomSection(double value, double limite) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-        color: _primaryColor,
+      decoration: BoxDecoration(
+        color: (limite - value) >= 0 == true ? _primaryColor : Colors.red,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
       ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
+import '../../../controller/home_controller.dart';
 import '../../../utils/theme/colors.dart';
 
 class MeuGreenProfile extends StatefulWidget {
@@ -9,6 +12,9 @@ class MeuGreenProfile extends StatefulWidget {
 }
 
 class _MeuGreenProfileState extends State<MeuGreenProfile> {
+  double aux = 0.0;
+  final RegExp verificNumber = RegExp(r'([0-9]{})');
+  final fomrKeyLimite = GlobalKey<FormState>();
   TextEditingController _email = TextEditingController(text: "Green@green.com");
   TextEditingController dateOfBirth = TextEditingController(text: "01-12-1980");
   TextEditingController password = TextEditingController(text: "123456");
@@ -18,7 +24,15 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
     return Scaffold(
       appBar:
           PreferredSize(child: getAppBar(), preferredSize: Size.fromHeight(60)),
-      body: getBody(),
+      body: Consumer<HomeController>(builder: (context, controller, _) {
+        return Container(
+          child: Form(
+            key: fomrKeyLimite,
+            child: getBody(),
+          ),
+          //getBody(),
+        );
+      }),
     );
   }
 
@@ -27,14 +41,15 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
       backgroundColor: Colors.white54,
       elevation: 0,
       leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: black,
-            size: 22,
-          )),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: black,
+          size: 22,
+        ),
+      ),
     );
   }
 
@@ -42,7 +57,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
     var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             decoration: BoxDecoration(color: white, boxShadow: [
@@ -81,44 +96,42 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                   width: 100,
                                   height: 150,
                                   decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image: AssetImage(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage(
                                         'assets/avatar.png',
-                                      ))),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               )
                             ],
                           ),
                         ),
                       ),
-                      Container(
-                        width: (size.width - 40) * 0.6,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Green",
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Arial',
-                                  color: black),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: black.withOpacity(0.4)),
-                            ),
-                          ],
-                        ),
-                      )
                     ],
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Container(
+                    width: (size.width - 40) * 0.6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Green",
+                          style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Arial',
+                              color: black),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 25,
@@ -139,8 +152,8 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, top: 25, bottom: 25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,22 +162,75 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 "Definir novo  Limite financeiro",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 16,
+                                    fontSize: 13,
                                     color: white),
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
-                                "R\$ 0,00",
+                                'money'.i18n(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                    fontSize: 12,
                                     color: white),
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextFormField(
+                                validator: (String? valor) {
+                                  if (verificNumber.hasMatch(valor!) ||
+                                      valor.isEmpty ||
+                                      double.parse(
+                                              valor.replaceAll(",", ".")) <=
+                                          0) {
+                                    return 'valor inválido';
+                                  }
+
+                                  return null;
+                                },
+                                keyboardType:
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
+                                cursorColor: white,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: white),
+                                decoration: InputDecoration(
+                                  hintText:
+                                      "${Provider.of<HomeController>(context, listen: false).limite}",
+                                  prefixIconColor: Colors.white,
+                                ),
+                                onChanged: (value) => aux = double.parse(value),
+                              )
                             ],
                           ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           GestureDetector(
+                            onTap: () {
+                              var formValid =
+                                  fomrKeyLimite.currentState?.validate() ??
+                                      false;
+                              var message = 'Valor invalida';
+
+                              if (formValid) {
+                                message = "Limite atualizado com sucesso";
+
+                                Provider.of<HomeController>(context,
+                                        listen: false)
+                                    .mudarLimite(aux);
+
+                                Navigator.pop(context);
+                              }
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(message),
+                              ));
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
