@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../login/login_page.dart';
+import '../onboarding_screen/Meu_green_onboarding.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,6 +16,6 @@ class SplashScreen extends StatelessWidget {
         splashIconSize: 300,
         backgroundColor: Colors.white,
         pageTransitionType: PageTransitionType.rotate,
-        nextScreen: LoginPage());
+        nextScreen: OnboardingScreen());
   }
 }

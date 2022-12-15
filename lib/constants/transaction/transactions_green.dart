@@ -12,7 +12,7 @@ class Transaction {
     this.title = '',
     this.category,
     required this.dateTime,
-    this.Id=0
+    this.Id=0, required String description
   });
 }
 

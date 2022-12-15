@@ -6,7 +6,7 @@ import 'package:localization/localization.dart';
 import '../../../../constants/credential/users_credential.dart';
 import '../../../../model/mocks/green_users.dart';
 import '../../home_page/homepage.dart';
-import '../../onboarding_screen/onboarding.dart';
+
 
 class InputLoginWidget extends StatefulWidget {
   const InputLoginWidget({Key? key}) : super(key: key);
@@ -76,7 +76,7 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
                                 element.password == _password);
 
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) => const OnBoardingScreen(),
+                            builder: (_) => const HomePage2(),
                             settings:
                                 RouteSettings(arguments: _userCredential)));
                       }

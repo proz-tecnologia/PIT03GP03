@@ -18,6 +18,10 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        elevation: 0,
+      ),
       body: widget.categoryFavorited.isEmpty
           ? Center(
         child: Column(
@@ -26,7 +30,7 @@ class _FavoritePageState extends State<FavoritePage> {
           children: [
             SizedBox(
               height: 100,
-              child: Image.asset('assets/images/favorited.png'),
+              child: Image.asset('assets/favorited.png'),
             ),
             const SizedBox(
               height: 10,

@@ -7,9 +7,11 @@ import 'package:provider/provider.dart';
 import '../../../../constants/json/meugreen.dart';
 import '../../../../constants/transaction/transactions_green.dart';
 import '../../../../controller/home_controller.dart';
+import '../../../../model/meu_green_category.dart';
 
 class MeuGreenTransactionsList extends StatefulWidget {
-  const MeuGreenTransactionsList({Key? key}) : super(key: key);
+
+  const MeuGreenTransactionsList({Key? key,}) : super(key: key);
 
   @override
   State<MeuGreenTransactionsList> createState() => _MeuGreenTransactionsListState();
@@ -21,21 +23,25 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
   static const Color _thirdColor = Colors.deepOrangeAccent;
   @override
   Widget build(BuildContext context) {
-
+    List<GreenList> _greenListCat = GreenList.categoryList;
     final locale = Localizations.localeOf(context);
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
  body: Consumer<HomeController>(builder: (context, controller, __) {
       return Column(
         children: [
-          _appbarBotomSection(controller.total),
-          mainBoard(controller.transactionList, locale),
+          _appbarBotomSection(controller.total,_greenListCat),
+          mainBoard(controller.transactionList, _greenListCat,locale)
         ],
       );
  }),
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(
+      ) {
     return AppBar(
         elevation: 0,
         actions: const <Widget>[
@@ -45,8 +51,9 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
         ]);
   }
 
-  Widget _appbarBotomSection(double value) {
+  Widget _appbarBotomSection(double value,List<GreenList>_greenList) {
     return Container(
+
       padding: const EdgeInsets.symmetric(horizontal: 50),
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
@@ -100,7 +107,7 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
     );
   }
 
-  Expanded mainBoard(List<Transaction> _lista, Locale locale) {
+  Expanded mainBoard(List<Transaction> _lista,List<GreenList>_greenList, Locale locale) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -140,10 +147,9 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
 
                 // listview widgets (trocar para logica transações
 
-                ListView.separated(
+                ListView.builder(
                   primary: false,
                   shrinkWrap: true,
-                  separatorBuilder: (context, index) => const Divider(),
                   itemCount: _lista.length,
                   itemBuilder: (context, index) => ListTile(
                     contentPadding: EdgeInsets.zero,
@@ -157,10 +163,13 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
                         border: Border.all(
                             color: _primaryColor.withOpacity(0.1)),
                       ),
-                      child: Image.asset(categories[index]['icon']!,
+                      child: Image.asset(_greenList[index].image!,
                           fit: BoxFit.cover, width: 45, height: 45),
+
                     ),
-                    title: Text(_lista[index].title,
+
+
+                    title: Text(_greenList[index].tittle,
                         style: const TextStyle(
                           color: Colors.black87,
                           fontFamily: 'sans-serif-light',

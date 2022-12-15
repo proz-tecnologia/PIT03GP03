@@ -21,7 +21,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
 
   final RegExp verificNumber = RegExp(r'([0-9]{})'); // informações
   int activeCategory = 0;
- // var _dateTime = DateTime.now();
+  // var _dateTime = DateTime.now();
 
   @override
   void initState() {
@@ -110,7 +110,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                           context,
                           PageTransition(
                               child: MeuGreenDetailPage(
-                              categoryId: _greenList[index].categoryId,
+                                categoryId: _greenList[index].categoryId,
                               ),
                               type: PageTransitionType.bottomToTop));
                     },
@@ -224,4 +224,3 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
     );
   }
 }
-

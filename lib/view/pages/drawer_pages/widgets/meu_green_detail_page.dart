@@ -323,7 +323,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                           title: controller.title,
                           category: controller.category,
                           dateTime: _dateTime,
-                          transactionType: TransactionType.INCOME);
+                          transactionType: TransactionType.INCOME, description: '');
                       Provider.of<HomeController>(context, listen: false)
                           .add(trans);
                       //  homeController.setTransAction(trans);

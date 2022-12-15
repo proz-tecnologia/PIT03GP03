@@ -402,7 +402,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                   value: controller.value,
                   title: controller.title,
                   dateTime: DateTime.now(),
-                  category: controller.category,
+                  category: controller.category, description: '',
               );
 
               homeController.setTransAction(trans);

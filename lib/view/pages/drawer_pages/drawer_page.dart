@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:green/controller/home_controller.dart';
+import 'package:green/view/pages/drawer_pages/widgets/Meu_green_transactions_list.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_todo.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
+
 
 import '../../../utils/configs/pages_settings.dart';
 import '../login/login_page.dart';
@@ -29,7 +31,7 @@ class _DrawerAppState extends State<DrawerApp> {
     return Drawer(
       child: Material(
         child: Container(
-          color: (limite - total) >= 0 == true ? Colors.green : Colors.red,
+          color: Colors.green,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(24, 80, 24, 0),
             child: Column(
@@ -140,7 +142,7 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
       case 1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MeuGreenMetas()));
+            context, MaterialPageRoute(builder: (context) => MeuGreenTransactionsList()));
         break;
 
       case 2:
