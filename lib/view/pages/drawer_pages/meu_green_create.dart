@@ -183,7 +183,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                         ],
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.deepOrangeAccent,
+                        color: Colors.green,
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
@@ -213,7 +213,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                         Navigator.push(context, PageTransition(
                             child: MeuGreenDetailPage(
                               categoryId: _greenList[index].categoryId,),
-                            type: PageTransitionType.rotate));
+                            type: PageTransitionType.topToBottom));
                       },
                       child: MeuGreenWidgetPage(index: index,  greenList: _greenList,));
                 }),

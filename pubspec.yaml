@@ -146,6 +146,18 @@ flutter:
     - assets/auto.png
     - assets/verified.png
     - assets/favorited.png
+    - assets/banco.png
+    - assets/cartoes-de-credito.png
+    - assets/categorias.png
+    - assets/conta.png
+    - assets/educacao.png
+    - assets/farmacia.png
+    - assets/gastos.png
+    - assets/gastos2.png
+    - assets/mais.png
+    - assets/mais (1).png
+    - assets/manutencao.png
+    - assets/pet-shop.png
     - assets/google.png
     - lib/i18n/
     - trabalhando.png

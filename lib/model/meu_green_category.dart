@@ -3,13 +3,13 @@ class GreenList {
   final String category;
   final String tittle;
   final String image;
+  final double value;
   bool isFavorated;
-
   bool isSelected;
 
 
   GreenList(
-      {required this.categoryId, required this.category, required this.tittle,
+      {required this.categoryId, required this.category, required this.tittle,required this.value,
         required this.image, required this.isFavorated, required this.isSelected});
 
 
@@ -21,7 +21,9 @@ class GreenList {
         tittle: '+Green',
         image: 'assets/metas3.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false, value: 0,
+
+
     ),
     GreenList(
         categoryId: 1,
@@ -29,15 +31,17 @@ class GreenList {
         tittle: 'Combustivel',
         image: 'assets/combustivel.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 2,
         category: 'Auto',
         tittle: 'Automovel',
-        image: 'assets/Transportation.png',
+        image: 'assets/manutencao.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 3,
@@ -45,7 +49,8 @@ class GreenList {
         tittle: 'Compras',
         image: 'assets/mercado.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 4,
@@ -53,7 +58,8 @@ class GreenList {
         tittle: 'Saúde',
         image: 'assets/hospital.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 5,
@@ -61,71 +67,81 @@ class GreenList {
         tittle: 'Alimentação',
         image: 'assets/eating.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 6,
         category: 'Educação',
         tittle: 'Educação',
-        image: 'assets/Education.png',
+        image: 'assets/educacao.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 7,
         category: 'Banco',
         tittle: 'Banco',
-        image: 'assets/bank.png',
+        image: 'assets/banco.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 8,
         category: 'Cartões',
         tittle: 'cartões',
-        image: 'assets/Transfer.png',
+        image: 'assets/cartoes-de-credito.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 9,
         category: 'PetShop',
-        tittle: 'petshop',
-        image: 'assets/petshop.png',
+        tittle: 'pet-shop',
+        image: 'assets/pet-shop.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 10,
         category: 'Academia',
         tittle: 'Academia',
-        image: 'assets/auto.png',
+        image: 'assets/academia.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
+
     ),
     GreenList(
         categoryId: 11,
-        category: 'Auto',
-        tittle: 'Automovel',
-        image: 'assets/auto.png',
+        category: 'Contas',
+        tittle: 'Contas',
+        image: 'assets/conta.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
     GreenList(
         categoryId: 12,
         category: 'Outros',
-        tittle: 'Automovel',
-        image: 'assets/auto.png',
+        tittle: 'Outros',
+        image: 'assets/mais (1).png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,value: 0,
+
     ),
     GreenList(
         categoryId: 13,
-        category: 'Auto',
-        tittle: 'Automovel',
-        image: 'assets/auto.png',
+        category: 'Farmacia',
+        tittle: 'Farmacia',
+        image: 'assets/farmacia.png',
         isFavorated: false,
-        isSelected: false
+        isSelected: false,
+      value: 0,
     ),
   ];
 

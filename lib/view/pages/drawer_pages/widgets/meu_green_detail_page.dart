@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/home_controller.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants/transaction_controller.dart';
 import '../../../../model/meu_green_category.dart';
@@ -20,13 +21,19 @@ class MeuGreenDetailPage extends StatefulWidget {
 }
 
 class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
+
   final TransActionController controller = TransActionController();
   final fomrKey = GlobalKey<FormState>();
- // final _txtDateTimeController = TextEditingController();
+  var transactionType = TransactionType.INCOME;
+  late final transactionTypes = [
+    TransactionTypeOption("Receita", TransactionType.INCOME, Colors.green),
+    TransactionTypeOption("Despesa", TransactionType.EXPENSE, Colors.red)
+  ];
+  final _txtDateTimeController = TextEditingController();
   final TextEditingController _greenForm = TextEditingController(text: '');
   final RegExp verificNumber = RegExp(r'([0-9]{})');
   int activeCategory = 0;
- // var _dateTime = DateTime.now();
+  var _dateTime = DateTime.now();
 
   bool toggleIsFavorated(bool isFavorited) {
     return !isFavorited;
@@ -154,11 +161,11 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.only(top: 80, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
               height: size.height * .5,
               width: size.width,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.white.withOpacity(0.9),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(30),
                   topLeft: Radius.circular(30),
@@ -167,6 +174,10 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(_greenList[widget.categoryId].tittle,textAlign:TextAlign.left,style: TextStyle(
+                    fontSize: 50
+                  ),),
+SizedBox(height: 50,),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -232,37 +243,141 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                     onChanged: (value) =>
                         controller.value = double.parse(value),
                   ),
+                  SizedBox(
+                    height: 35,
+                  ),
                   Row(
+mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(''),
+                      ElevatedButton(onPressed: (){
+                        setState(() async {
+                          FocusScope.of(context)
+                              .requestFocus(FocusNode());
+                          DateTime? date = await showDatePicker(
+                          context: context,
+                          firstDate: DateTime.now()
+                              .subtract(const Duration(days: 360)),
+                          lastDate: DateTime.now(),
+                          initialDate: _dateTime);
+                          _dateTime = date ?? _dateTime;
+                          _txtDateTimeController.text =
+                          "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
+                        });
+                      }, child: Icon(
+                       Ionicons.calendar,
+                        color: Colors.white,
+                      ),
+                          style: ButtonStyle(
+                              fixedSize: MaterialStateProperty.all<Size>(Size.fromRadius(30),),
+                              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+
+                                  )))),
+                      Confirmation()
                     ],
                   ),
-                ],
+
+
+                ]
               ),
-              //Expanded(
-              //   child: Text(
-              //     _plantList[widget.plantId].decription,
-              //     textAlign: TextAlign.justify,
-              //     style: TextStyle(
-              //       height: 1.5,
-              //       fontSize: 18,
-              //       color: Constants.blackColor.withOpacity(.7),
-              //     ),
-              //   ),
-              // ),
-            ))
-      ],
+                    ),
+                  ),
+
+
+                ],
+              );
+
+  }
+
+  // Row TransactionTypes() {
+  //   return Row(
+  //     children: transactionTypes
+  //         .map((e) => ChoiceChip(
+  //         selectedColor: e.color,
+  //         labelStyle: const TextStyle(color: Colors.green),
+  //         label: Text(e.label),
+  //         selected: e.type == transactionTypes,
+  //         onSelected: (value) => setState(() {
+  //           transactionType = e.type;
+  //         })))
+  //         .toList(),
+  //   );
+  // }
+
+  SingleChildScrollView Confirmation() {
+    return SingleChildScrollView(
+
+      child: Consumer<HomeController>(builder: (context, homeController, _) {
+        return Container(
+
+          child: Row(
+            children: [
+              ElevatedButton(
+
+                  onPressed: () {
+                    setState(() {});
+                    var formValid = fomrKey.currentState?.validate() ?? false;
+                    var message = 'Transação invalida';
+
+                    if (formValid) {
+                      message = "Transação adicionada com sucesso";
+
+                      var trans = Transaction(
+                          value: controller.value,
+                          title: controller.title,
+                          category: controller.category,
+                          dateTime: _dateTime,
+                          transactionType: TransactionType.INCOME);
+                      Provider.of<HomeController>(context, listen: false).add(trans);
+                      //  homeController.setTransAction(trans);
+                      Navigator.pop(context);
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(message),
+                    ));
+                  },
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  style: ButtonStyle(
+                      fixedSize: MaterialStateProperty.all<Size>(Size.fromRadius(30),),
+
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )))),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
 
-class PlantFeature extends StatelessWidget {
-  final String plantFeature;
+class TransactionTypeOption {
+  String label;
+  TransactionType type;
+  Color color;
+
+  TransactionTypeOption(this.label, this.type, this.color);
+
+
+}
+
+class DetailFeature extends StatelessWidget {
+  final String detailFeature;
   final String title;
 
-  const PlantFeature({
+  const DetailFeature({
     Key? key,
-    required this.plantFeature,
+    required this.detailFeature,
     required this.title,
   }) : super(key: key);
 
@@ -276,7 +391,7 @@ class PlantFeature extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         Text(
-          plantFeature,
+          detailFeature,
           style: TextStyle(
             color: Colors.green,
             fontSize: 18.0,
@@ -286,4 +401,6 @@ class PlantFeature extends StatelessWidget {
       ],
     );
   }
+
+
 }
