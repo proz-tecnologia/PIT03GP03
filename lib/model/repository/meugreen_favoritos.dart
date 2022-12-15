@@ -1,5 +1,5 @@
 class CategoriasRepository {
-  static List<dynamic> tabela = [
+  static List<dynamic> tableList = [
     {"name": "+ Green", "icon": "assets/metas2.png"},
     {"name": "Auto", "icon": "assets/auto.png"},
     {"name": "Compras", "icon": "assets/mercado.png"},
