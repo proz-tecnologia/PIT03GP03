@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 class MeuGreenMetas extends StatefulWidget {
   const MeuGreenMetas({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class TextBar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Metas',
+            Text('goals'.i18n(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 40,
@@ -55,7 +56,7 @@ class TextBar extends StatelessWidget {
           height: 20,
         ),
         Text(
-          '  Aguardando o Estagiario  realizar o commit !! ',
+          'commit'.i18n(),
           style: TextStyle(
             color: Colors.white.withOpacity(0.5),
             fontSize: 16,
@@ -63,12 +64,9 @@ class TextBar extends StatelessWidget {
             height: 1,
           ),
         ),
-
-
         const SizedBox(
           height: 10,
         ),
-
         Image.asset('assets/trabalhando.png'),
       ],
     );

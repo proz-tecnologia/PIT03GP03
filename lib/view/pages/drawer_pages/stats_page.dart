@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:green/constants/app_text_styles.dart';
+import 'package:localization/localization.dart';
 
 class MeuGreenCart extends StatefulWidget {
   const MeuGreenCart({Key? key}) : super(key: key);
@@ -42,13 +44,10 @@ class TextBar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Metas',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600,
-                  height: 0.9,
-                ))
+            Text(
+              'goals'.i18n(),
+              style: AppStyles.write36600Normal,
+            )
           ],
         ),
         const SizedBox(
@@ -58,14 +57,14 @@ class TextBar extends StatelessWidget {
           height: 180,
         ),
         Text(
-          'Estamos trabalhando nisso ',
+          'work'.i18n(),
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
         const SizedBox(
           height: 10,
         ),
         Text(
-          'Aguardando o estagiario da o commit !!',
+          'commit'.i18n(),
           style: TextStyle(color: Colors.white, fontSize: 21),
         ),
         SizedBox(

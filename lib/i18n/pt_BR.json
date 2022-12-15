@@ -49,7 +49,16 @@
     "help": "Ajuda",
     "about": "Sobre",
     "themes": "Temas",
-    "language": "Idiomas"
+    "language": "Idiomas",
+    "onboard_1": "Bem vindo a GREEN",
+    "description_1": "GREEN , o seu app de finanças .",
+    "onboard_2": "Com GREEN você  descomplicar  ",
+    "description_2": "Você tem o seu controle  financeiro sem complicação.",
+    "onboard_3": "Com GREEN você planeja metas que deseja realizar  com apenas um clique.",
+    "description_3": "Economize e sonhe com GREEN.",
+    "jump": "Pular",
+    "work": "Estamos trabalhando nisso ",
+    "commit": "  Aguardando o estagiario da o commit !! "
 
 }
 

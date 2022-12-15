@@ -28,4 +28,18 @@ class AppStyles {
       fontSize: 28.0,
       fontFamily: "Khang",
       height: 2.5);
+
+  static const TextStyle write36600Normal = TextStyle(
+    color: Colors.white,
+    fontSize: 36,
+    fontWeight: FontWeight.w600,
+    height: 0.9,
+  );
+
+  static const TextStyle write20600Normal = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    height: 0.9,
+  );
 }

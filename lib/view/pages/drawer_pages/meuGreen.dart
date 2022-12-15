@@ -20,26 +20,21 @@ class _RootAppState extends State<RootApp> {
   int _bottomNavIndex = 0;
 
   List<Widget> pages() {
-    return[
-  MeuGreenCarteira(),
-  MeuGreenCart(),
-  FavoritePage(categoryFavorited: favorites,),
-  MeuGreenProfile(),
-  MeuGreenCreat(),
-  ];
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+    return [
+      MeuGreenCarteira(),
+      MeuGreenCart(),
+      FavoritePage(
+        categoryFavorited: favorites,
+      ),
+      MeuGreenProfile(),
+      MeuGreenCreat(),
+    ];
   }
 
   @override
   void dispose() {
     super.dispose();
   }
-
 
   Widget getBody() {
     return IndexedStack(
@@ -48,51 +43,53 @@ class _RootAppState extends State<RootApp> {
     );
   }
 
+  List<IconData> iconItems = [
+    Ionicons.wallet_sharp,
+    Ionicons.stats_chart,
+    Ionicons.heart,
+    Ionicons.person,
+  ];
 
-    List<IconData> iconItems = [
-      Ionicons.wallet_sharp,
-      Ionicons.stats_chart,
-      Ionicons.heart,
-      Ionicons.person,
-    ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IndexedStack(
+        index: _bottomNavIndex,
+        children: pages(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: MeuGreenCreat(),
+                  type: PageTransitionType.bottomToTop));
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.deepOrange,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+          splashColor: Colors.deepOrange,
+          activeColor: Colors.green,
+          inactiveColor: Colors.black.withOpacity(.5),
+          icons: iconItems,
+          activeIndex: _bottomNavIndex,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.softEdge,
+          onTap: (index) {
+            setState(() {
+              _bottomNavIndex = index;
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
+              final List<GreenList> favoritedCategories =
+                  GreenList.getFavoritedCategory();
+              final List<GreenList> addedToCart =
+                  GreenList.addedToCartCategory();
 
-        body: IndexedStack(
-          index: _bottomNavIndex,
-          children: pages(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(context, PageTransition(child:  MeuGreenCreat(), type: PageTransitionType.bottomToTop));
-          },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.deepOrange,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: AnimatedBottomNavigationBar(
-            splashColor: Colors.deepOrange,
-            activeColor: Colors.green,
-            inactiveColor: Colors.black.withOpacity(.5),
-            icons: iconItems,
-            activeIndex: _bottomNavIndex,
-            gapLocation: GapLocation.center,
-            notchSmoothness: NotchSmoothness.softEdge,
-            onTap: (index){
-
-    setState(() {
-      _bottomNavIndex = index;
-
-      final List<GreenList> favoritedCategories = GreenList.getFavoritedCategory();
-      final List<GreenList> addedToCart = GreenList.addedToCartCategory();
-
-      favorites = favoritedCategories;
-      myCart = addedToCart.toSet().toList();
-    });
+              favorites = favoritedCategories;
+              myCart = addedToCart.toSet().toList();
+            });
+          }),
+    );
   }
-),
-);
-}
 }

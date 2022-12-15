@@ -1998,7 +1998,42 @@ class _MeuGreenState extends State<MeuGreen> {
   }
 }
 
+/*
+MOBX CONTROLLER
+import 'package:mobx/mobx.dart';
+import '../constants/transaction/transaction.dart';
 
+part 'home_controller_mb.g.dart';
+
+class HomeControllerMb = HomeControllerMbBase with _$HomeControllerMb;
+
+abstract class HomeControllerMbBase with Store {
+  @observable
+  ObservableList<Transaction> transactionList = ObservableList<Transaction>();
+  //var transactionsList = <Transaction>[].asObservable();
+
+  @action
+  void setTransAction(Transaction trans) {
+    transactionList.add(trans);
+  }
+
+  @action
+  void removeTransAction(Transaction trans) {
+    transactionList.remove(trans);
+  }
+
+  @action
+  double total() {
+    double valorTotal = 0;
+
+    for (var element in transactionList) {
+      valorTotal += element.value;
+    }
+
+    return valorTotal;
+  }
+}
+*/
 
 
 

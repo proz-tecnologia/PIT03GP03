@@ -50,5 +50,14 @@
     "help": "Help",
     "about": "About",
     "themes": "Themes",
-    "language": "Languages"
+    "language": "Languages",
+    "onboard_1": "Welcome to GREEN",
+    "description_1": "GREEN , your finance app. ",
+    "onboard_2": "With GREEN you uncomplicate  ",
+    "description_2": "You have your financial control without complication.",
+    "onboard_3": "With GREEN you plan goals you want to achieve with just one click.",
+    "description_3": "Save money and dream GREEN.",
+    "jump": "Skip",
+    "work" : "We are working on it",
+    "commit" : "  Waiting for the trainee to commit !! "
 }
