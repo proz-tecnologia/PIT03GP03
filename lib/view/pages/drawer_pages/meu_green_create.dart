@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_detail_page.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_widgets.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-
-import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transactions_green.dart';
 import '../../../constants/transaction_controller.dart';
 import '../../../controller/home_controller.dart';
-import '../../../utils/theme/colors.dart';
+import '../../../model/meu_green_category.dart';
+
 
 class MeuGreenCreat extends StatefulWidget {
   @override
   _MeuGreenCreatState createState() => _MeuGreenCreatState();
 }
-
 class _MeuGreenCreatState extends State<MeuGreenCreat> {
   final fomrKey = GlobalKey<FormState>();
-  var transactionType = TransactionType.INCOME;
-  late final transactionTypes = [
-    TransactionTypeOption("Receita", TransactionType.INCOME, Colors.green),
-    TransactionTypeOption("Despesa", TransactionType.EXPENSE, Colors.red)
-  ];
   final TransActionController controller = TransActionController();
-  final _txtDateTimeController = TextEditingController();
-  final TextEditingController _budgetName = TextEditingController(text: '');
+  // final TextEditingController _txtDateTimeController = TextEditingController();
+  // final TextEditingController _budgetName = TextEditingController(text: '');
 
   final RegExp verificNumber = RegExp(r'([0-9]{})'); // informações
   int activeCategory = 0;
-  var _dateTime = DateTime.now();
+ // var _dateTime = DateTime.now();
 
   @override
   void initState() {
@@ -54,367 +49,179 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
   }
 
   Widget getBody(List<Transaction> transactionList, Locale locale) {
+    bool toggleIsFavorated(bool isFavorited) {
+      return !isFavorited;
+    }
+    List<GreenList> _greenList = GreenList.categoryList;
     var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          decoration: BoxDecoration(color: Colors.white54, boxShadow: [
-            BoxShadow(
-              color: grey.withOpacity(0.01),
-              spreadRadius: 10,
-              blurRadius: 3,
-              // changes position of shadow
-            ),
-          ]),
-          child: Column(
-            children: [],
-          ),
-        ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-//=================================================
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
                   ),
-
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                        children: List.generate(categories.length, (index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                activeCategory = index;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 10,
+                  width: size.width * .7,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.white.withOpacity(.6),
+                      ),
+                      const Expanded(
+                          child: TextField(
+                            showCursor: false,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                            ),
+                          )),
+                      Icon(
+                        Icons.mic,
+                        color: Colors.white.withOpacity(.6),
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: size.height * 0.3,
+            child: ListView.builder(
+                itemCount: _greenList.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: MeuGreenDetailPage(
+                              categoryId: _greenList[index].categoryId,
                               ),
-                              child: Container(
-                                margin: const EdgeInsets.only(
-                                  left: 10,
+                              type: PageTransitionType.bottomToTop));
+                    },
+                    child: Container(
+                      width: 200,
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 10,
+                            right: 20,
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    bool isFavorited = toggleIsFavorated(
+                                        _greenList[index].isFavorated);
+                                    _greenList[index].isFavorated = isFavorited;
+                                  });
+                                },
+                                icon: Icon(
+                                  _greenList[index].isFavorated == true
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: Colors.red,
                                 ),
-                                width: 150,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    border: Border.all(
-                                        width: 2, //cards colors
-                                        color: activeCategory == index
-                                            ? primary
-                                            : Colors.transparent),
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: grey.withOpacity(0.01),
-                                        spreadRadius: 10,
-                                        blurRadius: 3,
-                                        // changes position of shadow
-                                      ),
-                                    ]),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 25, right: 25, top: 20, bottom: 20),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: grey.withOpacity(0.15)),
-                                  child: Center(
-                                    child: Image.asset(
-                                      categories[index]['icon']!,
-                                      width: 100,
-                                      height: 100,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  )),
-                                      Text(
-                                        categories[index]['name']!,
-                                style: const TextStyle(
-                                  fontFamily: 'sans-serif-light',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 17,
-                                ),
-                              )
-                                    ],
-                                  ),
-                                ),
+                                iconSize: 30,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
                               ),
                             ),
-                          );
-                        })),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Descrição",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color(0xff67727d)),
-                        ),
-                        TextFormField(
-                          controller: _budgetName,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (String? value) {
-                        if (value!.isEmpty) {
-                          return "Campo obrigatório";
-                        }
+                          ),
+                          Positioned(
+                            left: 50,
+                            right: 50,
+                            top: 50,
+                            bottom: 50,
+                            child: Image.asset(_greenList[index].image),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            left: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _greenList[index].category,
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  _greenList[index].tittle,
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
 
-                        return null;
-                      },
-                      onChanged: (value) => controller.title = value,
-                      cursorColor: Colors.black,
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                      decoration: InputDecoration(
-                        hintText: "Green +",
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.deepOrangeAccent,
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: (size.width - 140),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Valor",
-                                style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: Color(0xff67727d)),
-                                  ),
-                              TextFormField(
-                                    validator: (String? valor) {
-                                      if (verificNumber.hasMatch(valor!) ||
-                                          valor.isEmpty ||
-                                          double.parse(
-                                              valor.replaceAll(",", ".")) <=
-                                              0) {
-                                        return 'valor inválido';
-                                      }
-
-                                      return null;
-                                    },
-                                keyboardType:
-                                    const TextInputType.numberWithOptions(
-                                        decimal: true),
-                                cursorColor: black,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: black),
-                                decoration: InputDecoration(
-                                  hintText: "R\$ 0,00",
-                                  prefixIconColor: Colors.red,
-                                ),
-                                onChanged: (value) =>
-                                    controller.value = double.parse(value),
-                              ),
-                              TextFormField(
-                                controller: _txtDateTimeController,
-                                keyboardType: TextInputType.datetime,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: black),
-                                decoration: const InputDecoration(
-                                  labelText: 'Data',
-                                  hintText: '10/10/2010',
-                                ),
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Informe uma data.";
-                                  }
-                                  return null;
-                                },
-                                onTap: () async {
-                                  FocusScope.of(context)
-                                      .requestFocus(FocusNode());
-                                  DateTime? date = await showDatePicker(
-                                      context: context,
-                                      firstDate: DateTime.now()
-                                          .subtract(const Duration(days: 360)),
-                                      lastDate: DateTime.now(),
-                                      initialDate: _dateTime);
-                                  _dateTime = date ?? _dateTime;
-                                  _txtDateTimeController.text =
-                                      "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              width: 50,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Confirmation(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
+                  );
+                }),
           ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Center(
-          child: const Text(
-            "TRANSAÇÕES",
-            style: TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'sans-serif-light',
-            ),
-          ),
-        ),
-        ListView.separated(
-          primary: false,
-          shrinkWrap: true,
-          separatorBuilder: (context, index) => const Divider(),
-          itemCount: transactionList.length,
-          itemBuilder: (context, index) => ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Container(
-              width: 60,
-              height: 60,
-              clipBehavior: Clip.antiAlias,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: green.withOpacity(0.1)),
-              ),
-              child: Image.asset(categories[index]['icon']!,
-                  fit: BoxFit.cover, width: 45, height: 45),
-            ),
-            title: Text(transactionList[index].title,
-                style: const TextStyle(
-                  color: Colors.black87,
-                  fontFamily: 'sans-serif-light',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                )),
-            subtitle: Text(
-              DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
-                  .format(transactionList[index].dateTime),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            trailing: Text(
-              'R\$ ${transactionList[index].value.toStringAsFixed(2)}',
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+          Container(
+            padding: const EdgeInsets.only(left: 16, bottom: 20, top: 20),
+            child: const Text(
+              'Transações',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
               ),
             ),
           ),
-        ),
-      ]),
-    );
-  }
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            height: size.height * .5,
+            child: ListView.builder(
+                itemCount: _greenList.length,
+                scrollDirection: Axis.vertical,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, PageTransition(
+                            child: MeuGreenDetailPage(
+                              categoryId: _greenList[index].categoryId,),
+                            type: PageTransitionType.rotate));
+                      },
+                      child: MeuGreenWidgetPage(index: index,  greenList: _greenList,));
+                }),
+          ),
+        ],
+      ),
 
-  Row TransactionTypes() {
-    return Row(
-      children: transactionTypes
-          .map((e) => ChoiceChip(
-              selectedColor: e.color,
-              labelStyle: const TextStyle(color: Colors.green),
-              label: Text(e.label),
-              selected: e.type == transactionTypes,
-              onSelected: (value) => setState(() {
-                    transactionType = e.type;
-                  })))
-          .toList(),
-    );
-  }
-
-  SingleChildScrollView Confirmation() {
-    return SingleChildScrollView(
-      child: Consumer<HomeController>(builder: (context, homeController, _) {
-        return ElevatedButton(
-            onPressed: () {
-              setState(() {});
-              var formValid = fomrKey.currentState?.validate() ?? false;
-              var message = 'Transação invalida';
-
-              if (formValid) {
-                message = "Transação adicionada com sucesso";
-
-                var trans = Transaction(
-                    value: controller.value,
-                    title: controller.title,
-                    category: controller.category,
-                    dateTime: _dateTime,
-                    transactionType: TransactionType.INCOME);
-                Provider.of<HomeController>(context, listen: false).add(trans);
-                //  homeController.setTransAction(trans);
-                Navigator.pop(context);
-              }
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(message),
-              ));
-            },
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-            ),
-            style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ))));
-      }),
     );
   }
 }
 
-class TransactionTypeOption {
-  String label;
-  TransactionType type;
-  Color color;
-
-  TransactionTypeOption(this.label, this.type, this.color);
-}

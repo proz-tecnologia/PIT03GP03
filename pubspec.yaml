@@ -144,6 +144,9 @@ flutter:
     - assets/greenSleep.json
     - assets/combustivel.png
     - assets/auto.png
+    - assets/verified.png
+    - assets/favorited.png
+    - assets/google.png
     - lib/i18n/
     - trabalhando.png
 

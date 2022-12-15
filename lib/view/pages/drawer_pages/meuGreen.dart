@@ -1,9 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:green/model/meu_green_category.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_favorites.dart';
 import 'package:ionicons/ionicons.dart';
-
-import '../../../utils/theme/colors.dart';
-import 'meu_green_balance.dart';
+import 'package:page_transition/page_transition.dart';
 import 'meu_green_create.dart';
 import 'meu_green_profile.dart';
 import 'meugreen_saldos.dart';
@@ -15,14 +15,19 @@ class RootApp extends StatefulWidget {
 }
 
 class _RootAppState extends State<RootApp> {
-  int pageIndex = 0;
-  List<Widget> pages = [
-    MeuGreenCarteira(),
-    MeuGreenPag(),
-    MeuGreenCart(),
-    MeuGreenProfile(),
-    MeuGreenCreat(),
+  List<GreenList> favorites = [];
+  List<GreenList> myCart = [];
+  int _bottomNavIndex = 0;
+
+  List<Widget> pages() {
+    return[
+  MeuGreenCarteira(),
+  MeuGreenCart(),
+  FavoritePage(categoryFavorited: favorites,),
+  MeuGreenProfile(),
+  MeuGreenCreat(),
   ];
+  }
 
   @override
   void initState() {
@@ -35,62 +40,59 @@ class _RootAppState extends State<RootApp> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: getBody(),
-        bottomNavigationBar: getFooter(),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              selectedTab(4);
-            },
-            child: Icon(
-              Icons.calculate_outlined,
-              size: 25,
-            ),
-            backgroundColor: Colors.deepOrange
-            //params
-            ),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
-  }
 
   Widget getBody() {
     return IndexedStack(
-      index: pageIndex,
-      children: pages,
+      index: _bottomNavIndex,
+      children: pages(),
     );
   }
 
-  Widget getFooter() {
+
     List<IconData> iconItems = [
       Ionicons.wallet_sharp,
       Ionicons.stats_chart,
-      Ionicons.calendar,
+      Ionicons.heart,
       Ionicons.person,
     ];
 
-    return AnimatedBottomNavigationBar(
-      activeColor: primary,
-      splashColor: secondary,
-      inactiveColor: Colors.black.withOpacity(0.5),
-      icons: iconItems,
-      activeIndex: pageIndex,
-      gapLocation: GapLocation.center,
-      notchSmoothness: NotchSmoothness.softEdge,
-      leftCornerRadius: 10,
-      iconSize: 25,
-      rightCornerRadius: 10,
-      onTap: (index) {
-        selectedTab(index);
-      },
-      //other params
-    );
-  }
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
 
-  selectedTab(index) {
+        body: IndexedStack(
+          index: _bottomNavIndex,
+          children: pages(),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.push(context, PageTransition(child:  MeuGreenCreat(), type: PageTransitionType.bottomToTop));
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.deepOrange,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+            splashColor: Colors.deepOrange,
+            activeColor: Colors.green,
+            inactiveColor: Colors.black.withOpacity(.5),
+            icons: iconItems,
+            activeIndex: _bottomNavIndex,
+            gapLocation: GapLocation.center,
+            notchSmoothness: NotchSmoothness.softEdge,
+            onTap: (index){
+
     setState(() {
-      pageIndex = index;
+      _bottomNavIndex = index;
+
+      final List<GreenList> favoritedCategories = GreenList.getFavoritedCategory();
+      final List<GreenList> addedToCart = GreenList.addedToCartCategory();
+
+      favorites = favoritedCategories;
+      myCart = addedToCart.toSet().toList();
     });
   }
+),
+);
+}
 }

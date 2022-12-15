@@ -1,4 +1,5 @@
 class Transaction {
+  int Id;
   double value;
   String title;
   String? category;
@@ -11,6 +12,7 @@ class Transaction {
     this.title = '',
     this.category,
     required this.dateTime,
+    this.Id=0
   });
 }
 

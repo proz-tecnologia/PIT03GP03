@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/foundation.dart';
+import 'package:green/model/meu_green_category.dart';
 
 import '../constants/transaction/transactions_green.dart';
 
@@ -9,13 +10,13 @@ class HomeController extends ChangeNotifier {
 
   void setTransAction(Transaction trans) {
     transactionList.add(trans);
-    transactionList.sort(((a, b) => a.dateTime!.compareTo(b.dateTime!)));
+    transactionList.sort(((a, b) => a.dateTime.compareTo(b.dateTime)));
     notifyListeners();
   }
 
   List<Transaction> get transaction => transactionList;
 
-  List<Category> get categorie => categories;
+  List<GreenList> get categorie => GreenList.categoryList;
 
   double get total {
     double valorTotal = 0;
@@ -49,7 +50,7 @@ class HomeController extends ChangeNotifier {
 
   void add(Transaction item) {
     transactionList.add(item);
-    transactionList.sort(((a, b) => a.dateTime!.compareTo(b.dateTime!)));
+    transactionList.sort(((a, b) => a.dateTime.compareTo(b.dateTime)));
     notifyListeners();
   }
 }
