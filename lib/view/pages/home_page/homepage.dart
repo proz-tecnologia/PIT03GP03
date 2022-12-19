@@ -279,7 +279,7 @@ class _HomePage2State extends State<HomePage2> {
                 width: 60,
                 height: 60,
                 child: CircularProgressIndicator(
-                  value: progress / 100,
+value: progress / 100,
                   strokeWidth: 6,
                   backgroundColor: isSavings
                       ? Colors.black.withOpacity(0.2)

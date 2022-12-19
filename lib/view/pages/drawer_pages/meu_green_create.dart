@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
+
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_detail_page.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_widgets.dart';
 import 'package:localization/localization.dart';
@@ -60,6 +61,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           Container(
             padding: const EdgeInsets.only(top: 20),
             child: Row(
@@ -162,14 +164,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  _greenList[index].category,
-                                  style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                               
                                 Text(
                                   (_greenList[index].tittle).i18n(),
                                   style: const TextStyle(

@@ -1,15 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 
-class MinhaCarteira extends StatefulWidget {
-  const MinhaCarteira({Key? key}) : super(key: key);
+class pagamentos extends StatefulWidget {
+  const pagamentos({Key? key}) : super(key: key);
 
   @override
-  State<MinhaCarteira> createState() => _MinhaCarteiraState();
+  State<pagamentos> createState() => _pagamentosState();
 }
 
-class _MinhaCarteiraState extends State<MinhaCarteira> {
+class _pagamentosState extends State<pagamentos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +43,7 @@ class TextBar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(' Carteira Digital'.i18n(),
+            Text('PAGAMENTOS'.i18n(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 40,

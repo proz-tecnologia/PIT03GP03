@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class _MeuGreenCarteiraState extends State<MeuGreenCarteira> {
         ),
         child: Column(
           children: [
+
             TextBar(),
             SizedBox(
               height: 50,
@@ -50,6 +52,7 @@ class cards extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
           color: Colors.white70,
           boxShadow: [
+
             BoxShadow(
                 color: Colors.green,
                 blurRadius: 10,
@@ -100,6 +103,7 @@ class _TextBarState extends State<TextBar> {
       key: fomrKeyLimite,
       child: Column(
         children: [
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
