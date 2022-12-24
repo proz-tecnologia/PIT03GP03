@@ -146,7 +146,7 @@ class _DrawerAppState extends State<DrawerApp> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Pagamentos()));
+                builder: (context) => MeuGreenTransactionsList()));
         break;
 
       case 2:
