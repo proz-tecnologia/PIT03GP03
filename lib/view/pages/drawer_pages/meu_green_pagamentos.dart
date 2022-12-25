@@ -1,89 +1,180 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Pagamentos extends StatefulWidget {
-  const Pagamentos({Key? key}) : super(key: key);
-
+class HomePage extends StatefulWidget {
   @override
-  State<Pagamentos> createState() => _PagamentosState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _PagamentosState extends State<Pagamentos> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late AnimationController firstController;
+  late Animation<double> firstAnimation;
+
+  late AnimationController secondController;
+  late Animation<double> secondAnimation;
+
+  late AnimationController thirdController;
+  late Animation<double> thirdAnimation;
+
+  late AnimationController fourthController;
+  late Animation<double> fourthAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    firstController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
+    firstAnimation = Tween<double>(begin: 1.9, end: 2.1).animate(
+        CurvedAnimation(parent: firstController, curve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          firstController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          firstController.forward();
+        }
+      });
+
+    secondController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
+    secondAnimation = Tween<double>(begin: 1.8, end: 2.4).animate(
+        CurvedAnimation(parent: secondController, curve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          secondController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          secondController.forward();
+        }
+      });
+
+    thirdController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
+    thirdAnimation = Tween<double>(begin: 1.8, end: 2.4).animate(
+        CurvedAnimation(parent: thirdController, curve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          thirdController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          thirdController.forward();
+        }
+      });
+
+    fourthController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
+    fourthAnimation = Tween<double>(begin: 1.9, end: 2.1).animate(
+        CurvedAnimation(parent: fourthController, curve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          fourthController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          fourthController.forward();
+        }
+      });
+
+
+    Timer(Duration(seconds: 2), () {
+      firstController.forward();
+    });
+
+    Timer(Duration(milliseconds: 1600), () {
+      secondController.forward();
+    });
+
+    Timer(Duration(milliseconds: 800), () {
+      thirdController.forward();
+    });
+
+    fourthController.forward();
+
+  }
+
+  @override
+  void dispose() {
+    firstController.dispose();
+    secondController.dispose();
+    thirdController.dispose();
+    fourthController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: Colors.green),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(5000),
-            bottomRight: Radius.circular(5000),
+      backgroundColor: Color(0xff2B2C56),
+      body: Stack(
+        children: [
+          Center(
+            child: Text('50 %',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    wordSpacing: 3,
+                    color: Colors.white.withOpacity(.7)),
+                textScaleFactor: 7),
           ),
-        ),
-        child: Column(
-          children: [
-            TextBar(),
-          ],
-        ),
+          CustomPaint(
+            painter: MyPainter(
+              firstAnimation.value,
+              secondAnimation.value,
+              thirdAnimation.value,
+              fourthAnimation.value,
+            ),
+            child: SizedBox(
+              height: size.height,
+              width: size.width,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class TextBar extends StatelessWidget {
-  const TextBar({
-    Key? key,
-  }) : super(key: key);
+class MyPainter extends CustomPainter {
+  final double firstValue;
+  final double secondValue;
+  final double thirdValue;
+  final double fourthValue;
+
+  MyPainter(
+      this.firstValue,
+      this.secondValue,
+      this.thirdValue,
+      this.fourthValue,
+      );
 
   @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Carteira Digital',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w600,
-                    height: 0.9,
-                  ))
-            ],
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            '     Estamos Trabalhando por aqui  !! ',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.4),
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              height: 1,
-            ),
-          ),
-          const SizedBox(
-            height: 222,
-          ),
-          Text(
-            'No green você  tem as melhores  ',
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            'moedas digitais da um GREEN! ',
-            style: TextStyle(color: Colors.white, fontSize: 23),
-          ),
-          SizedBox(
-            height: 0,
-          ),
-          Image.asset('assets/trabalhando.png'),
-        ],
-      ),
-    );
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Color(0xff3B6ABA).withOpacity(.8)
+      ..style = PaintingStyle.fill;
+
+    var path = Path()
+      ..moveTo(0, size.height / firstValue)
+      ..cubicTo(size.width * .4, size.height / secondValue, size.width * .7,
+          size.height / thirdValue, size.width, size.height / fourthValue)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }

@@ -24,7 +24,9 @@ class MeuGreenDetailPage extends StatefulWidget {
 class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
   final TransActionController controller = TransActionController();
   final fomrKey = GlobalKey<FormState>();
+
   var transactionType = TransactionType.INCOME;
+
   late final transactionTypes = [
     TransactionTypeOption("Receita", TransactionType.INCOME, Colors.green),
     TransactionTypeOption("Despesa", TransactionType.EXPENSE, Colors.red)
@@ -65,13 +67,17 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
       Size size, Locale locale) {
     return Stack(
       children: [
+
         Positioned(
           top: 50,
           left: 20,
           right: 20,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
             children: [
+
+              Types(),
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
@@ -89,57 +95,34 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  debugPrint('favorite');
-                },
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.green.withOpacity(.15),
-                  ),
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          bool isFavorited = toggleIsFavorated(
-                              _greenList[widget.categoryId].isFavorated);
-                          _greenList[widget.categoryId].isFavorated =
-                              isFavorited;
-                        });
-                      },
-                      icon: Icon(
-                        _greenList[widget.categoryId].isFavorated == true
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        color: Colors.deepOrange,
-                      )),
-                ),
-              ),
             ],
           ),
         ),
+
         Positioned(
           top: 100,
           left: 20,
           right: 20,
           child: Container(
+            color: Colors.transparent,
             width: size.width * .8,
             height: size.height * .8,
             padding: const EdgeInsets.all(20),
             child: Stack(
               children: [
-                Positioned(
-                  top: 10,
+
+                 Positioned(
+                  top: 30,
                   left: 0,
                   child: SizedBox(
-                    height: 350,
+                    height: 250,
+                    width: 250,
                     child: Image.asset(_greenList[widget.categoryId].image),
                   ),
                 ),
                 Positioned(
                   top: 10,
+                  bottom: 100,
                   right: 0,
                   child: SizedBox(
                     height: 200,
@@ -147,7 +130,8 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        //  ==========================
+
+
                       ],
                     ),
                   ),
@@ -161,11 +145,12 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
           left: 0,
           right: 0,
           child: Container(
+
             padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
             height: size.height * .5,
             width: size.width,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.grey.withOpacity(0.3)  ,
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(30),
                 topLeft: Radius.circular(30),
@@ -173,15 +158,16 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
             ),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+
               Text(
-                _greenList[widget.categoryId].tittle,
-                textAlign: TextAlign.left,
+                _greenList[widget.categoryId].tittle.i18n(),
+                textAlign: TextAlign.right,
                 style: TextStyle(fontSize: 50),
               ),
-              SizedBox(
-                height: 50,
-              ),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+
+
+
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(
                   "description".i18n(),
                   style: TextStyle(
@@ -236,7 +222,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                 style: TextStyle(
                     fontSize: 17, fontWeight: FontWeight.bold, color: black),
                 decoration: InputDecoration(
-                  hintText: "${'money'.i18n()}. 00,00",
+                  hintText: "${'money'.i18n()} 00,00",
                   prefixIconColor: Colors.red,
                 ),
                 onChanged: (value) => controller.value = double.parse(value),
@@ -279,6 +265,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                   RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           )))),
+
                   Confirmation()
                 ],
               ),
@@ -289,20 +276,37 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     );
   }
 
-  // Row TransactionTypes() {
-  //   return Row(
-  //     children: transactionTypes
-  //         .map((e) => ChoiceChip(
-  //         selectedColor: e.color,
-  //         labelStyle: const TextStyle(color: Colors.green),
-  //         label: Text(e.label),
-  //         selected: e.type == transactionTypes,
-  //         onSelected: (value) => setState(() {
-  //           transactionType = e.type;
-  //         })))
-  //         .toList(),
-  //   );
-  // }
+  Row Types() {
+    return Row(
+
+                  children: transactionTypes
+                      .map((e) => ChoiceChip(
+
+                      selectedColor: e.color,
+                      labelStyle: const TextStyle(color: Colors.white),
+                      label: Text(e.label),
+                      selected: e.type == transactionType,
+                      onSelected: (value) => setState(() {
+                        transactionType = e.type;
+                      })))
+                      .toList(),
+                );
+  }
+
+  Row TransactionTypes() {
+    return Row(
+      children: transactionTypes
+          .map((e) => ChoiceChip(
+          selectedColor: e.color,
+          labelStyle: const TextStyle(color: Colors.green),
+          label: Text(e.label),
+          selected: e.type == transactionTypes,
+          onSelected: (value) => setState(() {
+            transactionType = e.type;
+          })))
+          .toList(),
+    );
+  }
 
   SingleChildScrollView Confirmation() {
     return SingleChildScrollView(

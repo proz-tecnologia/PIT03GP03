@@ -70,6 +70,7 @@ dependencies:
   firebase_core:
   firebase_auth:
   currency_text_input_formatter: ^2.1.7
+  font_awesome_flutter: ^10.3.0
 dev_dependencies:
   flutter_test:
 
@@ -157,10 +158,28 @@ flutter:
     - assets/gastos.png
     - assets/gastos2.png
     - assets/mais.png
-    - assets/mais (1).png
+    - assets/mais12.png
     - assets/manutencao.png
     - assets/pet-shop.png
     - assets/google.png
+    - assets/drinks.png
+    - assets/fast-food.png
+    - assets/gas-pump.png
+    - assets/gifts.png
+    - assets/hamburger.png
+    - assets/health.png
+    - assets/maintenance.png
+    - assets/online-gaming.png
+    - assets/other.png
+    - assets/parking-car.png
+    - assets/cinema.png
+    - assets/carro.png
+    - assets/bolsa-de-compras.png
+    - assets/home.png
+    - assets/kids.png
+    - assets/drinks.png
+    - assets/restaurant.png
+    - assets/restaurant.png
     - lib/i18n/
     - trabalhando.png
 
@@ -177,6 +196,7 @@ flutter:
   # example:
 
   fonts:
+
     - family: Khang
       fonts:
         - asset: assets/fonts/Khang-Light.ttf
