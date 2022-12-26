@@ -1,3 +1,4 @@
+import 'package:green/models/category_options.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.dart';
 
 import '../models/category.dart';
@@ -18,12 +19,65 @@ Category(
       Subcategory(
           name: 'Fast Food ',
          color: AppColors.FOOD,
-           assetsName: 'fast-food', catOption: []),
-
-
-
+           assetsName: 'fast-food', catOption: [
+CategoryOption(
+    name:'Restaurante',
+    assetsImg:'sub6',
+    isSelected:false),
+        CategoryOption(
+            name:'Restaurante',
+    assetsImg:'sub6',
+    isSelected:false),
+        CategoryOption(
+            name:'Restaurante',
+    assetsImg:'sub6',
+    isSelected:false),CategoryOption(
+            name:'Restaurante',
+    assetsImg:'sub6',
+    isSelected:false),CategoryOption(
+            name:'Restaurante',
+    assetsImg:'sub6',
+    isSelected:false),CategoryOption(
+            name:'Restaurante',
+    assetsImg:'sub6',
+    isSelected:false),
+      ]),
     ]
 ),
+      Category(
+          name:'Transporte',
+
+          color:AppColors.TRANSPORT,
+          assetsName:'',
+          subCategories:[
+            Subcategory(
+                name: 'Fast Food ',
+                color: AppColors.FOOD,
+                assetsName: 'fast-food', catOption: [
+              CategoryOption(
+                  name:'Restaurante',
+                  assetsImg:'sub6',
+                  isSelected:false),
+              CategoryOption(
+                  name:'Restaurante',
+                  assetsImg:'sub6',
+                  isSelected:false),
+              CategoryOption(
+                  name:'Restaurante',
+                  assetsImg:'sub6',
+                  isSelected:false),CategoryOption(
+                  name:'Restaurante',
+                  assetsImg:'sub6',
+                  isSelected:false),CategoryOption(
+                  name:'Restaurante',
+                  assetsImg:'sub6',
+                  isSelected:false),CategoryOption(
+                  name:'Restaurante',
+                  assetsImg:'sub6',
+                  isSelected:false),
+            ]),
+          ]
+      ),
 
 Category(
     name:'Transporte',

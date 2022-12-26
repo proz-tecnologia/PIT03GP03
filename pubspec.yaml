@@ -158,7 +158,6 @@ flutter:
     - assets/gastos.png
     - assets/gastos2.png
     - assets/mais.png
-    - assets/mais12.png
     - assets/manutencao.png
     - assets/pet-shop.png
     - assets/google.png
@@ -180,6 +179,18 @@ flutter:
     - assets/drinks.png
     - assets/restaurant.png
     - assets/restaurant.png
+    - assets/sub1.png
+    - assets/sub2.png
+    - assets/sub4.png
+    - assets/sub5.png
+    - assets/sub6.png
+    - assets/sub7.png
+    - assets/sub9.png
+    - assets/sub10.png
+    - assets/sub11.png
+    - assets/sub12.png
+    - assets/sub13.png
+
     - lib/i18n/
     - trabalhando.png
 

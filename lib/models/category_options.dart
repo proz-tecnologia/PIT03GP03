@@ -1,7 +1,7 @@
 class CategoryOption{
   String name;
-  String assetsImg;
-  bool isSelected=false;
+  String  assetsImg;
+  bool  isSelected;
 
-  CategoryOption(this.name, this.assetsImg, this.isSelected);
+  CategoryOption({required this.name, required this.assetsImg, required this.isSelected});
 }

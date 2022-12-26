@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:green/model/meu_green_category.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_details_page.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_favorites.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_select_category.dart';
 import 'package:ionicons/ionicons.dart';
@@ -28,7 +29,7 @@ class _RootAppState extends State<RootApp> {
       FavoritePage(
         categoryFavorited: favorites,
       ),
-      SelectCategory(selectCategory: Utils.getMockedCategories()[0],),
+      //DetailsPage(subCategory: Utils.getMockedCategories([0])),
       MeuGreenCreat(),
     ];
   }
