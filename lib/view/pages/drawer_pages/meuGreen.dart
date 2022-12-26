@@ -29,8 +29,9 @@ class _RootAppState extends State<RootApp> {
       FavoritePage(
         categoryFavorited: favorites,
       ),
+      
       //DetailsPage(subCategory: Utils.getMockedCategories([0])),
-      MeuGreenCreat(),
+      SelectCategory(selectedCategory: Utils.getMockedCategories()[0],),
     ];
   }
 

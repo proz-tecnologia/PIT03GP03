@@ -54,7 +54,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return MeuGreenWidgetPage(
-                        index: index, greenList: widget.categoryFavorited);
+                        index: index, greenList: widget.categoryFavorited, categories:[],);
                   }),
             ),
     );

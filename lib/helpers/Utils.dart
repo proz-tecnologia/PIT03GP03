@@ -12,140 +12,46 @@ class Utils {
 
 Category(
     name:'Alimentação',
-
+categoryId:0,
     color:AppColors.FOOD,
     assetsName:'fast-food',
     subCategories:[
       Subcategory(
-          name: 'Fast Food ',
+          name: 'Restaurante  ',
          color: AppColors.FOOD,
-           assetsName: 'fast-food', catOption: [
-CategoryOption(
-    name:'Restaurante',
-    assetsImg:'sub6',
-    isSelected:false),
-        CategoryOption(
-            name:'Restaurante',
-    assetsImg:'sub6',
-    isSelected:false),
-        CategoryOption(
-            name:'Restaurante',
-    assetsImg:'sub6',
-    isSelected:false),CategoryOption(
-            name:'Restaurante',
-    assetsImg:'sub6',
-    isSelected:false),CategoryOption(
-            name:'Restaurante',
-    assetsImg:'sub6',
-    isSelected:false),CategoryOption(
-            name:'Restaurante',
-    assetsImg:'sub6',
-    isSelected:false),
-      ]),
+           assetsName: 'sub6',
+        catOption: [
+
+
+
+      ], catID: 300,
+)
     ]
-),
-      Category(
-          name:'Transporte',
+    ),
 
-          color:AppColors.TRANSPORT,
-          assetsName:'',
-          subCategories:[
-            Subcategory(
-                name: 'Fast Food ',
-                color: AppColors.FOOD,
-                assetsName: 'fast-food', catOption: [
-              CategoryOption(
-                  name:'Restaurante',
-                  assetsImg:'sub6',
-                  isSelected:false),
-              CategoryOption(
-                  name:'Restaurante',
-                  assetsImg:'sub6',
-                  isSelected:false),
-              CategoryOption(
-                  name:'Restaurante',
-                  assetsImg:'sub6',
-                  isSelected:false),CategoryOption(
-                  name:'Restaurante',
-                  assetsImg:'sub6',
-                  isSelected:false),CategoryOption(
-                  name:'Restaurante',
-                  assetsImg:'sub6',
-                  isSelected:false),CategoryOption(
-                  name:'Restaurante',
-                  assetsImg:'sub6',
-                  isSelected:false),
-            ]),
-          ]
-      ),
 
-Category(
+
+
+
+    Category(
     name:'Transporte',
-
+    categoryId:1,
     color:AppColors.TRANSPORT,
-    assetsName:'parking-car',
+    assetsName:'carro',
     subCategories:[
+    Subcategory(
+    name: 'Transportes ',
+    color: AppColors.TRANSPORT,
+    assetsName: 'transporte', catOption: [], catID: 301,
 
+    )
     ]
-),
-Category(
-    name:'Educação',
-
-    color:AppColors.PERSONALDEVELOPMENT,
-    assetsName:'educacao',
-    subCategories:[]
-),
-Category(
-    name:'Shopping',
-
-    color:AppColors.SHOPPING,
-    assetsName:'bolsa-de-compras',
-    subCategories:[]
-),
-Category(
-    name:'Entretenimento',
-
-    color:AppColors.ENTERTAINMENT,
-    assetsName:'cinema',
-    subCategories:[]
-),
-Category(
-    name:'Casa',
-
-    color:AppColors.HOME,
-    assetsName:'home',
-    subCategories:[]
-),
-Category(
-    name:'Contas',
-
-    color:AppColors.UTILITYBILLS,
-    assetsName:'conta',
-    subCategories:[]
-),Category(
-    name:'Saúde',
-
-    color:AppColors.HEALTH,
-    assetsName:'health',
-    subCategories:[]
-),Category(
-    name:'Presentes ',
-
-    color:AppColors.FOOD,
-    assetsName:'gifts',
-    subCategories:[]
-),Category(
-    name:'Kids ',
-
-    color:AppColors.KIDS,
-    assetsName:'kids',
-    subCategories:[]
-),
+    ),
 
 
 
 
-    ];
+];
   }
 
 

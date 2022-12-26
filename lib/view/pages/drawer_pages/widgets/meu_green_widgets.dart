@@ -3,21 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
+import '../../../../models/category.dart';
 import 'meu_green_detail_page.dart';
 
 class MeuGreenWidgetPage extends StatelessWidget {
-  const MeuGreenWidgetPage({
+   MeuGreenWidgetPage({
     Key? key,
     required this.index,
     required this.greenList,
+     required this.categories
   }) : super(key: key);
 
   final int index;
   final List<GreenList> greenList;
-
+  List<Category>categories=Utils.getMockedCategories();
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
@@ -26,7 +30,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
             context,
             PageTransition(
                 child: MeuGreenDetailPage(
-                  categoryId: greenList[index].categoryId,
+                  categoryId: categories[index].categoryId, subCategory: null,
                 ),
                 type: PageTransitionType.bottomToTop));
       },
@@ -60,7 +64,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   right: 0,
                   child: SizedBox(
                     height: 80.0,
-                    child: Image.asset(greenList[index].image),
+                    child: Image.asset(categories[index].assetsName),
                   ),
                 ),
                 Positioned(
@@ -69,9 +73,9 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(greenList[index].category),
+
                       Text(
-                        (greenList[index].tittle).i18n(),
+                        (categories[index].name).i18n(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,

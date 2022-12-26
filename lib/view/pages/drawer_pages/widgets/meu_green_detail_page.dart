@@ -2,20 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/home_controller.dart';
+import 'package:green/models/category.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
+import '../../../../constants/json/meugreen.dart';
 import '../../../../constants/transaction_controller.dart';
+import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
 import '../../../../utils/theme/colors.dart';
 
 class MeuGreenDetailPage extends StatefulWidget {
   final int categoryId;
+  Subcategory ?subCategory;
 
-  const MeuGreenDetailPage({
-    Key? key,
+   MeuGreenDetailPage({
+
     required this.categoryId,
-  }) : super(key: key);
+     this.subCategory
+  }) ;
 
   @override
   State<MeuGreenDetailPage> createState() => _MeuGreenDetailPageState();
@@ -37,6 +43,8 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
   int activeCategory = 0;
   var _dateTime = DateTime.now();
 
+
+
   bool toggleIsFavorated(bool isFavorited) {
     return !isFavorited;
   }
@@ -50,13 +58,16 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     final locale = Localizations.localeOf(context);
     Size size = MediaQuery.of(context).size;
     List<GreenList> _greenList = GreenList.categoryList;
+    List<Category> _categories=Utils.getMockedCategories();
     return Scaffold(
+
       body: Consumer<HomeController>(builder: (context, controller, _) {
         return Container(
+
           child: Form(
             key: fomrKey,
             child:
-                getBody(controller.transactionList, _greenList, size, locale),
+                getBody(controller.transactionList, _greenList, size, locale,_categories),
           ),
         );
       }),
@@ -64,7 +75,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
   }
 
   Widget getBody(List<Transaction> transactionList, List<GreenList> _greenList,
-      Size size, Locale locale) {
+      Size size, Locale locale, List<Category> categories) {
     return Stack(
       children: [
 
@@ -85,7 +96,9 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                 child: Container(
                   height: 40,
                   width: 40,
+
                   decoration: BoxDecoration(
+
                     borderRadius: BorderRadius.circular(25),
                     color: Colors.green.withOpacity(.15),
                   ),
@@ -117,7 +130,8 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   child: SizedBox(
                     height: 250,
                     width: 250,
-                    child: Image.asset(_greenList[widget.categoryId].image),
+                    child: Image.asset(categories[widget.categoryId].assetsName),
+
                   ),
                 ),
                 Positioned(
@@ -160,7 +174,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
               Text(
-                _greenList[widget.categoryId].tittle.i18n(),
+                categories[widget.categoryId].name.i18n(),
                 textAlign: TextAlign.right,
                 style: TextStyle(fontSize: 50),
               ),
