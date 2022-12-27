@@ -5,10 +5,14 @@ import '../../../../models/category_options.dart';
 class Subcategory extends Category {
   List<CategoryOption>catOption;
 
+
+
 Subcategory({
-  required this.catOption,
+required this.catOption,
   required String  name,
+required int catID,
   required Color  color,
   required String  assetsName
-}) : super(  name: name,    color:color,  assetsName: assetsName);
+}) : super(  name: name,    color:color,  assetsName: assetsName,categoryId: catID
+    );
 }
