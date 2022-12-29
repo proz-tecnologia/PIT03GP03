@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
@@ -104,7 +106,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   ),
                   child: Icon(
                     Icons.close,
-                    color: Colors.green,
+                    color: categories[widget.categoryId].color,
                   ),
                 ),
               ),
@@ -121,35 +123,40 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
             width: size.width * .8,
             height: size.height * .8,
             padding: const EdgeInsets.all(20),
-            child: Stack(
+            child: Column(
               children: [
 
                  Positioned(
-                  top: 30,
-                  left: 0,
+                  top: 50,
+                  left: 50,
+                  right: 50,
                   child: SizedBox(
-                    height: 250,
-                    width: 250,
-                    child: Image.asset(categories[widget.categoryId].assetsName),
+                    height: 300,
+                    width: 300,
 
+                    child:  Image.asset('assets/'+ categories[widget.categoryId].assetsName + '.png',fit: BoxFit.cover,),
                   ),
                 ),
-                Positioned(
-                  top: 10,
-                  bottom: 100,
-                  right: 0,
-                  child: SizedBox(
-                    height: 200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+Container(
+  height: 200,
+  child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: categories.length,
+      itemBuilder:(BuildContext context,int index){
+        return  Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
 
 
-                      ],
-                    ),
-                  ),
-                ),
+            )
+          );
+
+      }
+
+  ),
+)
               ],
             ),
           ),
@@ -161,10 +168,10 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
           child: Container(
 
             padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-            height: size.height * .5,
+            height: size.height * 0.4,
             width: size.width,
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.3)  ,
+              color:Colors.black26,
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(30),
                 topLeft: Radius.circular(30),
@@ -173,11 +180,11 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
-              Text(
-                categories[widget.categoryId].name.i18n(),
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 50),
-              ),
+              // Text(
+              //   categories[widget.categoryId].name.i18n(),
+              //   textAlign: TextAlign.right,
+              //   style: TextStyle(fontSize: 30),
+              // ),
 
 
 
@@ -186,8 +193,8 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   "description".i18n(),
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
+                      fontSize: 15,
+                      color: Colors.white),
                 ),
                 TextFormField(
                   controller: _greenForm,
@@ -203,22 +210,22 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                   cursorColor: Colors.black,
                   style: TextStyle(
                       fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: Colors.black),
                   decoration: InputDecoration(
-                    hintText: "Green +",
+
                   ),
                 ),
               ]),
               const SizedBox(
-                height: 10,
+                height: 16,
               ),
               Text(
                 "value".i18n(),
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 13,
-                    color: Color(0xff67727d)),
+                    fontSize: 16,
+                    color: Colors.white),
               ),
               TextFormField(
                 validator: (String? valor) {
@@ -236,7 +243,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                 style: TextStyle(
                     fontSize: 17, fontWeight: FontWeight.bold, color: black),
                 decoration: InputDecoration(
-                  hintText: "${'money'.i18n()} 00,00",
+                 // hintText: "${'money'.i18n()} 00,00",
                   prefixIconColor: Colors.red,
                 ),
                 onChanged: (value) => controller.value = double.parse(value),

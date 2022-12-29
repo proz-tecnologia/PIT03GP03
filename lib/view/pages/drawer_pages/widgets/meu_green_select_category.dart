@@ -1,51 +1,32 @@
+
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'package:green/models/category.dart';
-
 import 'package:localization/localization.dart';
-import 'package:page_transition/page_transition.dart';
-
 import 'package:provider/provider.dart';
-
-
+import '../../../../constants/json/meugreen.dart';
+import '../../../../constants/json/meugreen.dart';
 import '../../../../constants/transaction/transactions_green.dart';
 import '../../../../constants/transaction_controller.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../helpers/Utils.dart';
 import 'meu_green_detail_page.dart';
-import 'meu_green_details_page.dart';
-import 'meu_green_select_page.dart';
 
 
-class SelectCategory extends StatefulWidget {
-  Category selectedCategory;
-  SelectCategory({required this.selectedCategory});
 
-  @override
-  _SelectCategoryState createState() => _SelectCategoryState();
-}
+class SelectCategory extends StatelessWidget {
+  Category  selectedCategory;
+  SelectCategory ({ required this.selectedCategory});
 
-class _SelectCategoryState extends State<SelectCategory> {
-  final fomrKey = GlobalKey<FormState>();
   final TransActionController controller = TransActionController();
-  // final TextEditingController _txtDateTimeController = TextEditingController();
-  // final TextEditingController _budgetName = TextEditingController(text: '');
 
-  final RegExp verificNumber = RegExp(r'([0-9]{})'); // informações
   int activeCategory = 0;
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
 
     final locale = Localizations.localeOf(context);
-
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -53,22 +34,19 @@ class _SelectCategoryState extends State<SelectCategory> {
       ),
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Container(
-          child: Form(
-            key: fomrKey,
-            child: getBody(controller.transactionList, locale),
-          ),
+            child: getBody(controller.transactionList, locale,size),
         );
       }),
     );
   }
 
-  Widget getBody(List<Transaction> transactionList, Locale locale) {
+  Widget getBody(List<Transaction> transactionList, Locale locale ,Size size) {
     bool toggleIsFavorated(bool isFavorited) {
       return !isFavorited;
     }
     List<Category>categories=Utils.getMockedCategories();
 
-    var size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,6 +56,11 @@ class _SelectCategoryState extends State<SelectCategory> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+
+
+
+
+
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
@@ -92,24 +75,21 @@ class _SelectCategoryState extends State<SelectCategory> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.2,
+              height: size.height * 0.3,
               child: ListView.builder(
                   itemCount: categories.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context,  index) => GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                child: MeuGreenDetailPage(
-                                  categoryId: widget.selectedCategory.categoryId,
-                                ),
-                                type: PageTransitionType.bottomToTop));
+                        var subCat = this.selectedCategory!.subCategories![index];
+
+
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=>MeuGreenDetailPage(categoryId: 0)));
                       },
                       child: Container(
-                   width: 200,
+                   width: 170,
 
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
                           child: Stack(
                             children: [
                               Positioned(
@@ -130,7 +110,7 @@ class _SelectCategoryState extends State<SelectCategory> {
                                 right: 50,
                                 top: 50,
                                 bottom: 50,
-                                child:         Image.asset('assets/'+ categories[index].assetsName + '.png',fit: BoxFit.fitHeight,),
+                                child:  Image.asset('assets/'+ categories[index].assetsName + '.png',fit: BoxFit.contain),
 
                               ),
                               Positioned(
@@ -138,7 +118,7 @@ class _SelectCategoryState extends State<SelectCategory> {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                  height: 120,
+                                  height: 90,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),
                                           bottomRight: Radius.circular(20)),

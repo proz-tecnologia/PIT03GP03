@@ -3,16 +3,19 @@ import 'package:green/models/category.dart';
 import '../../../../models/category_options.dart';
 
 class Subcategory extends Category {
-  List<CategoryOption>catOption;
-
+    List<CategoryOption>catOption;
 
 
 Subcategory({
-required this.catOption,
-  required String  name,
-required int catID,
-  required Color  color,
-  required String  assetsName
-}) : super(  name: name,    color:color,  assetsName: assetsName,categoryId: catID
-    );
+
+  required this.catOption,
+   required Color  color,
+   required String  name,
+   required String  assetsName,
+
+}) :super(color: color,name: name,assetsName: assetsName,) {
+
+
+}
+
 }

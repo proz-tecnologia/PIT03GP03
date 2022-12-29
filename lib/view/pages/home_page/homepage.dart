@@ -127,7 +127,7 @@ class _HomePage2State extends State<HomePage2> {
             _reportCell(
                 isSavings: false,
                 title: 'ceiling'.i18n(),
-                gastos: '640,00',
+                gastos:'' ,
                 progress: 50),
             const SizedBox(
               height: 100,
@@ -279,7 +279,7 @@ class _HomePage2State extends State<HomePage2> {
                 width: 60,
                 height: 60,
                 child: CircularProgressIndicator(
-value: progress / 100,
+value: categories.length / 100,
                   strokeWidth: 6,
                   backgroundColor: isSavings
                       ? Colors.black.withOpacity(0.2)
@@ -328,7 +328,7 @@ value: progress / 100,
                   _reportInner(
                     isSavings: isSavings,
                     title: 'expenses'.i18n(),
-                    value: gastos,
+                    value: ''
                   ),
                   const SizedBox(
                     width: 24,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green/model/meu_green_category.dart';
 
+import 'meu_green_detail_page.dart';
 import 'meu_green_widgets.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -53,8 +54,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   scrollDirection: Axis.vertical,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
-                    return MeuGreenWidgetPage(
-                        index: index, greenList: widget.categoryFavorited, categories:[],);
+                    return MeuGreenDetailPage(categoryId: 1);
                   }),
             ),
     );

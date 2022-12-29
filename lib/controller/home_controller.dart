@@ -21,7 +21,7 @@ class HomeController extends ChangeNotifier {
   void setTransAction(Transaction trans) {
     categories.addAll(CategoryMock.getGreenList());
     transactionList.add(trans);
-    transactionList.sort(((a, b) => a.dateTime.compareTo(b.dateTime)));
+
     notifyListeners();
   }
 
@@ -67,7 +67,7 @@ class HomeController extends ChangeNotifier {
 
   void add(Transaction item) {
     transaction.add(item);
-    transaction.sort(((a, b) => a.dateTime.compareTo(b.dateTime)));
+    transaction.sort(((a, b) => b.dateTime.compareTo(a.dateTime)));
     notifyListeners();
   }
 }

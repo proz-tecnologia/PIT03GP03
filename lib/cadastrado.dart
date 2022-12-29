@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:tela_teste/login_page.dart';
+import 'package:green/view/pages/login/login_page.dart';
+
 
 class Cadastrado extends StatelessWidget {
   const Cadastrado({super.key});

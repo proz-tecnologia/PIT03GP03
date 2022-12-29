@@ -14,7 +14,6 @@ import 'drawer_item.dart';
 import 'meuGreen.dart';
 import 'meu_green_balance.dart';
 import 'meu_green_metas.dart';
-import 'meu_green_pagamentos.dart';
 import 'my_card.dart';
 
 class DrawerApp extends StatefulWidget {

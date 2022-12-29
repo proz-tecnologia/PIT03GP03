@@ -3,57 +3,71 @@ import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.da
 
 import '../models/category.dart';
 import 'AppColors.dart';
-import 'iconhelper.dart';
+
 
 class Utils {
-
   static List<Category> getMockedCategories() {
     return [
+      Category(
+          name: 'Alimentação',
+          color: AppColors.FOOD,
+          assetsName: 'sub6',
+          subCategories: [
+            Subcategory(
+                name: 'Fast Food ',
+                color: AppColors.FOOD,
+                assetsName: 'fast-food', catOption: [
+                  CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
+              CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
+              CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
+              CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
+            ],
+            ),
+    ]),
 
-Category(
-    name:'Alimentação',
-categoryId:0,
-    color:AppColors.FOOD,
-    assetsName:'fast-food',
-    subCategories:[
-      Subcategory(
-          name: 'Restaurante  ',
-         color: AppColors.FOOD,
-           assetsName: 'sub6',
-        catOption: [
+      Category(
+          name: 'Transporte',
+          color: AppColors.TRANSPORT,
+          assetsName: 'maintenance',
+          subCategories: [
+            Subcategory(
+              name: 'Transporte ',
+              color: AppColors.FOOD,
+              assetsName: 'Combustivel', catOption: [],
+            ),
+          ]),
+      Category(
+          name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta',
+      subCategories: [
+        Subcategory(name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta', catOption: [], )
+      ]),
+      Category(
+          name: 'Shopping',
+          color: AppColors.SHOPPING,
+          assetsName: 'bolsa-de-compras',
+          subCategories: [
+            Subcategory(name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta', catOption: [],)
+          ]
 
 
-
-      ], catID: 300,
-)
-    ]
-    ),
-
-
-
-
-
-    Category(
-    name:'Transporte',
-    categoryId:1,
-    color:AppColors.TRANSPORT,
-    assetsName:'carro',
-    subCategories:[
-    Subcategory(
-    name: 'Transportes ',
-    color: AppColors.TRANSPORT,
-    assetsName: 'transporte', catOption: [], catID: 301,
-
-    )
-    ]
-    ),
+      ),
+      Category(
+          name: 'Entreterimento',
+          color: AppColors.ENTERTAINMENT,
+          assetsName: 'cinema', subCategories: []),
+      Category(name: 'Saúde', color: AppColors.HEALTH, assetsName: 'health', subCategories: []),
+      Category(
+          name: 'Presentes',
+          color: AppColors.GiftDonations,
+          assetsName: 'gifts', subCategories: []),
+      Category(
+          name: 'kids',
+          color: AppColors.KIDS,
+          assetsName: 'kids',
+          subCategories: []
+      ),
 
 
-
-
-];
+    ];
   }
-
-
 }
-
