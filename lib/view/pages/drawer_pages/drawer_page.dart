@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green/controller/home_controller.dart';
 import 'package:green/view/pages/drawer_pages/widgets/Meu_green_transactions_list.dart';
-import 'package:green/view/pages/drawer_pages/widgets/meu_green_todo.dart';
 import 'package:green/view/pages/drawer_pages/widgets/pagamentos.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
@@ -10,9 +9,9 @@ import 'package:provider/provider.dart';
 import '../../../utils/configs/pages_settings.dart';
 import '../login/login_page.dart';
 import 'drawer_item.dart';
-//import 'metas.dart';
+
 import 'meuGreen.dart';
-import 'meu_green_balance.dart';
+
 import 'meu_green_metas.dart';
 import 'my_card.dart';
 
@@ -159,7 +158,7 @@ class _DrawerAppState extends State<DrawerApp> {
 
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MeuGreenTodo()));
+            context, MaterialPageRoute(builder: (context) => RootApp()));
         break;
 
       case 5:

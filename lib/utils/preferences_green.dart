@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:green/utils/theme/colors.dart';
+
 
 class PreferencesGreen{
 

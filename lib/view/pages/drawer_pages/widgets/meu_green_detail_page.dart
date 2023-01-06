@@ -9,11 +9,11 @@ import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.da
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
-import '../../../../constants/json/meugreen.dart';
+
 import '../../../../constants/transaction_controller.dart';
 import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
-import '../../../../utils/theme/colors.dart';
+import 'package:green/helpers/AppColors.dart';
 
 class MeuGreenDetailPage extends StatefulWidget {
   final int categoryId;
@@ -22,7 +22,7 @@ class MeuGreenDetailPage extends StatefulWidget {
    MeuGreenDetailPage({
 
     required this.categoryId,
-     this.subCategory
+
   }) ;
 
   @override
@@ -62,7 +62,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     List<GreenList> _greenList = GreenList.categoryList;
     List<Category> _categories=Utils.getMockedCategories();
     return Scaffold(
-
+backgroundColor: Colors.grey.shade100,
       body: Consumer<HomeController>(builder: (context, controller, _) {
         return Container(
 
@@ -80,229 +80,295 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
       Size size, Locale locale, List<Category> categories) {
     return Stack(
       children: [
-
-        Positioned(
-          top: 50,
-          left: 20,
-          right: 20,
+Column(
+children: [
+  Container(
+width: double.infinity,
+    height: 340 ,
+    decoration: BoxDecoration(
+      color: AppColors.primary,
+      borderRadius: BorderRadius.only(
+        bottomRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+      )
+    ),
+    child:Column(
+      children: [
+        SizedBox(
+          height: 40,
+        ),
+        Padding(
+            padding: const EdgeInsets.all(8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+              crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              Types(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: 40,
-                  width: 40,
 
-                  decoration: BoxDecoration(
+          GestureDetector(
+                 onTap: () {
+                   Navigator.pop(context);
+                 },
+                 child: Container(
+                   height: 35,
+                   width: 35,
 
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.green.withOpacity(.15),
-                  ),
-                  child: Icon(
-                    Icons.close,
-                    color: categories[widget.categoryId].color,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        Positioned(
-          top: 100,
-          left: 20,
-          right: 20,
-          child: Container(
-            color: Colors.transparent,
-            width: size.width * .8,
-            height: size.height * .8,
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-
-                 Positioned(
-                  top: 50,
-                  left: 50,
-                  right: 50,
-                  child: SizedBox(
-                    height: 300,
-                    width: 300,
-
-                    child:  Image.asset('assets/'+ categories[widget.categoryId].assetsName + '.png',fit: BoxFit.cover,),
-                  ),
-                ),
+                   child: Icon(
+                     Icons.arrow_back,
+                     color: AppColors.white,size: 30,
+                   ),
+                 ),
+               ),
 Container(
-  height: 200,
-  child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: categories.length,
-      itemBuilder:(BuildContext context,int index){
-        return  Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
+  child:  Image.asset('assets/'+ categories[widget.categoryId].assetsName + '.png',fit: BoxFit.contain,width: 150,height: 150,),
 
+),
+            ],
 
-            )
-          );
-
-      }
-
-  ),
-)
-              ],
-            ),
           ),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-
-            padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-            height: size.height * 0.4,
-            width: size.width,
-            decoration: BoxDecoration(
-              color:Colors.black26,
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-              ),
-            ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
-              // Text(
-              //   categories[widget.categoryId].name.i18n(),
-              //   textAlign: TextAlign.right,
-              //   style: TextStyle(fontSize: 30),
-              // ),
-
-
-
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(
-                  "description".i18n(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15,
-                      color: Colors.white),
-                ),
-                TextFormField(
-                  controller: _greenForm,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return "required_field".i18n();
-                    }
-
-                    return null;
-                  },
-                  onChanged: (value) => controller.title = value,
-                  cursorColor: Colors.black,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black),
-                  decoration: InputDecoration(
-
-                  ),
-                ),
-              ]),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(
-                "value".i18n(),
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Colors.white),
-              ),
-              TextFormField(
-                validator: (String? valor) {
-                  if (verificNumber.hasMatch(valor!) ||
-                      valor.isEmpty ||
-                      double.parse(valor.replaceAll(",", ".")) <= 0) {
-                    return 'invalid_value'.i18n();
-                  }
-
-                  return null;
-                },
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                cursorColor: black,
-                style: TextStyle(
-                    fontSize: 17, fontWeight: FontWeight.bold, color: black),
-                decoration: InputDecoration(
-                 // hintText: "${'money'.i18n()} 00,00",
-                  prefixIconColor: Colors.red,
-                ),
-                onChanged: (value) => controller.value = double.parse(value),
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        setState(() async {
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          DateTime? date = await showDatePicker(
-                              context: context,
-                              firstDate: DateTime.now()
-                                  .subtract(const Duration(days: 360)),
-                              lastDate: DateTime.now(),
-                              initialDate: _dateTime);
-                          _dateTime = date ?? _dateTime;
-                          _txtDateTimeController.text =
-                              "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
-                        });
-                      },
-                      child: Icon(
-                        Ionicons.calendar,
-                        color: Colors.white,
-                      ),
-                      style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all<Size>(
-                            Size.fromRadius(30),
-                          ),
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.green),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          )))),
-
-                  Confirmation()
-                ],
-              ),
-            ]),
-          ),
-        ),
+        )
       ],
+    )
+ ),
+  ]),
+],
     );
+
+
+
+
+
+    
+//         Positioned(
+//           top: 50,
+//           left: 20,
+//           right: 20,
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
+//             children: [
+//
+//               Types(),
+//               GestureDetector(
+//                 onTap: () {
+//                   Navigator.pop(context);
+//                 },
+//                 child: Container(
+//                   height: 40,
+//                   width: 40,
+//
+//                   decoration: BoxDecoration(
+//
+//                     borderRadius: BorderRadius.circular(25),
+//                     color: AppColors.green.withOpacity(.15),
+//                   ),
+//                   child: Icon(
+//                     Icons.close,
+//                     color: AppColors.primary,
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//
+//         Positioned(
+//           top: 100,
+//           left: 20,
+//           right: 20,
+//           child: Container(
+//             color: Colors.transparent,
+//             width: size.width * .8,
+//             height: size.height * .8,
+//             padding: const EdgeInsets.all(20),
+//             child: Column(
+//               children: [
+//
+//                  Positioned(
+//                   top: 50,
+//                   left: 50,
+//                   right: 50,
+//                   child: SizedBox(
+//                     height: 150,
+//                     width: 150,
+//
+//                     child:  Image.asset('assets/'+ categories[widget.categoryId].assetsName + '.png',fit: BoxFit.cover,),
+//                   ),
+//                 ),
+// SizedBox(
+//   height: 100,
+// ),
+// Padding(
+//   padding: const EdgeInsets.only(top: 10),
+//   child:   Container(
+//
+//     height: 100,
+//     child: ListView.builder(
+//
+//         scrollDirection: Axis.horizontal,
+//         itemCount: categories.length,
+//         itemBuilder:(BuildContext context,int index){
+//           return  Container(
+//             clipBehavior: Clip.none,
+//             width: 70,
+//             height: 70,
+//             decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(50),
+//               ),
+//
+//             //child:  Image.asset('assets/'+ categories[index].assetsName + '.png',fit: BoxFit.contain),
+//             );
+// }
+//
+//     ),
+//   ),
+// )
+//               ],
+//             ),
+//           ),
+//         ),
+//         Positioned(
+//           bottom: 0,
+//           left: 0,
+//           right: 0,
+//           child: Container(
+//
+//             padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
+//             height: size.height * 0.4,
+//             width: size.width,
+//             decoration: BoxDecoration(
+//               color:Colors.white54,
+//               borderRadius: const BorderRadius.only(
+//                 topRight: Radius.circular(30),
+//                 topLeft: Radius.circular(30),
+//               ),
+//             ),
+//             child:
+//                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+//
+//               // Text(
+//               //   categories[widget.categoryId].name.i18n(),
+//               //   textAlign: TextAlign.right,
+//               //   style: TextStyle(fontSize: 30),
+//               // ),
+//
+//
+//
+//                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+//                 Text(
+//                   "description".i18n(),
+//                   style: TextStyle(
+//                       fontWeight: FontWeight.w500,
+//                       fontSize: 15,
+//                       color: Colors.black),
+//                 ),
+//                 TextFormField(
+//                   controller: _greenForm,
+//                   autovalidateMode: AutovalidateMode.onUserInteraction,
+//                   validator: (String? value) {
+//                     if (value!.isEmpty) {
+//                       return "required_field".i18n();
+//                     }
+//
+//                     return null;
+//                   },
+//                   onChanged: (value) => controller.title = value,
+//                   cursorColor: Colors.black,
+//                   style: TextStyle(
+//                       fontSize: 17,
+//                       fontWeight: FontWeight.w500,
+//                       color: Colors.black),
+//                   decoration: InputDecoration(
+//
+//                   ),
+//                 ),
+//               ]),
+//               const SizedBox(
+//                 height: 16,
+//               ),
+//               Text(
+//                 "value".i18n(),
+//                 style: TextStyle(
+//                     fontWeight: FontWeight.w500,
+//                     fontSize: 16,
+//                     color: Colors.black),
+//               ),
+//               TextFormField(
+//                 validator: (String? valor) {
+//                   if (verificNumber.hasMatch(valor!) ||
+//                       valor.isEmpty ||
+//                       double.parse(valor.replaceAll(",", ".")) <= 0) {
+//                     return 'invalid_value'.i18n();
+//                   }
+//
+//                   return null;
+//                 },
+//                 keyboardType:
+//                     const TextInputType.numberWithOptions(decimal: true),
+//                 cursorColor: AppColors.black,
+//                 style: TextStyle(
+//                     fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
+//                 decoration: InputDecoration(
+//                  // hintText: "${'money'.i18n()} 00,00",
+//                   prefixIconColor: Colors.red,
+//                 ),
+//                 onChanged: (value) => controller.value = double.parse(value),
+//               ),
+//               SizedBox(
+//                 height: 35,
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   ElevatedButton(
+//                       onPressed: () {
+//                         setState(() async {
+//                           FocusScope.of(context).requestFocus(FocusNode());
+//                           DateTime? date = await showDatePicker(
+//                               context: context,
+//                               firstDate: DateTime.now()
+//                                   .subtract(const Duration(days: 360)),
+//                               lastDate: DateTime.now(),
+//                               initialDate: _dateTime);
+//                           _dateTime = date ?? _dateTime;
+//                           _txtDateTimeController.text =
+//                               "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
+//                         });
+//                       },
+//                       child: Icon(
+//                         Ionicons.calendar,
+//                         color: Colors.white,
+//                       ),
+//                       style: ButtonStyle(
+//                           fixedSize: MaterialStateProperty.all<Size>(
+//                             Size.fromRadius(30),
+//                           ),
+//                           foregroundColor:
+//                               MaterialStateProperty.all<Color>(Colors.white),
+//                           backgroundColor:
+//                               MaterialStateProperty.all<Color>(Colors.green),
+//                           shape:
+//                               MaterialStateProperty.all<RoundedRectangleBorder>(
+//                                   RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(50),
+//                           )))),
+//
+//                   Confirmation()
+//                 ],
+//               ),
+//             ]),
+//           ),
+//         ),
+//       ],
+//     );
   }
 
   Row Types() {
     return Row(
-
+mainAxisAlignment: MainAxisAlignment.center,
                   children: transactionTypes
                       .map((e) => ChoiceChip(
-
+elevation: 2,
                       selectedColor: e.color,
                       labelStyle: const TextStyle(color: Colors.white),
                       label: Text(e.label),

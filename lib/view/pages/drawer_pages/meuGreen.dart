@@ -5,7 +5,7 @@ import 'package:green/view/pages/drawer_pages/widgets/meu_green_favorites.dart';
 
 import 'package:ionicons/ionicons.dart';
 import 'package:page_transition/page_transition.dart';
-import 'meu_green_balance.dart';
+
 import 'meu_green_profile.dart';
 import 'meugreen_saldos.dart';
 import 'stats_page.dart';
@@ -23,7 +23,7 @@ class _RootAppState extends State<RootApp> {
   List<Widget> pages() {
     return [
       MeuGreenCarteira(),
-      MeuGreenPag(),
+    //  MeuGreenPag(),
       FavoritePage(
         categoryFavorited: favorites,
       ),

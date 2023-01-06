@@ -20,11 +20,6 @@
          this.isFavorated,
          this.isSelected});
 
-
-
-
-
-
   Map<String,dynamic>toMap(){
     Map<String,dynamic>map={
       'categoryId':categoryId,
