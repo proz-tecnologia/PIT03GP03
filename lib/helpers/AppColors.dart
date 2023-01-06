@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color MAIN_COLOR = Color(0xFF80C038);
-  static const Color FOOD = Color(0xFFC03008);
-  static const Color TRANSPORT = const Color.fromARGB(135, 8, 61, 25);
+  static const Color FOOD = Colors.orangeAccent;
+  static const Color TRANSPORT =  Color(0xFF0BA8BF);
   static const Color HOME = Color(0xFF28C080);
   static const Color PERSONALDEVELOPMENT = Color(0xFF0BA8BF);
-  static const Color SHOPPING = Color(0xFFD14B73);
-  static const Color ENTERTAINMENT = Color(0xFF1BB1DE);
+  static const Color SHOPPING = Colors.yellow;
+  static const Color ENTERTAINMENT = Colors.black26;
   static const Color UTILITYBILLS = Colors.yellow;
   static const Color HEALTH = Colors.redAccent;
   static const Color GiftDonations = Colors.pink;
