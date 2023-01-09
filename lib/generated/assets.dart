@@ -135,6 +135,7 @@ class Assets {
   static const String mocksGreenUsers = 'lib/model/mocks/green_users.dart';
   static const String modelMeuGreenCategory = 'lib/model/meu_green_category.dart';
   static const String modelMeuGreenExtract = 'lib/model/meu_green_extract.dart';
+  static const String modelSelectCategories = 'lib/model/select_categories.dart';
   static const String modelsCategory = 'lib/models/category.dart';
   static const String modelsCategoryOptions = 'lib/models/category_options.dart';
   static const String onboardingScreenConfigUsers = 'lib/view/pages/onboarding_screen/config_Users.dart';

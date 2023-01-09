@@ -2,14 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:green/constants/json/meugreen.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/home_controller.dart';
 import 'package:green/models/category.dart';
-import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../constants/transaction_controller.dart';
 import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
@@ -17,7 +16,6 @@ import 'package:green/helpers/AppColors.dart';
 
 class MeuGreenDetailPage extends StatefulWidget {
   final int categoryId;
-  Subcategory ?subCategory;
 
    MeuGreenDetailPage({
 
@@ -30,11 +28,22 @@ class MeuGreenDetailPage extends StatefulWidget {
 }
 
 class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
+  String ? SelectedCategories;
+
+  final List<String>_selectCategories=[
+    'food',
+    'auto',
+    'cash',
+    'avatar'
+
+
+  ];
+
   final TransActionController controller = TransActionController();
   final fomrKey = GlobalKey<FormState>();
+String ? selectedCategories;
 
   var transactionType = TransactionType.INCOME;
-
   late final transactionTypes = [
     TransactionTypeOption("Receita", TransactionType.INCOME, Colors.green),
     TransactionTypeOption("Despesa", TransactionType.EXPENSE, Colors.red)
@@ -62,6 +71,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     List<GreenList> _greenList = GreenList.categoryList;
     List<Category> _categories=Utils.getMockedCategories();
     return Scaffold(
+
 backgroundColor: Colors.grey.shade100,
       body: Consumer<HomeController>(builder: (context, controller, _) {
         return Container(
@@ -84,7 +94,7 @@ Column(
 children: [
   Container(
 width: double.infinity,
-    height: 340 ,
+    height: 400 ,
     decoration: BoxDecoration(
       color: AppColors.primary,
       borderRadius: BorderRadius.only(
@@ -104,7 +114,6 @@ width: double.infinity,
               crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-
           GestureDetector(
                  onTap: () {
                    Navigator.pop(context);
@@ -121,7 +130,6 @@ width: double.infinity,
                ),
 Container(
   child:  Image.asset('assets/'+ categories[widget.categoryId].assetsName + '.png',fit: BoxFit.contain,width: 150,height: 150,),
-
 ),
             ],
 
@@ -131,236 +139,205 @@ Container(
     )
  ),
   ]),
-],
-    );
+  Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: SafeArea(
+            child: Container(
+
+              padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
+              height: size.height * 0.5,
+              width: size.width ,
+              decoration: BoxDecoration(
+                color:Colors.white,
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(30),
+                  topLeft: Radius.circular(30),
+                ),
+              ),
+              child:
+                  Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+
+                    Container(
+                        width: 350,
+                        decoration: BoxDecoration(
+                          color:Colors.white,
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30),
+                          ),
+                        ),
+                        child: DropdownButton<String>(
+                          value: selectedCategories,
+                          items: _selectCategories.map((e) =>  DropdownMenuItem(
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 30,
+                                    child:  Image.asset('assets/${e}.png'),
+                                  ),
+
+                                  Text(e,style: TextStyle(fontSize: 16),)
+                                ],
+                              ),
+                            ),
+                            value: e,
+                          )).toList(),
+                          selectedItemBuilder: (BuildContext context)=>_selectCategories.map((e) =>Row(
+                            children: [
+
+                              Container(
+                                width:42 ,
+                                child:  Image.asset('assets/${e}.png'),
+                              ),
+
+                              Text(e)
+                            ],
+                          )).toList(),
+
+                          dropdownColor: Colors.white,
+                          elevation: 1,
+                          isExpanded: true,
+                          autofocus: true,
+                          borderRadius: BorderRadius.circular(30),
+                          onChanged: ((value){
+                            setState(() {
+                              selectedCategories=value!;
+
+                            });
+                          }
 
 
+                          ),
+                        )
+                    ),
 
 
+      Positioned(
+        bottom: 0,
+         left: 0,
+         right: 0,
+         child: Container(
 
-    
-//         Positioned(
-//           top: 50,
-//           left: 20,
-//           right: 20,
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//
-//             children: [
-//
-//               Types(),
-//               GestureDetector(
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                 },
-//                 child: Container(
-//                   height: 40,
-//                   width: 40,
-//
-//                   decoration: BoxDecoration(
-//
-//                     borderRadius: BorderRadius.circular(25),
-//                     color: AppColors.green.withOpacity(.15),
-//                   ),
-//                   child: Icon(
-//                     Icons.close,
-//                     color: AppColors.primary,
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//
-//         Positioned(
-//           top: 100,
-//           left: 20,
-//           right: 20,
-//           child: Container(
-//             color: Colors.transparent,
-//             width: size.width * .8,
-//             height: size.height * .8,
-//             padding: const EdgeInsets.all(20),
-//             child: Column(
-//               children: [
-//
-//                  Positioned(
-//                   top: 50,
-//                   left: 50,
-//                   right: 50,
-//                   child: SizedBox(
-//                     height: 150,
-//                     width: 150,
-//
-//                     child:  Image.asset('assets/'+ categories[widget.categoryId].assetsName + '.png',fit: BoxFit.cover,),
-//                   ),
-//                 ),
-// SizedBox(
-//   height: 100,
-// ),
-// Padding(
-//   padding: const EdgeInsets.only(top: 10),
-//   child:   Container(
-//
-//     height: 100,
-//     child: ListView.builder(
-//
-//         scrollDirection: Axis.horizontal,
-//         itemCount: categories.length,
-//         itemBuilder:(BuildContext context,int index){
-//           return  Container(
-//             clipBehavior: Clip.none,
-//             width: 70,
-//             height: 70,
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(50),
-//               ),
-//
-//             //child:  Image.asset('assets/'+ categories[index].assetsName + '.png',fit: BoxFit.contain),
-//             );
-// }
-//
-//     ),
-//   ),
-// )
-//               ],
-//             ),
-//           ),
-//         ),
-//         Positioned(
-//           bottom: 0,
-//           left: 0,
-//           right: 0,
-//           child: Container(
-//
-//             padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-//             height: size.height * 0.4,
-//             width: size.width,
-//             decoration: BoxDecoration(
-//               color:Colors.white54,
-//               borderRadius: const BorderRadius.only(
-//                 topRight: Radius.circular(30),
-//                 topLeft: Radius.circular(30),
-//               ),
-//             ),
-//             child:
-//                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//
-//               // Text(
-//               //   categories[widget.categoryId].name.i18n(),
-//               //   textAlign: TextAlign.right,
-//               //   style: TextStyle(fontSize: 30),
-//               // ),
-//
-//
-//
-//                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//                 Text(
-//                   "description".i18n(),
-//                   style: TextStyle(
-//                       fontWeight: FontWeight.w500,
-//                       fontSize: 15,
-//                       color: Colors.black),
-//                 ),
-//                 TextFormField(
-//                   controller: _greenForm,
-//                   autovalidateMode: AutovalidateMode.onUserInteraction,
-//                   validator: (String? value) {
-//                     if (value!.isEmpty) {
-//                       return "required_field".i18n();
-//                     }
-//
-//                     return null;
-//                   },
-//                   onChanged: (value) => controller.title = value,
-//                   cursorColor: Colors.black,
-//                   style: TextStyle(
-//                       fontSize: 17,
-//                       fontWeight: FontWeight.w500,
-//                       color: Colors.black),
-//                   decoration: InputDecoration(
-//
-//                   ),
-//                 ),
-//               ]),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               Text(
-//                 "value".i18n(),
-//                 style: TextStyle(
-//                     fontWeight: FontWeight.w500,
-//                     fontSize: 16,
-//                     color: Colors.black),
-//               ),
-//               TextFormField(
-//                 validator: (String? valor) {
-//                   if (verificNumber.hasMatch(valor!) ||
-//                       valor.isEmpty ||
-//                       double.parse(valor.replaceAll(",", ".")) <= 0) {
-//                     return 'invalid_value'.i18n();
-//                   }
-//
-//                   return null;
-//                 },
-//                 keyboardType:
-//                     const TextInputType.numberWithOptions(decimal: true),
-//                 cursorColor: AppColors.black,
-//                 style: TextStyle(
-//                     fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
-//                 decoration: InputDecoration(
-//                  // hintText: "${'money'.i18n()} 00,00",
-//                   prefixIconColor: Colors.red,
-//                 ),
-//                 onChanged: (value) => controller.value = double.parse(value),
-//               ),
-//               SizedBox(
-//                 height: 35,
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   ElevatedButton(
-//                       onPressed: () {
-//                         setState(() async {
-//                           FocusScope.of(context).requestFocus(FocusNode());
-//                           DateTime? date = await showDatePicker(
-//                               context: context,
-//                               firstDate: DateTime.now()
-//                                   .subtract(const Duration(days: 360)),
-//                               lastDate: DateTime.now(),
-//                               initialDate: _dateTime);
-//                           _dateTime = date ?? _dateTime;
-//                           _txtDateTimeController.text =
-//                               "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
-//                         });
-//                       },
-//                       child: Icon(
-//                         Ionicons.calendar,
-//                         color: Colors.white,
-//                       ),
-//                       style: ButtonStyle(
-//                           fixedSize: MaterialStateProperty.all<Size>(
-//                             Size.fromRadius(30),
-//                           ),
-//                           foregroundColor:
-//                               MaterialStateProperty.all<Color>(Colors.white),
-//                           backgroundColor:
-//                               MaterialStateProperty.all<Color>(Colors.green),
-//                           shape:
-//                               MaterialStateProperty.all<RoundedRectangleBorder>(
-//                                   RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(50),
-//                           )))),
-//
-//                   Confirmation()
-//                 ],
-//               ),
-//             ]),
-//           ),
-//         ),
-//       ],
-//     );
+             height: size.height * 0.3,
+
+             decoration: BoxDecoration(
+              color:Colors.white54,
+                 borderRadius: const BorderRadius.only(
+                   topRight: Radius.circular(30),
+                   topLeft: Radius.circular(30),
+                 ),
+              ),
+               child:
+                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+
+
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+
+                 TextFormField(
+                     controller: _greenForm,
+                     autofocus: true,
+                     autocorrect: true,
+                     autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                  validator: (String? value) {
+                     if (value!.isEmpty) {
+                        return "required_field".i18n();
+                    }
+
+                       return null;
+                     },
+                     onChanged: (value) => controller.title = value,
+                cursorColor: Colors.black,
+                     style: TextStyle(
+                   fontSize: 17,
+                       fontWeight: FontWeight.w500,
+                         color: Colors.grey),
+
+                 ),
+                ]),
+
+
+                     const SizedBox(
+                   height: 16,     ),
+                Text(
+                  "value".i18n(),
+                  style: TextStyle(
+                       fontWeight: FontWeight.w500,
+                       fontSize: 16,
+                       color: Colors.black),
+                 ),
+                TextFormField(
+                  autofocus: true,
+                  autocorrect: true,
+                   
+                   validator: (String? valor) {
+                     if (verificNumber.hasMatch(valor!) ||
+                        valor.isEmpty ||
+                         double.parse(valor.replaceAll(",", ".")) <= 0) {
+                     return 'invalid_value'.i18n();
+                   }
+
+                   return null;
+                   },
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true), cursorColor: AppColors.black,
+                   style: TextStyle(
+                       fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
+                   decoration: InputDecoration(
+                   // hintText: "${'money'.i18n()} 00,00",
+                    prefixIconColor: Colors.red,
+                  ),
+                  onChanged: (value) => controller.value = double.parse(value),
+                ),           SizedBox(
+            height: 35,
+             ),
+                Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+                     ElevatedButton(
+                  onPressed: () {
+                        setState(() async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                       DateTime? date = await showDatePicker(
+                           context: context,
+                                 firstDate: DateTime.now()
+                                  .subtract(const Duration(days: 360)),
+                               lastDate: DateTime.now(),
+                                initialDate: _dateTime);
+                          _dateTime = date ?? _dateTime;
+                        _txtDateTimeController.text =
+                                "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
+                           });
+                     },
+                         child: Icon(
+                         Ionicons.calendar,
+                        color: Colors.white,
+                       ),
+                        style: ButtonStyle(
+                         fixedSize: MaterialStateProperty.all<Size>(
+                               Size.fromRadius(30),
+                          ),
+                         foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                             backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.green),
+                           shape:
+                                 MaterialStateProperty.all<RoundedRectangleBorder>(     RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          )))),
+                  Confirmation()
+    ]),
+                 ]),
+               )
+      ),
+
+    ]),
+    ),
+          )),
+  ]);
   }
 
   Row Types() {
