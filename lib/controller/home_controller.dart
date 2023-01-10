@@ -10,6 +10,11 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeTransAction(int index) {
+    transactionList.removeAt(index);
+    notifyListeners();
+  }
+
   double total() {
     double valorTotal = 0;
 

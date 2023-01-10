@@ -1,7 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:localization/localization.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants/json/create_budget_json.dart';
 import '../../../constants/transaction/transaction.dart';
@@ -30,7 +31,8 @@ class _HomePage2State extends State<HomePage2> {
         return Column(
           children: [
             _appbarBotomSection(controller.total()),
-            mainBoard(controller.transactionList, locale),
+            mainBoard(controller.transactionList, locale,
+                controller.removeTransAction),
           ],
         );
       }),
@@ -109,7 +111,7 @@ class _HomePage2State extends State<HomePage2> {
   }
 
   //aqui começa os widgets com graficos
-  Expanded mainBoard(List<Transaction> _lista, Locale locale) {
+  Expanded mainBoard(List<Transaction> _lista, Locale locale, Function remove) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -193,44 +195,49 @@ class _HomePage2State extends State<HomePage2> {
                         shrinkWrap: true,
                         separatorBuilder: (context, index) => const Divider(),
                         itemCount: _lista.length,
-                        itemBuilder: (context, index) => ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          leading: Container(
-                            width: 60,
-                            height: 60,
-                            clipBehavior: Clip.antiAlias,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: _primaryColor.withOpacity(0.1)),
+                        itemBuilder: (context, index) => DismissibleWigdget(
+                          onDismissed: ((p0) =>
+                              _dialogBuilder(context, remove, index)),
+                          item: _lista[index],
+                          child: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Container(
+                              width: 60,
+                              height: 60,
+                              clipBehavior: Clip.antiAlias,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: _primaryColor.withOpacity(0.1)),
+                              ),
+                              child: Image.asset(categories[index]['icon'],
+                                  fit: BoxFit.cover, width: 40, height: 40),
                             ),
-                            child: Image.asset(categories[index]['icon'],
-                                fit: BoxFit.cover, width: 40, height: 40),
-                          ),
-                          title: Text(_lista[index].title,
+                            title: Text(_lista[index].title,
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontFamily: 'sans-serif-light',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                            subtitle: Text(
+                              DateFormat(DateFormat.YEAR_MONTH_DAY,
+                                      locale.toString())
+                                  .format(_lista[index].date1),
                               style: const TextStyle(
-                                color: Colors.black87,
-                                fontFamily: 'sans-serif-light',
+                                color: Colors.black,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            trailing: Text(
+                              _lista[index].value.toStringAsFixed(2),
+                              style: const TextStyle(
+                                color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                              )),
-                          subtitle: Text(
-                            DateFormat(DateFormat.YEAR_MONTH_DAY,
-                                    locale.toString())
-                                .format(_lista[index].date1),
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          trailing: Text(
-                            _lista[index].value.toStringAsFixed(2),
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -342,6 +349,37 @@ class _HomePage2State extends State<HomePage2> {
   }
 }
 
+//DismissItem(BuildContext context, int index, DismissDirection direction) {}
+
+class DismissibleWigdget<T> extends StatelessWidget {
+  final Widget child;
+  final T item;
+  Future<bool?> Function(DismissDirection) onDismissed;
+
+  DismissibleWigdget({
+    Key? key,
+    required this.child,
+    required this.item,
+    required this.onDismissed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Dismissible(
+        direction: DismissDirection.endToStart,
+        key: ObjectKey(item),
+        background: Container(
+          alignment: AlignmentDirectional.centerEnd,
+          child: Icon(
+            Icons.delete_forever_outlined,
+            color: Colors.white,
+          ),
+          color: Colors.red,
+        ),
+        child: child,
+        confirmDismiss: onDismissed,
+      );
+}
+
 Column _reportInner(
     {required bool isSavings, required String title, required String value}) {
   return Column(
@@ -369,5 +407,38 @@ Column _reportInner(
         ),
       ),
     ],
+  );
+}
+
+Future<bool?> _dialogBuilder(BuildContext context, Function remove, int index) {
+  return showDialog<bool?>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Remover'),
+        content: const Text('Tem certeza que deseja remover essa transação?'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Sim'),
+            onPressed: () {
+              remove(index);
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Não'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
   );
 }
