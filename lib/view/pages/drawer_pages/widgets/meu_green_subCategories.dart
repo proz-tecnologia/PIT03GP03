@@ -11,7 +11,7 @@ class Subcategory extends Category {
     //required this.catOption,
     required Color color,
     required String name,
-    required String assetsName, required List<CategoryOption> catOption,
+    required String assetsName,
 
   }) : super(color: color, name: name, assetsName: assetsName);
 }

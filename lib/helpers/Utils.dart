@@ -12,54 +12,37 @@ class Utils {
           name: 'Alimentação',
           color: AppColors.FOOD,
           assetsName: 'sub6',
-          subCategories: [
-            Subcategory(
-                name: 'Fast Food ',
-                color: AppColors.FOOD,
-                assetsName: 'fast-food', catOption: [
-                  CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
-              CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
-              CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
-              CategoryOption(name: 'Restaurante', assetsImg: 'sub6', isSelected: false),
-            ],
-            ),
-    ]),
+          subCategories: []),
 
       Category(
           name: 'Transporte',
           color: AppColors.TRANSPORT,
           assetsName: 'maintenance',
-          subCategories: [
-            Subcategory(
-              name: 'Transporte ',
-              color: AppColors.FOOD,
-              assetsName: 'Combustivel', catOption: [],
-            ),
-          ]),
+          subCategories: [ ]),
       Category(
           name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta',
       subCategories: [
-        Subcategory(name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta', catOption: [], )
-      ]),
+
+          ]),
       Category(
           name: 'Shopping',
           color: AppColors.SHOPPING,
           assetsName: 'bolsa-de-compras',
-          subCategories: [
-            Subcategory(name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta', catOption: [],)
-          ]
-
-
-      ),
+          subCategories: []      ),
       Category(
           name: 'Entreterimento',
           color: AppColors.ENTERTAINMENT,
-          assetsName: 'cinema', subCategories: []),
-      Category(name: 'Saúde', color: AppColors.HEALTH, assetsName: 'health', subCategories: []),
+          assetsName: 'cinema',
+          subCategories: []),
+
+
+      Category(name: 'Saúde', color: AppColors.HEALTH, assetsName: 'health',
+          subCategories: []),
       Category(
           name: 'Presentes',
           color: AppColors.GiftDonations,
-          assetsName: 'gifts', subCategories: []),
+          assetsName: 'gifts',
+          subCategories: []),
       Category(
           name: 'kids',
           color: AppColors.KIDS,

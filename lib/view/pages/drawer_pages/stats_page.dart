@@ -21,6 +21,7 @@ class MeuGreenCreat extends StatefulWidget {
 class _MeuGreenCreatState extends State<MeuGreenCreat> {
   final fomrKey = GlobalKey<FormState>();
   final TransActionController controller = TransActionController();
+
   // final TextEditingController _txtDateTimeController = TextEditingController();
   // final TextEditingController _budgetName = TextEditingController(text: '');
 
@@ -85,8 +86,9 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
             SizedBox(
               height: size.height * 0.3,
               child: ListView.builder(
-                  itemCount: categories.length,
+                    itemCount: categories.length,
                   scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {

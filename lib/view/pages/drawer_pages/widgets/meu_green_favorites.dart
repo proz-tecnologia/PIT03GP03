@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green/model/meu_green_category.dart';
+import 'package:green/models/category.dart';
+import 'package:green/models/category_options.dart';
 
 import 'meu_green_detail_page.dart';
 import 'meu_green_widgets.dart';
@@ -54,7 +56,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   scrollDirection: Axis.vertical,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
-                    return MeuGreenDetailPage(categoryId: 1);
+                    return MeuGreenDetailPage(categoryId: 0, );
                   }),
             ),
     );

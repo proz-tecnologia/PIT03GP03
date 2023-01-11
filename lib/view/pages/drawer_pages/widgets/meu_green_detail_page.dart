@@ -16,12 +16,7 @@ import 'package:green/helpers/AppColors.dart';
 
 class MeuGreenDetailPage extends StatefulWidget {
   final int categoryId;
-
-   MeuGreenDetailPage({
-
-    required this.categoryId,
-
-  }) ;
+   MeuGreenDetailPage({ required this.categoryId,}) ;
 
   @override
   State<MeuGreenDetailPage> createState() => _MeuGreenDetailPageState();
@@ -38,45 +33,52 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
 
 
   ];
-
+  //controllers
+  final RegExp verificNumber = RegExp(r'([0-9]{})');
+  final TextEditingController _greenForm = TextEditingController(text: '');
   final TransActionController controller = TransActionController();
+  final _txtDateTimeController = TextEditingController();
   final fomrKey = GlobalKey<FormState>();
-String ? selectedCategories;
 
+
+//variaveis
   var transactionType = TransactionType.INCOME;
   late final transactionTypes = [
     TransactionTypeOption("Receita", TransactionType.INCOME, Colors.green),
     TransactionTypeOption("Despesa", TransactionType.EXPENSE, Colors.red)
   ];
-  final _txtDateTimeController = TextEditingController();
-  final TextEditingController _greenForm = TextEditingController(text: '');
-  final RegExp verificNumber = RegExp(r'([0-9]{})');
+//fuctions selects
+  String ? selectedCategories;
   int activeCategory = 0;
   var _dateTime = DateTime.now();
+Category? _category;
 
-
-
+//select favorited
   bool toggleIsFavorated(bool isFavorited) {
     return !isFavorited;
   }
-
   bool toggleIsSelected(bool isSelected) {
     return !isSelected;
   }
 
   @override
   Widget build(BuildContext context) {
+   //idiomas
     final locale = Localizations.localeOf(context);
+    //mediaQuery
+
     Size size = MediaQuery.of(context).size;
+    //lists
     List<GreenList> _greenList = GreenList.categoryList;
     List<Category> _categories=Utils.getMockedCategories();
-    return Scaffold(
 
+    return Scaffold(
 backgroundColor: Colors.grey.shade100,
       body: Consumer<HomeController>(builder: (context, controller, _) {
         return Container(
 
           child: Form(
+            //key
             key: fomrKey,
             child:
                 getBody(controller.transactionList, _greenList, size, locale,_categories),
@@ -93,16 +95,18 @@ backgroundColor: Colors.grey.shade100,
 Column(
 children: [
   Container(
+
 width: double.infinity,
     height: 400 ,
     decoration: BoxDecoration(
-      color: AppColors.primary,
+        color:AppColors.primary,
       borderRadius: BorderRadius.only(
         bottomRight: Radius.circular(20),
         bottomLeft: Radius.circular(20),
       )
     ),
     child:Column(
+
       children: [
         SizedBox(
           height: 40,
@@ -272,7 +276,7 @@ Container(
                 TextFormField(
                   autofocus: true,
                   autocorrect: true,
-                   
+
                    validator: (String? valor) {
                      if (verificNumber.hasMatch(valor!) ||
                         valor.isEmpty ||
