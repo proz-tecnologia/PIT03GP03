@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:green/constants/json/meugreen.dart';
+
+
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/home_controller.dart';
 import 'package:green/models/category.dart';
@@ -14,9 +15,14 @@ import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
 import 'package:green/helpers/AppColors.dart';
 
+import '../../../../model/mocks/subCategory.dart';
+import 'meu_green_subCategories.dart';
+
 class MeuGreenDetailPage extends StatefulWidget {
-  final int categoryId;
-   MeuGreenDetailPage({ required this.categoryId,}) ;
+   var categoryId ;
+
+
+   MeuGreenDetailPage({     required this.categoryId,}) ;
 
   @override
   State<MeuGreenDetailPage> createState() => _MeuGreenDetailPageState();
@@ -69,6 +75,7 @@ Category? _category;
 
     Size size = MediaQuery.of(context).size;
     //lists
+    List<subCategory>sub=[];
     List<GreenList> _greenList = GreenList.categoryList;
     List<Category> _categories=Utils.getMockedCategories();
 
@@ -81,7 +88,7 @@ backgroundColor: Colors.grey.shade100,
             //key
             key: fomrKey,
             child:
-                getBody(controller.transactionList, _greenList, size, locale,_categories),
+                getBody(controller.transactionList, _greenList, size, locale,_categories,),
           ),
         );
       }),
@@ -172,50 +179,8 @@ Container(
                             topLeft: Radius.circular(30),
                           ),
                         ),
-                        child: DropdownButton<String>(
-                          value: selectedCategories,
-                          items: _selectCategories.map((e) =>  DropdownMenuItem(
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 30,
-                                    child:  Image.asset('assets/${e}.png'),
-                                  ),
+                      child:  Image.asset('assets/'+ sub[widget.categoryId].assetsName + '.png',fit: BoxFit.contain,width: 50,height: 50,),
 
-                                  Text(e,style: TextStyle(fontSize: 16),)
-                                ],
-                              ),
-                            ),
-                            value: e,
-                          )).toList(),
-                          selectedItemBuilder: (BuildContext context)=>_selectCategories.map((e) =>Row(
-                            children: [
-
-                              Container(
-                                width:42 ,
-                                child:  Image.asset('assets/${e}.png'),
-                              ),
-
-                              Text(e)
-                            ],
-                          )).toList(),
-
-                          dropdownColor: Colors.white,
-                          elevation: 1,
-                          isExpanded: true,
-                          autofocus: true,
-                          borderRadius: BorderRadius.circular(30),
-                          onChanged: ((value){
-                            setState(() {
-                              selectedCategories=value!;
-
-                            });
-                          }
-
-
-                          ),
-                        )
                     ),
 
 

@@ -81,7 +81,7 @@ class SelectCategory extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context,  index) => GestureDetector(
                       onTap: () {
-                        var subCat = this.selectedCategory!.subCategories![index];
+                        var subCat = this.selectedCategory.subCategory[index];
 
 
                             Navigator.push(context,MaterialPageRoute(builder: (context)=>MeuGreenDetailPage(categoryId: 0)));
