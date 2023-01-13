@@ -274,13 +274,13 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                   border: InputBorder.none),
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
-                            Row(
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  width: (size.width - 140),
+                                  width: (size.width ),
                                   child: Column(
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
@@ -323,9 +323,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 25,
-                                ),
+
                                 Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
