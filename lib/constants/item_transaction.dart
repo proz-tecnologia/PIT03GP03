@@ -18,7 +18,7 @@ class _ItemTransactionState extends State<ItemTransaction> {
       margin: EdgeInsets.symmetric(vertical: 8),
       child: ListTile(
         leading: Text(
-          "${widget.transaction.dateTime?.day}/${widget.transaction.dateTime?.month}",
+          "${widget.transaction.dateTime.day}/${widget.transaction.dateTime.month}",
           style: TextStyle(color: getColor()),
         ),
         title:

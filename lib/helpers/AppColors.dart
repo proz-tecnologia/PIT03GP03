@@ -1,12 +1,11 @@
 import 'dart:core';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color MAIN_COLOR = Color(0xFF80C038);
   static const Color FOOD = Colors.orangeAccent;
-  static const Color TRANSPORT =  Color(0xFF0BA8BF);
+  static const Color TRANSPORT = Color(0xFF0BA8BF);
   static const Color HOME = Color(0xFF28C080);
   static const Color PERSONALDEVELOPMENT = Color(0xFF0BA8BF);
   static const Color SHOPPING = Colors.yellow;
@@ -34,9 +33,6 @@ class AppColors {
 
   static const Color backgroundColor = const Color.fromARGB(255, 125, 178, 139);
   static const Color secondaryColor = const Color.fromARGB(100, 255, 255, 255);
-  static  const Color greyColor = const Color.fromARGB(255, 255, 524, 255);
-  static  const Color greyT = const Color.fromARGB(255, 63, 63, 63);
-
-
-
+  static const Color greyColor = const Color.fromARGB(255, 255, 524, 255);
+  static const Color greyT = const Color.fromARGB(255, 63, 63, 63);
 }

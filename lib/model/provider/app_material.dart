@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:green/utils/configs/pages_settings.dart';
+import 'package:green/view/pages/drawer_pages/meuGreen.dart';
+import 'package:green/view/pages/home_page/homepage.dart';
+import 'package:green/view/pages/login/login_page.dart';
+import 'package:green/view/pages/login/signup_page_login.dart';
 import 'package:localization/localization.dart';
-import '../../helpers/Utils.dart';
 import '../../utils/preferences_green.dart';
-import '../../view/pages/drawer_pages/widgets/meu_green_select_category.dart';
+import '../../view/pages/drawer_pages/meu_green_metas.dart';
+import '../../view/pages/onboarding_screen/Meu_green_onboarding.dart';
 import '../../view/pages/splash_screen/splash_Screen.dart';
-
 
 class AppMaterial extends StatefulWidget {
   const AppMaterial({super.key});
@@ -14,27 +18,27 @@ class AppMaterial extends StatefulWidget {
   State<AppMaterial> createState() => AppMaterialState();
 }
 
-class AppMaterialState extends State  <AppMaterial> with WidgetsBindingObserver{
-
+class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
   Locale? _locale;
-    changeLocale(Locale locale) {
+  changeLocale(Locale locale) {
     setState(() {
       _locale = locale;
     });
   }
 
-@override
+  @override
   void initState() {
-WidgetsBinding.instance!.addObserver(this);
-PreferencesGreen.setTema();
+    WidgetsBinding.instance.addObserver(this);
+    PreferencesGreen.setTema();
     super.initState();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
+
   @override
   void didChangePlatformBrightness() {
     PreferencesGreen.setTema();
@@ -47,14 +51,12 @@ PreferencesGreen.setTema();
 
     return ValueListenableBuilder(
       valueListenable: PreferencesGreen.theme,
-
-      builder: (BuildContext context, Brightness theme, _) =>
-        MaterialApp(
+      builder: (BuildContext context, Brightness theme, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Green',
         theme: ThemeData(
             primarySwatch: Colors.green,
-            brightness:theme,
+            brightness: theme,
             fontFamily: 'khang'),
         locale: _locale,
         localeResolutionCallback: ((locale, supportedLocales) {
@@ -84,6 +86,13 @@ PreferencesGreen.setTema();
         initialRoute: '/',
         routes: {
           '/': (context) => const SplashScreen(),
+          '/login': (context) => const LoginPage(),
+          '/sinup': (context) => SignUp(),
+          '/onboarding': (context) => const OnboardingScreen(),
+          '/home': (context) => const HomePage2(),
+          '/metas': (context) => const MeuGreenMetas(),
+          '/meuGreen': (context) => RootApp(),
+          '/config': (context) => ConfiguracoesPage(),
         },
       ),
     );
