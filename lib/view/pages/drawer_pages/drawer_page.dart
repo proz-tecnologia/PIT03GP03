@@ -5,15 +5,9 @@ import 'package:green/view/pages/drawer_pages/widgets/pagamentos.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
-
-import '../../../utils/configs/pages_settings.dart';
-import '../login/login_page.dart';
 import 'drawer_item.dart';
-
 import 'meuGreen.dart';
-
 import 'meu_green_metas.dart';
-import 'my_card.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({Key? key}) : super(key: key);

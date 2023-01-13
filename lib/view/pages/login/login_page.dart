@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:green/view/pages/login/signup_page_login.dart';
 import 'package:localization/localization.dart';
 
 import '../../../constants/credential/users_credential.dart';

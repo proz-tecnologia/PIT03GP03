@@ -6,7 +6,6 @@ import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
 import 'package:green/view/pages/login/signup_page_login.dart';
 import 'package:localization/localization.dart';
-import '../../helpers/Utils.dart';
 import '../../utils/preferences_green.dart';
 import '../../view/pages/drawer_pages/meu_green_metas.dart';
 import '../../view/pages/onboarding_screen/Meu_green_onboarding.dart';
