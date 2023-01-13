@@ -2,13 +2,13 @@ import 'dart:ui';
 import 'package:green/models/category.dart';
 import '../../../../models/category_options.dart';
 
-class Subcategory extends Category {
-  List<CategoryOption>catOption;
+class SubCategory{
 
-Subcategory({
-  required this.catOption,
-  required String  name,
-  required Color  color,
-  required String  assetsName
-}) : super(  name: name,    color:color,  assetsName: assetsName);
+  String name;
+  String  assetsName;
+  bool  isSelected;
+
+  SubCategory({required this.name, required this.assetsName, required this.isSelected});
+
 }
+

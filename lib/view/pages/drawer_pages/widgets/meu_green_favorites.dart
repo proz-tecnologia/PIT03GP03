@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:green/model/meu_green_category.dart';
+import 'package:green/models/category.dart';
+import 'package:green/models/category_options.dart';
 
+import 'meu_green_detail_page.dart';
 import 'meu_green_widgets.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -21,8 +24,7 @@ class _FavoritePageState extends State<FavoritePage> {
         backgroundColor: Colors.green,
         elevation: 0,
       ),
-      body: widget.categoryFavorited.isEmpty
-          ? Center(
+      body: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -45,18 +47,7 @@ class _FavoritePageState extends State<FavoritePage> {
                 ],
               ),
             )
-          : Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
-              height: size.height * .5,
-              child: ListView.builder(
-                  itemCount: widget.categoryFavorited.length,
-                  scrollDirection: Axis.vertical,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return MeuGreenWidgetPage(
-                        index: index, greenList: widget.categoryFavorited);
-                  }),
-            ),
+
     );
   }
 }

@@ -1,12 +1,14 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:green/constants/json/meugreen.dart';
 import 'package:green/model/meu_green_category.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_favorites.dart';
-import 'package:green/view/pages/drawer_pages/widgets/meu_green_select_category.dart';
+
+
 import 'package:ionicons/ionicons.dart';
 import 'package:page_transition/page_transition.dart';
-import '../../../helpers/Utils.dart';
-import 'meu_green_create.dart';
+
 import 'meu_green_profile.dart';
 import 'meugreen_saldos.dart';
 import 'stats_page.dart';
@@ -18,18 +20,20 @@ class RootApp extends StatefulWidget {
 
 class _RootAppState extends State<RootApp> {
   List<GreenList> favorites = [];
+
   List<GreenList> myCart = [];
   int _bottomNavIndex = 0;
 
   List<Widget> pages() {
     return [
       MeuGreenCarteira(),
-      MeuGreenCart(),
+    //  CategoryListPage(),
+    //  MeuGreenPag(),
       FavoritePage(
         categoryFavorited: favorites,
       ),
-      SelectCategory(selectCategory: Utils.getMockedCategories()[0],),
-      MeuGreenCreat(),
+
+      MeuGreenProfile()
     ];
   }
 

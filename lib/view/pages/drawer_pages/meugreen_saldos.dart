@@ -4,7 +4,7 @@ import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/home_controller.dart';
-import '../../../utils/theme/colors.dart';
+import 'package:green/helpers/AppColors.dart';
 
 class MeuGreenCarteira extends StatefulWidget {
   const MeuGreenCarteira({Key? key}) : super(key: key);
@@ -155,7 +155,7 @@ class _TextBarState extends State<TextBar> {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: primary.withOpacity(0.01),
+                    color: AppColors.primary.withOpacity(0.01),
                     spreadRadius: 10,
                     blurRadius: 3,
                     // changes position of shadow
@@ -175,7 +175,7 @@ class _TextBarState extends State<TextBar> {
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 13,
-                            color: white),
+                            color: AppColors.white),
                       ),
                       SizedBox(
                         height: 10,
@@ -185,7 +185,7 @@ class _TextBarState extends State<TextBar> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
-                            color: white),
+                            color: AppColors.white),
                       ),
                       SizedBox(
                         height: 10,
@@ -202,15 +202,15 @@ class _TextBarState extends State<TextBar> {
                         },
                         keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
-                        cursorColor: white,
+                        cursorColor: AppColors.white,
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: white),
+                            color: AppColors.white),
                         decoration: InputDecoration(
                           hintText:
                               "${Provider.of<HomeController>(context, listen: false).limite.toStringAsFixed(2)}",
-                          prefixIconColor: white,
+                          prefixIconColor: AppColors.white,
                         ),
                         onChanged: (value) => aux = double.parse(value),
                       )
