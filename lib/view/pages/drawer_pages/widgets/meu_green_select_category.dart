@@ -84,7 +84,7 @@ class SelectCategory extends StatelessWidget {
 
 
 
-                            Navigator.push(context,MaterialPageRoute(builder: (context)=>MeuGreenDetailPage(categoryId: 0, assetsName: '', listSub: [], name: '',)));
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=>MeuGreenDetailPage(categoryId: 0, assetsName: '', listSub: [], name: '', isSelect: false,)));
                       },
                       child: Container(
                    width: 170,

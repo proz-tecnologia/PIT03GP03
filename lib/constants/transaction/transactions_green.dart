@@ -6,6 +6,7 @@ class Transaction {
   DateTime dateTime;
   TransactionType transactionType;
 
+
   Transaction({
     this.transactionType = TransactionType.INCOME,
     this.value = 0.0,

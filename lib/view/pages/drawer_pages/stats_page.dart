@@ -99,7 +99,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                                   categoryId: _greenList[index].categoryId,
                                   name: categories[index].name,
                                   assetsName: categories[index].assetsName,
-                                  listSub: categories[index].subCategory,
+                                  listSub: categories[index].subCategory, isSelect: false,
 
                                 ),
                                 type: PageTransitionType.bottomToTop));

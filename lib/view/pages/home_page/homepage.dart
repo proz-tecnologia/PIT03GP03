@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green/helpers/AppColors.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
@@ -16,9 +17,7 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePage2State extends State<HomePage2> {
-  static const Color _primaryColor = Colors.green;
-  static const Color _secondaryColor = Colors.white38;
-  static const Color _thirdColor = Colors.deepOrangeAccent;
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,7 @@ class _HomePage2State extends State<HomePage2> {
     return AppBar(
         elevation: 0,
         backgroundColor:
-            (limite - value) >= 0 == true ? _primaryColor : Colors.red,
+            (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
 
 
         actions: const <Widget>[
@@ -62,7 +61,7 @@ class _HomePage2State extends State<HomePage2> {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: (limite - value) >= 0 == true ? _primaryColor : Colors.red,
+        color: (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
       ),
@@ -207,7 +206,7 @@ class _HomePage2State extends State<HomePage2> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                  color: _primaryColor.withOpacity(0.1)),
+                                  color: AppColors.primary.withOpacity(0.1)),
                             ),
                             child: Image.asset(categories[index]['icon']!,
                                 fit: BoxFit.cover, width: 45, height: 45),
@@ -259,15 +258,15 @@ class _HomePage2State extends State<HomePage2> {
       decoration: BoxDecoration(
 
         borderRadius: BorderRadius.circular(30),
-        color: isSavings ? Colors.white : _thirdColor,
+        color: isSavings ? Colors.white : AppColors.third,
         border: isSavings
-            ? Border.all(color: _primaryColor.withOpacity(0.1), width: 2)
+            ? Border.all(color: AppColors.primary.withOpacity(0.1), width: 2)
             : null,
         boxShadow: isSavings
             ? []
             : [
                 BoxShadow(
-                    color: _thirdColor.withOpacity(0.4),
+                    color: AppColors.third.withOpacity(0.4),
                     offset: const Offset(1, 0),
                     blurRadius: 10),
               ],
@@ -290,7 +289,7 @@ value: categories.length / 100,
                       ? Colors.black.withOpacity(0.2)
                       : Colors.black.withOpacity(0.1),
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      isSavings ? _secondaryColor : Colors.white),
+                      isSavings ? AppColors.secondary : Colors.white),
                 ),
               ),
               Container(
@@ -356,9 +355,8 @@ Column _reportInner(
       Text(
         title,
         style: TextStyle(
-          color: isSavings
-              ? _HomePage2State._primaryColor.withOpacity(0.5)
-              : Colors.white,
+
+
           fontSize: 14,
           fontWeight: FontWeight.w500,
         ),

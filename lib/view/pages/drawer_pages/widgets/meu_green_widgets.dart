@@ -30,7 +30,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
             context,
             PageTransition(
                 child: MeuGreenDetailPage(
-                  categoryId: greenList[index].categoryId, assetsName: '', listSub: [], name: '',
+                  categoryId: greenList[index].categoryId, assetsName: '', listSub: [], name: '', isSelect: false,
                 ),
                 type: PageTransitionType.bottomToTop));
       },
