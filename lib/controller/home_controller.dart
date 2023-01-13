@@ -3,7 +3,6 @@ import 'package:green/model/meu_green_category.dart';
 
 import '../constants/transaction/transactions_green.dart';
 
-
 class HomeController extends ChangeNotifier {
   double _limite = 00.00;
 
@@ -67,6 +66,11 @@ class HomeController extends ChangeNotifier {
   void add(Transaction item) {
     transaction.add(item);
     transaction.sort(((a, b) => b.dateTime.compareTo(a.dateTime)));
+    notifyListeners();
+  }
+
+  void removeTransAction(int index) {
+    transactionList.removeAt(index);
     notifyListeners();
   }
 }

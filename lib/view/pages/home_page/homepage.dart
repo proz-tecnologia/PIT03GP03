@@ -32,8 +32,15 @@ class _HomePage2State extends State<HomePage2> {
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Column(
           children: [
-            _appbarBotomSection(controller.total, controller.limite),
-            mainBoard(controller.transactionList, locale),
+            _appbarBotomSection(
+              controller.total,
+              controller.limite,
+            ),
+            mainBoard(
+              controller.transactionList,
+              locale,
+              controller.removeTransAction,
+            ),
           ],
         );
       }),
@@ -44,7 +51,7 @@ class _HomePage2State extends State<HomePage2> {
     return AppBar(
         elevation: 0,
         backgroundColor:
-        (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
+            (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
         actions: const <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 20),
@@ -107,7 +114,7 @@ class _HomePage2State extends State<HomePage2> {
     );
   }
 
-  Expanded mainBoard(List<Transaction> _lista, Locale locale) {
+  Expanded mainBoard(List<Transaction> _lista, Locale locale, Function remove) {
     return Expanded(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -132,114 +139,119 @@ class _HomePage2State extends State<HomePage2> {
             //texto na main
             _lista.isEmpty
                 ? Column(
-              children: [
-                Text(
-                  'no_expenses'.i18n(),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Arial',
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                SizedBox(
-                  height: 200,
-                  width: 200,
-                  child: Image.asset(
-                    'assets/pigSleeping.png',
-                  ),
-                ),
-              ],
-            )
-                : Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'transactions'.i18n(),
+                        'no_expenses'.i18n(),
                         style: TextStyle(
-                          fontFamily: 'sans-serif-light',
-                          fontSize: 16,
                           color: Colors.black,
+                          fontFamily: 'Arial',
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Text(
-                        'value'.i18n(),
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'sans-serif-light',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      SizedBox(
+                        height: 200,
+                        width: 200,
+                        child: Image.asset(
+                          'assets/pigSleeping.png',
                         ),
-                      )
+                      ),
                     ],
-                  ),
-                ),
-                const Divider(),
+                  )
+                : Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'transactions'.i18n(),
+                              style: TextStyle(
+                                fontFamily: 'sans-serif-light',
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              'value'.i18n(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'sans-serif-light',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const Divider(),
 
-                // listview widgets (trocar para logica transações
+                      // listview widgets (trocar para logica transações
 
-                ListView.separated(
-                  primary: false,
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: _lista.length,
-                  itemBuilder: (context, index) => ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 60,
-                      height: 60,
-                      clipBehavior: Clip.antiAlias,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: AppColors.primary.withOpacity(0.1)),
+                      ListView.separated(
+                        primary: false,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) => const Divider(),
+                        itemCount: _lista.length,
+                        itemBuilder: (context, index) => DismissibleWidget(
+                          onDismissed: ((p0) =>
+                              _dialogBuilder(context, remove, index)),
+                          item: _lista[index],
+                          child: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Container(
+                              width: 60,
+                              height: 60,
+                              clipBehavior: Clip.antiAlias,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: AppColors.primary.withOpacity(0.1)),
+                              ),
+                              child: Image.asset(
+                                  'assets/' +
+                                      _lista[index].subC.assetsName +
+                                      '.png',
+                                  fit: BoxFit.contain,
+                                  width: 45,
+                                  height: 45),
+                            ),
+                            title: Text(_lista[index].title,
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontFamily: 'sans-serif-light',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                            subtitle: Text(
+                              DateFormat(DateFormat.YEAR_MONTH_DAY,
+                                      locale.toString())
+                                  .format(_lista[index].dateTime),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            trailing: Text(
+                              'R\$ ${_lista[index].value.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Image.asset(
-                          'assets/' +
-                              _lista[index].subC.assetsName +
-                              '.png',
-                          fit: BoxFit.contain,
-                          width: 45,
-                          height: 45),
-                    ),
-                    title: Text(_lista[index].title,
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontFamily: 'sans-serif-light',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        )),
-                    subtitle: Text(
-                      DateFormat(DateFormat.YEAR_MONTH_DAY,
-                          locale.toString())
-                          .format(_lista[index].dateTime),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    trailing: Text(
-                      'R\$ ${_lista[index].value.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
+                    ],
+                  )
           ],
         ),
       ),
@@ -264,11 +276,11 @@ class _HomePage2State extends State<HomePage2> {
         boxShadow: isSavings
             ? []
             : [
-          BoxShadow(
-              color: AppColors.third.withOpacity(0.4),
-              offset: const Offset(1, 0),
-              blurRadius: 10),
-        ],
+                BoxShadow(
+                    color: AppColors.third.withOpacity(0.4),
+                    offset: const Offset(1, 0),
+                    blurRadius: 10),
+              ],
       ),
 
 //graficos adicionar logica
@@ -368,5 +380,67 @@ Column _reportInner(
         ),
       ),
     ],
+  );
+}
+
+class DismissibleWidget<T> extends StatelessWidget {
+  final Widget child;
+  final T item;
+  Future<bool?> Function(DismissDirection) onDismissed;
+
+  DismissibleWidget({
+    Key? key,
+    required this.child,
+    required this.item,
+    required this.onDismissed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Dismissible(
+        direction: DismissDirection.endToStart,
+        key: ObjectKey(item),
+        background: Container(
+          alignment: AlignmentDirectional.centerEnd,
+          child: Icon(
+            Icons.delete_forever_outlined,
+            color: Colors.white,
+          ),
+          color: Colors.red,
+        ),
+        child: child,
+        confirmDismiss: onDismissed,
+      );
+}
+
+Future<bool?> _dialogBuilder(BuildContext context, Function remove, int index) {
+  return showDialog<bool?>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Remover'),
+        content: const Text('Tem certeza que deseja remover essa transação?'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Sim'),
+            onPressed: () {
+              remove(index);
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Não'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
   );
 }
