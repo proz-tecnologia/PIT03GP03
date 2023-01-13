@@ -15,8 +15,12 @@ class Utils {
           subCategory: [
             SubCategory(
                 name: 'Restaurante',
-                assetsName: 'fast-food',
+                assetsName: 'hamburger',
+                isSelected: false),SubCategory(
+                name: 'Frutas',
+                assetsName: 'comidas2',
                 isSelected: false),
+
             SubCategory(
                 name: 'Bebidas',
                 assetsName: 'sub5',
@@ -35,24 +39,24 @@ class Utils {
       Category(
           name: 'Transporte',
           color: AppColors.TRANSPORT,
-          assetsName: 'maintenance', subCategory: [
+          assetsName: 'carro', subCategory: [
         SubCategory(name: 'Combustivel',
-                assetsName: 'sub4',
-                isSelected: false),
-        SubCategory(name: 'Estacionamento',
-                assetsName: 'parking-car',
-                isSelected: false),
+            assetsName: 'sub4',
+            isSelected: false),
         SubCategory(name: 'Serviços e Manunteções',
-                assetsName: 'sub2',
-                isSelected: false),
-        SubCategory(name: ' Recarga de Cartão',
-                assetsName: 'sub1',
-                isSelected: false),
+            assetsName: 'sub2',
+            isSelected: false)        ,
+         SubCategory(name: 'APP',
+            assetsName: 'carro',
+            isSelected: false),SubCategory(name: 'App',
+            assetsName: 'sub340',
+            isSelected: false), SubCategory(name: 'Estacionamento',
+            assetsName: 'car',
+            isSelected: false),
 
 
 
-
-      ], qtdSubCat: 4,
+      ], qtdSubCat: 7,
           ),
       Category(
           name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta',
@@ -68,6 +72,12 @@ class Utils {
            isSelected: false)
        ,SubCategory(name: 'Celular',
            assetsName: 'sub26',
+           isSelected: false),
+       SubCategory(name: 'Aluguel',
+           assetsName: 'banco',
+           isSelected: false),
+       SubCategory(name: 'Aluguel',
+           assetsName: 'cartoes-de-credito',
            isSelected: false),
        SubCategory(name: 'Aluguel',
            assetsName: 'sub29',
@@ -89,10 +99,15 @@ class Utils {
             isSelected: false),
 
       ], qtdSubCat: 3,
-             ),    Category(
+             )  ,
+
+
+
+
+      Category(
           name: 'Shopping',
           color: AppColors.SHOPPING,
-          assetsName: 'bolsa-de-compras', subCategory: [
+          assetsName: 'sub16', subCategory: [
         SubCategory(name: 'Roupas',
             assetsName: 'sub16',
             isSelected: false),
@@ -112,19 +127,20 @@ class Utils {
         SubCategory(name: 'Netflix',
             assetsName: 'sub34',
             isSelected: false),
+        SubCategory(name: 'Jogos',
+            assetsName: 'sub32',
+            isSelected: false),SubCategory(name: 'Jogos',
+            assetsName: 'playstore',
+            isSelected: false),
         SubCategory(name: "Spotify",
             assetsName: 'sub33',
             isSelected: false),
-        SubCategory(name: 'Jogos',
-            assetsName: 'sub32',
-            isSelected: false),
-        SubCategory(name: 'Jogos-Online',
-            assetsName: 'online-gaming',
-            isSelected: false),
+
+
       ], qtdSubCat: 4,
          ),
 
-      Category(name: 'Saúde', color: AppColors.HEALTH, assetsName: 'health', subCategory: [
+      Category(name: 'Saúde', color: AppColors.HEALTH, assetsName: 'sub123', subCategory: [
         SubCategory(name: 'Hospital',
             assetsName: 'sub23',
             isSelected: false),
@@ -133,6 +149,8 @@ class Utils {
             isSelected: false),
         SubCategory(name: 'Farmacia ',
             assetsName: 'farmacia',
+            isSelected: false),  SubCategory(name: 'Farmacia ',
+            assetsName: 'mental',
             isSelected: false),
 
 
