@@ -7,7 +7,8 @@ import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transactions_green.dart';
 import '../../../constants/transaction_controller.dart';
 import '../../../controller/home_controller.dart';
-import '../../../utils/theme/colors.dart';
+import 'package:green/helpers/AppColors.dart';
+
 
 class CreatBudgetPage extends StatefulWidget {
   @override
@@ -65,7 +66,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
     return SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
-        decoration: const BoxDecoration(color: white, boxShadow: [
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(
             color: Colors.transparent,
             spreadRadius: 10,
@@ -110,16 +111,16 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                     width: 150,
                     height: 150,
                     decoration: BoxDecoration(
-                        color: white,
+                        color: AppColors.white,
                         border: Border.all(
                             width: 2, //cards colors
                             color: activeCategory == index
-                                ? primary
+                                ? AppColors.primary
                                 : Colors.transparent),
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: grey.withOpacity(0.01),
+                            color: AppColors.primary.withOpacity(0.01),
                             spreadRadius: 10,
                             blurRadius: 3,
                             // changes position of shadow
@@ -137,7 +138,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                               height: 70,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: grey.withOpacity(0.15)),
+                                  color: AppColors.grey.withOpacity(0.15)),
                               child: Center(
                                 child: Image.asset(
                                   images[index],
@@ -216,9 +217,9 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                               ),
                               onChanged: (value) =>
                                   controller.value = double.parse(value),
-                              cursorColor: black,
+                              cursorColor: AppColors.black,
                               style:
-                                  const TextStyle(fontSize: 17, color: black),
+                                  const TextStyle(fontSize: 17, color: AppColors.black),
                             ),
                           ],
                         ),

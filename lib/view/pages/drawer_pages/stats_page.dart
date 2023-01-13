@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green/models/category.dart';
-
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_detail_page.dart';
+
+
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:page_transition/page_transition.dart';
@@ -20,6 +21,7 @@ class MeuGreenCreat extends StatefulWidget {
 class _MeuGreenCreatState extends State<MeuGreenCreat> {
   final fomrKey = GlobalKey<FormState>();
   final TransActionController controller = TransActionController();
+
   // final TextEditingController _txtDateTimeController = TextEditingController();
   // final TextEditingController _budgetName = TextEditingController(text: '');
 
@@ -75,30 +77,8 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                     ),
-                    width: size.width * .7,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                    width: size.width * 0.7,
 
-                        const Expanded(
-                            child: TextField(
-                              showCursor: false,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                              ),
-                            )),
-                        Icon(
-                          Icons.mic,
-                          color: Colors.white.withOpacity(.6),
-                        ),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(.1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
                   )
                 ],
               ),
@@ -106,8 +86,9 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
             SizedBox(
               height: size.height * 0.3,
               child: ListView.builder(
-                  itemCount: _greenList.length,
+                    itemCount: categories.length,
                   scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
@@ -116,11 +97,15 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                             PageTransition(
                                 child: MeuGreenDetailPage(
                                   categoryId: _greenList[index].categoryId,
+                                  name: categories[index].name,
+                                  assetsName: categories[index].assetsName,
+                                  listSub: categories[index].subCategory,
+
                                 ),
                                 type: PageTransitionType.bottomToTop));
                       },
                       child: Container(
-                        width: 200,
+                        width: 170,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Stack(
                           children: [
@@ -157,7 +142,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                               right: 50,
                               top: 50,
                               bottom: 50,
-                              child: Image.asset(_greenList[index].image),
+                              child:  Image.asset('assets/'+ categories[index].assetsName + '.png',fit: BoxFit.contain),
                             ),
                             Positioned(
                               bottom: 15,
@@ -167,7 +152,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                                 children: [
 
                                   Text(
-                                    (_greenList[index].tittle).i18n(),
+                                    (categories[index].name).i18n(),
                                     style: const TextStyle(
                                       color: Colors.white70,
                                       fontSize: 15,
@@ -180,7 +165,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                           ],
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          color: categories[index].color,
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
@@ -216,10 +201,9 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                       border:
                       Border.all(color: Colors.green.withOpacity(0.1)),
                     ),
-                    child: Image.asset(_greenList[index].image,
-                        fit: BoxFit.cover, width: 45, height: 45),
+                    child:Image.asset('assets/'+ categories[index].assetsName + '.png',fit: BoxFit.cover,width: 45,height: 45,),
                   ),
-                  title: Text(_greenList[index].tittle,
+                  title: Text(categories[index].name,
                       style: const TextStyle(
                         color: Colors.black87,
                         fontFamily: 'sans-serif-light',

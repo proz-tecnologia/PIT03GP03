@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
-
+import 'package:green/helpers/AppColors.dart';
 import '../../../controller/home_controller.dart';
-import '../../../utils/theme/colors.dart';
+
 
 class MeuGreenProfile extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
         },
         icon: Icon(
           Icons.arrow_back_ios,
-          color: black,
+          color: AppColors.black,
           size: 22,
         ),
       ),
@@ -60,9 +60,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            decoration: BoxDecoration(color: white, boxShadow: [
+            decoration: BoxDecoration(color: AppColors.white, boxShadow: [
               BoxShadow(
-                color: grey.withOpacity(0.01),
+                color: AppColors.grey.withOpacity(0.01),
                 spreadRadius: 10,
                 blurRadius: 3,
                 // changes position of shadow
@@ -83,11 +83,11 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 quarterTurns: -2,
                                 child: CircularPercentIndicator(
                                     circularStrokeCap: CircularStrokeCap.round,
-                                    backgroundColor: grey.withOpacity(0.3),
+                                    backgroundColor: AppColors.grey.withOpacity(0.3),
                                     radius: 110.0,
                                     lineWidth: 6.0,
                                     percent: 0.53,
-                                    progressColor: primary),
+                                    progressColor: AppColors.primary),
                               ),
                               Positioned(
                                 top: 16,
@@ -125,7 +125,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Arial',
-                              color: black),
+                              color: AppColors.black),
                         ),
                         SizedBox(
                           height: 12,
@@ -143,7 +143,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: primary.withOpacity(0.01),
+                            color: AppColors.primary.withOpacity(0.01),
                             spreadRadius: 10,
                             blurRadius: 3,
                             // changes position of shadow
@@ -163,7 +163,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 13,
-                                    color: white),
+                                    color: AppColors.white),
                               ),
                               SizedBox(
                                 height: 10,
@@ -173,7 +173,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,
-                                    color: white),
+                                    color: AppColors.white),
                               ),
                               SizedBox(
                                 height: 10,
@@ -193,11 +193,11 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 keyboardType:
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
-                                cursorColor: white,
+                                cursorColor: AppColors.white,
                                 style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.bold,
-                                    color: white),
+                                    color: AppColors.white),
                                 decoration: InputDecoration(
                                   hintText:
                                       "${Provider.of<HomeController>(context, listen: false).limite}",
@@ -234,12 +234,12 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: white)),
+                                  border: Border.all(color: AppColors.white)),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   "Atualizar",
-                                  style: TextStyle(color: white),
+                                  style: TextStyle(color: AppColors.white),
                                 ),
                               ),
                             ),
@@ -269,9 +269,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                 ),
                 TextField(
                   controller: _email,
-                  cursorColor: black,
+                  cursorColor: AppColors.black,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: black),
+                      fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
                   decoration: InputDecoration(
                       hintText: "Email", border: InputBorder.none),
                 ),
@@ -287,9 +287,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                 ),
                 TextField(
                   controller: dateOfBirth,
-                  cursorColor: black,
+                  cursorColor: AppColors.black,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: black),
+                      fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
                   decoration:
                       InputDecoration(hintText: "", border: InputBorder.none),
                 ),
@@ -306,9 +306,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                 TextField(
                   obscureText: true,
                   controller: password,
-                  cursorColor: black,
+                  cursorColor: AppColors.black,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: black),
+                      fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
                   decoration: InputDecoration(
                       hintText: "Password", border: InputBorder.none),
                 ),
