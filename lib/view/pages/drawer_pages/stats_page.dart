@@ -198,13 +198,13 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                   border: Border.all(color: Colors.green.withOpacity(0.1)),
                 ),
                 child: Image.asset(
-                  'assets/' + categories[index].assetsName + '.png',
+                  'assets/' +transactionList[index].subC.assetsName + '.png',
                   fit: BoxFit.cover,
                   width: 45,
                   height: 45,
                 ),
               ),
-              title: Text(categories[index].name,
+              title: Text(transactionList[index].title,
                   style: const TextStyle(
                     color: Colors.black87,
                     fontFamily: 'sans-serif-light',
