@@ -87,7 +87,7 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
         initialRoute: '/',
         routes: {
           '/': (context) => const SplashScreen(),
-          '/login': (context) => const LoginPage(),
+          '/login': (context) =>  LoginPage(),
           '/sinup': (context) => SignUp(),
           '/onboarding': (context) => const OnboardingScreen(),
           '/home': (context) => const AuthCheck(),

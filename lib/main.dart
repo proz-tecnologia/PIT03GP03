@@ -10,12 +10,12 @@ import 'model/provider/app_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-
+     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_)=>AuthService()),
+  //    ChangeNotifierProvider(create: (context) => AuthService()),
       ChangeNotifierProvider(
           create: (context) => HomeController()),
     ], child: AppProvider()),

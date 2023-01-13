@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: InkWell(
               onTap: () {
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => const LoginPage()));
+                    context, MaterialPageRoute(builder: (_) =>  LoginPage()));
               }, //to login screen. We will update later
               child: const Text(
                 'Pular',
@@ -106,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         }
                       } else {
                         Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (_) => const LoginPage()));
+                            MaterialPageRoute(builder: (_) =>  LoginPage()));
                       }
                     });
                   },

@@ -21,8 +21,10 @@ class SelectCategory extends StatelessWidget {
     final locale = Localizations.localeOf(context);
     var size = MediaQuery.of(context).size;
     return Scaffold(
-
-
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        elevation: 0,
+      ),
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Container(
           child: getBody(controller.transactionList, locale, size),
@@ -40,40 +42,41 @@ class SelectCategory extends StatelessWidget {
 
     return SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Container(
-        padding: const EdgeInsets.only(top: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-              ),
-              width: size.width * 0.6,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(20),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        height: size.height * 0.3,
-        child: ListView.builder(
-            itemCount: categories.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, index) => GestureDetector(
+          Container(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                  ),
+                  width: size.width * 0.6,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: size.height * 0.3,
+            child: ListView.builder(
+                itemCount: categories.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, index) => GestureDetector(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => MeuGreenDetailPage(
-                                  categoryId: 0,
-                                  assetsName: '',
-                                  listSub: [],
-                                  name: '', isSelect: false,
-                                )));
+                              categoryId: 0,
+                              assetsName: '',
+                              listSub: [],
+                              name: '',
+                              isSelect: false,
+                            )));
                   },
                   child: Container(
                     width: 170,
@@ -144,38 +147,38 @@ class SelectCategory extends StatelessWidget {
                     ),
                   ),
                 )),
-      ),
-      Container(
-        padding: const EdgeInsets.only(left: 16, bottom: 20, top: 20),
-        child: Text(
-          'transactions'.i18n(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
           ),
-        ),
-      ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, bottom: 20, top: 20),
+            child: Text(
+              'transactions'.i18n(),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+              ),
+            ),
+          ),
 
-      // child: ListView.builder(
-      //     itemCount: _greenList.length,
-      //     scrollDirection: Axis.vertical,
-      //     physics: const BouncingScrollPhysics(),
-      //     itemBuilder: (BuildContext context, int index) {
-      //       return GestureDetector(
-      //           onTap: () {
-      //             Navigator.push(
-      //                 context,
-      //                 PageTransition(
-      //                     child: MeuGreenDetailPage(
-      //                       categoryId: _greenList[index].categoryId,
-      //                     ),
-      //                     type: PageTransitionType.topToBottom));
-      //           },
-      //           child: MeuGreenWidgetPage(
-      //             index: index,
-      //             greenList: _greenList,
-      //           ));
-      //     }),
-    ]));
+          // child: ListView.builder(
+          //     itemCount: _greenList.length,
+          //     scrollDirection: Axis.vertical,
+          //     physics: const BouncingScrollPhysics(),
+          //     itemBuilder: (BuildContext context, int index) {
+          //       return GestureDetector(
+          //           onTap: () {
+          //             Navigator.push(
+          //                 context,
+          //                 PageTransition(
+          //                     child: MeuGreenDetailPage(
+          //                       categoryId: _greenList[index].categoryId,
+          //                     ),
+          //                     type: PageTransitionType.topToBottom));
+          //           },
+          //           child: MeuGreenWidgetPage(
+          //             index: index,
+          //             greenList: _greenList,
+          //           ));
+          //     }),
+        ]));
   }
 }

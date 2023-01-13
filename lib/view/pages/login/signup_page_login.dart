@@ -1,12 +1,19 @@
+
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
 import 'custom_text.dart';
 import 'login_page.dart';
 
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +78,7 @@ class SignUp extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          child: const LoginPage(),
+                          child:  LoginPage(),
                           type: PageTransitionType.bottomToTop));
                 },
                 child: Center(
@@ -100,3 +107,7 @@ class SignUp extends StatelessWidget {
     );
   }
 }
+
+
+
+
