@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -85,7 +83,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         }
       });
 
-
     Timer(Duration(seconds: 2), () {
       firstController.forward();
     });
@@ -99,7 +96,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     });
 
     fourthController.forward();
-
   }
 
   @override
@@ -151,11 +147,11 @@ class MyPainter extends CustomPainter {
   final double fourthValue;
 
   MyPainter(
-      this.firstValue,
-      this.secondValue,
-      this.thirdValue,
-      this.fourthValue,
-      );
+    this.firstValue,
+    this.secondValue,
+    this.thirdValue,
+    this.fourthValue,
+  );
 
   @override
   void paint(Canvas canvas, Size size) {

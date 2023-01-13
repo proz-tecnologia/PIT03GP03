@@ -121,22 +121,7 @@ flutter:
     - assets/manutencao.png
     - assets/pet-shop.png
     - assets/google.png
-    - assets/drink.png
-    - assets/fast-food.png
-    - assets/gas-pump.png
-    - assets/gifts.png
-    - assets/hamburger.png
-    - assets/health.png
-    - assets/maintenance.png
-    - assets/online-gaming.png
-    - assets/other.png
-    - assets/parking-car.png
-    - assets/cinema.png
-    - assets/carro.png
-    - assets/bolsa-de-compras.png
     - assets/home.png
-    - assets/kids.png
-    - assets/drinks.png
     - assets/restaurant.png
     - assets/restaurant.png
     - assets/sub1.png
@@ -178,6 +163,10 @@ flutter:
 
   fonts:
 
+    - family: GreenIcons
+      fonts:
+        - asset: assets/fonts/GreenIcons.ttf
+
     - family: Khang
       fonts:
         - asset: assets/fonts/Khang-Light.ttf
@@ -193,4 +182,5 @@ flutter:
         - asset: assets/fonts/MyFlutterApp.ttf
           weight: 700
 
-
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages

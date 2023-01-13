@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:green/model/meu_green_category.dart';
-import 'package:green/models/category.dart';
-import 'package:green/models/category_options.dart';
-
-import 'meu_green_detail_page.dart';
-import 'meu_green_widgets.dart';
 
 class FavoritePage extends StatefulWidget {
   final List<GreenList> categoryFavorited;
@@ -18,36 +13,34 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        elevation: 0,
-      ),
-      body: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 100,
-                    child: Image.asset('assets/favorited.png'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Minhas Transações Favoritas',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
+        appBar: AppBar(
+          backgroundColor: Colors.green,
+          elevation: 0,
+        ),
+        body: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 100,
+                child: Image.asset('assets/favorited.png'),
               ),
-            )
-
-    );
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Minhas Transações Favoritas',
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

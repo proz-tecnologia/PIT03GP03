@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:green/view/pages/login/signup_page_login.dart';
 import 'package:localization/localization.dart';
 
 import '../../../constants/credential/users_credential.dart';
@@ -16,11 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  //final _formKey = GlobalKey<FormState>();
-  //String _email = "";
-  //String _password = "";
   UserCredential? _userCredential;
-  //bool _canShowPassword = false;
 
   @override
   void initState() {
@@ -67,23 +62,17 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 26, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 20),
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (_) => const SignUp()));
-                          });
-                        }, child: Text('accounts_up'.i18n(),style: TextStyle(fontSize: 15),),
+                      Text(
+                        'accounts_up'.i18n(),
+                        style: TextStyle(fontSize: 15),
                       ),
                       SizedBox(height: 10),
                       InputLoginWidget(),
                       SizedBox(
                         height: 10,
                       ),
-                      TextButtonExpanded(label: 'esqueceu a senha'),
-                      CreaterAcount(label: ' cadastro'),
-
-
+                      TextButtonExpanded(),
+                      CreaterAcount(),
                     ],
                   ),
                 ),

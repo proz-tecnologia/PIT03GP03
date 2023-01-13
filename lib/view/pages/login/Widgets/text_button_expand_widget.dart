@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 
-//widget  esqueceu a seenha
-class TextButtonExpanded extends StatelessWidget {
-  final String label;
+import '../signup_page_login.dart';
 
+//widget problemas ao fazer o login
+class TextButtonExpanded extends StatelessWidget {
   const TextButtonExpanded({
     Key? key,
-    required this.label,
   }) : super(key: key);
 
   @override
@@ -38,7 +37,6 @@ class TextButtonExpanded extends StatelessWidget {
 class CreaterAcount extends StatelessWidget {
   const CreaterAcount({
     Key? key,
-    required String label,
   }) : super(key: key);
 
   @override
@@ -47,7 +45,10 @@ class CreaterAcount extends StatelessWidget {
       children: [
         Expanded(
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => const SignUp()));
+            },
             style: TextButton.styleFrom(
               backgroundColor: Colors.transparent,
               foregroundColor: Colors.green,
