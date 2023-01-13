@@ -24,6 +24,25 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
   //bool _canShowPassword = false;
 
   final fomrKey = GlobalKey<FormState>();
+final email =TextEditingController();
+final senha=TextEditingController();
+
+bool isLogin=true;
+late String  titulo;
+late String  actionButton;
+late String toogleButoon;
+
+@override
+  void initState() {
+    super.initState();
+    setFormAction(true);
+  }
+setFormAction(bool action){
+  setState(() {
+
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green/utils/configs/pages_settings.dart';
 import 'package:green/view/pages/drawer_pages/meuGreen.dart';
+import 'package:green/view/pages/drawer_pages/widgets/auth_check.dart';
 import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
 import 'package:green/view/pages/login/signup_page_login.dart';
@@ -89,7 +90,7 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
           '/login': (context) => const LoginPage(),
           '/sinup': (context) => SignUp(),
           '/onboarding': (context) => const OnboardingScreen(),
-          '/home': (context) => const HomePage2(),
+          '/home': (context) => const AuthCheck(),
           '/metas': (context) => const MeuGreenMetas(),
           '/meuGreen': (context) => RootApp(),
           '/config': (context) => ConfiguracoesPage(),

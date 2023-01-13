@@ -97,7 +97,8 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
             width: double.infinity,
             height: 400,
             decoration: BoxDecoration(
-                color: categories[widget.categoryId].color,
+                // color: categories[widget.categoryId].color,
+              color: AppColors.primary,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),
                   bottomLeft: Radius.circular(20),
@@ -322,6 +323,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.spaceBetween,
                                                 children: [
+                                                  Confirmation(),
                                                   ElevatedButton(
                                                       onPressed: () {
                                                         setState(() async {
@@ -364,6 +366,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                                                           )
                                                                       )
           ),
+
 
                                   ])
                                 ],

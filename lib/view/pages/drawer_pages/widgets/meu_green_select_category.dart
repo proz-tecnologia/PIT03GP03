@@ -21,10 +21,8 @@ class SelectCategory extends StatelessWidget {
     final locale = Localizations.localeOf(context);
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        elevation: 0,
-      ),
+
+
       body: Consumer<HomeController>(builder: (context, controller, __) {
         return Container(
           child: getBody(controller.transactionList, locale, size),
@@ -74,7 +72,7 @@ class SelectCategory extends StatelessWidget {
                                   categoryId: 0,
                                   assetsName: '',
                                   listSub: [],
-                                  name: '',
+                                  name: '', isSelect: false,
                                 )));
                   },
                   child: Container(
