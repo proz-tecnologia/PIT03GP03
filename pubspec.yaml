@@ -44,7 +44,7 @@ dependencies:
   currency_text_input_formatter: ^2.1.7
   font_awesome_flutter: ^10.3.0
   liquid_progress_indicator: ^0.4.0
-  cloud_firestore: ^4.3.1
+
 dev_dependencies:
   flutter_test:
 
