@@ -164,13 +164,11 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
 
       case 5:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ConfiguracoesPage()));
+        Navigator.pushNamed(context, 'config');
         break;
 
       case 6:
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.pushNamed(context, '/login');
         break;
 
       default:

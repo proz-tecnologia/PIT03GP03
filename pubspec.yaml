@@ -101,13 +101,13 @@ flutter:
     - assets/logo.png
     - assets/login2.png
     - assets/pigSleeping.png
-    -  assets/contas.png
-    -  assets/avatar.png
-    -  assets/metas.png
-    -  assets/pagamentos.png
-    -  assets/mcdonalds.png
-    -  assets/gas-station.png
-    -  assets/combustivel.png
+    - assets/contas.png
+    - assets/avatar.png
+    - assets/metas.png
+    - assets/pagamentos.png
+    - assets/mcdonalds.png
+    - assets/gas-station.png
+    - assets/combustivel.png
     - assets/comida.png
     - assets/comidas2.png
     - assets/academia.png
@@ -158,26 +158,10 @@ flutter:
     - assets/gastos.png
     - assets/gastos2.png
     - assets/mais.png
-    - assets/mais12.png
     - assets/manutencao.png
     - assets/pet-shop.png
     - assets/google.png
-    - assets/drinks.png
-    - assets/fast-food.png
-    - assets/gas-pump.png
-    - assets/gifts.png
-    - assets/hamburger.png
-    - assets/health.png
-    - assets/maintenance.png
-    - assets/online-gaming.png
-    - assets/other.png
-    - assets/parking-car.png
-    - assets/cinema.png
-    - assets/carro.png
-    - assets/bolsa-de-compras.png
     - assets/home.png
-    - assets/kids.png
-    - assets/drinks.png
     - assets/restaurant.png
     - assets/restaurant.png
     - lib/i18n/
@@ -197,6 +181,10 @@ flutter:
 
   fonts:
 
+    - family: GreenIcons
+      fonts:
+        - asset: assets/fonts/GreenIcons.ttf
+
     - family: Khang
       fonts:
         - asset: assets/fonts/Khang-Light.ttf
@@ -211,7 +199,6 @@ flutter:
           weight: 700
         - asset: assets/fonts/MyFlutterApp.ttf
           weight: 700
-
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
