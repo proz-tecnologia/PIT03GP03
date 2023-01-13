@@ -97,6 +97,10 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                             PageTransition(
                                 child: MeuGreenDetailPage(
                                   categoryId: _greenList[index].categoryId,
+                                  name: categories[index].name,
+                                  assetsName: categories[index].assetsName,
+                                  listSub: categories[index].subCategory,
+
                                 ),
                                 type: PageTransitionType.bottomToTop));
                       },

@@ -9,7 +9,7 @@ class Utils {
    static List<Category> getMockedCategories() {
     return [
       Category(
-          name: 'Alimentação',
+          name: 'Refeições',
           color: AppColors.FOOD,
           assetsName: 'sub6',
           subCategory: [
@@ -30,7 +30,7 @@ class Utils {
 
 
 
-          ]),
+          ], qtdSubCat: 3),
 
       Category(
           name: 'Transporte',
@@ -52,7 +52,7 @@ class Utils {
 
 
 
-      ],
+      ], qtdSubCat: 4,
           ),
       Category(
           name: 'Contas', color: AppColors.DARK_GREEN, assetsName: 'conta',
@@ -73,7 +73,7 @@ class Utils {
            assetsName: 'sub29',
            isSelected: false),
 
-     ]),
+     ], qtdSubCat: 5),
       Category(
           name: 'Casa',
           color: AppColors.HOME,
@@ -88,7 +88,7 @@ class Utils {
             assetsName: 'sub14',
             isSelected: false),
 
-      ],
+      ], qtdSubCat: 3,
              ),    Category(
           name: 'Shopping',
           color: AppColors.SHOPPING,
@@ -103,7 +103,7 @@ class Utils {
             assetsName: 'sub14',
             isSelected: false),
 
-      ],
+      ], qtdSubCat: 3,
              ),
       Category(
           name: 'Streaming',
@@ -121,7 +121,7 @@ class Utils {
         SubCategory(name: 'Jogos-Online',
             assetsName: 'online-gaming',
             isSelected: false),
-      ],
+      ], qtdSubCat: 4,
          ),
 
       Category(name: 'Saúde', color: AppColors.HEALTH, assetsName: 'health', subCategory: [
@@ -138,7 +138,7 @@ class Utils {
 
 
 
-      ],
+      ], qtdSubCat: 3,
          ),
 
       Category(
@@ -161,7 +161,7 @@ class Utils {
 
 
 
-       ]
+       ], qtdSubCat: 4
       ),
 
 

@@ -24,8 +24,7 @@ class _FavoritePageState extends State<FavoritePage> {
         backgroundColor: Colors.green,
         elevation: 0,
       ),
-      body: widget.categoryFavorited.isEmpty
-          ? Center(
+      body: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -48,17 +47,7 @@ class _FavoritePageState extends State<FavoritePage> {
                 ],
               ),
             )
-          : Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
-              height: size.height * .5,
-              child: ListView.builder(
-                  itemCount: widget.categoryFavorited.length,
-                  scrollDirection: Axis.vertical,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return MeuGreenDetailPage(categoryId: 0, );
-                  }),
-            ),
+
     );
   }
 }
