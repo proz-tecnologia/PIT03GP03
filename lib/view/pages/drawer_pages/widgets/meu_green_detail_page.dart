@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/home_controller.dart';
-import 'package:green/model/mocks/subCategory.dart';
 import 'package:green/models/category.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants/transaction_controller.dart';
-import '../../../../controller/category_controller.dart';
 import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
 import 'package:green/helpers/AppColors.dart';
@@ -69,7 +67,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     Size size = MediaQuery.of(context).size;
     //lists
 
-    List<GreenList> _greenList = GreenList.categoryList;
+
     List<Category> _categories = Utils.getMockedCategories();
 
     return Scaffold(
@@ -150,7 +148,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
           child: SafeArea(
             child: Container(
               padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
-              height: size.height * 0.5,
+              height: size.height * 0.6,
               width: size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -211,13 +209,14 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                           widget.listSub[index].assetsName +
                                           '.png',
                                       fit: BoxFit.contain,
-                                      width: 70,
-                                      height: 70),
+                                      width: 60,
+                                      height: 60),
                                 ),
                               ));
                         },
                       ),
                     ),
+                    Divider(),
                     Positioned(
                         bottom: 0,
                         left: 0,
@@ -317,7 +316,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 20,
+                                    height: 25,
                                   ),
                                   Row(
                                                 mainAxisAlignment:
