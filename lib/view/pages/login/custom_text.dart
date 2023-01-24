@@ -13,7 +13,9 @@ class CustomTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+
       obscureText: obscureText,
+      autocorrect: true,
       style: TextStyle(
         color: Colors.black,
       ),
@@ -21,6 +23,7 @@ class CustomTextfield extends StatelessWidget {
         border: InputBorder.none,
         prefixIcon: Icon(icon, color: Colors.black.withOpacity(.3),),
         hintText: hintText,
+
       ),
       cursorColor: Colors.black.withOpacity(.5),
     );

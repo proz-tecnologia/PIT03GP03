@@ -16,69 +16,79 @@ class _PageEmailState extends State<PageEmail> {
   final email=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      key: fomrKey,
-      color: Colors.white70,
+    return  Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        key: fomrKey,
+        color: Colors.white70,
 
-      child: Column(
-          children: [
-            SizedBox(
-              height: 82,
-            ),
-
-            // Text(
-            //   "Boas-Vindas ao GREEN !",
-            //   style: TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 30,
-            //       color: AppColors.black),
-            //
-            // ),
-            SizedBox(
-              height: 5,
-            ),
-            Text('Em qual e-mail podemos fazer o seu cadastro?',style: TextStyle(
-                fontSize: 25,fontWeight: FontWeight.bold
-            ),),
-
-
-            SizedBox(height: 10,),
-            Text('Ele será usado para realizar login e novidades sobre o seu GREEN..',style: TextStyle(
-                fontSize: 16,color: AppColors.grey
-            ),),Align(
-              alignment: Alignment.bottomLeft,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: email,
-              cursorColor: AppColors.black,
-
-              autocorrect: true,
-              autovalidateMode:
-              AutovalidateMode.onUserInteraction,
-              validator: (String? value) {
-                if (value!.isEmpty) {
-                  return "required_field".i18n();
-                }
-
-                return null;
-              },
-              style: TextStyle(
-                  fontSize: 17,
-
-                  color:Colors.black),
-              decoration: InputDecoration(
-
-                  hintText: " ",
-                  hintStyle: TextStyle(
-                      color: Colors.grey
-                  )
+        child: Column(
+            children: [
+              SizedBox(
+                height: 82,
               ),
-            ),
-          ]),
 
+              // Text(
+              //   "Boas-Vindas ao GREEN !",
+              //   style: TextStyle(
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 30,
+              //       color: AppColors.black),
+              //
+              // ),
+              SizedBox(
+                height: 5,
+              ),
+              Text('Em qual e-mail podemos fazer o seu cadastro?',style: TextStyle(
+                  fontSize: 25,fontWeight: FontWeight.bold
+              ),),
+
+
+              SizedBox(height: 10,),
+              Text('Ele será usado para realizar login e novidades sobre o seu GREEN..',style: TextStyle(
+                  fontSize: 16,color: AppColors.grey
+              ),),Align(
+                alignment: Alignment.bottomLeft,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+
+                child: TextFormField(
+keyboardType: TextInputType.emailAddress,
+
+                  controller: email,
+                  cursorColor: AppColors.black,
+                  autocorrect: true,
+                  autofocus: true,
+                  autovalidateMode:
+                  AutovalidateMode.onUserInteraction,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "required_field".i18n();
+                    }
+
+                    return null;
+                  },
+                  style: TextStyle(
+                      fontSize: 17,
+
+                      color:Colors.black),
+                  decoration: InputDecoration(
+
+                      prefixIcon: Icon(Icons.email, color: Colors.black.withOpacity(.2) ,),
+                      hintText: " ",
+
+                      hintStyle: TextStyle(
+                          color: Colors.grey
+                      )
+                  ),
+                ),
+              ),
+            ]),
+
+      ),
     );
 
 
