@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:green/helpers/AppColors.dart';
+import 'package:green/stores/user.store.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
-
 import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transactions_green.dart';
-import '../../../controller/home_controller.dart';
 import '../drawer_pages/drawer_page.dart';
 
 class HomePage2 extends StatefulWidget {
@@ -17,33 +18,29 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePage2State extends State<HomePage2> {
+  final _controller = GetIt.instance.get<ControllerHome>();
+  final userStore = GetIt.instance.get<UserStore>();
+
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context);
 
-    double limiteRecuperado =
-        Provider.of<HomeController>(context, listen: false).limite;
-    double totalGeral =
-        Provider.of<HomeController>(context, listen: false).total;
-
     return Scaffold(
-      appBar: _buildAppBar(totalGeral, limiteRecuperado),
+      appBar: _buildAppBar(_controller.total, userStore.profile!.limite),
       drawer: DrawerApp(),
-      body: Consumer<HomeController>(builder: (context, controller, __) {
-        return Column(
-          children: [
-            _appbarBotomSection(
-              controller.total,
-              controller.limite,
-            ),
-            mainBoard(
-              controller.transactionList,
-              locale,
-              controller.removeTransAction,
-            ),
-          ],
-        );
-      }),
+      body: Column(
+        children: [
+          _appbarBotomSection(
+            _controller.total,
+            userStore.profile!.limite,
+          ),
+          mainBoard(
+            _controller.transactionList,
+            locale,
+            _controller.removeTransAction,
+          ),
+        ],
+      ),
     );
   }
 
@@ -193,58 +190,63 @@ class _HomePage2State extends State<HomePage2> {
 
                       // listview widgets (trocar para logica transações
 
-                      ListView.separated(
-                        primary: false,
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) => const Divider(),
-                        itemCount: _lista.length,
-                        itemBuilder: (context, index) => DismissibleWidget(
-                          onDismissed: ((p0) =>
-                              _dialogBuilder(context, remove, index)),
-                          item: _lista[index],
-                          child: ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Container(
-                              width: 60,
-                              height: 60,
-                              clipBehavior: Clip.antiAlias,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    color: AppColors.primary.withOpacity(0.1)),
-                              ),
-                              child: Image.asset(
-                                  'assets/' +
-                                      _lista[index].subC.assetsName +
-                                      '.png',
-                                  fit: BoxFit.contain,
-                                  width: 45,
-                                  height: 45),
-                            ),
-                            title: Text(_lista[index].title,
-                                style: const TextStyle(
-                                  color: Colors.black87,
-                                  fontFamily: 'sans-serif-light',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                            subtitle: Text(
-                              DateFormat(DateFormat.YEAR_MONTH_DAY,
-                                      locale.toString())
-                                  .format(_lista[index].dateTime),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            trailing: Text(
-                              'R\$ ${_lista[index].value.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                      Observer(
+                        builder: (_) => ListView.separated(
+                          primary: false,
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) => const Divider(),
+                          itemCount: _lista.length,
+                          itemBuilder: (context, index) => Observer(
+                            builder: (_) => DismissibleWidget<Transaction>(
+                              onDismissed: ((p0) =>
+                                  _dialogBuilder(context, remove, index)),
+                              item: _lista[index],
+                              child: ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Container(
+                                  width: 60,
+                                  height: 60,
+                                  clipBehavior: Clip.antiAlias,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color:
+                                            AppColors.primary.withOpacity(0.1)),
+                                  ),
+                                  child: Image.asset(
+                                      'assets/' +
+                                          _lista[index].subC.assetsName +
+                                          '.png',
+                                      fit: BoxFit.contain,
+                                      width: 45,
+                                      height: 45),
+                                ),
+                                title: Text(_lista[index].title,
+                                    style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: 'sans-serif-light',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                subtitle: Text(
+                                  DateFormat(DateFormat.YEAR_MONTH_DAY,
+                                          locale.toString())
+                                      .format(_lista[index].dateTime),
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                trailing: Text(
+                                  'R\$ ${_lista[index].value.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
                             ),
                           ),

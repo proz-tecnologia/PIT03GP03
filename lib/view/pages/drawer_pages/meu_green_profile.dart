@@ -1,10 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/core/ui/widgets/loader.dart';
+import 'package:green/core/ui/widgets/mensagens.dart';
+import 'package:green/stores/user.store.dart';
 import 'package:localization/localization.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:green/helpers/AppColors.dart';
 import '../../../controller/home_controller.dart';
-
 
 class MeuGreenProfile extends StatefulWidget {
   @override
@@ -24,7 +29,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
     return Scaffold(
       appBar:
           PreferredSize(child: getAppBar(), preferredSize: Size.fromHeight(60)),
-      body: Consumer<HomeController>(builder: (context, controller, _) {
+      body: Observer(builder: (context) {
         return Container(
           child: Form(
             key: fomrKeyLimite,
@@ -54,6 +59,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
   }
 
   Widget getBody() {
+    final userStore = GetIt.instance.get<UserStore>();
     var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
@@ -83,7 +89,8 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                 quarterTurns: -2,
                                 child: CircularPercentIndicator(
                                     circularStrokeCap: CircularStrokeCap.round,
-                                    backgroundColor: AppColors.grey.withOpacity(0.3),
+                                    backgroundColor:
+                                        AppColors.grey.withOpacity(0.3),
                                     radius: 110.0,
                                     lineWidth: 6.0,
                                     percent: 0.53,
@@ -200,7 +207,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                                     color: AppColors.white),
                                 decoration: InputDecoration(
                                   hintText:
-                                      "${Provider.of<HomeController>(context, listen: false).limite}",
+                                      "${userStore.profile!.limite.toStringAsFixed(2)}",
                                   prefixIconColor: Colors.white,
                                 ),
                                 onChanged: (value) => aux = double.parse(value),
@@ -211,7 +218,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                             height: 10,
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async {
                               var formValid =
                                   fomrKeyLimite.currentState?.validate() ??
                                       false;
@@ -219,17 +226,31 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
 
                               if (formValid) {
                                 message = "Limite atualizado com sucesso";
-
-                                Provider.of<HomeController>(context,
+                                Loader.show("Atualizando...");
+                                /*Provider.of<HomeController>(context,
                                         listen: false)
-                                    .mudarLimite(aux);
+                                    .mudarLimite(aux);*/
 
+                                await FirebaseFirestore.instance
+                                    .collection("profiles")
+                                    .doc(userStore.uid)
+                                    .update({'limite': aux});
+                                //TODO aquiiiiii
+
+                                userStore.profile!.copyWith(limite: aux);
+
+                                Loader.hide();
+                                Mensagens.sucess(message);
                                 Navigator.pop(context);
                               }
-                              ScaffoldMessenger.of(context)
+
+                              if (!formValid) {
+                                Mensagens.alert(message);
+                              }
+                              /*ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 content: Text(message),
-                              ));
+                              ));*/
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -271,7 +292,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                   controller: _email,
                   cursorColor: AppColors.black,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black),
                   decoration: InputDecoration(
                       hintText: "Email", border: InputBorder.none),
                 ),
@@ -289,7 +312,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                   controller: dateOfBirth,
                   cursorColor: AppColors.black,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black),
                   decoration:
                       InputDecoration(hintText: "", border: InputBorder.none),
                 ),
@@ -308,7 +333,9 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                   controller: password,
                   cursorColor: AppColors.black,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.black),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black),
                   decoration: InputDecoration(
                       hintText: "Password", border: InputBorder.none),
                 ),

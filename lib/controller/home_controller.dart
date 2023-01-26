@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+/*import 'package:flutter/foundation.dart';
 import 'package:green/model/meu_green_category.dart';
 
 import '../constants/transaction/transactions_green.dart';
@@ -43,26 +43,6 @@ class HomeController extends ChangeNotifier {
     return valorTotal;
   }
 
-  double get getTotalIncoming {
-    double value = 0;
-    var filtered = transaction
-        .where((element) => element.transactionType == TransactionType.INCOME);
-    for (var transaction in filtered) {
-      value += transaction.value;
-    }
-    return value;
-  }
-
-  double get getTotalOutcoming {
-    double value = 0;
-    var filtered = transaction
-        .where((element) => element.transactionType == TransactionType.EXPENSE);
-    for (var transaction in filtered) {
-      value += transaction.value;
-    }
-    return value;
-  }
-
   void add(Transaction item) {
     transaction.add(item);
     transaction.sort(((a, b) => b.dateTime.compareTo(a.dateTime)));
@@ -74,3 +54,27 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 }
+*/
+
+
+ /*
+double get getTotalIncoming {
+    double value = 0;
+    var filtered = transaction
+        .where((element) => element.transactionType == TransactionType.INCOME);
+    for (var transaction in filtered) {
+      value += transaction.value;
+    }
+    return value;
+  }
+ 
+ 
+ double get getTotalOutcoming {
+    double value = 0;
+    var filtered = transaction
+        .where((element) => element.transactionType == TransactionType.EXPENSE);
+    for (var transaction in filtered) {
+      value += transaction.value;
+    }
+    return value;
+  }*/

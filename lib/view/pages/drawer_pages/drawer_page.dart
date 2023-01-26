@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:green/controller/home_controller.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/controller/controller.home.dart';
+import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/drawer_pages/widgets/Meu_green_transactions_list.dart';
 import 'package:green/view/pages/drawer_pages/widgets/pagamentos.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
 import 'drawer_item.dart';
 import 'meuGreen.dart';
 import 'meu_green_metas.dart';
@@ -19,13 +20,15 @@ class DrawerApp extends StatefulWidget {
 class _DrawerAppState extends State<DrawerApp> {
   @override
   Widget build(BuildContext context) {
-    double limite = Provider.of<HomeController>(context, listen: false).limite;
-    double total = Provider.of<HomeController>(context, listen: false).total;
+    final _controller = GetIt.instance.get<ControllerHome>();
+    final userStore = GetIt.instance.get<UserStore>();
 
     return Drawer(
       child: Material(
         child: Container(
-          color: (limite - total) >= 0 == true ? Colors.green : Colors.red,
+          color: (userStore.profile!.limite - _controller.total) >= 0 == true
+              ? Colors.green
+              : Colors.red,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(24, 80, 24, 0),
             child: Column(
@@ -131,8 +134,7 @@ class _DrawerAppState extends State<DrawerApp> {
 
     switch (index) {
       case 0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MeuGreenMetas()));
+        Navigator.pushNamed(context, '/metas');
         break;
       case 1:
         Navigator.push(
@@ -156,11 +158,12 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
 
       case 5:
-        Navigator.pushNamed(context, 'config');
+        Navigator.pushNamed(context, '/config');
         break;
 
       case 6:
-        Navigator.pushNamed(context, '/login');
+        //Navigator.pushNamed(context, '/login');
+        Navigator.pushReplacementNamed(context, '/login');
         break;
 
       default:

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
 
-import '../login/signup_page_login.dart';
-
+import '../register/widgets/signup_page_login.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -28,6 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _onController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: InkWell(
               onTap: () {
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) =>  LoginPage()));
+                    context, MaterialPageRoute(builder: (_) => LoginPage()));
               }, //to login screen. We will update later
               child: const Text(
                 'Pular',
@@ -67,20 +67,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             controller: _pageController,
             children: [
               createPage(
-        image: 'assets/screen02.png',
-        title: 'Bem vindo a GREEN',
-        description: 'GREEN , o seu app de finanças .',
+                image: 'assets/screen02.png',
+                title: 'Bem vindo a GREEN',
+                description: 'GREEN , o seu app de finanças .',
               ),
               createPage(
-              image: 'assets/screen01.png',
-    title: 'Com GREEN você  descomplicar  ',
-    description: 'Você tem o seu controle  financeiro sem complicação.'),
-
+                  image: 'assets/screen01.png',
+                  title: 'Com GREEN você  descomplicar  ',
+                  description:
+                      'Você tem o seu controle  financeiro sem complicação.'),
               createPage(
-    image: 'assets/screenboard7.png',
-    title:    'Com GREEN você planeja metas que deseja realizar  com apenas um clique.',
-    description: 'Economize e sonhe com GREEN.'),
-
+                  image: 'assets/screenboard7.png',
+                  title:
+                      'Com GREEN você planeja metas que deseja realizar  com apenas um clique.',
+                  description: 'Economize e sonhe com GREEN.'),
             ],
           ),
           Positioned(
@@ -106,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         }
                       } else {
                         Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (_) =>  LoginPage()));
+                            MaterialPageRoute(builder: (_) => LoginPage()));
                       }
                     });
                   },
@@ -116,10 +116,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     color: Colors.white,
                   )),
               padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.green
-              ),
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.green),
             ),
           ),
         ],
@@ -175,37 +173,32 @@ class createPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 50, right: 50, bottom: 80),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 350,
-            child: Image.asset(image),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline5!.copyWith(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'sans-serif-light',
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
-            ),
-          ]),
-
-
-
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        SizedBox(
+          height: 350,
+          child: Image.asset(image),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline5!.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'sans-serif-light',
+              ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          description,
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
+        ),
+      ]),
     );
   }
 }

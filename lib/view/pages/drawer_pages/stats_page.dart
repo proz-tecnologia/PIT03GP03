@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:green/models/category.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_detail_page.dart';
 
@@ -8,7 +11,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/transaction/transactions_green.dart';
 import '../../../constants/transaction_controller.dart';
-import '../../../controller/home_controller.dart';
+
 import '../../../helpers/Utils.dart';
 import '../../../model/meu_green_category.dart';
 
@@ -27,6 +30,9 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
   final RegExp verificNumber = RegExp(r'([0-9]{})'); // informações
   int activeCategory = 0;
 
+  //controller
+  final _controller = GetIt.instance.get<ControllerHome>();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,11 +48,11 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
         backgroundColor: Colors.green,
         elevation: 0,
       ),
-      body: Consumer<HomeController>(builder: (context, controller, __) {
+      body: Observer(builder: (context) {
         return Container(
           child: Form(
             key: fomrKey,
-            child: getBody(controller.transactionList, locale),
+            child: getBody(_controller.transactionList, locale),
           ),
         );
       }),

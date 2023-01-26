@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:green/dependences/dependences.dart';
+import 'package:green/model/provider/app_material.dart';
+//import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'controller/home_controller.dart';
+//import 'controller/home_controller.dart';
 import 'firebase_options.dart';
-import 'model/provider/app_provider.dart';
+//import 'model/provider/app_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,10 +13,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(
-    MultiProvider(providers: [
-      //    ChangeNotifierProvider(create: (context) => AuthService()),
-      ChangeNotifierProvider(create: (context) => HomeController()),
-    ], child: AppProvider()),
-  );
+  registerDependencies();
+
+  runApp(const AppMaterial());
 }

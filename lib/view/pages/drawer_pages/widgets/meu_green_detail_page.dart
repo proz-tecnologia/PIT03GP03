@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:green/controller/home_controller.dart';
 import 'package:green/model/mocks/subCategory.dart';
 import 'package:green/models/category.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
 import '../../../../constants/transaction_controller.dart';
 import '../../../../helpers/Utils.dart';
-import '../../../../model/meu_green_category.dart';
 import 'package:green/helpers/AppColors.dart';
 import 'meu_green_subCategories.dart';
 
@@ -23,11 +24,11 @@ class MeuGreenDetailPage extends StatefulWidget {
 
   MeuGreenDetailPage(
       {required this.categoryId,
-        required this.assetsName,
-        required this.listSub,
-        required this.name,
-        required this.isSelect,
-        this.i})
+      required this.assetsName,
+      required this.listSub,
+      required this.name,
+      required this.isSelect,
+      this.i})
       : _obseve = ValueNotifier<SubCategory?>(i);
 
   @override
@@ -36,6 +37,8 @@ class MeuGreenDetailPage extends StatefulWidget {
 
 class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
   //controllers
+  final _controller = GetIt.instance.get<ControllerHome>();
+
   final RegExp verificNumber = RegExp(r'([0-9]{})');
   final TextEditingController _greenForm = TextEditingController(text: '');
   final TransActionController controller = TransActionController();
@@ -76,13 +79,13 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      body: Consumer<HomeController>(builder: (context, controller, _) {
+      body: Observer(builder: (context) {
         return Container(
           child: Form(
             //key
             key: fomrKey,
             child: getBody(
-              controller.transactionList,
+              _controller.transactionList,
               size,
               locale,
               _categories,
@@ -188,7 +191,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                 onTap: () {
                                   setState(() {
                                     widget._obseve.value =
-                                    widget.listSub[index];
+                                        widget.listSub[index];
                                     activeCategory = index;
                                   });
                                 },
@@ -201,13 +204,13 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                           width: 3,
                                           color: activeCategory == index
                                               ? categories[widget.categoryId]
-                                              .color
+                                                  .color
                                               : Colors.transparent),
                                       borderRadius: BorderRadius.circular(12),
                                       boxShadow: [
                                         BoxShadow(
                                           color:
-                                          AppColors.grey.withOpacity(0.01),
+                                              AppColors.grey.withOpacity(0.01),
                                           spreadRadius: 10,
                                           blurRadius: 3,
                                           // changes position of shadow
@@ -256,7 +259,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                               cursorColor: AppColors.primary,
                               autocorrect: true,
                               autovalidateMode:
-                              AutovalidateMode.onUserInteraction,
+                                  AutovalidateMode.onUserInteraction,
                               validator: (String? value) {
                                 if (value!.isEmpty) {
                                   return "required_field".i18n();
@@ -280,10 +283,10 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  width: (size.width ),
+                                  width: (size.width),
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Valor Gastos",
@@ -300,7 +303,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                           if (verificNumber.hasMatch(valor!) ||
                                               valor.isEmpty ||
                                               double.parse(valor.replaceAll(
-                                                  ",", ".")) <=
+                                                      ",", ".")) <=
                                                   0) {
                                             return 'invalid_value'.i18n();
                                           }
@@ -323,10 +326,9 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                     ],
                                   ),
                                 ),
-
                                 Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Confirmation(subC: widget._obseve.value),
                                       const SizedBox(
@@ -338,17 +340,17 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                               FocusScope.of(context)
                                                   .requestFocus(FocusNode());
                                               DateTime? date =
-                                              await showDatePicker(
-                                                  context: context,
-                                                  firstDate: DateTime.now()
-                                                      .subtract(
-                                                      const Duration(
-                                                          days: 360)),
-                                                  lastDate: DateTime.now(),
-                                                  initialDate: _dateTime);
+                                                  await showDatePicker(
+                                                      context: context,
+                                                      firstDate: DateTime.now()
+                                                          .subtract(
+                                                              const Duration(
+                                                                  days: 360)),
+                                                      lastDate: DateTime.now(),
+                                                      initialDate: _dateTime);
                                               _dateTime = date ?? _dateTime;
                                               _txtDateTimeController.text =
-                                              "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
+                                                  "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
                                             });
                                           },
                                           child: Icon(
@@ -361,116 +363,23 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                                 Size.fromRadius(30),
                                               ),
                                               foregroundColor:
-                                              MaterialStateProperty.all<
-                                                  Color>(Colors.white),
+                                                  MaterialStateProperty.all<
+                                                      Color>(Colors.white),
                                               backgroundColor:
-                                              MaterialStateProperty.all<
-                                                  Color>(Colors.green),
+                                                  MaterialStateProperty.all<
+                                                      Color>(Colors.green),
                                               shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
+                                                      RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
-                                                    borderRadius:
+                                                borderRadius:
                                                     BorderRadius.circular(50),
-                                                  )))),
+                                              )))),
                                     ])
                               ],
                             )
                           ],
                         ),
                       ),
-
-                      //   child: Column(
-                      //       crossAxisAlignment: CrossAxisAlignment.start,
-                      //       children: [
-                      //         Column(
-                      //             crossAxisAlignment:
-                      //                 CrossAxisAlignment.start,
-                      //             children: [
-                      //               TextFormField(
-                      //                 controller: _greenForm,
-                      //                 autofocus: true,
-                      //                 autocorrect: true,
-                      //
-                      //                 cursorColor: Colors.black,
-                      //                 style: TextStyle(
-                      //                     fontSize: 17,
-                      //                     fontWeight: FontWeight.w500,
-                      //                     color: Colors.grey),
-                      //               ),
-                      //             ]),
-                      //         const SizedBox(
-                      //           height: 16,
-                      //         ),
-                      //         Text(
-                      //           "value".i18n(),
-                      //           style: TextStyle(
-                      //               fontWeight: FontWeight.w500,
-                      //               fontSize: 16,
-                      //               color: Colors.black),
-                      //         ),
-                      //         TextFormField(
-                      //           autofocus: true,
-                      //           autocorrect: true,
-                      //
-                      //           cursorColor: AppColors.black,
-                      //           style: TextStyle(
-                      //               fontSize: 17,
-                      //               fontWeight: FontWeight.bold,
-                      //               color: AppColors.black),
-                      //           decoration: InputDecoration(
-                      //             // hintText: "${'money'.i18n()} 00,00",
-                      //
-                      //         ),
-                      //         SizedBox(
-                      //           height: 35,
-                      //         ),
-                      //         Row(
-                      //             mainAxisAlignment:
-                      //                 MainAxisAlignment.spaceBetween,
-                      //             children: [
-                      //               ElevatedButton(
-                      //                   onPressed: () {
-                      //                     setState(() async {
-                      //                       FocusScope.of(context)
-                      //                           .requestFocus(FocusNode());
-                      //                       DateTime? date =
-                      //                           await showDatePicker(
-                      //                               context: context,
-                      //                               firstDate: DateTime.now()
-                      //                                   .subtract(
-                      //                                       const Duration(
-                      //                                           days: 360)),
-                      //                               lastDate: DateTime.now(),
-                      //                               initialDate: _dateTime);
-                      //                       _dateTime = date ?? _dateTime;
-                      //                       _txtDateTimeController.text =
-                      //                           "${_dateTime.day}/${_dateTime.month}/${_dateTime.year}";
-                      //                     });
-                      //                   },
-                      //                   child: Icon(
-                      //                     Ionicons.calendar,
-                      //                     color: Colors.white,
-                      //                   ),
-                      //                   style: ButtonStyle(
-                      //                       fixedSize: MaterialStateProperty
-                      //                           .all<Size>(
-                      //                         Size.fromRadius(30),
-                      //                       ),
-                      //                       foregroundColor:
-                      //                           MaterialStateProperty.all<
-                      //                               Color>(Colors.white),
-                      //                       backgroundColor:
-                      //                           MaterialStateProperty.all<
-                      //                               Color>(Colors.green),
-                      //                       shape: MaterialStateProperty.all<
-                      //                               RoundedRectangleBorder>(
-                      //                           RoundedRectangleBorder(
-                      //                         borderRadius:
-                      //                             BorderRadius.circular(50),
-                      //                       )))),
-                      //               Confirmation()
-                      //             ]),
-                      //       ]),
                     ),
                   ]),
             ),
@@ -483,14 +392,14 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: transactionTypes
           .map((e) => ChoiceChip(
-          elevation: 2,
-          selectedColor: e.color,
-          labelStyle: const TextStyle(color: Colors.white),
-          label: Text(e.label),
-          selected: e.type == transactionType,
-          onSelected: (value) => setState(() {
-            transactionType = e.type;
-          })))
+              elevation: 2,
+              selectedColor: e.color,
+              labelStyle: const TextStyle(color: Colors.white),
+              label: Text(e.label),
+              selected: e.type == transactionType,
+              onSelected: (value) => setState(() {
+                    transactionType = e.type;
+                  })))
           .toList(),
     );
   }
@@ -499,20 +408,22 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     return Row(
       children: transactionTypes
           .map((e) => ChoiceChip(
-          selectedColor: e.color,
-          labelStyle: const TextStyle(color: Colors.green),
-          label: Text(e.label),
-          selected: e.type == transactionTypes,
-          onSelected: (value) => setState(() {
-            transactionType = e.type;
-          })))
+              selectedColor: e.color,
+              labelStyle: const TextStyle(color: Colors.green),
+              label: Text(e.label),
+              selected: e.type == transactionTypes,
+              onSelected: (value) => setState(() {
+                    transactionType = e.type;
+                  })))
           .toList(),
     );
   }
 
   SingleChildScrollView Confirmation({SubCategory? subC}) {
+    final _controller = GetIt.instance.get<ControllerHome>();
+
     return SingleChildScrollView(
-      child: Consumer<HomeController>(builder: (context, homeController, _) {
+      child: Observer(builder: (context) {
         return Container(
           child: Row(
             children: [
@@ -534,8 +445,10 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                           dateTime: _dateTime,
                           transactionType: TransactionType.INCOME,
                           description: '');
-                      Provider.of<HomeController>(context, listen: false)
-                          .add(trans);
+
+                      //TODO TÁ USANDO O MÉTODO ADD DO ANTIGO CONTROLLER
+                      //_controller.add(trans);
+                      _controller.setTransAction(trans);
                       //  homeController.setTransAction(trans);
                       Navigator.pop(context);
                     }
@@ -552,13 +465,13 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                         Size.fromRadius(30),
                       ),
                       foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                          MaterialStateProperty.all<Color>(Colors.white),
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.green),
+                          MaterialStateProperty.all<Color>(Colors.green),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )))),
+                        borderRadius: BorderRadius.circular(10),
+                      )))),
             ],
           ),
         );

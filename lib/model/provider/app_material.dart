@@ -1,11 +1,11 @@
+import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green/utils/configs/pages_settings.dart';
 import 'package:green/view/pages/drawer_pages/meuGreen.dart';
-import 'package:green/view/pages/drawer_pages/widgets/auth_check.dart';
 import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
-import 'package:green/view/pages/login/signup_page_login.dart';
+import 'package:green/view/pages/register/widgets/signup_page_login.dart';
 import 'package:localization/localization.dart';
 import '../../utils/preferences_green.dart';
 import '../../view/pages/drawer_pages/meu_green_metas.dart';
@@ -21,6 +21,7 @@ class AppMaterial extends StatefulWidget {
 
 class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
   Locale? _locale;
+
   changeLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -53,6 +54,10 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
     return ValueListenableBuilder(
       valueListenable: PreferencesGreen.theme,
       builder: (BuildContext context, Brightness theme, _) => MaterialApp(
+        builder: Asuka.builder,
+        navigatorObservers: [
+          Asuka.asukaHeroController,
+        ],
         debugShowCheckedModeBanner: false,
         title: 'Green',
         theme: ThemeData(
@@ -86,11 +91,11 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
         ],
         initialRoute: '/',
         routes: {
-          '/': (context) => const SplashScreen(),
-          '/login': (context) =>  LoginPage(),
+          '/': (context) => SplashScreen(),
+          '/login': (context) => LoginPage(),
           '/sinup': (context) => SignUp(),
           '/onboarding': (context) => const OnboardingScreen(),
-          '/home': (context) => const AuthCheck(),
+          '/home': (context) => const HomePage2(),
           '/metas': (context) => const MeuGreenMetas(),
           '/meuGreen': (context) => RootApp(),
           '/config': (context) => ConfiguracoesPage(),

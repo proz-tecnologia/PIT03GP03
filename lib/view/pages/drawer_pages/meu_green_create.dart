@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:green/models/category.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
 import '../../../constants/transaction/transactions_green.dart';
 import '../../../constants/transaction_controller.dart';
-import '../../../controller/home_controller.dart';
 import '../../../helpers/Utils.dart';
 import '../../../model/meu_green_category.dart';
 
@@ -19,6 +20,8 @@ class MeuGreenCart extends StatefulWidget {
 
 class _MeuGreenCartState extends State<MeuGreenCart> {
   final TransActionController controller = TransActionController();
+
+  final _controller = GetIt.instance.get<ControllerHome>();
 
   final RegExp verificNumber = RegExp(r'([0-9]{})'); // informações
   int activeCategory = 0;
@@ -38,9 +41,9 @@ class _MeuGreenCartState extends State<MeuGreenCart> {
         backgroundColor: Colors.green,
         elevation: 0,
       ),
-      body: Consumer<HomeController>(builder: (context, controller, __) {
+      body: Observer(builder: (context) {
         return Container(
-          child: getBody(controller.transactionList, locale),
+          child: getBody(_controller.transactionList, locale),
         );
       }),
     );
@@ -214,7 +217,7 @@ class _MeuGreenCartState extends State<MeuGreenCart> {
                   )),
               subtitle: Text(
                 DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
-                    .format(transactionList[index].dateTime!),
+                    .format(transactionList[index].dateTime),
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 13,

@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/core/ui/widgets/loader.dart';
+import 'package:green/core/ui/widgets/mensagens.dart';
+import 'package:green/stores/user.store.dart';
 
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controller/home_controller.dart';
 import 'package:green/helpers/AppColors.dart';
 
 class MeuGreenCarteira extends StatefulWidget {
@@ -28,7 +32,6 @@ class _MeuGreenCarteiraState extends State<MeuGreenCarteira> {
         ),
         child: Column(
           children: [
-
             TextBar(),
             SizedBox(
               height: 50,
@@ -52,7 +55,6 @@ class cards extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
           color: Colors.white70,
           boxShadow: [
-
             BoxShadow(
                 color: Colors.green,
                 blurRadius: 10,
@@ -93,6 +95,8 @@ class TextBar extends StatefulWidget {
 class _TextBarState extends State<TextBar> {
   double aux = 0.0;
 
+  final userStore = GetIt.instance.get<UserStore>();
+
   final RegExp verificNumber = RegExp(r'([0-9]{})');
 
   final fomrKeyLimite = GlobalKey<FormState>();
@@ -103,7 +107,6 @@ class _TextBarState extends State<TextBar> {
       key: fomrKeyLimite,
       child: Column(
         children: [
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -120,8 +123,7 @@ class _TextBarState extends State<TextBar> {
                 ),
               ),
               // entrar com a logica no lugar do texto
-              Text(
-                  '${Provider.of<HomeController>(context, listen: false).limite.toStringAsFixed(2)}',
+              Text('${userStore.profile!.limite.toStringAsFixed(2)}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 50,
@@ -209,7 +211,7 @@ class _TextBarState extends State<TextBar> {
                             color: AppColors.white),
                         decoration: InputDecoration(
                           hintText:
-                              "${Provider.of<HomeController>(context, listen: false).limite.toStringAsFixed(2)}",
+                              "${userStore.profile!.limite.toStringAsFixed(2)}",
                           prefixIconColor: AppColors.white,
                         ),
                         onChanged: (value) => aux = double.parse(value),
@@ -220,7 +222,7 @@ class _TextBarState extends State<TextBar> {
                     height: 10,
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       var formValid =
                           fomrKeyLimite.currentState?.validate() ?? false;
                       var message = 'invalid_value'.i18n();
@@ -228,14 +230,25 @@ class _TextBarState extends State<TextBar> {
                       if (formValid) {
                         message = "limit_updte".i18n();
 
-                        Provider.of<HomeController>(context, listen: false)
-                            .mudarLimite(aux);
+                        Loader.show("Atualizando...");
 
+                        //Atualizando no Firebase
+                        await FirebaseFirestore.instance
+                            .collection("profiles")
+                            .doc(userStore.uid)
+                            .update({'limite': aux});
+
+                        //Atualizando local
+                        userStore.profile!.copyWith(limite: aux);
+
+                        Loader.hide();
+                        Mensagens.sucess(message);
                         Navigator.pop(context);
                       }
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(message),
-                      ));
+
+                      if (!formValid) {
+                        Mensagens.alert(message);
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(

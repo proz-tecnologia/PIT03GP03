@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +24,8 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
   static const Color _primaryColor = Colors.green;
   static const Color _secondaryColor = Colors.white38;
   static const Color _thirdColor = Colors.deepOrangeAccent;
+
+  final _controller = GetIt.instance.get<ControllerHome>();
   @override
   Widget build(BuildContext context) {
     List<GreenList> _greenListCat = GreenList.categoryList;
@@ -29,11 +34,11 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
       appBar: AppBar(
         elevation: 0,
       ),
-      body: Consumer<HomeController>(builder: (context, controller, __) {
+      body: Observer(builder: (context) {
         return Column(
           children: [
-            _appbarBotomSection(controller.total, _greenListCat),
-            mainBoard(controller.transactionList, _greenListCat, locale)
+            _appbarBotomSection(_controller.total, _greenListCat),
+            mainBoard(_controller.transactionList, _greenListCat, locale)
           ],
         );
       }),

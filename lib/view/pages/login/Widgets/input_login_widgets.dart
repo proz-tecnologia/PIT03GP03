@@ -1,12 +1,14 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/view/pages/login/Widgets/green_textform_fileld.dart';
+import 'package:green/view/pages/login/controller/login.controller.dart';
 import 'package:localization/localization.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../../../constants/credential/users_credential.dart';
 import '../../../../model/mocks/green_users.dart';
 import '../../home_page/homepage.dart';
-
 
 class InputLoginWidget extends StatefulWidget {
   const InputLoginWidget({Key? key}) : super(key: key);
@@ -16,62 +18,57 @@ class InputLoginWidget extends StatefulWidget {
 }
 
 class _InputLoginWidgetState extends State<InputLoginWidget> {
-  String _email = "";
-  String _password = "";
-
   UserCredential? _userCredential;
 
-  //bool _canShowPassword = false;
+  final _controller = GetIt.instance.get<LoginController>();
 
-  final fomrKey = GlobalKey<FormState>();
-final email =TextEditingController();
-final senha=TextEditingController();
+  final _fomrKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
 
-bool isLogin=true;
-late String  titulo;
-late String  actionButton;
-late String toogleButoon;
+  @override
+  void dispose() {
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    super.dispose();
+  }
 
-@override
+  @override
   void initState() {
     super.initState();
     setFormAction(true);
   }
-setFormAction(bool action){
-  setState(() {
 
-  });
-}
-
+  setFormAction(bool action) {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: fomrKey,
+      key: _fomrKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextFormField(
-            validator: (String? val) => !EmailValidator.validate(val!, true)
-                ? 'valid_email'.i18n()
-                : null,
-            decoration: InputDecoration(
-                labelText: "email".i18n(),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20))),
+          GreenTextFormField(
+            label: "email".i18n(),
+            controller: _emailEC,
+            validator: Validatorless.multiple([
+              Validatorless.required('Email obrigatório'),
+              Validatorless.email('Email não válido'),
+            ]),
           ),
           const Padding(
             padding: EdgeInsets.only(bottom: 16),
           ),
-          TextFormField(
-            validator: (String? val) => (val!.length < 4 || val.isEmpty)
-                ? 'valid_password'.i18n()
-                : null,
+          GreenTextFormField(
+            label: 'password'.i18n(),
             obscureText: true,
-            decoration: InputDecoration(
-                labelText: "password".i18n(),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20))),
+            controller: _passwordEC,
+            validator: Validatorless.multiple([
+              Validatorless.required('Senha obrigatória'),
+              Validatorless.min(6, 'Senha deve conter ao menos 6 caracteres')
+            ]),
           ),
           const SizedBox(
             height: 20,
@@ -80,25 +77,21 @@ setFormAction(bool action){
             children: [
               Expanded(
                 child: TextButton(
-                  onPressed: () {
-                    var formValid = fomrKey.currentState?.validate() ?? false;
-                    var message = 'invalid_login'.i18n();
+                  onPressed: () async {
+                    var formValid = _fomrKey.currentState?.validate() ?? false;
+                    //var message = 'invalid_login'.i18n();
 
                     if (formValid) {
-                      message = "valid_login".i18n();
-                      if (fomrKey.currentState!.validate()) {
-                        fomrKey.currentState!.save();
+                      //message = "valid_login".i18n();
 
-                        _userCredential = MockUsers.getUsers().firstWhereOrNull(
-                            (element) =>
-                                element.email == _email &&
-                                element.password == _password);
+                      await _controller.login(
+                          email: _emailEC.text,
+                          password: _passwordEC.text,
+                          context: context);
 
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) => const HomePage2(),
-                            settings:
-                                RouteSettings(arguments: _userCredential)));
-                      }
+                      /* Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (_) => const HomePage2(),
+                          settings: RouteSettings(arguments: _userCredential)));*/
                     }
                   },
                   style: TextButton.styleFrom(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transactions_green.dart';
 import '../../../constants/transaction_controller.dart';
-import '../../../controller/home_controller.dart';
 import 'package:green/helpers/AppColors.dart';
 
 class CreatBudgetPage extends StatefulWidget {
@@ -24,6 +26,8 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   var dateTime = DateTime.now();
   final txtDateTimeController = TextEditingController();
 
+  final _controller = GetIt.instance.get<ControllerHome>();
+
   //int _chartTabIndex = 0;
 
   @override
@@ -40,7 +44,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
         appBar: AppBar(
           elevation: 0,
         ),
-        body: Consumer<HomeController>(builder: (context, controller, __) {
+        body: Observer(builder: (context) {
           return Column(
             children: [
               //GraphWidget(),
@@ -52,7 +56,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
 
               date_time(),
               confirmation(),
-              mainBoard(controller.transactionList, locale),
+              mainBoard(_controller.transactionList, locale),
             ],
           );
         }),
@@ -326,7 +330,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                           subtitle: Text(
                             DateFormat(DateFormat.YEAR_MONTH_DAY,
                                     locale.toString())
-                                .format(_lista[index].dateTime!),
+                                .format(_lista[index].dateTime),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -387,8 +391,9 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   }
 
   Widget confirmation() {
+    final _controller = GetIt.instance.get<ControllerHome>();
     return SingleChildScrollView(
-      child: Consumer<HomeController>(builder: (context, homeController, _) {
+      child: Observer(builder: (context) {
         return ElevatedButton(
           onPressed: () {
             setState(() {});

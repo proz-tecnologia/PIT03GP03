@@ -44,40 +44,46 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDMVQ7-xZlLBYEMhM02Yn0T6L8EgEjYg_4',
-    appId: '1:555764640181:web:89eac53154e55072cc91fc',
-    messagingSenderId: '555764640181',
-    projectId: 'green-a3d97',
-    authDomain: 'green-a3d97.firebaseapp.com',
-    storageBucket: 'green-a3d97.appspot.com',
-    measurementId: 'G-YNSVD58TQ6',
+    apiKey: 'AIzaSyBjy6NC_IKsfbdIbCBJvKI5zEdPKEkm1zs',
+    appId: '1:788602332941:web:ebb569b7d821e9060e7244',
+    messagingSenderId: '788602332941',
+    projectId: 'green-finance-6b4ef',
+    authDomain: 'green-finance-6b4ef.firebaseapp.com',
+    databaseURL: 'https://green-finance-6b4ef-default-rtdb.firebaseio.com',
+    storageBucket: 'green-finance-6b4ef.appspot.com',
+    measurementId: 'G-R0VYR7FF3E',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDzECb_80C9gFz08uqUacAvOOxcUlyqbKw',
-    appId: '1:555764640181:android:0f8d33fe4c841f95cc91fc',
-    messagingSenderId: '555764640181',
-    projectId: 'green-a3d97',
-    storageBucket: 'green-a3d97.appspot.com',
+    apiKey: 'AIzaSyDva7kxJdgWMRq2OxcK7JhOWt2fvd_U3EE',
+    appId: '1:788602332941:android:9abe51114aba0d030e7244',
+    messagingSenderId: '788602332941',
+    projectId: 'green-finance-6b4ef',
+    databaseURL: 'https://green-finance-6b4ef-default-rtdb.firebaseio.com',
+    storageBucket: 'green-finance-6b4ef.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBFetkKuCh-ilJkRJcZ2yDHyWNEhcraWd4',
-    appId: '1:555764640181:ios:83cee40a279283b1cc91fc',
-    messagingSenderId: '555764640181',
-    projectId: 'green-a3d97',
-    storageBucket: 'green-a3d97.appspot.com',
-    iosClientId: '555764640181-bs6lepl8pmhj7tfv8h0v2coo2ekha0d4.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA-k8b5NVBLPYdBrmKW9PGBtolRZKnisSg',
+    appId: '1:788602332941:ios:a2c4c1ac9c4c3ba40e7244',
+    messagingSenderId: '788602332941',
+    projectId: 'green-finance-6b4ef',
+    databaseURL: 'https://green-finance-6b4ef-default-rtdb.firebaseio.com',
+    storageBucket: 'green-finance-6b4ef.appspot.com',
+    androidClientId: '788602332941-n2kdif0g0fap6tiq8ieqv1cnc65g3hbh.apps.googleusercontent.com',
+    iosClientId: '788602332941-mc87n5bci10vs7fp35rgv30eajic0li5.apps.googleusercontent.com',
     iosBundleId: 'com.br.green.app.green',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBFetkKuCh-ilJkRJcZ2yDHyWNEhcraWd4',
-    appId: '1:555764640181:ios:83cee40a279283b1cc91fc',
-    messagingSenderId: '555764640181',
-    projectId: 'green-a3d97',
-    storageBucket: 'green-a3d97.appspot.com',
-    iosClientId: '555764640181-bs6lepl8pmhj7tfv8h0v2coo2ekha0d4.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA-k8b5NVBLPYdBrmKW9PGBtolRZKnisSg',
+    appId: '1:788602332941:ios:a2c4c1ac9c4c3ba40e7244',
+    messagingSenderId: '788602332941',
+    projectId: 'green-finance-6b4ef',
+    databaseURL: 'https://green-finance-6b4ef-default-rtdb.firebaseio.com',
+    storageBucket: 'green-finance-6b4ef.appspot.com',
+    androidClientId: '788602332941-n2kdif0g0fap6tiq8ieqv1cnc65g3hbh.apps.googleusercontent.com',
+    iosClientId: '788602332941-mc87n5bci10vs7fp35rgv30eajic0li5.apps.googleusercontent.com',
     iosBundleId: 'com.br.green.app.green',
   );
 }

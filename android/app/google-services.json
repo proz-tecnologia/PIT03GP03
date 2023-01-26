@@ -1,34 +1,86 @@
 {
   "project_info": {
-    "project_number": "555764640181",
-    "project_id": "green-a3d97",
-    "storage_bucket": "green-a3d97.appspot.com"
+    "project_number": "788602332941",
+    "firebase_url": "https://green-finance-6b4ef-default-rtdb.firebaseio.com",
+    "project_id": "green-finance-6b4ef",
+    "storage_bucket": "green-finance-6b4ef.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:555764640181:android:0f8d33fe4c841f95cc91fc",
+        "mobilesdk_app_id": "1:788602332941:android:9abe51114aba0d030e7244",
         "android_client_info": {
           "package_name": "com.br.green.app.green"
         }
       },
       "oauth_client": [
         {
-          "client_id": "555764640181-t2v5jcn2uv8qkkit301im9p0d81m4sgp.apps.googleusercontent.com",
+          "client_id": "788602332941-a4oq75ep75te9cdt0c0vemjfmv2a1u8o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDzECb_80C9gFz08uqUacAvOOxcUlyqbKw"
+          "current_key": "AIzaSyDva7kxJdgWMRq2OxcK7JhOWt2fvd_U3EE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "555764640181-t2v5jcn2uv8qkkit301im9p0d81m4sgp.apps.googleusercontent.com",
+              "client_id": "788602332941-a4oq75ep75te9cdt0c0vemjfmv2a1u8o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "788602332941-mc87n5bci10vs7fp35rgv30eajic0li5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.br.green.app.green"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788602332941:android:a7f9d16d2c60d3da0e7244",
+        "android_client_info": {
+          "package_name": "com.green.greenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788602332941-n2kdif0g0fap6tiq8ieqv1cnc65g3hbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.green.greenapp",
+            "certificate_hash": "6acfc9330e34cd245caac1ba84b90b5abd028a56"
+          }
+        },
+        {
+          "client_id": "788602332941-a4oq75ep75te9cdt0c0vemjfmv2a1u8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDva7kxJdgWMRq2OxcK7JhOWt2fvd_U3EE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788602332941-a4oq75ep75te9cdt0c0vemjfmv2a1u8o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "788602332941-mc87n5bci10vs7fp35rgv30eajic0li5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.br.green.app.green"
+              }
             }
           ]
         }

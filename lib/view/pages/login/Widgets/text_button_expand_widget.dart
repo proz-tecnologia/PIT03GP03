@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 
-import '../signup_page_login.dart';
+import '../../register/widgets/signup_page_login.dart';
 
 //widget problemas ao fazer o login
 class TextButtonExpanded extends StatelessWidget {
