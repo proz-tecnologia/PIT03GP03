@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
 
 import '../../../constants/json/meugreen.dart';
 import '../../../constants/transaction/transactions_green.dart';
