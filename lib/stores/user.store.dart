@@ -17,7 +17,7 @@ abstract class UserStoreBase with Store {
   @action
   setUser(String uid, String email) {
     _uid = uid;
-    _email = _email;
+    _email = email;
   }
 
   @action

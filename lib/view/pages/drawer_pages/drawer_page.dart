@@ -8,7 +8,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 import 'drawer_item.dart';
 import 'meuGreen.dart';
-import 'meu_green_metas.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({Key? key}) : super(key: key);
@@ -33,7 +32,8 @@ class _DrawerAppState extends State<DrawerApp> {
             padding: const EdgeInsets.fromLTRB(24, 80, 24, 0),
             child: Column(
               children: [
-                headerWidget(),
+                headerWidget(
+                    name: userStore.profile!.firstName, email: userStore.email),
                 const SizedBox(
                   height: 20,
                 ),
@@ -130,6 +130,7 @@ class _DrawerAppState extends State<DrawerApp> {
   }
 
   void onItemPressed(BuildContext context, {required int index}) {
+    final userStore = GetIt.instance.get<UserStore>();
     Navigator.pop(context);
 
     switch (index) {
@@ -163,6 +164,7 @@ class _DrawerAppState extends State<DrawerApp> {
 
       case 6:
         //Navigator.pushNamed(context, '/login');
+        userStore.unloadUser();
         Navigator.pushReplacementNamed(context, '/login');
         break;
 
@@ -172,7 +174,7 @@ class _DrawerAppState extends State<DrawerApp> {
     }
   }
 
-  Widget headerWidget() {
+  Widget headerWidget({required String name, String? email = ""}) {
     return Row(
       children: [
         const CircleAvatar(
@@ -184,15 +186,14 @@ class _DrawerAppState extends State<DrawerApp> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('hello'.i18n(['GREEN']),
+            Text('hello'.i18n([name]),
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Arial',
                     color: Colors.white)),
             SizedBox(width: 20),
-            const Text('green@green.com',
-                style: TextStyle(fontSize: 13, color: Colors.white)),
+            Text(email!, style: TextStyle(fontSize: 13, color: Colors.white)),
           ],
         )
       ],

@@ -28,19 +28,21 @@ class _HomePage2State extends State<HomePage2> {
     return Scaffold(
       appBar: _buildAppBar(_controller.total, userStore.profile!.limite),
       drawer: DrawerApp(),
-      body: Column(
-        children: [
-          _appbarBotomSection(
-            _controller.total,
-            userStore.profile!.limite,
-          ),
-          mainBoard(
-            _controller.transactionList,
-            locale,
-            _controller.removeTransAction,
-          ),
-        ],
-      ),
+      body: Observer(builder: (context) {
+        return Column(
+          children: [
+            _appbarBotomSection(
+              _controller.total,
+              userStore.profile!.limite,
+            ),
+            mainBoard(
+              _controller.transactionList,
+              locale,
+              _controller.removeTransAction,
+            ),
+          ],
+        );
+      }),
     );
   }
 

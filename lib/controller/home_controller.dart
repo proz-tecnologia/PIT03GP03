@@ -1,4 +1,4 @@
-/*import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:green/model/meu_green_category.dart';
 
 import '../constants/transaction/transactions_green.dart';
@@ -54,7 +54,7 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 }
-*/
+
 
 
  /*

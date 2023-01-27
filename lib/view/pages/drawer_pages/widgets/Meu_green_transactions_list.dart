@@ -80,7 +80,7 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
               Text(value.toStringAsFixed(2).replaceAll(".", ","),
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 50,
+                    fontSize: 40,
                     fontWeight: FontWeight.w600,
                     height: 0.9,
                   )),
