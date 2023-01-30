@@ -7,10 +7,10 @@ import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
 import 'package:green/view/pages/register/widgets/signup_page_login.dart';
 import 'package:localization/localization.dart';
-import '../../utils/preferences_green.dart';
-import '../../view/pages/drawer_pages/meu_green_metas.dart';
-import '../../view/pages/onboarding_screen/Meu_green_onboarding.dart';
-import '../../view/pages/splash_screen/splash_Screen.dart';
+import 'utils/preferences_green.dart';
+import 'view/pages/drawer_pages/meu_green_metas.dart';
+import 'view/pages/onboarding_screen/Meu_green_onboarding.dart';
+import 'view/pages/splash_screen/splash_Screen.dart';
 
 class AppMaterial extends StatefulWidget {
   const AppMaterial({super.key});

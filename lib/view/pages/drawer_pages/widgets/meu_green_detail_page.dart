@@ -3,8 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/controller.home.dart';
-import 'package:green/controller/home_controller.dart';
-import 'package:green/model/mocks/subCategory.dart';
 import 'package:green/models/category.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
@@ -438,15 +436,14 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                       message = "transactions_valid".i18n();
 
                       var trans = Transaction(
-                          subC: subC,
-                          value: controller.value,
-                          title: controller.title,
-                          category: controller.category,
-                          dateTime: _dateTime,
-                          transactionType: TransactionType.INCOME,
-                          description: '');
+                        image: subC.assetsName,
+                        subCategoryName: subC.name,
+                        value: controller.value,
+                        title: controller.title,
+                        category: controller.category,
+                        data: _dateTime,
+                      );
 
-                      //TODO TÁ USANDO O MÉTODO ADD DO ANTIGO CONTROLLER
                       //_controller.add(trans);
                       _controller.setTransAction(trans);
                       //  homeController.setTransAction(trans);

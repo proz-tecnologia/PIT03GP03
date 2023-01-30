@@ -1,27 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:localization/localization.dart';
+import 'package:green/helpers/AppColors.dart';
 import 'package:page_transition/page_transition.dart';
-
-import '../../../../helpers/Utils.dart';
 import '../../../../model/meu_green_category.dart';
-import '../../../../models/category.dart';
 import 'meu_green_detail_page.dart';
 
 class MeuGreenWidgetPage extends StatelessWidget {
-   MeuGreenWidgetPage({
+  MeuGreenWidgetPage({
     Key? key,
     required this.index,
     required this.greenList,
-     required this.categories
   }) : super(key: key);
 
   final int index;
   final List<GreenList> greenList;
-  List<Category>categories=Utils.getMockedCategories();
+
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
@@ -30,7 +24,11 @@ class MeuGreenWidgetPage extends StatelessWidget {
             context,
             PageTransition(
                 child: MeuGreenDetailPage(
-                  categoryId: greenList[index].categoryId, assetsName: '', listSub: [], name: '', isSelect: false,
+                  categoryId: greenList[index].categoryId,
+                  assetsName: greenList[index].image,
+                  listSub: [],
+                  name: greenList[index].tittle,
+                  isSelect: false,
                 ),
                 type: PageTransitionType.bottomToTop));
       },
@@ -54,7 +52,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   width: 60.0,
                   height: 60.0,
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(.8),
+                    color: AppColors.primary.withOpacity(.8),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -64,7 +62,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   right: 0,
                   child: SizedBox(
                     height: 80.0,
-                    child: Image.asset(categories[index].assetsName),
+                    child: Image.asset(greenList[index].image),
                   ),
                 ),
                 Positioned(
@@ -73,13 +71,13 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
+                      Text(greenList[index].category),
                       Text(
-                        (categories[index].name).i18n(),
+                        greenList[index].tittle,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
-                          color: Colors.black,
+                          color: AppColors.black,
                         ),
                       ),
                     ],

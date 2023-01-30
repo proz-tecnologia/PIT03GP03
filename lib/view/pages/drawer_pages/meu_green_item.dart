@@ -329,7 +329,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                           subtitle: Text(
                             DateFormat(DateFormat.YEAR_MONTH_DAY,
                                     locale.toString())
-                                .format(_lista[index].dateTime),
+                                .format(_lista[index].data),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,

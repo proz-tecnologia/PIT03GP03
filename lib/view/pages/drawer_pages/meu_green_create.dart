@@ -217,7 +217,7 @@ class _MeuGreenCartState extends State<MeuGreenCart> {
                   )),
               subtitle: Text(
                 DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
-                    .format(transactionList[index].dateTime),
+                    .format(transactionList[index].data),
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 13,

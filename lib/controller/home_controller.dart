@@ -28,7 +28,7 @@ class HomeController extends ChangeNotifier {
   final List<Transaction> _extratoProvider = [];
 
   TransactionController() {
-    _extratoProvider.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+    _extratoProvider.sort((a, b) => b.data.compareTo(a.data));
   }
 
   List<Transaction> get extratoProvider => _extratoProvider;
@@ -45,7 +45,7 @@ class HomeController extends ChangeNotifier {
 
   void add(Transaction item) {
     transaction.add(item);
-    transaction.sort(((a, b) => b.dateTime.compareTo(a.dateTime)));
+    transaction.sort(((a, b) => b.data.compareTo(a.data)));
     notifyListeners();
   }
 

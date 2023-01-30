@@ -3,7 +3,7 @@ import 'package:green/view/pages/drawer_pages/widgets/menu_languages.dart';
 import 'package:localization/localization.dart';
 
 import '../../../constants/app_text_styles.dart';
-import '../../../model/provider/app_material.dart';
+import '../../../app_material.dart';
 import '../login/login_page.dart';
 
 //NOVO MENU CONFIG

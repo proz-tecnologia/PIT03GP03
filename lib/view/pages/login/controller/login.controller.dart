@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green/core/logger/app_logger_impl.dart';
 import 'package:green/core/ui/widgets/loader.dart';
 import 'package:green/infra/repositories/auth.repository_impl.dart';
 
@@ -14,7 +13,7 @@ class LoginController {
       {required String email,
       required String password,
       required BuildContext context}) async {
-    Loader.show('Logando...');
+    Loader.show('Autenticando...');
 
     final response = await _authRepository.doLogin(email, password);
 

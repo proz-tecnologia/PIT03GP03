@@ -14,35 +14,6 @@ class ItemTransaction extends StatefulWidget {
 class _ItemTransactionState extends State<ItemTransaction> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      child: ListTile(
-        leading: Text(
-          "${widget.transaction.dateTime.day}/${widget.transaction.dateTime.month}",
-          style: TextStyle(color: getColor()),
-        ),
-        title:
-            Text(widget.transaction.title, style: TextStyle(color: getColor())),
-        trailing: Text(getValue(), style: TextStyle(color: getColor())),
-      ),
-    );
-  }
-
-  Color getColor() {
-    switch (widget.transaction.transactionType) {
-      case TransactionType.INCOME:
-        return Colors.green;
-      case TransactionType.EXPENSE:
-        return Colors.red;
-    }
-  }
-
-  String getValue() {
-    switch (widget.transaction.transactionType) {
-      case TransactionType.INCOME:
-        return widget.transaction.value.formatBRL;
-      case TransactionType.EXPENSE:
-        return "(${widget.transaction.value.formatBRL})";
-    }
+    return Container();
   }
 }

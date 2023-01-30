@@ -176,7 +176,7 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
                         )),
                     subtitle: Text(
                       DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
-                          .format(_lista[index].dateTime),
+                          .format(_lista[index].data),
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,

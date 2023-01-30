@@ -217,9 +217,7 @@ class _HomePage2State extends State<HomePage2> {
                                             AppColors.primary.withOpacity(0.1)),
                                   ),
                                   child: Image.asset(
-                                      'assets/' +
-                                          _lista[index].subC.assetsName +
-                                          '.png',
+                                      'assets/' + _lista[index].image + '.png',
                                       fit: BoxFit.contain,
                                       width: 45,
                                       height: 45),
@@ -234,7 +232,7 @@ class _HomePage2State extends State<HomePage2> {
                                 subtitle: Text(
                                   DateFormat(DateFormat.YEAR_MONTH_DAY,
                                           locale.toString())
-                                      .format(_lista[index].dateTime),
+                                      .format(_lista[index].data),
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 13,
