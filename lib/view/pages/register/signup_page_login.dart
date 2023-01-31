@@ -17,19 +17,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _formKey = GlobalKey<FormState>();
-  final _nameEC = TextEditingController();
-  final _emailEC = TextEditingController();
-  final _passwordEC = TextEditingController();
-
-  @override
-  void dispose() {
-    _emailEC.dispose();
-    _passwordEC.dispose();
-    _nameEC.dispose();
-    super.dispose();
-  }
-
   PageController _controller=PageController();
 
   @override
@@ -52,12 +39,12 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             Container(
-              alignment: Alignment(0,0.80),
-              // child: SmoothPageIndicator(controller: _controller, count: 5, effect: JumpingDotEffect(
-              //   dotHeight: 16,
-              //   dotWidth: 16,
-              //   jumpScale: .7,
-              //   verticalOffset: 15,))
+                alignment: Alignment(0,0.80),
+                // child: SmoothPageIndicator(controller: _controller, count: 5, effect: JumpingDotEffect(
+                //   dotHeight: 16,
+                //   dotWidth: 16,
+                //   jumpScale: .7,
+                //   verticalOffset: 15,))
             )],
         )
     );

@@ -1,4 +1,5 @@
 import 'package:asuka/asuka.dart';
+import 'package:easy_loader/easy_loader.dart';
 import 'package:flutter/material.dart';
 
 class Loader {
@@ -18,9 +19,13 @@ class Loader {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircularProgressIndicator(
-                  color: Colors.greenAccent,
-                ),
+        Center(
+            child: EasyLoader(
+            image: AssetImage(
+            'assets/01.gif',
+            ),
+            iconColor: Colors.white,
+        )),
                 const SizedBox(
                   height: 10,
                 ),
