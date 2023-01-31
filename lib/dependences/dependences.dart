@@ -3,7 +3,10 @@ import 'package:green/controller/controller.home.dart';
 import 'package:green/core/logger/app_logger_impl.dart';
 
 import 'package:green/infra/repositories/auth.repository_impl.dart';
+import 'package:green/infra/repositories/transaction.repository.dart';
+import 'package:green/infra/repositories/transaction.repository_impl.dart';
 import 'package:green/infra/services/auth.service.dart';
+import 'package:green/infra/services/transaction.service.dart';
 
 import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/login/controller/login.controller.dart';
@@ -14,14 +17,19 @@ GetIt di = GetIt.I;
 
 void registerDependencies() {
   di.registerSingleton<UserStore>(UserStore());
+  di.registerSingleton<TransactionService>(TransactionService());
+
   di.registerSingleton<AppLoggerImpl>(AppLoggerImpl());
   di.registerSingleton<AuthService>(AuthService(di.get()));
+
+  di.registerSingleton<TransactionRepositoryImpl>(
+      TransactionRepositoryImpl(di.get()));
 
   di.registerSingleton<AuthRepositoryImpl>(
       AuthRepositoryImpl(di.get(), di.get()));
 
   ///Controllers
-  di.registerLazySingleton<ControllerHome>(() => ControllerHome());
+  di.registerLazySingleton<ControllerHome>(() => ControllerHome(di.get()));
 
   di.registerLazySingleton<RegisterController>(
       () => RegisterController(di.get()));

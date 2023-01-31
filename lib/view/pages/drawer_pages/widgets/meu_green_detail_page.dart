@@ -426,7 +426,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
           child: Row(
             children: [
               ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     setState(() {});
                     var formValid = fomrKey.currentState?.validate() ?? false;
                     print(formValid);
@@ -440,12 +440,11 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                         subCategoryName: subC.name,
                         value: controller.value,
                         title: controller.title,
-                        category: controller.category,
                         data: _dateTime,
                       );
 
                       //_controller.add(trans);
-                      _controller.setTransAction(trans);
+                      await _controller.add(trans);
                       //  homeController.setTransAction(trans);
                       Navigator.pop(context);
                     }

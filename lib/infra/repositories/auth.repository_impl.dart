@@ -63,12 +63,20 @@ class AuthRepositoryImpl implements AuthRepository {
 
       var prof = result.data();
 
-      //print('Nome: ${prof!["full_name"]}');
       String name = prof!["full_name"];
-      //print('Limite: ${prof["limite"]}');
+
       double limite = prof["limite"];
 
-      final profile = Profile(fullName: name, limite: limite);
+      String fatura = prof["fatura_atual"];
+
+      int dia = prof['dia_limite'];
+
+      final profile = Profile(
+          fullName: name,
+          limite: limite,
+          diaFechamento: dia,
+          faturaAtual: fatura);
+
       userStore.setUserProfile(profile);
 
       return APIResponse.success(response);

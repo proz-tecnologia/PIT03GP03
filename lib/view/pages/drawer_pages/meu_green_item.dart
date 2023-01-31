@@ -329,7 +329,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                           subtitle: Text(
                             DateFormat(DateFormat.YEAR_MONTH_DAY,
                                     locale.toString())
-                                .format(_lista[index].data),
+                                .format(_lista[index].data!),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -390,7 +390,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   }
 
   Widget confirmation() {
-    final _controller = GetIt.instance.get<ControllerHome>();
+    //final _controller = GetIt.instance.get<ControllerHome>();
     return SingleChildScrollView(
       child: Observer(builder: (context) {
         return ElevatedButton(

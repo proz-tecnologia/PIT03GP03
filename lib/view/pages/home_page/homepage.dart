@@ -22,6 +22,12 @@ class _HomePage2State extends State<HomePage2> {
   final userStore = GetIt.instance.get<UserStore>();
 
   @override
+  void initState() {
+    _controller.initTransaction();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context);
 
@@ -232,7 +238,7 @@ class _HomePage2State extends State<HomePage2> {
                                 subtitle: Text(
                                   DateFormat(DateFormat.YEAR_MONTH_DAY,
                                           locale.toString())
-                                      .format(_lista[index].data),
+                                      .format(_lista[index].data!),
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 13,

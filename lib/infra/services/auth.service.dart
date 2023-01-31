@@ -5,6 +5,7 @@ import 'package:green/core/exceptions/failure.dart';
 import 'package:green/core/exceptions/user_exists_exceptions.dart';
 import 'package:green/core/exceptions/user_not_exists_exception.dart';
 import 'package:green/core/logger/app_logger_impl.dart';
+import 'package:intl/intl.dart';
 
 class AuthService {
   AppLoggerImpl _log;
@@ -28,12 +29,30 @@ class AuthService {
           email: email, password: password);
 
       final uid = userCredential.user!.uid;
+      String fatura = Fatura();
 
       await FirebaseFirestore.instance.collection("profiles").doc(uid).set({
         "full_name": fullName,
         "limite": limite,
+        "fatura_atual": fatura,
+        "dia_limite": 5,
         "created_at": FieldValue.serverTimestamp(),
       });
+
+      /*var retorno = await FirebaseFirestore.instance
+          .collection("profiles")
+          .doc(uid)
+          .collection(fatura)
+          .add({
+        "limbo": "",
+      });
+
+      await FirebaseFirestore.instance
+          .collection("profiles")
+          .doc(uid)
+          .collection(fatura)
+          .doc(retorno.id)
+          .delete();*/
 
       return uid;
     } on FirebaseException catch (e, s) {
@@ -75,6 +94,14 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
 
     return true;
+  }
+
+  String Fatura() {
+    DateTime data = DateTime.now();
+
+    String newFatura = DateFormat("MMMM'_'y", "pt_BR").format(data).toString();
+
+    return newFatura;
   }
 
   User? getUser() {

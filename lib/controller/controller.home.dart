@@ -1,16 +1,33 @@
 import 'package:green/constants/transaction/transactions_green.dart';
-import 'package:green/models/category.dart';
+import 'package:green/infra/repositories/transaction.repository_impl.dart';
+import 'package:green/infra/services/current.state.services.dart';
 import 'package:mobx/mobx.dart';
+
 part 'controller.home.g.dart';
 
 class ControllerHome = ControllerHomeBase with _$ControllerHome;
 
 abstract class ControllerHomeBase with Store {
+  final TransactionRepositoryImpl repository;
+
+  ControllerHomeBase(this.repository);
+
   ObservableList<Transaction> transactionList = ObservableList<Transaction>();
   //ObservableList<Category> CategoryFavoriteList = ObservableList<Category>();
 
   @action
-  void setTransAction(Transaction trans) {
+  void setTransactions({required List<Transaction> values}) {
+    transactionList.clear();
+    transactionList.addAll(values);
+    setOrder();
+  }
+
+  @action
+  Future<void> add(Transaction trans) async {
+    var reponse = await repository.add(trans);
+
+    trans = reponse.data!;
+
     transactionList.add(trans);
     setOrder();
   }
@@ -34,6 +51,20 @@ abstract class ControllerHomeBase with Store {
 
   setOrder() {
     transactionList
-        .sort((a, b) => b.data.toString().compareTo(a.data.toString()));
+        .sort((a, b) => b.data!.toString().compareTo(a.data!.toString()));
+  }
+
+  @observable
+  CurrentState currentState = CurrentState.empty;
+
+  @action
+  void setState({required CurrentState value}) => currentState = value;
+
+  Future<void> initTransaction() async {
+    setState(value: CurrentState.loading);
+    final transaction = await repository.getCurrent();
+    print("LISTA QUE RETORNOU: $transaction");
+    setTransactions(values: transaction);
+    setState(value: CurrentState.success);
   }
 }

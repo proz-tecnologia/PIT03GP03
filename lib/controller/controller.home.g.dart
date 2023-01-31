@@ -16,15 +16,39 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
           Computed<double>(() => super.total, name: 'ControllerHomeBase.total'))
       .value;
 
+  late final _$currentStateAtom =
+      Atom(name: 'ControllerHomeBase.currentState', context: context);
+
+  @override
+  CurrentState get currentState {
+    _$currentStateAtom.reportRead();
+    return super.currentState;
+  }
+
+  @override
+  set currentState(CurrentState value) {
+    _$currentStateAtom.reportWrite(value, super.currentState, () {
+      super.currentState = value;
+    });
+  }
+
+  late final _$addAsyncAction =
+      AsyncAction('ControllerHomeBase.add', context: context);
+
+  @override
+  Future<void> add(Transaction trans) {
+    return _$addAsyncAction.run(() => super.add(trans));
+  }
+
   late final _$ControllerHomeBaseActionController =
       ActionController(name: 'ControllerHomeBase', context: context);
 
   @override
-  void setTransAction(Transaction trans) {
+  void setTransactions({required List<Transaction> values}) {
     final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
-        name: 'ControllerHomeBase.setTransAction');
+        name: 'ControllerHomeBase.setTransactions');
     try {
-      return super.setTransAction(trans);
+      return super.setTransactions(values: values);
     } finally {
       _$ControllerHomeBaseActionController.endAction(_$actionInfo);
     }
@@ -42,8 +66,20 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
   }
 
   @override
+  void setState({required CurrentState value}) {
+    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
+        name: 'ControllerHomeBase.setState');
+    try {
+      return super.setState(value: value);
+    } finally {
+      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+currentState: ${currentState},
 total: ${total}
     ''';
   }

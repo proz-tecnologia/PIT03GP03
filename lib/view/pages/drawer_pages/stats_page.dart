@@ -219,7 +219,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                   )),
               subtitle: Text(
                 DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
-                    .format(transactionList[index].data),
+                    .format(transactionList[index].data!),
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 13,
