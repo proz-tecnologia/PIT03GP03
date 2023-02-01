@@ -108,6 +108,7 @@ class _PageNameState extends State<PageName> {
 
                       child: IconButton(
                           onPressed: () {
+
                             setState(() {
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
@@ -135,9 +136,4 @@ class _PageNameState extends State<PageName> {
     );
   }
 
-  _doRegister(BuildContext context, String name, String email, String password,
-      double limite) async {
-    Loader.show("Cadastrando...");
-    await controller.doRegister(name, email, password, limite, context);
-  }
 }

@@ -135,9 +135,6 @@ class _PageEmailState extends State<PageEmail> {
       ),
     );
   }
-  _doRegister(BuildContext context, String name, String email, String password,
-      double limite) async {
-    Loader.show("Cadastrando...");
-    await controller.doRegister(name, email, password, limite, context);
+
   }
-}
+
