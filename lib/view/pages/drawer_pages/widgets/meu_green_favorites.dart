@@ -29,7 +29,7 @@ class FavoritePage extends StatelessWidget {
               height: 10,
             ),
             Text(
-              'Your favorited Green',
+              'SOCORRO DEUS',
               style: TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.w300,

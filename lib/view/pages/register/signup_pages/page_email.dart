@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/view/pages/register/signup_pages/page_password.dart';
-import 'package:localization/localization.dart';
 import 'package:validatorless/validatorless.dart';
-
-import '../../../../core/ui/widgets/loader.dart';
 import '../../../../helpers/AppColors.dart';
 import '../controller/register_controller.dart';
 
@@ -29,8 +26,6 @@ class _PageEmailState extends State<PageEmail> {
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return  Padding(
@@ -45,14 +40,6 @@ class _PageEmailState extends State<PageEmail> {
                 height: 82,
               ),
 
-              // Text(
-              //   "Boas-Vindas ao GREEN !",
-              //   style: TextStyle(
-              //       fontWeight: FontWeight.bold,
-              //       fontSize: 30,
-              //       color: AppColors.black),
-              //
-              // ),
               SizedBox(
                 height: 5,
               ),
@@ -109,10 +96,12 @@ class _PageEmailState extends State<PageEmail> {
 
                       child: IconButton(
                           onPressed: () {
+                            controller.email=_emailEC.text;
                             setState(() {
+                              controller.email=_emailEC.text;
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
-                                      builder: (_) => PageEmail()));
+                                      builder: (_) => PagePassWord()));
                             }
                             );
                           },

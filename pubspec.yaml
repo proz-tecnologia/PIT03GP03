@@ -73,6 +73,7 @@ flutter:
   assets:
     - assets/logo.png
     - assets/piggy.gif
+    - assets/moneybox.gif
     - assets/01.gif
     - assets/login2.png
     - assets/pigSleeping.png

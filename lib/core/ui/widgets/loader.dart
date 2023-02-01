@@ -19,20 +19,19 @@ class Loader {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-        Center(
-            child: EasyLoader(
-            image: AssetImage(
-            'assets/01.gif',
-            ),
-            iconColor: Colors.white,
-        )),
+        EasyLoader(
+        image: AssetImage(
+        'assets/moneybox.gif',
+        ),
+        iconColor: Colors.grey,
+        ),
                 const SizedBox(
                   height: 10,
                 ),
                 Text(
                   message,
                   style: TextStyle(
-                    color: Colors.greenAccent,
+                    color: Colors.white54,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),

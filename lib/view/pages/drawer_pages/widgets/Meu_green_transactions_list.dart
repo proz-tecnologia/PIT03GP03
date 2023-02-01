@@ -4,10 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
-
 import '../../../../constants/transaction/transactions_green.dart';
-import '../../../../controller/home_controller.dart';
 import '../../../../model/meu_green_category.dart';
 
 class MeuGreenTransactionsList extends StatefulWidget {

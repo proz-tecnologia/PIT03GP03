@@ -24,7 +24,7 @@ class _RootAppState extends State<RootApp> {
 
   List<Widget> pages() {
     return [
-      MeuGreenCarteira(),
+      MeuGreenCreat(),
       //  CategoryListPage(),
       //  MeuGreenPag(),
       FavoritePage(
@@ -61,26 +61,23 @@ class _RootAppState extends State<RootApp> {
         index: _bottomNavIndex,
         children: pages(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: MeuGreenCreat(),
-                  type: PageTransitionType.bottomToTop));
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.deepOrange,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
       bottomNavigationBar: AnimatedBottomNavigationBar(
+
+
+        rightCornerRadius: 50,
+          leftCornerRadius: 50,
           splashColor: Colors.deepOrange,
+          splashRadius: 60,
+          splashSpeedInMilliseconds: 800,
           activeColor: Colors.green,
-          inactiveColor: Colors.black.withOpacity(.5),
+          inactiveColor: Colors.black.withOpacity(.3),
           icons: iconItems,
           activeIndex: _bottomNavIndex,
-          gapLocation: GapLocation.center,
-          notchSmoothness: NotchSmoothness.softEdge,
+          gapLocation: GapLocation.none,
+          notchSmoothness: NotchSmoothness.sharpEdge,
+          backgroundColor: Colors.grey.withOpacity(0.1),
+          elevation: 0,
           onTap: (index) {
             setState(() {
               _bottomNavIndex = index;

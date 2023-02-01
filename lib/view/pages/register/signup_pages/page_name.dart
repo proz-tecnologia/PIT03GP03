@@ -110,6 +110,7 @@ class _PageNameState extends State<PageName> {
                           onPressed: () {
 
                             setState(() {
+                              controller.name=_nameEC.text;
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
                                       builder: (_) => PageEmail()));

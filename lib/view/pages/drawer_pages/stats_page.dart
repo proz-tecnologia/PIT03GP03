@@ -45,7 +45,8 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
         elevation: 0,
       ),
       body: Observer(builder: (context) {
@@ -98,7 +99,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                         context,
                         PageTransition(
                             child: MeuGreenDetailPage(
-                              categoryId: _greenList[index].categoryId,
+                              categoryId: categories[index].subCategory,
                               name: categories[index].name,
                               assetsName: categories[index].assetsName,
                               listSub: categories[index].subCategory,
