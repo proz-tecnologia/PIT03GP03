@@ -7,9 +7,7 @@ import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:localization/localization.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'package:green/helpers/AppColors.dart';
-import '../../../controller/home_controller.dart';
 
 class MeuGreenProfile extends StatefulWidget {
   @override

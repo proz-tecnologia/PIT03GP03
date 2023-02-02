@@ -64,8 +64,6 @@ class _MeuHistoricoState extends State<MeuHistorico> {
                 //print(_selected!.year);
                 //Loader().hide;
               },
-
-              //async => await _onPressed(context: context, locale: locale.toString()),
               child: Icon(
                 Ionicons.calendar,
                 color: Colors.white,

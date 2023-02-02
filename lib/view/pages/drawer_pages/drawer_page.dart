@@ -154,8 +154,7 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
 
       case 4:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => RootApp()));
+        Navigator.pushNamed(context, '/extrato');
         break;
 
       case 5:

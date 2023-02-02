@@ -4,10 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:green/models/category.dart';
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
 import '../../../../constants/transaction/transactions_green.dart';
 import '../../../../constants/transaction_controller.dart';
-import '../../../../controller/home_controller.dart';
 import '../../../../helpers/Utils.dart';
 import 'meu_green_detail_page.dart';
 

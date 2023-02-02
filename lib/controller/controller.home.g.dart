@@ -16,22 +16,6 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
           Computed<double>(() => super.total, name: 'ControllerHomeBase.total'))
       .value;
 
-  late final _$currentStateAtom =
-      Atom(name: 'ControllerHomeBase.currentState', context: context);
-
-  @override
-  CurrentState get currentState {
-    _$currentStateAtom.reportRead();
-    return super.currentState;
-  }
-
-  @override
-  set currentState(CurrentState value) {
-    _$currentStateAtom.reportWrite(value, super.currentState, () {
-      super.currentState = value;
-    });
-  }
-
   late final _$addAsyncAction =
       AsyncAction('ControllerHomeBase.add', context: context);
 
@@ -66,20 +50,8 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
   }
 
   @override
-  void setState({required CurrentState value}) {
-    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
-        name: 'ControllerHomeBase.setState');
-    try {
-      return super.setState(value: value);
-    } finally {
-      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-currentState: ${currentState},
 total: ${total}
     ''';
   }

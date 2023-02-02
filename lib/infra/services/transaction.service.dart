@@ -11,7 +11,7 @@ class TransactionService {
     final querySnapshot = await db
         .collection("profiles")
         .doc(userStore.uid)
-        .collection(userStore.profile!.faturaAtual)
+        .collection("transactions")
         .get();
 
     return querySnapshot;
@@ -25,7 +25,7 @@ class TransactionService {
     final docRef = await db
         .collection("profiles")
         .doc(userStore.uid)
-        .collection(userStore.profile!.faturaAtual)
+        .collection("transactions")
         .add(map);
 
     return docRef;
@@ -39,7 +39,7 @@ class TransactionService {
     await db
         .collection("profiles")
         .doc(userStore.uid)
-        .collection(userStore.profile!.faturaAtual)
+        .collection("transactions")
         .doc(uid)
         .delete();
 

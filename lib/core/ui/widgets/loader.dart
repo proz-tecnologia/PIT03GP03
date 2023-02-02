@@ -19,12 +19,12 @@ class Loader {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-        EasyLoader(
-        image: AssetImage(
-        'assets/moneybox.gif',
-        ),
-        iconColor: Colors.grey,
-        ),
+                EasyLoader(
+                  image: AssetImage(
+                    'assets/moneybox.gif',
+                  ),
+                  iconColor: Colors.grey,
+                ),
                 const SizedBox(
                   height: 10,
                 ),

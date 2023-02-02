@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green/utils/configs/pages_settings.dart';
 import 'package:green/view/pages/drawer_pages/meuGreen.dart';
+import 'package:green/view/pages/drawer_pages/widgets/meu_historico.dart';
 import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
 import 'package:green/view/pages/register/widgets/signup_page_login.dart';
@@ -99,6 +100,7 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
           '/metas': (context) => const MeuGreenMetas(),
           '/meuGreen': (context) => RootApp(),
           '/config': (context) => ConfiguracoesPage(),
+          '/extrato': (context) => MeuHistorico(),
         },
       ),
     );
