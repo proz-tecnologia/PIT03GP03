@@ -11,6 +11,7 @@ class TransactionRepositoryImpl implements TransactionRepository {
   @override
   Future<APIResponse<Transaction>> add(Transaction item) async {
     final docRef = await _service.add(item.toMap());
+
     item.id = docRef.id;
 
     return APIResponse.success(item);

@@ -1,4 +1,6 @@
+import 'package:get_it/get_it.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
+import 'package:green/controller/extract.controller.dart';
 import 'package:green/infra/repositories/transaction.repository_impl.dart';
 import 'package:green/infra/services/current.state.services.dart';
 import 'package:mobx/mobx.dart';
@@ -8,6 +10,7 @@ part 'controller.home.g.dart';
 class ControllerHome = ControllerHomeBase with _$ControllerHome;
 
 abstract class ControllerHomeBase with Store {
+  final ExtractController controller = GetIt.I.get();
   final TransactionRepositoryImpl repository;
 
   ControllerHomeBase(this.repository);
@@ -24,11 +27,17 @@ abstract class ControllerHomeBase with Store {
 
   @action
   Future<void> add(Transaction trans) async {
+    DateTime data = DateTime.now();
+
     var reponse = await repository.add(trans);
 
     trans = reponse.data!;
 
-    transactionList.add(trans);
+    if ((trans.data!.month == data.month) && (trans.data!.year == data.year)) {
+      transactionList.add(trans);
+    }
+
+    controller.add(trans);
     setOrder();
   }
 
@@ -54,17 +63,23 @@ abstract class ControllerHomeBase with Store {
         .sort((a, b) => b.data!.toString().compareTo(a.data!.toString()));
   }
 
-  @observable
-  CurrentState currentState = CurrentState.empty;
-
-  @action
-  void setState({required CurrentState value}) => currentState = value;
-
   Future<void> initTransaction() async {
-    setState(value: CurrentState.loading);
+    DateTime data = DateTime.now();
+
+    List<Transaction> listFiltrada = [];
+
     final transaction = await repository.getCurrent();
-    print("LISTA QUE RETORNOU: $transaction");
-    setTransactions(values: transaction);
-    setState(value: CurrentState.success);
+
+    for (var element in transaction) {
+      if ((element.data!.month == data.month) &&
+          (element.data!.year == data.year)) {
+        listFiltrada.add(element);
+      }
+    }
+
+    //print("LISTA QUE RETORNOU: $transaction");
+
+    setTransactions(values: listFiltrada);
+    controller.setExtract(values: transaction);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
+import 'package:green/controller/extract.controller.dart';
 import 'package:green/core/logger/app_logger_impl.dart';
 
 import 'package:green/infra/repositories/auth.repository_impl.dart';
@@ -30,6 +31,8 @@ void registerDependencies() {
 
   ///Controllers
   di.registerLazySingleton<ControllerHome>(() => ControllerHome(di.get()));
+
+  di.registerLazySingleton<ExtractController>(() => ExtractController());
 
   di.registerLazySingleton<RegisterController>(
       () => RegisterController(di.get()));
