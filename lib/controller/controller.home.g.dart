@@ -24,6 +24,15 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
     return _$addAsyncAction.run(() => super.add(trans));
   }
 
+  late final _$removeTransActionAsyncAction =
+      AsyncAction('ControllerHomeBase.removeTransAction', context: context);
+
+  @override
+  Future<void> removeTransAction(Transaction trans) {
+    return _$removeTransActionAsyncAction
+        .run(() => super.removeTransAction(trans));
+  }
+
   late final _$ControllerHomeBaseActionController =
       ActionController(name: 'ControllerHomeBase', context: context);
 
@@ -33,17 +42,6 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
         name: 'ControllerHomeBase.setTransactions');
     try {
       return super.setTransactions(values: values);
-    } finally {
-      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void removeTransAction(int index) {
-    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
-        name: 'ControllerHomeBase.removeTransAction');
-    try {
-      return super.removeTransAction(index);
     } finally {
       _$ControllerHomeBaseActionController.endAction(_$actionInfo);
     }

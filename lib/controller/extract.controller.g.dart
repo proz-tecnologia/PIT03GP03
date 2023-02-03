@@ -50,11 +50,11 @@ mixin _$ExtractController on ExtractControllerBase, Store {
   }
 
   @override
-  void removeTransAction(int index) {
+  void removeTransAction(Transaction trans) {
     final _$actionInfo = _$ExtractControllerBaseActionController.startAction(
         name: 'ExtractControllerBase.removeTransAction');
     try {
-      return super.removeTransAction(index);
+      return super.removeTransAction(trans);
     } finally {
       _$ExtractControllerBaseActionController.endAction(_$actionInfo);
     }

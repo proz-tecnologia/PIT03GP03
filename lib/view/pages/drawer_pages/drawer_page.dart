@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
+import 'package:green/infra/repositories/auth.repository_impl.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/drawer_pages/widgets/Meu_green_transactions_list.dart';
 import 'package:green/view/pages/drawer_pages/widgets/pagamentos.dart';
@@ -129,8 +130,10 @@ class _DrawerAppState extends State<DrawerApp> {
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index}) {
+  Future<void> onItemPressed(BuildContext context, {required int index}) async {
     final userStore = GetIt.instance.get<UserStore>();
+    final repository = GetIt.instance.get<AuthRepositoryImpl>();
+
     Navigator.pop(context);
 
     switch (index) {
@@ -164,6 +167,8 @@ class _DrawerAppState extends State<DrawerApp> {
       case 6:
         //Navigator.pushNamed(context, '/login');
         userStore.unloadUser();
+        await repository.logout();
+
         Navigator.pushReplacementNamed(context, '/login');
         break;
 

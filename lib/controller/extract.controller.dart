@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:mobx/mobx.dart';
 
@@ -36,8 +37,12 @@ abstract class ExtractControllerBase with Store {
   }
 
   @action
-  void removeTransAction(int index) {
-    extractList.removeAt(index);
+  void removeTransAction(Transaction trans) {
+    extractList.removeWhere((element) => element.id == trans.id);
+
+    if (extractListFilter.contains(trans)) {
+      extractListFilter.removeWhere((element) => element.id == trans.id);
+    }
     setOrder();
   }
 
@@ -54,6 +59,6 @@ abstract class ExtractControllerBase with Store {
 
   setOrder() {
     extractList
-        .sort((a, b) => b.data!.toString().compareTo(a.data!.toString()));
+        .sort((a, b) => a.data!.toString().compareTo(b.data!.toString()));
   }
 }

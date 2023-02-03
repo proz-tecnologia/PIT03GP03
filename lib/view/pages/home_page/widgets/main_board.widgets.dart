@@ -122,7 +122,7 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                           itemBuilder: (context, index) => Observer(
                             builder: (_) => DismissibleWidget<Transaction>(
                               onDismissed: ((p0) => _dialogBuilder(
-                                  context, widget.remove, index)),
+                                  context, widget.remove, widget.lista[index])),
                               item: widget.lista[index],
                               child: ListTile(
                                 contentPadding: EdgeInsets.zero,
@@ -334,7 +334,8 @@ class DismissibleWidget<T> extends StatelessWidget {
       );
 }
 
-Future<bool?> _dialogBuilder(BuildContext context, Function remove, int index) {
+Future<bool?> _dialogBuilder(
+    BuildContext context, Function remove, Transaction trans) {
   return showDialog<bool?>(
     context: context,
     builder: (BuildContext context) {
@@ -348,7 +349,7 @@ Future<bool?> _dialogBuilder(BuildContext context, Function remove, int index) {
             ),
             child: const Text('Sim'),
             onPressed: () {
-              remove(index);
+              remove(trans);
               Navigator.of(context).pop();
             },
           ),

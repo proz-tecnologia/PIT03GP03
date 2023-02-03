@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/extract.controller.dart';
+import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/infra/repositories/transaction.repository_impl.dart';
-import 'package:green/infra/services/current.state.services.dart';
 import 'package:mobx/mobx.dart';
 
 part 'controller.home.g.dart';
@@ -42,9 +42,22 @@ abstract class ControllerHomeBase with Store {
   }
 
   @action
-  void removeTransAction(int index) {
-    transactionList.removeAt(index);
-    setOrder();
+  Future<void> removeTransAction(Transaction trans) async {
+    DateTime data = DateTime.now();
+
+    var response = await repository.remove(trans);
+
+    if (response.isSuccess) {
+      if ((trans.data!.month == data.month) &&
+          (trans.data!.year == data.year)) {
+        transactionList.removeWhere((element) => element.id == trans.id);
+        setOrder();
+      }
+
+      controller.removeTransAction(trans);
+    } else {
+      Mensagens.alert(response.message!);
+    }
   }
 
   @computed
@@ -76,8 +89,6 @@ abstract class ControllerHomeBase with Store {
         listFiltrada.add(element);
       }
     }
-
-    //print("LISTA QUE RETORNOU: $transaction");
 
     setTransactions(values: listFiltrada);
     controller.setExtract(values: transaction);

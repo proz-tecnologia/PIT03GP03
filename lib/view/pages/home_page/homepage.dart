@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:green/helpers/AppColors.dart';
 import 'package:green/stores/user.store.dart';
+import 'package:green/view/pages/home_page/widgets/appBarBottomSection.dart';
+import 'package:green/view/pages/home_page/widgets/main_board.widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import '../../../constants/json/meugreen.dart';
@@ -37,32 +39,35 @@ class _HomePage2State extends State<HomePage2> {
       body: Observer(builder: (context) {
         return Column(
           children: [
-            _appbarBotomSection(
-              _controller.total,
-              userStore.profile!.limite,
+            AppBarBottomSection(
+              total: _controller.total,
+              limite: userStore.profile!.limite,
             ),
-            mainBoard(
-              _controller.transactionList,
-              locale,
-              _controller.removeTransAction,
+            MainBoardWidgets(
+              lista: _controller.transactionList,
+              locale: locale,
+              remove: _controller.removeTransAction,
+              ishome: true,
             ),
           ],
         );
       }),
     );
   }
+}
 
-  AppBar _buildAppBar(double value, double limite) {
-    return AppBar(
-        elevation: 0,
-        backgroundColor:
-            (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
-        actions: const <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-          )
-        ]);
-  }
+AppBar _buildAppBar(double value, double limite) {
+  return AppBar(
+      elevation: 0,
+      backgroundColor:
+          (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
+      actions: const <Widget>[
+        Padding(
+          padding: EdgeInsets.only(right: 20),
+        )
+      ]);
+}
+  /*
 
   Widget _appbarBotomSection(double value, double limite) {
     return Container(
@@ -452,3 +457,4 @@ Future<bool?> _dialogBuilder(BuildContext context, Function remove, int index) {
     },
   );
 }
+*/
