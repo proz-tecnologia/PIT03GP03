@@ -49,7 +49,7 @@ class _GetFavoritesState extends State<GetFavorites> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.2,
+              height: 100,
               child: ListView.builder(
                 itemCount: _controller.listFavoriteCategories.length,
                 scrollDirection: Axis.horizontal,
@@ -74,16 +74,16 @@ class _GetFavoritesState extends State<GetFavorites> {
                               type: PageTransitionType.bottomToTop));
                     },
                     child: Container(
-                      width: size.width * 0.7,
+                      width: size.width * 0.86,
                       margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: Stack(
                         children: [
                           Positioned(
                             top: 10,
-                            right: 20,
+                            right: 10,
                             child: Container(
-                              height: 50,
-                              width: 50,
+                              height: 40,
+                              width: 40,
                               child: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -114,19 +114,18 @@ class _GetFavoritesState extends State<GetFavorites> {
                                       : Icons.favorite_border,
                                   color: Colors.red,
                                 ),
-                                iconSize: 30,
+                                iconSize: 25,
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(50),
+                                borderRadius: BorderRadius.circular(60),
                               ),
                             ),
                           ),
                           Positioned(
                             left: 50,
                             right: 50,
-                            top: 50,
-                            bottom: 50,
+
                             child: Image.asset(
                                 'assets/' +
                                     _controller.listFavoriteCategories[index]
@@ -145,8 +144,9 @@ class _GetFavoritesState extends State<GetFavorites> {
                                           .listFavoriteCategories[index].name)
                                       .i18n(),
                                   style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontFamily: "Savoye Let",
+                                    fontSize: 19,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -157,7 +157,7 @@ class _GetFavoritesState extends State<GetFavorites> {
                       ),
                       decoration: BoxDecoration(
                         color: _controller.listFavoriteCategories[index].color,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     ),
                   );

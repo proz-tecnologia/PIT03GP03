@@ -42,13 +42,9 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                     children: [
                       GetFavorites(),
                       const SizedBox(
-                        height: 16,
+                        height: 0,
                       ),
-                      _reportCell(
-                          isSavings: true,
-                          title: 'fuel.'.i18n(),
-                          gastos: '150,00',
-                          progress: 25),
+
                       //icone vermelho
                       const SizedBox(
                         height: 16,

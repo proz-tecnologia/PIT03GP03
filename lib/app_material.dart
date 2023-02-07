@@ -98,9 +98,10 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
           '/onboarding': (context) => const OnboardingScreen(),
           '/home': (context) => const HomePage2(),
           '/metas': (context) => const MeuGreenMetas(),
+          '/extrato': (context) => MeuHistorico(),
           '/meuGreen': (context) => RootApp(),
           '/config': (context) => ConfiguracoesPage(),
-          '/extrato': (context) => MeuHistorico(),
+
         },
       ),
     );

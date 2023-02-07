@@ -53,7 +53,7 @@ class _DrawerAppState extends State<DrawerApp> {
                   onPressed: () => onItemPressed(context, index: 0),
                 ),
                 DrawerItem(
-                  name: "payments".i18n(),
+                  name: "extract".i18n(),
                   icon: Iconsax.money,
                   onPressed: () => onItemPressed(context, index: 1),
                 ),
@@ -146,10 +146,8 @@ class _DrawerAppState extends State<DrawerApp> {
         Navigator.pushNamed(context, '/metas');
         break;
       case 1:
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MeuGreenTransactionsList()));
+        Navigator.pushNamed(context, '/extrato');
+
         break;
 
       case 2:
