@@ -2,7 +2,9 @@ import 'package:get_it/get_it.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/extract.controller.dart';
 import 'package:green/core/ui/widgets/mensagens.dart';
+import 'package:green/helpers/Utils.dart';
 import 'package:green/infra/repositories/transaction.repository_impl.dart';
+import 'package:green/models/category.dart';
 import 'package:mobx/mobx.dart';
 
 part 'controller.home.g.dart';
@@ -15,14 +17,53 @@ abstract class ControllerHomeBase with Store {
 
   ControllerHomeBase(this.repository);
 
+  @observable
   ObservableList<Transaction> transactionList = ObservableList<Transaction>();
-  //ObservableList<Category> CategoryFavoriteList = ObservableList<Category>();
+
+  @observable
+  ObservableList<Category> listFavoriteCategories = ObservableList<Category>();
+
+  @observable
+  ObservableList<Category> categoriesList = ObservableList<Category>();
+
+  @action
+  void addFavorite(Category favorite) {
+    listFavoriteCategories.add(favorite);
+    Mensagens.sucess("${favorite.name} adicionada aos favoritos");
+  }
+
+  @action
+  void removeFavorite(Category favorite) {
+    listFavoriteCategories
+        .removeWhere((element) => element.name == favorite.name);
+    Mensagens.alert("${favorite.name} removida dos favoritos");
+  }
 
   @action
   void setTransactions({required List<Transaction> values}) {
     transactionList.clear();
     transactionList.addAll(values);
     setOrder();
+  }
+
+  @action
+  void favoriteCategorie(int index) {
+    var isFavorite = categoriesList[index].isFavorited;
+    categoriesList[index].isFavorited = !isFavorite;
+
+    if (categoriesList[index].isFavorited) {
+      addFavorite(categoriesList[index]);
+    } else {
+      removeFavorite(categoriesList[index]);
+    }
+
+    //categoriesList.forEach(print);
+  }
+
+  @action
+  void initCategorie() {
+    List<Category> categories = Utils.getMockedCategories();
+    categoriesList.addAll(categories);
   }
 
   @action
@@ -64,6 +105,7 @@ abstract class ControllerHomeBase with Store {
   double get total {
     double valorTotal = 0;
 
+    //transactionList.fold(0, (totalValue, item) => totalValue += item.value);
     for (var element in transactionList) {
       valorTotal += element.value;
     }
@@ -92,5 +134,6 @@ abstract class ControllerHomeBase with Store {
 
     setTransactions(values: listFiltrada);
     controller.setExtract(values: transaction);
+    initCategorie();
   }
 }

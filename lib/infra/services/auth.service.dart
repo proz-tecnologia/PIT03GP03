@@ -85,7 +85,7 @@ class AuthService {
       }
     } on FirebaseAuthException catch (e, s) {
       _log.error(
-          "Email ou senha inválidoss!\nFirebaseAuthError[${e.code}]", e, s);
+          "Email ou senha inválidos!\nFirebaseAuthError[${e.code}]", e, s);
       throw Failure(message: "Email ou senha inválido!!");
     }
   }

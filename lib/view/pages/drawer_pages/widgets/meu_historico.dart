@@ -6,7 +6,7 @@ import 'package:green/controller/extract.controller.dart';
 import 'package:green/helpers/AppColors.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/drawer_pages/widgets/simple_moth_year_green.dart';
-import 'package:green/view/pages/home_page/widgets/appBarBottomSection.dart';
+import 'package:green/view/pages/home_page/widgets/app_bar_bottom_section.dart';
 import 'package:green/view/pages/home_page/widgets/main_board.widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -92,6 +92,7 @@ class _MeuHistoricoState extends State<MeuHistorico> {
               ishome: false,
               remove: _controllerHome.removeTransAction, //ControllerHome
               locale: locale,
+              listFavorite: [],
             ),
           ],
         );

@@ -4,12 +4,13 @@ import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:green/helpers/AppColors.dart';
 import 'package:green/stores/user.store.dart';
-import 'package:green/view/pages/home_page/widgets/appBarBottomSection.dart';
+import 'package:green/view/pages/home_page/widgets/app_bar_bottom_section.dart';
+import 'package:green/view/pages/home_page/widgets/get_favorites.dart';
 import 'package:green/view/pages/home_page/widgets/main_board.widgets.dart';
-import 'package:intl/intl.dart';
+/*import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import '../../../constants/json/meugreen.dart';
-import '../../../constants/transaction/transactions_green.dart';
+import '../../../constants/transaction/transactions_green.dart';*/
 import '../drawer_pages/drawer_page.dart';
 
 class HomePage2 extends StatefulWidget {
@@ -48,6 +49,7 @@ class _HomePage2State extends State<HomePage2> {
               locale: locale,
               remove: _controller.removeTransAction,
               ishome: true,
+              listFavorite: _controller.listFavoriteCategories,
             ),
           ],
         );

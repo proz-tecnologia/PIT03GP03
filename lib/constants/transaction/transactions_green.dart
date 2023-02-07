@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Transaction {
   String? id; //Teria q ter um uuid
   double value = 0.0;

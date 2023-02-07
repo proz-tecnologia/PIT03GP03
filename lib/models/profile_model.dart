@@ -14,6 +14,7 @@ class Profile {
 
   String get firstName => fullName.split(' ').first;
 
+  //apagar na novo formato
   Profile novaFatura(Profile p) {
     DateTime data = DateTime.now();
 

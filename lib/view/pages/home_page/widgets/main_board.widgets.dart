@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/helpers/AppColors.dart';
+import 'package:green/models/category.dart';
+import 'package:green/view/pages/home_page/widgets/get_favorites.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 
 class MainBoardWidgets extends StatefulWidget {
+  List<Category> listFavorite;
   List<Transaction> lista;
   Locale? locale;
   Function remove;
@@ -14,10 +17,11 @@ class MainBoardWidgets extends StatefulWidget {
 
   MainBoardWidgets({
     Key? key,
+    required this.listFavorite,
     required this.lista,
-    required this.ishome,
     required this.locale,
     required this.remove,
+    required this.ishome,
   }) : super(key: key);
 
   @override
@@ -36,20 +40,26 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
             widget.ishome == true
                 ? Column(
                     children: [
+                      GetFavorites(),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       _reportCell(
                           isSavings: true,
                           title: 'fuel.'.i18n(),
                           gastos: '150,00',
                           progress: 25),
                       //icone vermelho
-                      const SizedBox(height: 16),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       _reportCell(
                           isSavings: false,
                           title: 'ceiling'.i18n(),
                           gastos: '',
                           progress: 50),
                       const SizedBox(
-                        height: 100,
+                        height: 20,
                       ),
                     ],
                   )

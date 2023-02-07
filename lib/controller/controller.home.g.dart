@@ -16,6 +16,55 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
           Computed<double>(() => super.total, name: 'ControllerHomeBase.total'))
       .value;
 
+  late final _$transactionListAtom =
+      Atom(name: 'ControllerHomeBase.transactionList', context: context);
+
+  @override
+  ObservableList<Transaction> get transactionList {
+    _$transactionListAtom.reportRead();
+    return super.transactionList;
+  }
+
+  @override
+  set transactionList(ObservableList<Transaction> value) {
+    _$transactionListAtom.reportWrite(value, super.transactionList, () {
+      super.transactionList = value;
+    });
+  }
+
+  late final _$listFavoriteCategoriesAtom =
+      Atom(name: 'ControllerHomeBase.listFavoriteCategories', context: context);
+
+  @override
+  ObservableList<Category> get listFavoriteCategories {
+    _$listFavoriteCategoriesAtom.reportRead();
+    return super.listFavoriteCategories;
+  }
+
+  @override
+  set listFavoriteCategories(ObservableList<Category> value) {
+    _$listFavoriteCategoriesAtom
+        .reportWrite(value, super.listFavoriteCategories, () {
+      super.listFavoriteCategories = value;
+    });
+  }
+
+  late final _$categoriesListAtom =
+      Atom(name: 'ControllerHomeBase.categoriesList', context: context);
+
+  @override
+  ObservableList<Category> get categoriesList {
+    _$categoriesListAtom.reportRead();
+    return super.categoriesList;
+  }
+
+  @override
+  set categoriesList(ObservableList<Category> value) {
+    _$categoriesListAtom.reportWrite(value, super.categoriesList, () {
+      super.categoriesList = value;
+    });
+  }
+
   late final _$addAsyncAction =
       AsyncAction('ControllerHomeBase.add', context: context);
 
@@ -37,6 +86,28 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
       ActionController(name: 'ControllerHomeBase', context: context);
 
   @override
+  void addFavorite(Category favorite) {
+    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
+        name: 'ControllerHomeBase.addFavorite');
+    try {
+      return super.addFavorite(favorite);
+    } finally {
+      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeFavorite(Category favorite) {
+    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
+        name: 'ControllerHomeBase.removeFavorite');
+    try {
+      return super.removeFavorite(favorite);
+    } finally {
+      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setTransactions({required List<Transaction> values}) {
     final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
         name: 'ControllerHomeBase.setTransactions');
@@ -48,8 +119,33 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
   }
 
   @override
+  void favoriteCategorie(int index) {
+    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
+        name: 'ControllerHomeBase.favoriteCategorie');
+    try {
+      return super.favoriteCategorie(index);
+    } finally {
+      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void initCategorie() {
+    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
+        name: 'ControllerHomeBase.initCategorie');
+    try {
+      return super.initCategorie();
+    } finally {
+      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+transactionList: ${transactionList},
+listFavoriteCategories: ${listFavoriteCategories},
+categoriesList: ${categoriesList},
 total: ${total}
     ''';
   }

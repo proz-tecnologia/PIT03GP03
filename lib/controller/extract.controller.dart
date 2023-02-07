@@ -28,6 +28,10 @@ abstract class ExtractControllerBase with Store {
         extractListFilter.add(element);
       }
     }
+
+    if (extractListFilter.isNotEmpty) {
+      setOrder();
+    }
   }
 
   @action
@@ -58,7 +62,7 @@ abstract class ExtractControllerBase with Store {
   }
 
   setOrder() {
-    extractList
+    extractListFilter
         .sort((a, b) => a.data!.toString().compareTo(b.data!.toString()));
   }
 }

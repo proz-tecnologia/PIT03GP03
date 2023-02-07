@@ -12,7 +12,7 @@ import 'package:green/helpers/AppColors.dart';
 import 'meu_green_subCategories.dart';
 
 class MeuGreenDetailPage extends StatefulWidget {
-  var categoryId;
+  final int categoryId;
   final String assetsName;
   final List<SubCategory> listSub;
   final String name;
@@ -96,7 +96,6 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
 
   Widget getBody(List<Transaction> transactionList, Size size, Locale locale,
       List<Category> categories) {
-    //SubCategory? aux;
     return Stack(children: [
       Column(children: [
         Container(

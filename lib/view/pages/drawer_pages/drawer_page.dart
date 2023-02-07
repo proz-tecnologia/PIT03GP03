@@ -22,6 +22,7 @@ class _DrawerAppState extends State<DrawerApp> {
   Widget build(BuildContext context) {
     final _controller = GetIt.instance.get<ControllerHome>();
     final userStore = GetIt.instance.get<UserStore>();
+    final repository = GetIt.instance.get<AuthRepositoryImpl>();
 
     return Drawer(
       child: Material(
@@ -96,7 +97,12 @@ class _DrawerAppState extends State<DrawerApp> {
                 DrawerItem(
                   name: "logout".i18n(),
                   icon: Iconsax.logout,
-                  onPressed: () => onItemPressed(context, index: 6),
+                  onPressed: () async {
+                    await repository.logout();
+                    userStore.unloadUser();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/login', (Route<dynamic> route) => false);
+                  },
                 ),
               ],
             ),
@@ -132,7 +138,6 @@ class _DrawerAppState extends State<DrawerApp> {
 
   Future<void> onItemPressed(BuildContext context, {required int index}) async {
     final userStore = GetIt.instance.get<UserStore>();
-    final repository = GetIt.instance.get<AuthRepositoryImpl>();
 
     Navigator.pop(context);
 
@@ -167,8 +172,6 @@ class _DrawerAppState extends State<DrawerApp> {
       case 6:
         //Navigator.pushNamed(context, '/login');
         userStore.unloadUser();
-        await repository.logout();
-
         Navigator.pushReplacementNamed(context, '/login');
         break;
 

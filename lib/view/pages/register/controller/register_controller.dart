@@ -5,10 +5,10 @@ import 'package:green/infra/repositories/auth.repository_impl.dart';
 
 class RegisterController {
   final AuthRepositoryImpl _authRepository;
-String name ='';
-String email='';
-String password='';
-double value=0.0;
+  String name = '';
+  String email = '';
+  String password = '';
+  double value = 0.0;
   RegisterController(this._authRepository);
 
   //final userStore = GetIt.instance.get<UserStore>();
@@ -22,11 +22,5 @@ double value=0.0;
       Mensagens.sucess("Cadastro realizado com sucesso!!");
       Navigator.pop(context);
     }
-
-
   }
 }
-
-
-
-
