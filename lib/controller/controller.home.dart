@@ -34,14 +34,14 @@ abstract class ControllerHomeBase with Store {
   @action
   void addFavorite(Category favorite) {
     listFavoriteCategories.add(favorite);
-    Mensagens.sucess('${"add_favorites".i18n([favorite.name])}');
+    Mensagens.sucess('${"add_favorites".i18n([favorite.nameInter.i18n()])}');
   }
 
   @action
   void removeFavorite(Category favorite) {
     listFavoriteCategories
         .removeWhere((element) => element.name == favorite.name);
-    Mensagens.alert('${"remove_favorites".i18n([favorite.name])}');
+    Mensagens.alert('${"remove_favorites".i18n([favorite.nameInter.i18n()])}');
   }
 
   @action
