@@ -18,14 +18,21 @@ class _MeuGreenCarteiraState extends State<MeuGreenCarteira> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent,foregroundColor: Colors.black,
-        title: Text('Limite Financeiro',style: TextStyle(
-            fontSize: 13,fontFamily: 'sans-serif-light'
-        ),),),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        title: Text(
+          'Limite Financeiro',
+          style: TextStyle(fontSize: 13, fontFamily: 'sans-serif-light'),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           TextBar(),
           SizedBox(
             height: 50,
@@ -44,7 +51,6 @@ class cards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -164,7 +170,6 @@ class _TextBarState extends State<TextBar> {
                             fontSize: 13,
                             color: AppColors.black),
                       ),
-
                       Text(
                         'money'.i18n(),
                         style: TextStyle(
@@ -172,7 +177,6 @@ class _TextBarState extends State<TextBar> {
                             fontSize: 12,
                             color: AppColors.white),
                       ),
-
                       TextFormField(
                         validator: (String? valor) {
                           if (verificNumber.hasMatch(valor!) ||
@@ -192,7 +196,7 @@ class _TextBarState extends State<TextBar> {
                             color: AppColors.black),
                         decoration: InputDecoration(
                           hintText:
-                          "R\$ ${userStore.profile!.limite.toStringAsFixed(2)}",
+                              "R\$ ${userStore.profile!.limite.toStringAsFixed(2)}",
                           prefixIconColor: AppColors.black,
                         ),
                         onChanged: (value) => aux = double.parse(value),
@@ -214,16 +218,13 @@ class _TextBarState extends State<TextBar> {
                         Loader.show("Atualizando...");
 
                         //Atualizando no Firebase
-                        await FirebaseFirestore.instance
+                        /*await FirebaseFirestore.instance
                             .collection("profiles")
                             .doc(userStore.uid)
                             .update({'limite': aux});
-
-                        //Atualizando local
-                        userStore.profile!.copyWith(limite: aux);
-
-
-
+                          */
+                        //Atualizando no Firebase e localmente
+                        userStore.setNewLimit(aux);
 
                         Loader.hide();
                         Mensagens.sucess(message);
@@ -234,15 +235,12 @@ class _TextBarState extends State<TextBar> {
                         Mensagens.alert(message);
                       }
                     },
-
                     child: Container(
-
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.green)),
                       child: Padding(
                         padding: const EdgeInsets.all(18.0),
-
                         child: Text(
                           "update".i18n(),
                           style: TextStyle(color: Colors.green),

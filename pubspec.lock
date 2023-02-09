@@ -840,6 +840,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  simple_circular_progress_bar:
+    dependency: "direct main"
+    description:
+      name: simple_circular_progress_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   simple_month_year_picker:
     dependency: "direct main"
     description:

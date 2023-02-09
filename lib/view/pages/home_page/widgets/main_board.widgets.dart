@@ -1,12 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green/constants/app_text_styles.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
+import 'package:green/controller/controller.home.dart';
 import 'package:green/helpers/AppColors.dart';
 import 'package:green/models/category.dart';
+import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/home_page/widgets/get_favorites.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
+import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 class MainBoardWidgets extends StatefulWidget {
   List<Category> listFavorite;
@@ -29,6 +34,17 @@ class MainBoardWidgets extends StatefulWidget {
 }
 
 class _MainBoardWidgetsState extends State<MainBoardWidgets> {
+  final _controller = GetIt.instance.get<ControllerHome>();
+  final userStore = GetIt.instance.get<UserStore>();
+
+  late ValueNotifier<double> valueNotifier;
+
+  @override
+  void initState() {
+    valueNotifier = ValueNotifier(0.0);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -47,17 +63,15 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                       ),
                       _reportCell(
                           isSavings: false,
-                          title: 'ceiling'.i18n(),
-                          gastos: '',
-                          progress: 50),
+                          value:
+                              (_controller.total / userStore.profile!.limite) *
+                                  100),
                       const SizedBox(
                         height: 20,
                       ),
                     ],
                   )
-                : const SizedBox(
-                    height: 1,
-                  ),
+                : const SizedBox(),
             //texto na main
             widget.lista.isEmpty
                 ? Column(
@@ -111,8 +125,7 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                           ],
                         ),
                       ),
-                      const Divider(),
-
+                      //const Divider(),
                       // listview widgets (trocar para logica transações
                       Observer(
                         builder: (_) => ListView.separated(
@@ -183,127 +196,142 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
       ),
     );
   }
-}
 
-Container _reportCell({
-  required bool isSavings,
-  required String title,
-  required String gastos,
-  required int progress,
-}) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(30),
-      color: isSavings ? Colors.white : AppColors.third,
-      border: isSavings
-          ? Border.all(color: AppColors.primary.withOpacity(0.1), width: 2)
-          : null,
-      boxShadow: isSavings
-          ? []
-          : [
-              BoxShadow(
-                  color: AppColors.third.withOpacity(0.4),
-                  offset: const Offset(1, 0),
-                  blurRadius: 10),
-            ],
-    ),
+  Container _reportCell({
+    required bool isSavings,
+    required double value,
+  }) {
+    valueNotifier.value = value;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: isSavings ? Colors.white : AppColors.third,
+        border: isSavings
+            ? Border.all(color: AppColors.primary.withOpacity(0.1), width: 2)
+            : null,
+        boxShadow: isSavings
+            ? []
+            : [
+                BoxShadow(
+                    color: AppColors.third.withOpacity(0.4),
+                    offset: const Offset(1, 0),
+                    blurRadius: 10),
+              ],
+      ),
 
 //graficos adicionar logica
 
-    child: Row(
-      children: <Widget>[
-        Stack(
-          children: <Widget>[
-            SizedBox(
-              width: 60,
-              height: 60,
-              child: CircularProgressIndicator(
-                value: 10.0 / 100,
-                strokeWidth: 6,
-                backgroundColor: isSavings
-                    ? Colors.black.withOpacity(0.2)
-                    : Colors.black.withOpacity(0.1),
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    isSavings ? AppColors.secondary : Colors.white),
+      child: Row(
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: SimpleCircularProgressBar(
+                  valueNotifier: valueNotifier,
+                  mergeMode: true,
+                  backColor: Colors.black.withOpacity(0.4),
+                  onGetText: (double value) {
+                    return Text(
+                      '${value.toInt()}%',
+                      style: AppStyles.white14900Khang18,
+                    );
+                  },
+                  progressColors: const [Colors.white, Colors.white],
+                ),
               ),
-            ),
-            Container(
+              /*Container(
               width: 60,
               height: 60,
               alignment: Alignment.center,
               child: Text(
-                '$progress%',
+                '${value.toInt()}%',
                 style: TextStyle(
                   color: isSavings ? Colors.black : Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-          ],
+            ),*/
+            ],
+          ),
+          const SizedBox(
+            width: 30,
+          ),
+
+          //graficos 2
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              /*Text(
+                'Limite: ${userStore.profile!.limite.toStringAsFixed(2)}',
+                style: TextStyle(
+                  color: isSavings ? Colors.black : Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),*/
+              Text(
+                'Gastos total: ${_controller.total.toStringAsFixed(2)}',
+                style: AppStyles.white14900Khang18,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                'Saldo: ${(userStore.profile!.limite - _controller.total).toStringAsFixed(2)}',
+                style: AppStyles.white14900Khang18,
+              ),
+              /*Row(
+                children: <Widget>[
+                  _reportInner(
+                      isSavings: isSavings,
+                      title: 'expenses'.i18n(),
+                      value: ''),
+                  const SizedBox(
+                    width: 24,
+                  ),
+                ],
+              ),*/
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column _reportInner(
+      {required bool isSavings, required String title, required String value}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         const SizedBox(
-          width: 30,
+          height: 4,
         ),
-
-        //graficos 2
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(
-                color: isSavings ? Colors.black : Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Row(
-              children: <Widget>[
-                _reportInner(
-                    isSavings: isSavings, title: 'expenses'.i18n(), value: ''),
-                const SizedBox(
-                  width: 24,
-                ),
-              ],
-            ),
-          ],
+        Text(
+          value,
+          style: TextStyle(
+            color: isSavings ? Colors.black87 : Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ],
-    ),
-  );
-}
-
-Column _reportInner(
-    {required bool isSavings, required String title, required String value}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        title,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      const SizedBox(
-        height: 4,
-      ),
-      Text(
-        value,
-        style: TextStyle(
-          color: isSavings ? Colors.black87 : Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ],
-  );
+    );
+  }
 }
 
 class DismissibleWidget<T> extends StatelessWidget {

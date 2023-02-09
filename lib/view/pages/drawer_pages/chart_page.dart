@@ -43,11 +43,10 @@ class _ChartPageState extends State<ChartPage> {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0,
-
-        title: const Text('Chart Page',style: TextStyle(
-          fontFamily: 'sans-serif-light',fontSize: 15
-        ),),
-
+        title: const Text(
+          'Chart Page',
+          style: TextStyle(fontFamily: 'sans-serif-light', fontSize: 15),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -57,54 +56,7 @@ class _ChartPageState extends State<ChartPage> {
               height: 16,
             ),
             Container(
-              height: size.height * 0.15,
-              width: size.width * 0.7,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: (_userStore.profile!.limite - _controller.total) >= 0
-                    ? Colors.green
-                    : Colors.red,
-              ),
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Container(
-                    child: Text(
-                      'Limite: ${_userStore.profile!.limite.toStringAsFixed(2)}',
-                      style: AppStyles.white14900Khang18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                    child: Text(
-                      'Gastos total: ${_controller.total.toStringAsFixed(2)}',
-                      style: AppStyles.white14900Khang18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                    child: (_userStore.profile!.limite - _controller.total) >= 0
-                        ? Text(
-                            'Saldo Disponível: ${(_userStore.profile!.limite - _controller.total).toStringAsFixed(2)}',
-                            style: AppStyles.white14900Khang18,
-                          )
-                        : Text(
-                            'Saldo : ${(_userStore.profile!.limite - _controller.total).toStringAsFixed(2)}',
-                            style: AppStyles.white14900Khang18,
-                          ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Container(
-              height: size.height * 0.3,
+              height: size.height * 0.6,
               width: size.width,
               padding: const EdgeInsets.all(8.0),
               child: charts.BarChart(

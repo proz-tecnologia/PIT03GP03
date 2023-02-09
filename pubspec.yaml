@@ -57,6 +57,8 @@ dependencies:
   thememode_selector: ^0.1.0
   day_night_switcher: ^0.2.0+1
   image_picker:
+  simple_circular_progress_bar: ^1.0.2
+
 dev_dependencies:
   flutter_test:
 
