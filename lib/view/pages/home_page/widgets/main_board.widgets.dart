@@ -41,10 +41,6 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                 ? Column(
                     children: [
                       GetFavorites(),
-                      const SizedBox(
-                        height: 0,
-                      ),
-
                       //icone vermelho
                       const SizedBox(
                         height: 16,
@@ -118,7 +114,6 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                       const Divider(),
 
                       // listview widgets (trocar para logica transações
-
                       Observer(
                         builder: (_) => ListView.separated(
                           primary: false,

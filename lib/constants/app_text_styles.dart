@@ -22,6 +22,13 @@ class AppStyles {
       fontFamily: "Khang",
       height: 2.0);
 
+  static const TextStyle black16900Khang18 = TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      fontSize: 16.0,
+      fontFamily: "Khang",
+      height: 2.0);
+
   static const TextStyle green28900Khang18 = TextStyle(
       color: Colors.green,
       fontWeight: FontWeight.bold,

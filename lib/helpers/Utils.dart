@@ -252,44 +252,68 @@ class Utils {
   static List<BarCharModel> getMockedChart() {
     return <BarCharModel>[
       BarCharModel(
+        legenda: "R",
         categoria: 'Refeições',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.FOOD),
+        background: AppColors.FOOD,
+        assetsName: 'sub6',
       ),
       BarCharModel(
+        legenda: "T",
         categoria: 'Transporte',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.TRANSPORT),
+        background: AppColors.TRANSPORT,
+        assetsName: 'carro',
       ),
       BarCharModel(
+        legenda: "CO",
         categoria: 'Contas',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.DARK_GREEN),
+        background: AppColors.DARK_GREEN,
+        assetsName: 'conta',
       ),
       BarCharModel(
+        legenda: "C",
         categoria: 'Casa',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.HOME),
+        background: AppColors.HOME,
+        assetsName: 'home',
       ),
       BarCharModel(
+        legenda: "SH",
         categoria: 'Shopping',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.SHOPPING),
+        background: AppColors.SHOPPING,
+        assetsName: 'sub16',
       ),
       BarCharModel(
+        legenda: "ST",
         categoria: 'Streaming',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.ENTERTAINMENT),
+        background: AppColors.ENTERTAINMENT,
+        assetsName: 'sub34',
       ),
       BarCharModel(
+        legenda: "S",
         categoria: 'Saúde',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.HEALTH),
+        background: AppColors.HEALTH,
+        assetsName: 'sub123',
       ),
       BarCharModel(
+        legenda: "K",
         categoria: 'kids',
         total: 0.0,
         color: charts.ColorUtil.fromDartColor(AppColors.KIDS),
+        background: AppColors.KIDS,
+        assetsName: 'sub21',
       ),
     ];
   }

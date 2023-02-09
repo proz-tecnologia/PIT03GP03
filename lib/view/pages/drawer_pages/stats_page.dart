@@ -86,102 +86,99 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
         ),
         SizedBox(
           height: size.height * 0.3,
-          child: Observer(builder: (context) {
-            return ListView.builder(
-                itemCount: categories.length,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: MeuGreenDetailPage(
-                                categoryId: categories[index].categoryId,
-                                categorieName: categories[index].name,
-                                assetsName: categories[index].assetsName,
-                                listSub: categories[index].subCategory,
-                                isSelect: false,
-                              ),
-                              type: PageTransitionType.bottomToTop));
-                    },
-                    child: Container(
-                      width: 170,
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 10,
-                            right: 20,
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              child: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _controller.favoriteCategorie(index);
-                                  });
-                                  /*setState(() {
+          child: ListView.builder(
+            itemCount: categories.length,
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          child: MeuGreenDetailPage(
+                            categoryId: categories[index].categoryId,
+                            categorieName: categories[index].name,
+                            assetsName: categories[index].assetsName,
+                            listSub: categories[index].subCategory,
+                            isSelect: false,
+                          ),
+                          type: PageTransitionType.bottomToTop));
+                },
+                child: Container(
+                  width: 170,
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 10,
+                        right: 20,
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _controller.favoriteCategorie(index);
+                              });
+                              /*setState(() {
                                               bool isFavorated = toggleIsFavorated(
                                                   categories[index].isFavorited);
                                               categories[index].isFavorited = isFavorated;
 
                                               
                                             });*/
-                                },
-                                icon: Icon(
-                                  categories[index].isFavorited == true
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  color: Colors.red,
-                                ),
-                                iconSize: 30,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(50),
+                            },
+                            icon: Icon(
+                              categories[index].isFavorited == true
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors.red,
+                            ),
+                            iconSize: 30,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 50,
+                        right: 50,
+                        top: 50,
+                        bottom: 50,
+                        child: Image.asset(
+                            'assets/' + categories[index].assetsName + '.png',
+                            fit: BoxFit.contain),
+                      ),
+                      Positioned(
+                        bottom: 15,
+                        left: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              (categories[index].name).i18n(),
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          Positioned(
-                            left: 50,
-                            right: 50,
-                            top: 50,
-                            bottom: 50,
-                            child: Image.asset(
-                                'assets/' +
-                                    categories[index].assetsName +
-                                    '.png',
-                                fit: BoxFit.contain),
-                          ),
-                          Positioned(
-                            bottom: 15,
-                            left: 20,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  (categories[index].name).i18n(),
-                                  style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        color: categories[index].color,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  );
-                });
-          }),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: categories[index].color,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
         Container(
           padding: const EdgeInsets.only(left: 16, bottom: 20, top: 20),
