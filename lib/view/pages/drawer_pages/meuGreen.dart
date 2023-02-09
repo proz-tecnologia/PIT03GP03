@@ -1,11 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:green/model/meu_green_category.dart';
 import 'package:green/view/pages/drawer_pages/chart_page.dart';
-
 import 'package:ionicons/ionicons.dart';
-
 import 'stats_page.dart';
 
 class RootApp extends StatefulWidget {
@@ -20,12 +17,7 @@ class _RootAppState extends State<RootApp> {
   int _bottomNavIndex = 0;
 
   List<Widget> pages() {
-    return [
-      MeuGreenCreat(),
-      ChartPage()
-      //  CategoryListPage(),
-      //  MeuGreenPag(),
-    ];
+    return [MeuGreenCreat(), ChartPage()];
   }
 
   @override

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 import 'package:simple_month_year_picker/custom.dialog.dart';
 import 'package:simple_month_year_picker/month.container.dart';
 import 'package:simple_month_year_picker/month.model.dart';
 
 class SimpleMonthYearPickerGreen {
   static final List<MonthModel> _monthModelList = <MonthModel>[
-    MonthModel(index: 1, name: 'Jan'),
-    MonthModel(index: 2, name: 'Feb'),
-    MonthModel(index: 3, name: 'Mar'),
-    MonthModel(index: 4, name: 'Apr'),
-    MonthModel(index: 5, name: 'May'),
-    MonthModel(index: 6, name: 'Jun'),
-    MonthModel(index: 7, name: 'Jul'),
-    MonthModel(index: 8, name: 'Aug'),
-    MonthModel(index: 9, name: 'Sep'),
-    MonthModel(index: 10, name: 'Oct'),
-    MonthModel(index: 11, name: 'Nov'),
-    MonthModel(index: 12, name: 'Dec'),
+    MonthModel(index: 1, name: 'jan'),
+    MonthModel(index: 2, name: 'feb'),
+    MonthModel(index: 3, name: 'mar'),
+    MonthModel(index: 4, name: 'apr'),
+    MonthModel(index: 5, name: 'may'),
+    MonthModel(index: 6, name: 'jun'),
+    MonthModel(index: 7, name: 'jul'),
+    MonthModel(index: 8, name: 'aug'),
+    MonthModel(index: 9, name: 'sep'),
+    MonthModel(index: 10, name: 'oct'),
+    MonthModel(index: 11, name: 'nov'),
+    MonthModel(index: 12, name: 'dec'),
   ];
 
   static Future<DateTime> showMonthYearPickerDialog({
@@ -63,7 +64,7 @@ class SimpleMonthYearPickerGreen {
                       Padding(
                         padding: const EdgeInsets.only(left: 15, top: 15),
                         child: Text(
-                          'Selecione',
+                          'select'.i18n(),
                           style: TextStyle(
                             fontFamily: titleFontFamily ?? 'Rajdhani',
                             fontSize: 25,
@@ -93,7 +94,7 @@ class SimpleMonthYearPickerGreen {
                                 onHover: (val) {},
                                 child: MonthContainer(
                                   fontFamily: monthTextFontFamily ?? 'Rajdhani',
-                                  month: monthModel.name,
+                                  month: monthModel.name.i18n(),
                                   fillColor: index + 1 == selectedMonth
                                       ? primaryColor
                                       : bgColor,
@@ -131,7 +132,7 @@ class SimpleMonthYearPickerGreen {
                               ),
                               child: Center(
                                 child: Text(
-                                  'Cancel',
+                                  'cancel'.i18n(),
                                   style: TextStyle(
                                     color: primaryColor,
                                   ),
@@ -164,7 +165,7 @@ class SimpleMonthYearPickerGreen {
                               ),
                               child: Center(
                                 child: Text(
-                                  'OK',
+                                  'Ok',
                                   style: TextStyle(
                                     color: bgColor,
                                   ),

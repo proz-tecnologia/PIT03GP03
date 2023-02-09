@@ -13,6 +13,7 @@ import 'package:green/models/api_response.dart';
 import 'package:green/models/profile_model.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:localization/localization.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthService _service;
@@ -37,11 +38,11 @@ class AuthRepositoryImpl implements AuthRepository {
       return APIResponse.success(response);
     } on UserExistsExceptions {
       Loader.hide();
-      Mensagens.alert("Email já cadastrado, por favor escolha outro!");
+      Mensagens.alert("email_already".i18n());
     } catch (e, s) {
       _logger.error("Error ao registrar usuário!", e, s);
       Loader.hide();
-      Mensagens.alert("Erro ao registrar usuário!");
+      Mensagens.alert("error_register".i18n());
     }
 
     return APIResponse.error("Erro ao registrar usuário!");

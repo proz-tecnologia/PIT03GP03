@@ -138,8 +138,8 @@ class _GetFavoritesState extends State<GetFavorites> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  (_controller
-                                          .listFavoriteCategories[index].name)
+                                  (_controller.listFavoriteCategories[index]
+                                          .nameInter)
                                       .i18n(),
                                   style: const TextStyle(
                                     color: Colors.white,

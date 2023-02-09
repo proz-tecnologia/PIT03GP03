@@ -177,7 +177,7 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                                   ),
                                 ),
                                 trailing: Text(
-                                  'R\$ ${widget.lista[index].value.toStringAsFixed(2)}',
+                                  '${"money".i18n()} ${widget.lista[index].value.toStringAsFixed(2)}',
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -278,14 +278,14 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                 height: 12,
               ),*/
               Text(
-                'Gastos total: ${_controller.total.toStringAsFixed(2)}',
+                '${"limit".i18n()}: ${"money".i18n()} ${userStore.profile!.limite.toStringAsFixed(2)}',
                 style: AppStyles.white14900Khang18,
               ),
               const SizedBox(
                 height: 12,
               ),
               Text(
-                'Saldo: ${(userStore.profile!.limite - _controller.total).toStringAsFixed(2)}',
+                '${"balance".i18n()}: ${"money".i18n()} ${(userStore.profile!.limite - _controller.total).toStringAsFixed(2)}',
                 style: AppStyles.white14900Khang18,
               ),
               /*Row(
@@ -369,14 +369,14 @@ Future<bool?> _dialogBuilder(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Remover'),
-        content: const Text('Tem certeza que deseja remover essa transação?'),
+        title: Text("delete".i18n()),
+        content: Text("remove_transaction".i18n()),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
               textStyle: Theme.of(context).textTheme.labelLarge,
             ),
-            child: const Text('Sim'),
+            child: const Text('Ok'),
             onPressed: () {
               remove(trans);
               Navigator.of(context).pop();
@@ -386,7 +386,7 @@ Future<bool?> _dialogBuilder(
             style: TextButton.styleFrom(
               textStyle: Theme.of(context).textTheme.labelLarge,
             ),
-            child: const Text('Não'),
+            child: Text('cancel'.i18n()),
             onPressed: () {
               Navigator.of(context).pop();
             },

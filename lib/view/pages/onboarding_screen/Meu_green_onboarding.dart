@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green/view/pages/login/login_page.dart';
+import 'package:localization/localization.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -39,9 +40,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/login');
               }, //to login screen. We will update later
-              child: const Text(
-                'Pular',
-                style: TextStyle(
+              child: Text(
+                "jump".i18n(),
+                style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
@@ -64,19 +65,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               createPage(
                 image: 'assets/screen02.png',
-                title: 'Bem vindo a GREEN',
-                description: 'GREEN , o seu app de finanças .',
+                title: "onboard_1".i18n(),
+                description: "description_1".i18n(),
               ),
               createPage(
                   image: 'assets/screen01.png',
-                  title: 'Com GREEN você  descomplicar  ',
-                  description:
-                      'Você tem o seu controle  financeiro sem complicação.'),
+                  title: "onboard_2".i18n(),
+                  description: "description_2".i18n()),
               createPage(
                   image: 'assets/screenboard7.png',
-                  title:
-                      'Com GREEN você planeja metas que deseja realizar  com apenas um clique.',
-                  description: 'Economize e sonhe com GREEN.'),
+                  title: "onboard_3".i18n(),
+                  description: "description_3".i18n()),
             ],
           ),
           Positioned(

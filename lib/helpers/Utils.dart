@@ -10,6 +10,7 @@ class Utils {
       Category(
         categoryId: 0,
         name: 'Refeições',
+        nameInter: "feed",
         color: AppColors.FOOD,
         assetsName: 'sub6',
         subCategory: [
@@ -39,6 +40,7 @@ class Utils {
       Category(
         categoryId: 1,
         name: 'Transporte',
+        nameInter: "transport",
         color: AppColors.TRANSPORT,
         assetsName: 'carro',
         subCategory: [
@@ -73,6 +75,7 @@ class Utils {
       Category(
         categoryId: 2,
         name: 'Contas',
+        nameInter: "accounts",
         color: AppColors.DARK_GREEN,
         assetsName: 'conta',
         subCategory: [
@@ -114,6 +117,7 @@ class Utils {
       Category(
         categoryId: 3,
         name: 'Casa',
+        nameInter: "home",
         color: AppColors.HOME,
         assetsName: 'home',
         subCategory: [
@@ -138,6 +142,7 @@ class Utils {
       Category(
         categoryId: 4,
         name: 'Shopping',
+        nameInter: "shopping",
         color: AppColors.SHOPPING,
         assetsName: 'sub16',
         subCategory: [
@@ -162,6 +167,7 @@ class Utils {
       Category(
         categoryId: 5,
         name: 'Streaming',
+        nameInter: "streaming",
         color: AppColors.ENTERTAINMENT,
         assetsName: 'sub34',
         subCategory: [
@@ -191,6 +197,7 @@ class Utils {
       Category(
         categoryId: 6,
         name: 'Saúde',
+        nameInter: "health",
         color: AppColors.HEALTH,
         assetsName: 'sub123',
         subCategory: [
@@ -220,6 +227,7 @@ class Utils {
       Category(
         categoryId: 7,
         name: 'kids',
+        nameInter: "kids",
         color: AppColors.KIDS,
         assetsName: 'sub21',
         subCategory: [

@@ -22,7 +22,7 @@ class _MeuGreenCarteiraState extends State<MeuGreenCarteira> {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         title: Text(
-          'Limite Financeiro',
+          "ceiling".i18n(),
           style: TextStyle(fontSize: 13, fontFamily: 'sans-serif-light'),
         ),
       ),
@@ -126,7 +126,7 @@ class _TextBarState extends State<TextBar> {
             height: 12,
           ),
           Text(
-            'Limite financeiro Atual'.i18n(),
+            "limit_actual".i18n(),
             style: TextStyle(
               color: Colors.black.withOpacity(0.8),
               fontSize: 20,
@@ -195,7 +195,7 @@ class _TextBarState extends State<TextBar> {
                             color: AppColors.black),
                         decoration: InputDecoration(
                           hintText:
-                              "R\$ ${userStore.profile!.limite.toStringAsFixed(2)}",
+                              "${"money".i18n()} ${userStore.profile!.limite.toStringAsFixed(2)}",
                           prefixIconColor: AppColors.black,
                         ),
                         onChanged: (value) => aux = double.parse(value),
@@ -214,14 +214,8 @@ class _TextBarState extends State<TextBar> {
                       if (formValid) {
                         message = "limit_updte".i18n();
 
-                        Loader.show("Atualizando...");
+                        Loader.show();
 
-                        //Atualizando no Firebase
-                        /*await FirebaseFirestore.instance
-                            .collection("profiles")
-                            .doc(userStore.uid)
-                            .update({'limite': aux});
-                          */
                         //Atualizando no Firebase e localmente
                         userStore.setNewLimit(aux);
 

@@ -13,7 +13,7 @@ class LoginController {
       {required String email,
       required String password,
       required BuildContext context}) async {
-    Loader.show('Autenticando...');
+    Loader.show();
 
     final response = await _authRepository.doLogin(email, password);
 

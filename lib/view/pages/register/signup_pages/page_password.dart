@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/view/pages/register/signup_pages/page_value.dart';
+import 'package:localization/localization.dart';
 import 'package:validatorless/validatorless.dart';
 import '../../../../helpers/AppColors.dart';
 import '../controller/register_controller.dart';
@@ -37,14 +38,14 @@ class _PagePassWordState extends State<PagePassWord> {
               height: 90,
             ),
             Text(
-              'Agora digite uma senha.',
+              'enter_password'.i18n(),
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 30,
             ),
             Text(
-              'Lembre-se que a senha precisar  6 caracteres. ',
+              "password_remember".i18n(),
               style: TextStyle(fontSize: 16, color: AppColors.grey),
             ),
             Align(
@@ -57,8 +58,8 @@ class _PagePassWordState extends State<PagePassWord> {
               obscureText: true,
               controller: _passwordEC,
               validator: Validatorless.multiple([
-                Validatorless.required('Senha obrigatória'),
-                Validatorless.min(6, 'Senha deve conter ao menos 6 caracteres')
+                Validatorless.required("required_field".i18n()),
+                Validatorless.min(6, "valid_password".i18n())
               ]),
               cursorColor: AppColors.black,
               autofocus: true,

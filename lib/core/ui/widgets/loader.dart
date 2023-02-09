@@ -8,7 +8,7 @@ class Loader {
 
   Loader._();
 
-  static void show(String message) {
+  static void show() {
     _entry ??= OverlayEntry(builder: (context) {
       return Material(
         color: Colors.black54,
@@ -29,7 +29,7 @@ class Loader {
                   height: 10,
                 ),
                 Text(
-                  message,
+                  "GREENZANDO",
                   style: TextStyle(
                     color: Colors.white54,
                     fontSize: 20,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green/core/ui/widgets/loader.dart';
 import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/infra/repositories/auth.repository_impl.dart';
+import 'package:localization/localization.dart';
 
 class RegisterController {
   final AuthRepositoryImpl _authRepository;
@@ -9,6 +10,7 @@ class RegisterController {
   String email = '';
   String password = '';
   double value = 0.0;
+
   RegisterController(this._authRepository);
 
   //final userStore = GetIt.instance.get<UserStore>();
@@ -19,7 +21,7 @@ class RegisterController {
 
     if (result.data != null) {
       Loader.hide();
-      Mensagens.sucess("Cadastro realizado com sucesso!!");
+      Mensagens.sucess("register_sucess".i18n());
       Navigator.pop(context);
     }
   }

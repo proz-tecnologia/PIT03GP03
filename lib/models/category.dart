@@ -6,6 +6,7 @@ class Category {
   int categoryId;
   List<SubCategory> subCategory;
   String name;
+  String nameInter;
   String assetsName;
   Color color;
   bool isFavorited;
@@ -14,6 +15,7 @@ class Category {
     required this.categoryId,
     required this.subCategory,
     required this.name,
+    required this.nameInter,
     required this.assetsName,
     required this.color,
     required this.isFavorited,

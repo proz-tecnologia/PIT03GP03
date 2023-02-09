@@ -54,8 +54,8 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
             label: "email".i18n(),
             controller: _emailEC,
             validator: Validatorless.multiple([
-              Validatorless.required('Email obrigatório'),
-              Validatorless.email('Email não válido'),
+              Validatorless.required("required_field".i18n()),
+              Validatorless.email("valid_email".i18n()),
             ]),
           ),
           const Padding(
@@ -66,8 +66,8 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
             obscureText: true,
             controller: _passwordEC,
             validator: Validatorless.multiple([
-              Validatorless.required('Senha obrigatória'),
-              Validatorless.min(6, 'Senha deve conter ao menos 6 caracteres')
+              Validatorless.required("required_field".i18n()),
+              Validatorless.min(6, "valid_password".i18n())
             ]),
           ),
           const SizedBox(

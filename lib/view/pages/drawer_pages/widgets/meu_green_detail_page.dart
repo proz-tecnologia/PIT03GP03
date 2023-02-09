@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:green/controller/controller.home.dart';
+import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/models/category.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:localization/localization.dart';
@@ -246,7 +247,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Descriçao",
+                              "description".i18n(),
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 13,
@@ -271,7 +272,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.black),
                               decoration: InputDecoration(
-                                  hintText: " Descrição ",
+                                  hintText: "description".i18n(),
                                   border: InputBorder.none),
                             ),
                             SizedBox(
@@ -287,7 +288,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Valor Gastos",
+                                        "value".i18n(),
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 13,
@@ -315,7 +316,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                             color: AppColors.black),
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText: "Valor  ",
+                                          hintText: "value".i18n(),
                                           prefixIconColor: Colors.red,
                                         ),
                                         onChanged: (value) => controller.value =
@@ -450,12 +451,15 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
 
                       //_controller.add(trans);
                       await _controller.add(trans);
+
+                      Mensagens.sucess(message);
                       //  homeController.setTransAction(trans);
                       Navigator.pop(context);
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(message),
-                    ));
+
+                    if (!formValid) {
+                      Mensagens.alert(message);
+                    }
                   },
                   child: Icon(
                     Icons.arrow_forward,

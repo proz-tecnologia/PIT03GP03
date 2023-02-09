@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/drawer_pages/widgets/menu_languages.dart';
+import 'package:localization/localization.dart';
 import '../../../app_material.dart';
 import '../../../constants/switch_dark.dart';
 import '../../../infra/repositories/auth.repository_impl.dart';
@@ -32,7 +33,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
         foregroundColor: Colors.black,
         elevation: 0,
         title: Text(
-          'Configurações',
+          "settings".i18n(),
           style: TextStyle(fontSize: 13, fontFamily: 'sans-serif-light'),
         ),
       ),
@@ -53,7 +54,6 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
     //var size = MediaQuery.of(context).size;
     return Scaffold(
         body: ListView(
-      // ignore: prefer_const_literals_to_create_immutables
       children: [
         Align(
           alignment: Alignment.topLeft,
@@ -75,7 +75,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
           child: Padding(
               padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
               child: Text(
-                'Olá, ${userStore.profile!.firstName}',
+                "hello".i18n([userStore.profile!.firstName]),
                 style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'sans-serif-light',
@@ -87,7 +87,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
           child: Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
               child: Text(
-                'Limite Atual R\$ ${userStore.profile!.limite.toStringAsFixed(2)}",',
+                '${"current_limit".i18n()} ${"money".i18n()} ${userStore.profile!.limite.toStringAsFixed(2)}",',
                 style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'sans-serif-light',
@@ -116,7 +116,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                       size: 22,
                       color: Colors.grey,
                     ),
-                    title: Text('Atualizar limite'),
+                    title: Text("update_limit".i18n()),
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
                 ),
@@ -143,7 +143,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                       size: 22,
                       color: Colors.grey,
                     ),
-                    title: Text("Idioma"),
+                    title: Text("language".i18n()),
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
                 ),
@@ -161,7 +161,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                       size: 22,
                       color: Colors.grey,
                     ),
-                    title: Text("Temas"),
+                    title: Text("themes".i18n()),
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
                 ),
@@ -174,7 +174,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                       size: 22,
                       color: Colors.grey,
                     ),
-                    title: Text("Sobre"),
+                    title: Text("about".i18n()),
                     trailing: Icon(Icons.question_mark),
                   ),
                 ),
@@ -199,7 +199,7 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                       MaterialStateProperty.all<Color>(Colors.redAccent)),
               onPressed: () {},
               child: Text(
-                "Log Out",
+                "logout".i18n(),
                 style: TextStyle(color: Colors.white),
               ),
             ),

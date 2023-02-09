@@ -9,6 +9,7 @@ import 'package:green/view/pages/drawer_pages/widgets/simple_moth_year_green.dar
 import 'package:green/view/pages/home_page/widgets/app_bar_bottom_section.dart';
 import 'package:green/view/pages/home_page/widgets/main_board.widgets.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:localization/localization.dart';
 
 class MeuHistorico extends StatefulWidget {
   const MeuHistorico({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _MeuHistoricoState extends State<MeuHistorico> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.primary,
-        title: const Text('Extrato'),
+        title: Text("extract".i18n()),
       ),
       body: Observer(builder: (context) {
         return Column(
@@ -45,24 +46,22 @@ class _MeuHistoricoState extends State<MeuHistorico> {
             const SizedBox(
               height: 20,
             ),
-            Text("Selecione o mês e ano que deseja puxar o extrato:"),
+            Center(
+                child: Text(
+              "extract_message".i18n(),
+            )),
             const SizedBox(
               height: 10,
             ),
             ElevatedButton(
               onPressed: () async {
                 _selected =
-                await SimpleMonthYearPickerGreen.showMonthYearPickerDialog(
+                    await SimpleMonthYearPickerGreen.showMonthYearPickerDialog(
                   context: context,
                   barrierDismissible: true,
                 );
-                //Loader().show;
-                //chamar pra fazer o filtro => retorna uma lista
-                //Atualizo a lista do extract controller
+
                 _controllerExtract.setListFilter(_selected!);
-                //print(_selected!.month);
-                //print(_selected!.year);
-                //Loader().hide;
               },
               child: Icon(
                 Ionicons.calendar,

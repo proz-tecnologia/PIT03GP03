@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:localization/localization.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../../core/ui/widgets/loader.dart';
@@ -58,7 +59,7 @@ class _PageValueState extends State<PageValue> {
               height: 5,
             ),
             Text(
-              'Agora vamos definir um valor de gastos Mensais.',
+              "monthly_amount".i18n(),
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
 
@@ -66,7 +67,7 @@ class _PageValueState extends State<PageValue> {
               height: 10,
             ),
             Text(
-              'Lembre-se que você pode altera o limite ,quando você se sentir confortável!',
+              "remember_limit".i18n(),
               style: TextStyle(fontSize: 14, color: AppColors.grey),
             ),
             Align(
@@ -84,7 +85,7 @@ class _PageValueState extends State<PageValue> {
                 autocorrect: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: Validatorless.multiple([
-                  Validatorless.required('Valor obrigatório'),
+                  Validatorless.required("required_field".i18n()),
                 ]),
                 style: TextStyle(fontSize: 17, color: Colors.black),
                 decoration: InputDecoration(
@@ -92,7 +93,7 @@ class _PageValueState extends State<PageValue> {
                       Icons.account_balance_wallet,
                       color: Colors.black.withOpacity(.3),
                     ),
-                    hintText: "R\$",
+                    hintText: "money".i18n(),
                     hintStyle: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
             ),
@@ -110,8 +111,6 @@ class _PageValueState extends State<PageValue> {
                             if (formValid) {
                               _doRegister(context, _nameEC.text, _emailEC.text,
                                   _passwordEC.text, 0);
-                              //_controller.register(
-                              // email: _emailEC.text, password: _passwordEC.text);
                             }
                           });
                         },
@@ -134,7 +133,7 @@ class _PageValueState extends State<PageValue> {
   }
 
   _doRegister(BuildContext context, name, email, password, value) async {
-    Loader.show("GREENZANDO");
+    Loader.show();
     await controller.doRegister(context);
   }
 }
