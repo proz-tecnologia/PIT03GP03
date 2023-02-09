@@ -14,8 +14,9 @@ import 'meu_green_subCategories.dart';
 class MeuGreenDetailPage extends StatefulWidget {
   final int categoryId;
   final String assetsName;
+
   final List<SubCategory> listSub;
-  final String name;
+  final String categorieName;
   final bool isSelect;
   final SubCategory? i;
   final ValueNotifier<SubCategory?> _obseve;
@@ -24,7 +25,7 @@ class MeuGreenDetailPage extends StatefulWidget {
       {required this.categoryId,
       required this.assetsName,
       required this.listSub,
-      required this.name,
+      required this.categorieName,
       required this.isSelect,
       this.i})
       : _obseve = ValueNotifier<SubCategory?>(i);
@@ -327,7 +328,10 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Confirmation(subC: widget._obseve.value),
+                                      Confirmation(
+                                        subC: widget._obseve.value,
+                                        categorie: widget.categorieName,
+                                      ),
                                       const SizedBox(
                                         height: 10,
                                       ),
@@ -416,7 +420,8 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
     );
   }
 
-  SingleChildScrollView Confirmation({SubCategory? subC}) {
+  SingleChildScrollView Confirmation(
+      {SubCategory? subC, required String categorie}) {
     final _controller = GetIt.instance.get<ControllerHome>();
 
     return SingleChildScrollView(
@@ -438,6 +443,7 @@ class _MeuGreenDetailPageState extends State<MeuGreenDetailPage> {
                         image: subC.assetsName,
                         subCategoryName: subC.name,
                         value: controller.value,
+                        categorie: categorie,
                         title: controller.title,
                         data: _dateTime,
                       );

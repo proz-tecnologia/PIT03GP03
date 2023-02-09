@@ -99,7 +99,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
                           PageTransition(
                               child: MeuGreenDetailPage(
                                 categoryId: categories[index].categoryId,
-                                name: categories[index].name,
+                                categorieName: categories[index].name,
                                 assetsName: categories[index].assetsName,
                                 listSub: categories[index].subCategory,
                                 isSelect: false,

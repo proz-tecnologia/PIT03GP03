@@ -20,7 +20,7 @@ class _AppBarBottomSectionState extends State<AppBarBottomSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.fromLTRB(50, kToolbarHeight, 50, 0),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: (widget.limite - widget.total) >= 0 == true

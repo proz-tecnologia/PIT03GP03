@@ -1,8 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Transaction {
   String? id; //Teria q ter um uuid
   double value = 0.0;
   String title = "";
-
+  String categorie = "";
   DateTime? data = DateTime.now();
   String image = "";
   String subCategoryName = "";
@@ -11,6 +12,7 @@ class Transaction {
     this.id = "",
     this.value = 0.0,
     this.title = "",
+    this.categorie = "",
     this.data,
     this.image = "",
     this.subCategoryName = "",
@@ -21,6 +23,7 @@ class Transaction {
     double? newValue,
     String? newTitle,
     DateTime? newData,
+    String? newCategorie,
     String? newImage,
     String? newSubCategory,
   }) {
@@ -29,28 +32,17 @@ class Transaction {
       value: newValue ?? this.value,
       title: newTitle ?? this.title,
       data: newData ?? this.data,
+      categorie: newCategorie ?? this.categorie,
       image: newImage ?? this.image,
       subCategoryName: newSubCategory ?? this.subCategoryName,
     );
   }
 
-  //Não é de Deus :(
-  /*factory Transaction.fromFirestore(DocumentSnapshot doc) {
-    Map map = doc.data() as Map<String, dynamic>;
-
-    return Transaction(
-      data: map["date"].toDate() as DateTime,
-      title: map["title"] as String,
-      value: ["value"] as double,
-      image: map["image"] as String,
-      subCategoryName: map["subCategory"] as String,
-    );
-  }*/
-
   Transaction.fromFirestore(Map<String, dynamic> map) {
     data = map["date"].toDate();
     title = map["title"] ?? "";
     value = map["value"] ?? 0.0;
+    categorie = map["categorie"] ?? "";
     image = map["image"] ?? "";
     subCategoryName = map['subCategory'] ?? "";
   }
@@ -60,7 +52,8 @@ class Transaction {
       id: map["uid"] as String,
       data: map["data"].toDate() as DateTime,
       title: map["title"] as String,
-      value: ["value"] as double,
+      value: map["value"] as double,
+      categorie: map["categorie"] as String,
       image: map["image"] as String,
       subCategoryName: map["subCategoryName"] as String,
     );
@@ -71,6 +64,7 @@ class Transaction {
       "value": value,
       "title": title,
       "date": data,
+      "categorie": categorie,
       "image": image,
       "subCategory": subCategoryName,
     };

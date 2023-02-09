@@ -62,6 +62,14 @@ mixin _$UserStore on UserStoreBase, Store {
     });
   }
 
+  late final _$setNewLimitAsyncAction =
+      AsyncAction('UserStoreBase.setNewLimit', context: context);
+
+  @override
+  Future<void> setNewLimit(double value) {
+    return _$setNewLimitAsyncAction.run(() => super.setNewLimit(value));
+  }
+
   late final _$UserStoreBaseActionController =
       ActionController(name: 'UserStoreBase', context: context);
 

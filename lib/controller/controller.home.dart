@@ -4,6 +4,7 @@ import 'package:green/controller/extract.controller.dart';
 import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/helpers/Utils.dart';
 import 'package:green/infra/repositories/transaction.repository_impl.dart';
+import 'package:green/models/bar_char.models.dart';
 import 'package:green/models/category.dart';
 import 'package:mobx/mobx.dart';
 
@@ -25,6 +26,9 @@ abstract class ControllerHomeBase with Store {
 
   @observable
   ObservableList<Category> categoriesList = ObservableList<Category>();
+
+  @observable
+  ObservableList<BarCharModel> chartList = ObservableList<BarCharModel>();
 
   @action
   void addFavorite(Category favorite) {
@@ -56,8 +60,6 @@ abstract class ControllerHomeBase with Store {
     } else {
       removeFavorite(categoriesList[index]);
     }
-
-    //categoriesList.forEach(print);
   }
 
   @action
@@ -135,5 +137,35 @@ abstract class ControllerHomeBase with Store {
     setTransactions(values: listFiltrada);
     controller.setExtract(values: transaction);
     initCategorie();
+  }
+
+  @action
+  void initChart() {
+    chartList.clear();
+
+    var data = Utils.getMockedChart();
+
+    chartList.addAll(data);
+
+    for (var element in transactionList) {
+      //print(element.categorie);
+      if (element.categorie == 'Refeições') {
+        chartList[0].total += element.value;
+      } else if (element.categorie == 'Transporte') {
+        chartList[1].total += element.value;
+      } else if (element.categorie == 'Contas') {
+        chartList[2].total += element.value;
+      } else if (element.categorie == 'Casa') {
+        chartList[3].total += element.value;
+      } else if (element.categorie == 'Shopping') {
+        chartList[4].total += element.value;
+      } else if (element.categorie == 'Streaming') {
+        chartList[5].total += element.value;
+      } else if (element.categorie == 'Saúde') {
+        chartList[6].total += element.value;
+      } else {
+        chartList[7].total += element.value;
+      }
+    }
   }
 }

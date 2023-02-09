@@ -225,17 +225,10 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                               if (formValid) {
                                 message = "Limite atualizado com sucesso";
                                 Loader.show("Atualizando...");
-                                /*Provider.of<HomeController>(context,
-                                        listen: false)
-                                    .mudarLimite(aux);*/
 
-                                await FirebaseFirestore.instance
-                                    .collection("profiles")
-                                    .doc(userStore.uid)
-                                    .update({'limite': aux});
                                 //TODO aquiiiiii
 
-                                userStore.profile!.copyWith(limite: aux);
+                                await userStore.setNewLimit(aux);
 
                                 Loader.hide();
                                 Mensagens.sucess(message);
@@ -245,10 +238,6 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
                               if (!formValid) {
                                 Mensagens.alert(message);
                               }
-                              /*ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text(message),
-                              ));*/
                             },
                             child: Container(
                               decoration: BoxDecoration(

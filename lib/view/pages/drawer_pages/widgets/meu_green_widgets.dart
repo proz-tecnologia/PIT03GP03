@@ -27,7 +27,7 @@ class MeuGreenWidgetPage extends StatelessWidget {
                   categoryId: greenList[index].categoryId,
                   assetsName: greenList[index].image,
                   listSub: [],
-                  name: greenList[index].tittle,
+                  categorieName: greenList[index].tittle,
                   isSelect: false,
                 ),
                 type: PageTransitionType.bottomToTop));

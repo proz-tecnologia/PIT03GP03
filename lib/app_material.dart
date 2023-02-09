@@ -2,6 +2,7 @@ import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green/utils/configs/pages_settings.dart';
+import 'package:green/view/pages/drawer_pages/chart_page.dart';
 import 'package:green/view/pages/drawer_pages/meuGreen.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_historico.dart';
 import 'package:green/view/pages/home_page/homepage.dart';
@@ -101,7 +102,7 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
           '/extrato': (context) => MeuHistorico(),
           '/meuGreen': (context) => RootApp(),
           '/config': (context) => ConfiguracoesPage(),
-
+          '/chart': (context) => ChartPage(),
         },
       ),
     );

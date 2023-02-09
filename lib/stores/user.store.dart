@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:green/models/profile_model.dart';
 import 'package:mobx/mobx.dart';
 part 'user.store.g.dart';
@@ -18,6 +19,18 @@ abstract class UserStoreBase with Store {
   setUser(String uid, String email) {
     _uid = uid;
     _email = email;
+  }
+
+  @action
+  Future<void> setNewLimit(double value) async {
+    await FirebaseFirestore.instance
+        .collection("profiles")
+        .doc(_uid)
+        .update({'limite': value});
+
+    Profile newProfile = _profile!.copyWith(limite: value);
+
+    setUserProfile(newProfile);
   }
 
   @action

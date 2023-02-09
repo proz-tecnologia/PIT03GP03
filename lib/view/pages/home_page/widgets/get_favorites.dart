@@ -63,7 +63,7 @@ class _GetFavoritesState extends State<GetFavorites> {
                               child: MeuGreenDetailPage(
                                 categoryId: _controller
                                     .listFavoriteCategories[index].categoryId,
-                                name: _controller
+                                categorieName: _controller
                                     .listFavoriteCategories[index].name,
                                 assetsName: _controller
                                     .listFavoriteCategories[index].assetsName,
@@ -125,7 +125,6 @@ class _GetFavoritesState extends State<GetFavorites> {
                           Positioned(
                             left: 50,
                             right: 50,
-
                             child: Image.asset(
                                 'assets/' +
                                     _controller.listFavoriteCategories[index]

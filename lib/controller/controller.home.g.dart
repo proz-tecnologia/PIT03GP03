@@ -65,6 +65,22 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
     });
   }
 
+  late final _$chartListAtom =
+      Atom(name: 'ControllerHomeBase.chartList', context: context);
+
+  @override
+  ObservableList<BarCharModel> get chartList {
+    _$chartListAtom.reportRead();
+    return super.chartList;
+  }
+
+  @override
+  set chartList(ObservableList<BarCharModel> value) {
+    _$chartListAtom.reportWrite(value, super.chartList, () {
+      super.chartList = value;
+    });
+  }
+
   late final _$addAsyncAction =
       AsyncAction('ControllerHomeBase.add', context: context);
 
@@ -141,11 +157,23 @@ mixin _$ControllerHome on ControllerHomeBase, Store {
   }
 
   @override
+  void initChart() {
+    final _$actionInfo = _$ControllerHomeBaseActionController.startAction(
+        name: 'ControllerHomeBase.initChart');
+    try {
+      return super.initChart();
+    } finally {
+      _$ControllerHomeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 transactionList: ${transactionList},
 listFavoriteCategories: ${listFavoriteCategories},
 categoriesList: ${categoriesList},
+chartList: ${chartList},
 total: ${total}
     ''';
   }

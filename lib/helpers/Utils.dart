@@ -1,3 +1,5 @@
+import 'package:charts_flutter_new/flutter.dart' as charts;
+import 'package:green/models/bar_char.models.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.dart';
 import '../models/category.dart';
 import 'AppColors.dart';
@@ -243,6 +245,51 @@ class Utils {
           ),
         ],
         isFavorited: false,
+      ),
+    ];
+  }
+
+  static List<BarCharModel> getMockedChart() {
+    return <BarCharModel>[
+      BarCharModel(
+        categoria: 'Refeições',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.FOOD),
+      ),
+      BarCharModel(
+        categoria: 'Transporte',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.TRANSPORT),
+      ),
+      BarCharModel(
+        categoria: 'Contas',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.DARK_GREEN),
+      ),
+      BarCharModel(
+        categoria: 'Casa',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.HOME),
+      ),
+      BarCharModel(
+        categoria: 'Shopping',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.SHOPPING),
+      ),
+      BarCharModel(
+        categoria: 'Streaming',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.ENTERTAINMENT),
+      ),
+      BarCharModel(
+        categoria: 'Saúde',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.HEALTH),
+      ),
+      BarCharModel(
+        categoria: 'kids',
+        total: 0.0,
+        color: charts.ColorUtil.fromDartColor(AppColors.KIDS),
       ),
     ];
   }

@@ -155,8 +155,8 @@ class _DrawerAppState extends State<DrawerApp> {
             context, MaterialPageRoute(builder: (context) => RootApp()));
         break;
       case 3:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => pagamentos()));
+        //Navigator.push(context, MaterialPageRoute(builder: (context) => pagamentos()));
+        Navigator.pushNamed(context, '/chart');
         break;
 
       case 4:

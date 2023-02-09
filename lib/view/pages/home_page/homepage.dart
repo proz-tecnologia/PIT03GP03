@@ -5,12 +5,7 @@ import 'package:green/controller/controller.home.dart';
 import 'package:green/helpers/AppColors.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/home_page/widgets/app_bar_bottom_section.dart';
-import 'package:green/view/pages/home_page/widgets/get_favorites.dart';
 import 'package:green/view/pages/home_page/widgets/main_board.widgets.dart';
-/*import 'package:intl/intl.dart';
-import 'package:localization/localization.dart';
-import '../../../constants/json/meugreen.dart';
-import '../../../constants/transaction/transactions_green.dart';*/
 import '../drawer_pages/drawer_page.dart';
 
 class HomePage2 extends StatefulWidget {
@@ -35,6 +30,7 @@ class _HomePage2State extends State<HomePage2> {
     final locale = Localizations.localeOf(context);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: _buildAppBar(_controller.total, userStore.profile!.limite),
       drawer: DrawerApp(),
       body: Observer(builder: (context) {
@@ -61,8 +57,7 @@ class _HomePage2State extends State<HomePage2> {
 AppBar _buildAppBar(double value, double limite) {
   return AppBar(
       elevation: 0,
-      backgroundColor:
-          (limite - value) >= 0 == true ? AppColors.primary : Colors.red,
+      backgroundColor: Color(0x00000000),
       actions: const <Widget>[
         Padding(
           padding: EdgeInsets.only(right: 20),
@@ -70,7 +65,6 @@ AppBar _buildAppBar(double value, double limite) {
       ]);
 }
   /*
-
   Widget _appbarBotomSection(double value, double limite) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50),
