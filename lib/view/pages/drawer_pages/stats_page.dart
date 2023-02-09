@@ -41,6 +41,10 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0,
+        title: Text(
+          'Movimentações diarias',
+          style: TextStyle(fontSize: 15,fontFamily: 'sans-serif-light'),
+        ),
       ),
       body: Observer(builder: (context) {
         return Container(
@@ -68,22 +72,18 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
 
     return SingleChildScrollView(
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                ),
-                width: size.width * 0.7,
-              )
-            ],
-          ),
-        ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(' Movimentações',style: TextStyle(
+                  fontFamily: 'Savoye Let',
+                  fontSize: 28
+              ),),
+            ),
+            SizedBox(
+              height: 20,
+            ),
         SizedBox(
           height: size.height * 0.3,
           child: ListView.builder(
@@ -185,63 +185,64 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
           child: Text(
             'transactions'.i18n(),
             style: TextStyle(
-              fontWeight: FontWeight.bold,
+         fontFamily: 'San Francisco',
               fontSize: 18.0,
             ),
           ),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          height: size.height * .5,
-          child: ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            itemCount: transactionList.length,
-            itemBuilder: (context, index) => ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: Container(
-                width: 60,
-                height: 60,
-                clipBehavior: Clip.antiAlias,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green.withOpacity(0.1)),
-                ),
-                child: Image.asset(
-                  'assets/' + categories[index].assetsName + '.png',
-                  fit: BoxFit.cover,
-                  width: 45,
-                  height: 45,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              height: size.height * .5,
+              child: ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                itemCount: transactionList.length,
+                itemBuilder: (context, index) => ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Container(
+                    width: 60,
+                    height: 60,
+                    clipBehavior: Clip.antiAlias,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.green.withOpacity(0.1)),
+                    ),
+                    child: Image.asset(
+                      'assets/' + categories[index].assetsName + '.png',
+                      fit: BoxFit.cover,
+                      width: 45,
+                      height: 45,
+                    ),
+                  ),
+                  title: Text(categories[index].name,
+                      style: const TextStyle(
+                        color: Colors.black87,
+                        fontFamily: 'Savoye Let',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  subtitle: Text(
+                    DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
+                        .format(transactionList[index].data!),
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  trailing: Text(
+                    '${'money'.i18n()} ${transactionList[index].value.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontFamily: "Savoye Let",
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ),
-              title: Text(categories[index].name,
-                  style: const TextStyle(
-                    color: Colors.black87,
-                    fontFamily: 'sans-serif-light',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  )),
-              subtitle: Text(
-                DateFormat(DateFormat.YEAR_MONTH_DAY, locale.toString())
-                    .format(transactionList[index].data!),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              trailing: Text(
-                '${'money'.i18n()} ${transactionList[index].value.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        )
+            )
       ],
     )
 

@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 
 import 'package:green/model/meu_green_category.dart';
+import 'package:green/view/pages/drawer_pages/chart_page.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_favorites.dart';
 
 import 'package:ionicons/ionicons.dart';
@@ -25,13 +26,12 @@ class _RootAppState extends State<RootApp> {
   List<Widget> pages() {
     return [
       MeuGreenCreat(),
+      ChartPage()
       //  CategoryListPage(),
       //  MeuGreenPag(),
-      FavoritePage(
-        categoryFavorited: favorites,
-      ),
 
-      MeuGreenProfile()
+
+
     ];
   }
 
@@ -50,8 +50,7 @@ class _RootAppState extends State<RootApp> {
   List<IconData> iconItems = [
     Ionicons.wallet_sharp,
     Ionicons.stats_chart,
-    Ionicons.heart,
-    Ionicons.person,
+
   ];
 
   @override

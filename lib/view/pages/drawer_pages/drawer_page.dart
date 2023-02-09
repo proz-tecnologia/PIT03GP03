@@ -160,7 +160,7 @@ class _DrawerAppState extends State<DrawerApp> {
         break;
 
       case 4:
-        Navigator.pushNamed(context, '/extrato');
+        Navigator.pushNamed(context, '/todo');
         break;
 
       case 5:

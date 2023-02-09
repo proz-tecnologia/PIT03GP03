@@ -4,10 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:green/core/ui/widgets/loader.dart';
 import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/stores/user.store.dart';
-
 import 'package:localization/localization.dart';
-import 'package:provider/provider.dart';
-
 import 'package:green/helpers/AppColors.dart';
 
 class MeuGreenCarteira extends StatefulWidget {
@@ -21,23 +18,19 @@ class _MeuGreenCarteiraState extends State<MeuGreenCarteira> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: Colors.green),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(5000),
+      appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent,foregroundColor: Colors.black,
+        title: Text('Limite Financeiro',style: TextStyle(
+            fontSize: 13,fontFamily: 'sans-serif-light'
+        ),),),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          SizedBox(height: 50,),
+          TextBar(),
+          SizedBox(
+            height: 50,
           ),
-        ),
-        child: Column(
-          children: [
-            TextBar(),
-            SizedBox(
-              height: 50,
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -51,16 +44,7 @@ class cards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),
-          color: Colors.white70,
-          boxShadow: [
-            BoxShadow(
-                color: Colors.green,
-                blurRadius: 10,
-                spreadRadius: 10,
-                offset: Offset(0.0, 8.0))
-          ]),
+
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -115,7 +99,7 @@ class _TextBarState extends State<TextBar> {
                 child: Text(
                   'money'.i18n(),
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                     height: 1,
@@ -125,8 +109,9 @@ class _TextBarState extends State<TextBar> {
               // entrar com a logica no lugar do texto
               Text('${userStore.profile!.limite.toStringAsFixed(2)}',
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 50,
+                    fontFamily: 'Savoye Let',
                     fontWeight: FontWeight.w600,
                     height: 0.9,
                   )),
@@ -136,9 +121,9 @@ class _TextBarState extends State<TextBar> {
             height: 12,
           ),
           Text(
-            'financial_limit'.i18n(),
+            'Limite financeiro Atual'.i18n(),
             style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.black.withOpacity(0.8),
               fontSize: 20,
               fontWeight: FontWeight.w500,
               height: 1,
@@ -153,7 +138,7 @@ class _TextBarState extends State<TextBar> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -177,11 +162,9 @@ class _TextBarState extends State<TextBar> {
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 13,
-                            color: AppColors.white),
+                            color: AppColors.black),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+
                       Text(
                         'money'.i18n(),
                         style: TextStyle(
@@ -189,9 +172,7 @@ class _TextBarState extends State<TextBar> {
                             fontSize: 12,
                             color: AppColors.white),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+
                       TextFormField(
                         validator: (String? valor) {
                           if (verificNumber.hasMatch(valor!) ||
@@ -204,15 +185,15 @@ class _TextBarState extends State<TextBar> {
                         },
                         keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
-                        cursorColor: AppColors.white,
+                        cursorColor: AppColors.black,
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.white),
+                            color: AppColors.black),
                         decoration: InputDecoration(
                           hintText:
-                              "${userStore.profile!.limite.toStringAsFixed(2)}",
-                          prefixIconColor: AppColors.white,
+                          "R\$ ${userStore.profile!.limite.toStringAsFixed(2)}",
+                          prefixIconColor: AppColors.black,
                         ),
                         onChanged: (value) => aux = double.parse(value),
                       )
@@ -241,6 +222,9 @@ class _TextBarState extends State<TextBar> {
                         //Atualizando local
                         userStore.profile!.copyWith(limite: aux);
 
+
+
+
                         Loader.hide();
                         Mensagens.sucess(message);
                         Navigator.pop(context);
@@ -250,15 +234,18 @@ class _TextBarState extends State<TextBar> {
                         Mensagens.alert(message);
                       }
                     },
+
                     child: Container(
+
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.white)),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.green)),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(18.0),
+
                         child: Text(
                           "update".i18n(),
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.green),
                         ),
                       ),
                     ),

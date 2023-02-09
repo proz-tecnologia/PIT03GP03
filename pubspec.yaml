@@ -54,8 +54,9 @@ dependencies:
   logger: ^1.1.0
   simple_month_year_picker: ^0.0.2
   charts_flutter_new: ^0.12.0
-
-
+  thememode_selector: ^0.1.0
+  day_night_switcher: ^0.2.0+1
+  image_picker:
 dev_dependencies:
   flutter_test:
 

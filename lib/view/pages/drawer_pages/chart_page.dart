@@ -40,8 +40,14 @@ class _ChartPageState extends State<ChartPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chart Page'),
-        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0,
+
+        title: const Text('Chart Page',style: TextStyle(
+          fontFamily: 'sans-serif-light',fontSize: 15
+        ),),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -98,7 +104,7 @@ class _ChartPageState extends State<ChartPage> {
               height: 16,
             ),
             Container(
-              height: size.height * 0.6,
+              height: size.height * 0.3,
               width: size.width,
               padding: const EdgeInsets.all(8.0),
               child: charts.BarChart(
@@ -117,76 +123,80 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Widget getInfoChart(var size) {
-    return SizedBox(
-      height: size.height * 0.3,
-      child: ListView.builder(
-        itemCount: _controller.chartList.length,
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: 170,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 10,
-                    right: 20,
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      child: Center(
-                        child: Text(
-                          "${((_controller.chartList[index].total / _controller.total) * 100).toStringAsFixed(1)}%",
-                          style: AppStyles.black16900Khang18,
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50,
-                    right: 50,
-                    top: 50,
-                    bottom: 50,
-                    child: Image.asset(
-                        'assets/' +
-                            _controller.chartList[index].assetsName +
-                            '.png',
-                        fit: BoxFit.contain),
-                  ),
-                  Positioned(
-                    bottom: 15,
-                    left: 20,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          (_controller.chartList[index].categoria).i18n(),
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
+    return Column(
+      children: [
+        SizedBox(
+          height: size.height * 0.3,
+          child: ListView.builder(
+            itemCount: _controller.chartList.length,
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {},
+                child: Container(
+                  width: 170,
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Wrap(
+                    children: [
+                      Positioned(
+                        top: 10,
+                        right: 20,
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: Center(
+                            child: Text(
+                              "${((_controller.chartList[index].total / _controller.total) * 100).toStringAsFixed(1)}%",
+                              style: AppStyles.black16900Khang18,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Positioned(
+                        left: 50,
+                        right: 50,
+                        top: 50,
+                        bottom: 50,
+                        child: Image.asset(
+                            'assets/' +
+                                _controller.chartList[index].assetsName +
+                                '.png',
+                            fit: BoxFit.contain),
+                      ),
+                      Positioned(
+                        bottom: 15,
+                        left: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              (_controller.chartList[index].categoria).i18n(),
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                color: _controller.chartList[index].background,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-          );
-        },
-      ),
+                  decoration: BoxDecoration(
+                    color: _controller.chartList[index].background,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -29,12 +29,10 @@ class _MeuHistoricoState extends State<MeuHistorico> {
     final locale = Localizations.localeOf(context);
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0x00000000),
+        backgroundColor: AppColors.primary,
         title: const Text('Extrato'),
-        centerTitle: true,
       ),
       body: Observer(builder: (context) {
         return Column(
@@ -54,7 +52,7 @@ class _MeuHistoricoState extends State<MeuHistorico> {
             ElevatedButton(
               onPressed: () async {
                 _selected =
-                    await SimpleMonthYearPickerGreen.showMonthYearPickerDialog(
+                await SimpleMonthYearPickerGreen.showMonthYearPickerDialog(
                   context: context,
                   barrierDismissible: true,
                 );

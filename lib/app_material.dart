@@ -4,10 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:green/utils/configs/pages_settings.dart';
 import 'package:green/view/pages/drawer_pages/chart_page.dart';
 import 'package:green/view/pages/drawer_pages/meuGreen.dart';
+import 'package:green/view/pages/drawer_pages/meu_green_profile.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_historico.dart';
 import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
 import 'package:green/view/pages/register/widgets/signup_page_login.dart';
+import 'package:green/view/todo_green.dart';
 import 'package:localization/localization.dart';
 import 'utils/preferences_green.dart';
 import 'view/pages/drawer_pages/meu_green_metas.dart';
@@ -101,8 +103,9 @@ class AppMaterialState extends State<AppMaterial> with WidgetsBindingObserver {
           '/metas': (context) => const MeuGreenMetas(),
           '/extrato': (context) => MeuHistorico(),
           '/meuGreen': (context) => RootApp(),
-          '/config': (context) => ConfiguracoesPage(),
+          '/config': (context) => MeuGreenProfile(),
           '/chart': (context) => ChartPage(),
+          '/todo': (context) => TodoGreen(),
         },
       ),
     );

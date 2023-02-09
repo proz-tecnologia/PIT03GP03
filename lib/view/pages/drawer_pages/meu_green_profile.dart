@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:green/core/ui/widgets/loader.dart';
-import 'package:green/core/ui/widgets/mensagens.dart';
 import 'package:green/stores/user.store.dart';
-import 'package:localization/localization.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:green/helpers/AppColors.dart';
+import 'package:green/view/pages/drawer_pages/widgets/menu_languages.dart';
+import '../../../app_material.dart';
+import '../../../constants/switch_dark.dart';
+import '../../../controller/controller.home.dart';
+import '../../../infra/repositories/auth.repository_impl.dart';
+import 'meugreen_saldos.dart';
 
 class MeuGreenProfile extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class MeuGreenProfile extends StatefulWidget {
 }
 
 class _MeuGreenProfileState extends State<MeuGreenProfile> {
+  final _controller = GetIt.instance.get<ControllerHome>();
+  final userStore = GetIt.instance.get<UserStore>();
+  final repository = GetIt.instance.get<AuthRepositoryImpl>();
   double aux = 0.0;
   final RegExp verificNumber = RegExp(r'([0-9]{})');
   final fomrKeyLimite = GlobalKey<FormState>();
@@ -25,8 +29,14 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          PreferredSize(child: getAppBar(), preferredSize: Size.fromHeight(60)),
+      appBar:AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        title:Text('Configurações',style: TextStyle(
+            fontSize: 13,fontFamily: 'sans-serif-light'
+        ),),
+      ),
       body: Observer(builder: (context) {
         return Container(
           child: Form(
@@ -39,298 +49,169 @@ class _MeuGreenProfileState extends State<MeuGreenProfile> {
     );
   }
 
-  Widget getAppBar() {
-    return AppBar(
-      backgroundColor: Colors.white54,
-      elevation: 0,
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.black,
-          size: 22,
-        ),
-      ),
-    );
-  }
+
 
   Widget getBody() {
     final userStore = GetIt.instance.get<UserStore>();
     var size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            decoration: BoxDecoration(color: AppColors.white, boxShadow: [
-              BoxShadow(
-                color: AppColors.grey.withOpacity(0.01),
-                spreadRadius: 10,
-                blurRadius: 3,
-                // changes position of shadow
-              ),
-            ]),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20, bottom: 25),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: (size.width - 40) * 0.4,
-                        child: Container(
-                          child: Stack(
-                            children: [
-                              RotatedBox(
-                                quarterTurns: -2,
-                                child: CircularPercentIndicator(
-                                    circularStrokeCap: CircularStrokeCap.round,
-                                    backgroundColor:
-                                        AppColors.grey.withOpacity(0.3),
-                                    radius: 110.0,
-                                    lineWidth: 6.0,
-                                    percent: 0.53,
-                                    progressColor: AppColors.primary),
-                              ),
-                              Positioned(
-                                top: 16,
-                                left: 13,
-                                child: Container(
-                                  width: 100,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/avatar.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Container(
-                    width: (size.width - 40) * 0.6,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Green",
-                          style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Arial',
-                              color: AppColors.black),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.primary.withOpacity(0.01),
-                            spreadRadius: 10,
-                            blurRadius: 3,
-                            // changes position of shadow
-                          ),
-                        ]),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 25, bottom: 25),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Definir novo  Limite financeiro",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: AppColors.white),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'money'.i18n(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                    color: AppColors.white),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                validator: (String? valor) {
-                                  if (verificNumber.hasMatch(valor!) ||
-                                      valor.isEmpty ||
-                                      double.parse(
-                                              valor.replaceAll(",", ".")) <=
-                                          0) {
-                                    return 'valor inválido';
-                                  }
+    return Scaffold(
+        body: ListView(
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.all(20),
 
-                                  return null;
-                                },
-                                keyboardType:
-                                    const TextInputType.numberWithOptions(
-                                        decimal: true),
-                                cursorColor: AppColors.white,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.white),
-                                decoration: InputDecoration(
-                                  hintText:
-                                      "${userStore.profile!.limite.toStringAsFixed(2)}",
-                                  prefixIconColor: Colors.white,
-                                ),
-                                onChanged: (value) => aux = double.parse(value),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () async {
-                              var formValid =
-                                  fomrKeyLimite.currentState?.validate() ??
-                                      false;
-                              var message = 'Valor invalida';
-
-                              if (formValid) {
-                                message = "Limite atualizado com sucesso";
-                                Loader.show("Atualizando...");
-
-                                //TODO aquiiiiii
-
-                                await userStore.setNewLimit(aux);
-
-                                Loader.hide();
-                                Mensagens.sucess(message);
-                                Navigator.pop(context);
-                              }
-
-                              if (!formValid) {
-                                Mensagens.alert(message);
-                              }
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: AppColors.white)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Atualizar",
-                                  style: TextStyle(color: AppColors.white),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Email",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
-                ),
-                TextField(
-                  controller: _email,
-                  cursorColor: AppColors.black,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.black),
-                  decoration: InputDecoration(
-                      hintText: "Email", border: InputBorder.none),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Aniversário",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
-                ),
-                TextField(
-                  controller: dateOfBirth,
-                  cursorColor: AppColors.black,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.black),
-                  decoration:
-                      InputDecoration(hintText: "", border: InputBorder.none),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Senha",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
-                ),
-                TextField(
-                  obscureText: true,
-                  controller: password,
-                  cursorColor: AppColors.black,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.black),
-                  decoration: InputDecoration(
-                      hintText: "Password", border: InputBorder.none),
-                ),
-              ],
+            Align(
+              alignment: Alignment.topCenter,
+              child: CircleAvatar(
+                foregroundColor: Colors.green,
+                backgroundColor:Colors.white ,
+                radius: 60,
+                backgroundImage: AssetImage('assets/avatar.png'),
+              ),
             ),
-          )
-        ],
-      ),
-    );
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                  child: Text(
+                    'Olá, ${userStore.profile!.firstName}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'sans-serif-light',
+                        fontSize: 30),
+                  )),
+            ),       Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                  child: Text(
+                    'Limite Atual R\$ ${userStore.profile!.limite.toStringAsFixed(2)}",',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'sans-serif-light',
+                        fontSize: 15),
+                  )),
+            ),
+
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(15, 25, 15, 0),
+                child: Column(
+
+                  children: [
+                    Divider(),
+                    GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          Navigator.push(context,MaterialPageRoute(builder: (_)=>MeuGreenCarteira()));
+                        });
+                      },
+                      child: ListTile(
+                        leading: Icon(
+
+                          Icons.payment_outlined,
+                          size: 22,
+                          color: Colors.grey,
+                        ),
+                        title: Text('Atualizar limite'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ),
+                    Divider(),
+                    GestureDetector(
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          barrierColor: Color.fromARGB(255, 201, 224, 207),
+                          builder: (BuildContext context) {
+                            return MenuLanguages(
+                              onTap: (locale) {
+                                final myApp =
+                                context.findAncestorStateOfType<AppMaterialState>()!;
+                                myApp.changeLocale(locale);
+                              },
+                            );
+                          },
+                        );
+
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.language,
+                          size: 22,
+                          color: Colors.grey,
+                        ),
+                        title: Text("Idioma"),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ),
+                    Divider(),
+                    GestureDetector(
+                      onTap: (){
+
+                        setState(() {
+                          Navigator.push(context,MaterialPageRoute(builder: (_)=>Themes()));
+
+                        });
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.brightness_2_outlined,
+                          size: 22,
+                          color: Colors.grey,
+                        ),
+                        title: Text("Temas"),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ),
+                    Divider(),
+                    GestureDetector(
+                      onTap: (){},
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.question_answer,
+                          size: 22,
+                          color: Colors.grey,
+                        ),
+                        title: Text("Sobre"),
+                        trailing: Icon(Icons.question_mark),
+                      ),
+                    ),
+                    Divider(),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Container(
+              child: Column(),
+            ),
+
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.all(15),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.redAccent)),
+                  onPressed: () {},
+                  child: Text(
+                    "Log Out",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }
