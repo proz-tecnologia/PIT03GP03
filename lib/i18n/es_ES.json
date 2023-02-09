@@ -110,5 +110,7 @@
     "current_limit": "Límite Actual",
     "limit_actual": "Límite Financiero Actual",
     "update_limit": "Actualizar Límite",
-    "limit" : "Límite"
+    "limit" : "Límite",
+    "remove_favorites": "%s eliminar de favoritos",
+    "add_favorites": "%s añadido a favoritos"
 }

@@ -111,6 +111,8 @@
     "current_limit": "Current Limit",
     "limit_actual": "Current Financial Limit",
     "update_limit": "Update Limit",
-    "limit" : "Limit"
+    "limit" : "Limit",
+    "remove_favorites": "%s removed from favorites",
+    "add_favorites": "%s added to favorites"
 
 }

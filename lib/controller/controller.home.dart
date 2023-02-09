@@ -6,6 +6,7 @@ import 'package:green/helpers/Utils.dart';
 import 'package:green/infra/repositories/transaction.repository_impl.dart';
 import 'package:green/models/bar_char.models.dart';
 import 'package:green/models/category.dart';
+import 'package:localization/localization.dart';
 import 'package:mobx/mobx.dart';
 
 part 'controller.home.g.dart';
@@ -33,14 +34,14 @@ abstract class ControllerHomeBase with Store {
   @action
   void addFavorite(Category favorite) {
     listFavoriteCategories.add(favorite);
-    Mensagens.sucess("${favorite.name} adicionada aos favoritos");
+    Mensagens.sucess('${"add_favorites".i18n([favorite.name])}');
   }
 
   @action
   void removeFavorite(Category favorite) {
     listFavoriteCategories
         .removeWhere((element) => element.name == favorite.name);
-    Mensagens.alert("${favorite.name} removida dos favoritos");
+    Mensagens.alert('${"remove_favorites".i18n([favorite.name])}');
   }
 
   @action
