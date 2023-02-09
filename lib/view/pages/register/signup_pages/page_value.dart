@@ -119,7 +119,7 @@ fontSize: 16,
                         child: IconButton(
                             onPressed: () {
                               setState(() {
-                                controller.value=_valueEc.text as double;
+
 
                                 final formValid = _formKey.currentState?.validate() ?? false;
                                 if (formValid) {

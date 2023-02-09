@@ -41,10 +41,7 @@ class _MeuGreenCreatState extends State<MeuGreenCreat> {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0,
-        title: Text(
-          'Movimentações diarias',
-          style: TextStyle(fontSize: 15,fontFamily: 'sans-serif-light'),
-        ),
+
       ),
       body: Observer(builder: (context) {
         return Container(

@@ -128,6 +128,7 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                       //const Divider(),
                       // listview widgets (trocar para logica transações
                       Observer(
+
                         builder: (_) => ListView.separated(
                           primary: false,
                           shrinkWrap: true,

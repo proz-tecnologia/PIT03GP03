@@ -36,8 +36,9 @@ class _DrawerAppState extends State<DrawerApp> {
               children: [
                 headerWidget(
                     name: userStore.profile!.firstName, email: userStore.email),
+
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 const Divider(
                   thickness: 1,
@@ -68,14 +69,7 @@ class _DrawerAppState extends State<DrawerApp> {
                 const SizedBox(
                   height: 10,
                 ),
-                DrawerItem(
-                  name: "my_cards".i18n(),
-                  icon: Iconsax.card5,
-                  onPressed: () => onItemPressed(context, index: 3),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+
                 DrawerItem(
                   name: "todo_list".i18n(),
                   icon: Iconsax.book,

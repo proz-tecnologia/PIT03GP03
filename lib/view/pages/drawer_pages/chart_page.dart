@@ -45,7 +45,7 @@ class _ChartPageState extends State<ChartPage> {
         elevation: 0,
         title: const Text(
           'Chart Page',
-          style: TextStyle(fontFamily: 'sans-serif-light', fontSize: 15),
+          style: TextStyle(fontFamily: 'sans-serif-light', fontSize: 13),
         ),
       ),
       body: SingleChildScrollView(
@@ -78,7 +78,7 @@ class _ChartPageState extends State<ChartPage> {
     return Column(
       children: [
         SizedBox(
-          height: size.height * 0.3,
+          height: size.height * 0.2,
           child: ListView.builder(
             itemCount: _controller.chartList.length,
             scrollDirection: Axis.horizontal,
@@ -87,7 +87,7 @@ class _ChartPageState extends State<ChartPage> {
               return GestureDetector(
                 onTap: () {},
                 child: Container(
-                  width: 170,
+                  width: 100,
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: Wrap(
                     children: [
@@ -118,11 +118,11 @@ class _ChartPageState extends State<ChartPage> {
                             'assets/' +
                                 _controller.chartList[index].assetsName +
                                 '.png',
-                            fit: BoxFit.contain),
+                            fit: BoxFit.fill),
                       ),
                       Positioned(
                         bottom: 15,
-                        left: 20,
+                        left: 30,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -130,7 +130,7 @@ class _ChartPageState extends State<ChartPage> {
                               (_controller.chartList[index].categoria).i18n(),
                               style: const TextStyle(
                                 color: Colors.white70,
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
