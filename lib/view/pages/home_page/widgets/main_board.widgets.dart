@@ -128,7 +128,6 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
                       //const Divider(),
                       // listview widgets (trocar para logica transações
                       Observer(
-
                         builder: (_) => ListView.separated(
                           primary: false,
                           shrinkWrap: true,
@@ -307,7 +306,7 @@ class _MainBoardWidgetsState extends State<MainBoardWidgets> {
     );
   }
 
-  Column _reportInner(
+  Column reportInner(
       {required bool isSavings, required String title, required String value}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

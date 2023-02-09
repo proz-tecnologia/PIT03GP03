@@ -1,5 +1,4 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Themes extends StatefulWidget {
@@ -15,7 +14,7 @@ class _ThemesState extends State<Themes> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark().copyWith(
         appBarTheme: AppBarTheme(color: const Color(0xFF253341)),
@@ -23,9 +22,11 @@ debugShowCheckedModeBanner: false,
       ),
       themeMode: isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light,
       home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,
-   foregroundColor: Colors.black,
-        elevation: 0,),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
+          elevation: 0,
+        ),
         body: SizedBox.expand(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -4,7 +4,6 @@ import 'package:green/controller/extract.controller.dart';
 import 'package:green/core/logger/app_logger_impl.dart';
 
 import 'package:green/infra/repositories/auth.repository_impl.dart';
-import 'package:green/infra/repositories/transaction.repository.dart';
 import 'package:green/infra/repositories/transaction.repository_impl.dart';
 import 'package:green/infra/services/auth.service.dart';
 import 'package:green/infra/services/transaction.service.dart';

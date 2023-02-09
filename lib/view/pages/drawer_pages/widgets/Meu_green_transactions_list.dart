@@ -42,13 +42,13 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
     );
   }
 
-  AppBar _buildAppBar() {
+  /*AppBar _buildAppBar() {
     return AppBar(elevation: 0, actions: const <Widget>[
       Padding(
         padding: EdgeInsets.only(right: 20),
       )
     ]);
-  }
+  }*/
 
   Widget _appbarBotomSection(double value, List<GreenList> _greenList) {
     return Container(
@@ -199,7 +199,7 @@ class _MeuGreenTransactionsListState extends State<MeuGreenTransactionsList> {
   }
 
   ///Report Cell
-  Container _reportCell({
+  Container reportCell({
     required bool isSavings,
     required String title,
     required String gastos,
