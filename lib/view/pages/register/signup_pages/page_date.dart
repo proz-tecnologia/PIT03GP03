@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PageDate extends StatefulWidget {
@@ -11,7 +10,7 @@ class PageDate extends StatefulWidget {
 class _PageDateState extends State<PageDate> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       color: Colors.white,
       child: Center(child: Text("Date")),
     );

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:green/view/pages/register/signup_pages/page_date.dart';
 
@@ -6,8 +5,6 @@ import 'package:green/view/pages/register/signup_pages/page_email.dart';
 import 'package:green/view/pages/register/signup_pages/page_name.dart';
 import 'package:green/view/pages/register/signup_pages/page_password.dart';
 import 'package:green/view/pages/register/signup_pages/page_value.dart';
-
-
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -17,7 +14,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _formKey = GlobalKey<FormState>();
+  //final _formKey = GlobalKey<FormState>();
   final _nameEC = TextEditingController();
   final _emailEC = TextEditingController();
   final _passwordEC = TextEditingController();
@@ -30,37 +27,35 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-  PageController _controller=PageController();
+  PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    //Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body:Stack(
+        body: Stack(
+      children: [
+        PageView(
+          controller: _controller,
           children: [
-            PageView(
-              controller: _controller,
-              children: [
-                PageName(),
-                PageEmail(),
-                PagePassWord(),
-                PageValue(),
-                PageDate()
-              ],
-            ),
-            Container(
-              alignment: Alignment(0,0.80),
-              // child: SmoothPageIndicator(controller: _controller, count: 5, effect: JumpingDotEffect(
-              //   dotHeight: 16,
-              //   dotWidth: 16,
-              //   jumpScale: .7,
-              //   verticalOffset: 15,))
-            )],
+            PageName(),
+            PageEmail(),
+            PagePassWord(),
+            PageValue(),
+            PageDate()
+          ],
+        ),
+        Container(
+          alignment: Alignment(0, 0.80),
+          // child: SmoothPageIndicator(controller: _controller, count: 5, effect: JumpingDotEffect(
+          //   dotHeight: 16,
+          //   dotWidth: 16,
+          //   jumpScale: .7,
+          //   verticalOffset: 15,))
         )
-    );
+      ],
+    ));
   }
 }
 //

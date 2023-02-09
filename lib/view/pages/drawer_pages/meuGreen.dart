@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:green/model/meu_green_category.dart';
 import 'package:green/view/pages/drawer_pages/chart_page.dart';
-import 'package:green/view/pages/drawer_pages/widgets/meu_green_favorites.dart';
 
 import 'package:ionicons/ionicons.dart';
-import 'package:page_transition/page_transition.dart';
 
-import 'meu_green_profile.dart';
-import 'meugreen_saldos.dart';
 import 'stats_page.dart';
 
 class RootApp extends StatefulWidget {
@@ -29,9 +25,6 @@ class _RootAppState extends State<RootApp> {
       ChartPage()
       //  CategoryListPage(),
       //  MeuGreenPag(),
-
-
-
     ];
   }
 
@@ -50,7 +43,6 @@ class _RootAppState extends State<RootApp> {
   List<IconData> iconItems = [
     Ionicons.wallet_sharp,
     Ionicons.stats_chart,
-
   ];
 
   @override
@@ -60,11 +52,8 @@ class _RootAppState extends State<RootApp> {
         index: _bottomNavIndex,
         children: pages(),
       ),
-
       bottomNavigationBar: AnimatedBottomNavigationBar(
-
-
-        rightCornerRadius: 50,
+          rightCornerRadius: 50,
           leftCornerRadius: 50,
           splashColor: Colors.deepOrange,
           splashRadius: 60,

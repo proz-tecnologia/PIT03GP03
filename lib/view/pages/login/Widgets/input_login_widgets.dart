@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:get_it/get_it.dart';
 import 'package:green/view/pages/login/Widgets/green_textform_fileld.dart';
 import 'package:green/view/pages/login/controller/login.controller.dart';
@@ -7,7 +7,7 @@ import 'package:localization/localization.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../../constants/credential/users_credential.dart';
-import '../../../../model/mocks/green_users.dart';
+
 import '../../home_page/homepage.dart';
 
 class InputLoginWidget extends StatefulWidget {

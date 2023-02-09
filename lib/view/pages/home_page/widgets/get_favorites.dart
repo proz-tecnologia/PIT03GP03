@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
-import 'package:green/models/category.dart';
 import 'package:green/view/pages/drawer_pages/widgets/meu_green_detail_page.dart';
 import 'package:localization/localization.dart';
 import 'package:page_transition/page_transition.dart';

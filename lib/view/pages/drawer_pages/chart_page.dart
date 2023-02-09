@@ -4,7 +4,6 @@ import 'package:green/constants/app_text_styles.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:green/models/bar_char.models.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
-import 'package:green/stores/user.store.dart';
 import 'package:localization/localization.dart';
 
 class ChartPage extends StatefulWidget {
@@ -16,7 +15,6 @@ class ChartPage extends StatefulWidget {
 
 class _ChartPageState extends State<ChartPage> {
   final _controller = GetIt.instance.get<ControllerHome>();
-  final _userStore = GetIt.instance.get<UserStore>();
 
   @override
   void initState() {

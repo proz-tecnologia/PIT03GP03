@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
 import 'package:mobx/mobx.dart';
 

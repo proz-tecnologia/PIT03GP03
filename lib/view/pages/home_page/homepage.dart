@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
-import 'package:green/helpers/AppColors.dart';
 import 'package:green/stores/user.store.dart';
 import 'package:green/view/pages/home_page/widgets/app_bar_bottom_section.dart';
 import 'package:green/view/pages/home_page/widgets/main_board.widgets.dart';

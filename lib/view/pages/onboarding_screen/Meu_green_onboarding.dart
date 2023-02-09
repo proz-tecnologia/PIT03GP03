@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green/view/pages/home_page/homepage.dart';
 import 'package:green/view/pages/login/login_page.dart';
-
-import '../register/widgets/signup_page_login.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);

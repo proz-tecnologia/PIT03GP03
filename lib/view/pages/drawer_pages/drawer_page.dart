@@ -3,8 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:green/controller/controller.home.dart';
 import 'package:green/infra/repositories/auth.repository_impl.dart';
 import 'package:green/stores/user.store.dart';
-import 'package:green/view/pages/drawer_pages/widgets/Meu_green_transactions_list.dart';
-import 'package:green/view/pages/drawer_pages/widgets/pagamentos.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localization/localization.dart';
 import 'drawer_item.dart';
@@ -36,7 +34,6 @@ class _DrawerAppState extends State<DrawerApp> {
               children: [
                 headerWidget(
                     name: userStore.profile!.firstName, email: userStore.email),
-
                 const SizedBox(
                   height: 30,
                 ),
@@ -69,7 +66,6 @@ class _DrawerAppState extends State<DrawerApp> {
                 const SizedBox(
                   height: 10,
                 ),
-
                 DrawerItem(
                   name: "todo_list".i18n(),
                   icon: Iconsax.book,

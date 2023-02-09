@@ -1,7 +1,6 @@
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:green/utils/configs/pages_settings.dart';
 import 'package:green/view/pages/drawer_pages/chart_page.dart';
 import 'package:green/view/pages/drawer_pages/meuGreen.dart';
 import 'package:green/view/pages/drawer_pages/meu_green_profile.dart';

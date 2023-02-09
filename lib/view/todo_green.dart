@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:green/view/pages/drawer_pages/widgets/todo_list_item.dart';
-
-
 import '../infra/repositories/todo_repository.dart';
 import '../model/Todo.dart';
 
@@ -43,12 +39,16 @@ class _TodoGreenState extends State<TodoGreen> {
           elevation: 0,
         ),
         body: Padding(
-          padding: EdgeInsets.only(top: 10,right: 15,left: 15),
+          padding: EdgeInsets.only(top: 10, right: 15, left: 15),
           child: Column(
-crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Tarefas",style: TextStyle(fontSize: 40,)
-                ,),
+              Text(
+                "Tarefas",
+                style: TextStyle(
+                  fontSize: 40,
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),
@@ -58,7 +58,6 @@ crossAxisAlignment: CrossAxisAlignment.start,
                     child: TextField(
                       controller: textController,
                       decoration: const InputDecoration(
-
                         labelText: 'Adicione uma Tarefa',
                         hintText: 'Ex.: Estudar Flutter',
                         //errorText: errorText,
@@ -180,8 +179,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
                 Navigator.of(context).pop();
               },
               style: TextButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white),
+                  backgroundColor: Colors.green, foregroundColor: Colors.white),
               child: Text('Cancelar')),
           TextButton(
               onPressed: () {

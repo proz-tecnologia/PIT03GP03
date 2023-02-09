@@ -1,8 +1,3 @@
-
-import 'package:green/view/pages/drawer_pages/widgets/meu_green_subCategories.dart';
-
-import '../models/category.dart';
-
 class Greenlist2 {
   int categoryId;
   String category;
@@ -17,7 +12,6 @@ class Greenlist2 {
 }
 
 class GreenList {
-
   final int categoryId;
   final String category;
   final String tittle;
@@ -26,14 +20,14 @@ class GreenList {
   bool isFavorated;
   bool isSelected;
 
-  GreenList({required this.categoryId,
-    required this.category,
-    required this.tittle,
-    required this.value,
-    required this.image,
-
-    required this.isFavorated,
-    required this.isSelected});
+  GreenList(
+      {required this.categoryId,
+      required this.category,
+      required this.tittle,
+      required this.value,
+      required this.image,
+      required this.isFavorated,
+      required this.isSelected});
 
   static List<GreenList> categoryList = [
     GreenList(
@@ -175,5 +169,4 @@ class GreenList {
         .where((element) => element.isSelected == true)
         .toList();
   }
-
 }

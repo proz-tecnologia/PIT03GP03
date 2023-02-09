@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:green/constants/transaction/transactions_green.dart';
-import 'package:green/controller/extrato.dart';
 
 class ItemTransaction extends StatefulWidget {
   Transaction transaction;
